@@ -1,6 +1,6 @@
-# Other papers
+# papers
 
-These papers are not on the arXiv.
+These papers are not on the arXiv -- the ones that are can be found in the `arXiv` directory.
 
  - under-spec-z-readers-companion : my masters thesis
  - masters-revision : my revision notes from my final exams for my masters

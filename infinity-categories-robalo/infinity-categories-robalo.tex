@@ -3,6 +3,7 @@
 \usepackage[top=1.2in,bottom=1.2in,left=1.8in,right=1.8in]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{tikz-cd}
 \usepackage{charter}
 \usepackage{titlesec}
 \usepackage{datetime}
@@ -11,8 +12,8 @@
 % Section titles
 
 % \titleformat{\section}{\Large\bfseries\filcenter}{\thesection}{0.7em}{}[]
-\titleformat{\section}{\large\bfseries}{\thesection}{0.5em}{}[]
-\titleformat{\subsection}[runin]{\bfseries}{\thesubsection}{0.5em}{}[]
+\titleformat{\section}{\large\bfseries\filcenter}{\thesection}{0.5em}{}[]
+\titleformat{\subsection}[runin]{\bfseries}{\thesubsection.}{0.5em}{}[]
 
 % Numbering
 
@@ -21,6 +22,11 @@
 % Shortcuts
 
 \renewcommand{\ss}[1]{\subsection{#1}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\sset}{\mathsf{sSet}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\id}{\mathrm{id}}
 
 % Title page
 
@@ -90,6 +96,95 @@
             \end{itemize}
 
     \section{Preliminary definitions}
+
+        \ss{Category of simplices.}
+            Write $\Delta$ to be the \textbf{category of simplices}:
+            \begin{itemize}
+                \item $\mathrm{ob}\Delta = \{[n]\}_{n\in\mathbb{N}}$ where $[n]=\{0<1<\ldots<n\}$ is the ordered set of natural numbers up to $n$;
+                \item $\Hom_\Delta([m],[n])$ is the set of order-preserving maps from $[m]$ to $[n]$.
+            \end{itemize}
+
+        \ss{Simplicial notation.}
+            We use the following notation:
+            \begin{itemize}
+                \item $\sset = \mathsf{Set}^{\Delta^\mathrm{op}} = \mathsf{Fun}(\Delta^\mathrm{op},\mathsf{Set})$;
+                \item $\Delta[n] = \Hom_\Delta(-,[n])\in\sset$;
+                \item $S_n = \Hom_\sset(\Delta[n],S)$ for $S\in\sset$;
+                \item $\Lambda^i_n = \Delta[n]\setminus\{\text{interior and the face opposite the }j\text{-th vertex}\}$ is the \textbf{$i$-th horn}.
+            \end{itemize}
+            \[
+                \Delta[2] =
+                \begin{tikzcd}[row sep=1em,column sep=1em]
+                    &1\ar{dr}\ar[Rightarrow]{d}&\\
+                    0\ar{ur}\ar{rr}&\,&2
+                \end{tikzcd}
+                \qquad\Lambda_2^1 =
+                \begin{tikzcd}[row sep=1em,column sep=1em]
+                    &1\ar{dr}&\\
+                    0\ar{ur}&\,&2
+                \end{tikzcd}
+            \]
+
+        \ss{Nerve.}
+            The \textbf{nerve} $N(\C)$ of a category $\C$ is the simplicial set with
+            \begin{itemize}
+                \item $n$-simplices given by $(X_0\xrightarrow{f_1}X_1\xrightarrow{f_2}\ldots\xrightarrow{f_n}X_n)$ in $\C$;
+                \item boundary maps given by composition (or forgetting the first/last object and morphism for the two edge cases);
+                \item degeneracy maps given by inserting the identity.
+            \end{itemize}
+
+        \ss{Note.}
+            There is a set-bijection
+            \[
+                \{\text{functors }\C\to\D\}\simeq\{\text{simplicial maps }N(\C)\to N(\D)\}.
+            \]
+
+        \ss{Lemma.}
+            There is an equivalence of categories $X\simeq N(\C)$ if and only if all \emph{inner} horns lift \emph{uniquely}.
+            \[
+                \begin{tikzcd}
+                    \Lambda_n^i \rar \dar[hook] & X\\
+                    \Delta[n] \urar[dashed,swap]{\exists!} &
+                \end{tikzcd}
+                \quad\text{for all }i\in\{1,\ldots,n-1\}
+            \]
+        \ss{Composition.}
+            For example, ``$\Lambda_2^1$ gives composition''.
+            \[
+                \begin{tikzcd}[row sep=1em,column sep=1em]
+                    &X_1\ar{dr}{f_2}&\\
+                    X_0\ar{ur}{f_1}\ar[dashed]{rr}{\exists!f_2\circ f_1}&&X_2
+                \end{tikzcd}
+            \]
+
+        \ss{Associativity.}
+            As another example, ``$\Lambda_3^1$ gives associativity''.
+            $X_0\xrightarrow{f_1}X_1\xrightarrow{f_2}X_2\xrightarrow{f_3}X_3$ in $\C$ corresponds to
+            \[
+                \Lambda_2^1\xrightarrow{(f_2,f_1)}N(\C)
+                \quad\text{and}\quad
+                \Lambda_2^1\xrightarrow{(f_3,f_2)}N(\C)
+            \]
+            which generate compositions
+            \[
+                \Delta[2]\xrightarrow{(f_2,f_1)}N(\C)
+                \quad\text{and}\quad
+                \Delta[2]\xrightarrow{(f_3,f_2)}N(\C).
+            \]
+            So $(f_3\circ f_2)\circ f_1 = f_3\circ(f_2\circ f_1)$ if and only if we can `fill the back face of the tetrahedron with vertices $X_0$, $X_1$, $X_2$, and $X_3$', i.e. if and only if we can extend $\Lambda_3^1\to N(\C)$ to $\Delta[3]\to N(\C)$.
+
+        \ss{Summary.}
+            The lifting property for inner horns ($0<i<n$) gives composition and associativity laws; for outer horns ($i=0,n$) it gives inverses.
+            \[
+                \begin{tikzcd}[row sep=1em,column sep=1em]
+                    &X_0\ar[dashed]{dr}{\exists!}&\\
+                    X_0\ar{ur}{\id_{X_0}}\ar{rr}{f_1}&&X_1
+                \end{tikzcd}
+            \]
+
+        \ss{Kan complex.}
+            If $X\sset$ is such that $X\simeq\mathrm{Sing}(T)$, where $\mathrm{Sing}(T)$ consists of singular simplices in a topological space $T$ (i.e. continuous maps $|\Delta^n|\to T$) then we call it a \textbf{Kan complex}.
+            Note that $X$ is a Kan complex if and only if \emph{all} horns lift, but \emph{not necessarily} uniquely.
 
     \section{Quasi-categories}
 

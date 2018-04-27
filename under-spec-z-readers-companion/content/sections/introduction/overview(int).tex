@@ -1,0 +1,92 @@
+% !TEX root = ../../../under-spec-z.tex
+
+\subsection{Overview} % (fold)
+\label{sub:overview}
+
+    In this paper we will summarise some of the results of \cite{Toen:2005wxa}, providing background definitions along the way, as well as filling in some of the proofs that are omitted or only sketched.
+    All of the pictures, as well as \cref{sub:background_knowledge,sec:further_applications}, are entirely original and aim to complement the main results (though the pictures are \emph{not} to be taken too literally -- they often illustrate simple cases, such as when $\ccat=\Op{T}$).
+    There are also explanations of motivation (e.g. \cref{sub:under_}) and historical notes (e.g. \cref{sub:the_riemann_hypothesis}) that are original.
+    This is why this paper is subtitled `\emph{a readers' guide}', and not simply `\emph{a translation}'.
+
+    The results of \cite{Toen:2005wxa} are many, and we will not have time to cover most of the later sections;  we will focus largely on the first three\footnote{
+        Not including the introduction, so sections 2 (\emph{Géométrie algébrique relative}), 3 (\emph{Trois exemples de géométries relatives}), and 4 (\emph{Quelques exemples de schémas au-dessous de $\spec\zz$}).
+    } sections.
+    Because of this, for us, the introduction of \cite{Toen:2005wxa} summarises the purpose of the paper better than the abstract.
+
+    \vspace{-1em}
+
+    \begin{translation}{1}{1}
+        The aim of this paper is to construct several categories of \emph{schemes} that are defined over bases found \emph{under $\spec\zz$}.
+        Of course, since $\zz$ is the initial object in the category of commutative rings, it is vital to leave the usual framework of rings and permit the use of more general objects, but only objects that  resemble commutative rings enough such that the notion of a scheme can still be defined.
+        Our approach to this problem is based on the theory of relative algebraic geometry, largely inspired by \cite{Hakim:XPnOZC1P}.
+        It comes from remarking that a commutative ring is nothing but a commutative monoid in the monoidal category of $\zz$-modules, and that, in general, for a symmetric monoidal category $\smc$, the commutative monoids in $\ccat$ can be thought of as models for the \emph{affine schemes relative to $\ccat$}.
+        It is remarkable that such a general (simplistic, even) approach allows us to actually define the notion of schemes, and moreover in a functorial way in $\ccat$.
+        So, in choosing $\ccat$ equipped with a sensible symmetric monoidal functor $\ccat\to\modc{\zz}$, we find a notion of schemes relative to $\ccat$ and a base-change functor to $\zz$-schemes, and thus a notion of schemes under $\spec\zz$.
+        % In this paper we show how this approach, as well as its \ghl{homotopic generalisation where $\ccat$ is also equipped with a Quillen model structure}, allows us to define five categories of schemes found under $\spec\zz$.
+    \end{translation}
+
+% In this translation we mainly focus on section 2 (\emph{Relative algebraic geometry}), about which the introduction has the following to say.
+
+% \begin{translation}{1}{2--5}
+%     % The general ideas of relative algebraic geometry date back to \cite{Hakim:XPnOZC1P}, where \ghl{relative schemes over a ringed topos} are defined.
+%     % In \cite{Deligne:2007hm} the case of schemes over a \ghl{tannakian category} is also considered.
+%     The theory of relative  algebraic geometry that we present here is largely inspired by [\cite{Hakim:XPnOZC1P,Deligne:2007hm}], but considering categories over bases that aren't abelian, nor even additive, appears to be a novelty.
+%     \\\\
+%     Consider a symmetric monoidal category\footnote{
+%         \cref{df:smc}
+%     } $\smc$ that we also suppose to be complete, cocomplete, and closed\footnote{
+%         Such a category is now often called a \emph{cosmos} (\cref{df:cosmos}).
+%     } (i.e. possessing an internal $\Hom$ functor relative to the $\otimes$ monoidal structure).
+%     It is well known\footnote{
+%         Monoids, modules, and $\comm{\ccat}$ are all defined in \cref{ssub:preliminary_definitions}.
+%         The change of base functor is discussed at length in \cref{ssub:change_of_base_for_modules_over_a_monoid}.
+%     } that we have: the notion of a monoid in $\ccat$; for such a monoid $A$, the notion of a module; and for a morphism of monoids $A\to B$, a base-change functor $\blank\otimes_A B$ from $A$-modules to $B$-modules (see \cite{Saavedra:1972tn}).
+%     In particular there exists the notion of commutative monoids (associative and unital) in $\ccat$, and they form a category that we call $\comm{\ccat}$.
+%     We formally define the category of affine schemes relative to $\ccat$ by $\aff{\ccat}=\op{\comm{\ccat}}$.
+%     \\\\
+%     All of this is, for the moment, completely formal, but it produces a few miracles:
+%     \begin{itemize}
+%         \item There exists a natural Grothendieck topology on $\aff{\ccat}$ called the {\emph{flat topology}} \elide\footnote{
+%             \cref{df:fpqc-topology,df:fpqc-zariski-covers}
+%         }.
+%         % The covering families $\{X_i\to X\}$ for this topology correspond to the \ghl{finite families of morphisms} $\{A\to A_i\}$ in $\comm{\ccat}$ such that the base-change functor \ghl{on} the category of modules
+%         % $$\prod_i\left(\blank\otimes_A A_i\right): \modc{A} \longrightarrow \prod_i\left(\modc{A_i}\right)$$
+%         % is exact and conservative.
+        
+%         \item The flat topology on $\aff{\ccat}$ so defined is subcanonical (i.e. representable presheaves are sheaves).
+
+%         \item There exists the notion of \emph{Zariski open} in $\aff{\ccat}$ \elide\footnote{
+%             \cref{df:zariski-open-morphism}
+%         }.
+%         % , and they are by definition the morphisms $f\colon X\to Y$ for which the corresponding morphism \mbox{$A\to B$} in $\comm{\ccat}$ satisfies the following three conditions:
+%         % \begin{enumerate}
+%         %     \item \textit{$f$ is a monomorphism:} for all $A'\in\comm{\ccat}$ the \ghl{induced} morphism $\Hom(B,A')\to\Hom(A,A')$ is injective;
+            
+%         %     \item \textit{$f$ is \ghl{flat}:} the base-change functor
+%         %     $$(\blank\otimes_A B) \colon \modc{A} \longrightarrow \modc{B}$$
+%         %     is exact;
+
+%         %     \item \textit{$f$ is a finite presentation:} for all filtered diagrams of objects $C_i\in A/\comm{\ccat}$, the natural morphism
+%         %     $$\colim\Hom_{A/\comm{\ccat}}(B,C_i) \longrightarrow \Hom_{A/\comm{\ccat}}(B,\colim C_i)$$
+%         %     is bijective.
+%         % \end{enumerate}
+
+%         \item The notion of Zariski open extends naturally to general morphisms between sheaves (see \elide(\cref{df:zariski-open-sheaves})).
+
+%         \item The Zariski-open morphisms are stable under composition, isomorphism\footnote{
+%             That is, composition with an arbitrary isomorphism.
+%         }, and change of base.
+
+%         \item The Zariski-open morphisms give rise to a notion of a Zariski topology, and this is again subcanonical.
+%     \end{itemize}
+    
+%     The above properties are all that we need to define a category of schemes relative to $\smc$.
+%     Indeed, a relative scheme is by definition a sheaf on the site $\aff{\ccat}$, endowed with the Zariski topology, and possessing a Zariski-open cover by affine schemes (see \elide(\cref{df:relative-scheme})).
+%     The categories of schemes thus obtained is denoted $\sch{\ccat}$.
+%     It is a full subcategory, stable under pullbacks and disjoint unions, of the category of sheaves on $\aff{\ccat}$.
+%     Further it contains a full subcategory of affine schemes, that are exactly the representable sheaves, and is naturally equivalent to the category $\comm{\ccat}$, opposite to the category of commutative monoids in $\ccat$ (see \elide(\cref{sub:the_faithfully_flat_topology})).
+%     Finally, the purely categorical nature of the construction makes the category $\sch{\ccat}$ functorial in $\ccat$, at the very least for left symmetric-monoidal adjoints $\smc\to\smd$ satisfying certain (easy to verify in practice) conditions (see \elide(\cref{sub:changes_of_bases})).
+% \end{translation}
+
+% subsection overview (end)
+

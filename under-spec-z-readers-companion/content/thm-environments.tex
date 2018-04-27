@@ -1,0 +1,41 @@
+% !TEX root = ../under-spec-z.tex
+
+\numberwithin{equation}{subsubsection}
+
+\declaretheoremstyle[
+    spacebelow=2\topsep,
+    spaceabove=2\topsep,
+    headfont=\normalfont\bfseries,
+    bodyfont=\itshape,
+    postheadspace=\newline,
+    qed=${\lrcorner}$,
+    headpunct={},
+    notebraces={[}{]}
+]{breakit}
+
+\declaretheoremstyle[
+    spacebelow=2\topsep,
+    spaceabove=2\topsep,
+    headfont=\normalfont\bfseries,
+    bodyfont=\normalfont,
+    postheadspace=\newline,
+    qed=${\lrcorner}$,
+    headpunct={},
+    notebraces={[}{]}
+]{breakup}
+
+\declaretheorem[numberlike=equation,style=breakit]{theorem}
+\declaretheorem[numberlike=theorem,style=breakit]{lemma}
+\declaretheorem[numberlike=theorem,style=breakit]{corollary}
+
+\declaretheorem[numberlike=theorem,style=breakup]{definition}
+\declaretheorem[numberlike=theorem,style=breakup]{example}
+\declaretheorem[numberlike=theorem,style=breakup]{note}
+
+\numberwithin{theorem}{subsubsection}
+\numberwithin{lemma}{subsubsection}
+\numberwithin{corollary}{subsubsection}
+
+\numberwithin{definition}{subsubsection}
+\numberwithin{example}{subsubsection}
+\numberwithin{note}{subsubsection}

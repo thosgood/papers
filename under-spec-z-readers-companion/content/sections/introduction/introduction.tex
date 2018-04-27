@@ -1,0 +1,65 @@
+% !TEX root = ../../../under-spec-z.tex
+
+\section{Introduction} % (fold)
+\label{sec:introduction}
+
+    \subsection{Formatting} % (fold)
+    \label{ssub:formatting}
+
+        This paper consists of translated sections from \cite{Toen:2005wxa} as well as the author's own writing.
+        The general layout and order tries to follow that of the original paper as much as possible, including section numbering and naming.
+
+        Longer sections of translated text will be boxed, left aligned, sans serif, and ended with a small black square ($\blacksquare$).
+        At the start of such sections there will also be a reference to the location of the source text.
+        Shorter `quotations' will simply be in italics and referenced afterwards.
+        Theorems (and definitions) that have been translated will not be boxed off or in quotes, but there will be a reference to the original theorem (or definition) after the theorem (or definition) number.
+        Hopefully it will be largely self-explanatory, but here are a few guidelines that the author has tried to adhere to:
+        \begin{itemize}
+            \item Usually they will be given as a section and a paragraph, e.g. (\S1\,\P2), where the paragraphs are counted by looking at indentations.
+            \item Negative paragraph numbers indicate counting from the end of the section (as given), with the last paragraph being the -1st.
+                For example, (\S2.1\,\P-2) would indicate the penultimate paragraph of section 2.1.
+                (Luckily there are no subsubsections, so we don't have to worry about things getting any more complex.)
+        \end{itemize}
+
+
+        Sometimes a section that we wish to translate will contain some reference to a theorem or definition in the original paper, and this might have a different numbering in \emph{this} paper.
+        Because of this, all such references (e.g. \emph{voir définition 2.12}) from the original will be suitably replaced with numbering relevant to \emph{this} paper (e.g. \emph{voir \elide (\cref{le:yoneda-lemma})}).
+
+        If there are any references to a certain section or paragraph without specifying from which paper, then they are to \cite{Toen:2005wxa}.
+        Similarly, if any lemma (or theorem) is stated without a proof then a proof can be found in the referenced lemma (or theorem) in \cite{Toen:2005wxa}.
+
+        Finally, all footnotes, in translated sections or not, are by the author and \emph{not} from \cite{Toen:2005wxa}.
+
+
+    \subsubsection{Conventions} % (fold)
+    \label{ssub:conventions}
+
+        We retain the following conventions from \cite{Toen:2005wxa}:
+        \begin{translation}{1}{-2}
+            All the monoids and monoidal categories considered will be unital and associative, and all modules over a monoid will be unital.
+            We will ignore all set-theoretic problems to do with the choice of universe; the reader can consult \cite{Toen:2005er,Toen:2008wy} to find a method to resolve them.
+        \end{translation}
+
+        We also impose the following conventions ourselves, which are always assumed (unless otherwise stated):
+        \begin{itemize}
+            \item all algebras and rings are unital and associative;
+            \item $k$ is an algebraically closed field;
+            \item $0\in\nn$;
+            \item for a ring $R$ we write $R^\times$ to mean the group of multiplicative units in $R$;
+            \item $\GG_m=k^\times=k\setminus\{0\}$;
+            \item for $n\in\nn\setminus\{0\}$ we write $\mu_n$ to mean the cyclic group of order $n$;
+            \item given a category $\ccat$ we write $x\in\ccat$ to mean $x\in\mathrm{ob}(\ccat)$;
+            \item `presheaf' means a $\Set$-valued presheaf.
+        \end{itemize}
+        We usually use `functor' to mean `covariant functor'.
+        % It is not a strict convention, but we tend to think of functors as being covariant (and hence contravariant functors are functors from the opposite category).
+        % This is not a universal view though, and some papers don't adopt this tendency, but the context should always make it clear how we are thinking about functors.
+
+    % subsubsection conventions (end)
+
+
+    \input{content/sections/introduction/overview(int).tex}
+
+    \input{content/sections/introduction/background(int).tex}
+
+% section introduction (end)

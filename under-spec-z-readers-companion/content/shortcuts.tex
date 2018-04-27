@@ -1,0 +1,85 @@
+% !TEX root = ../under-spec-z.tex
+
+\newcommand*\elide{\,\textup{[\,\dots]}\,}
+
+\newcommand{\hookdoubleheadrightarrow}{%
+  \hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow
+}
+
+\DeclareMathSymbol{\mlq}{\mathord}{operators}{``}
+\DeclareMathSymbol{\mrq}{\mathord}{operators}{`'}
+
+\newcommand{\numberincircle}[1]{\raisebox{.5pt}{\textcircled{\raisebox{.2pt}{\tiny #1}}}}
+
+
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\coeq}{coeq}
+\DeclareMathOperator{\eq}{eq}
+\DeclareMathOperator{\essim}{essim}
+% \DeclareMathOperator{\Sch}{Sch}
+% \DeclareMathOperator{\PShv}{PSh}
+% \DeclareMathOperator{\Shv}{Sh}
+% \DeclareMathOperator{\Fun}{Fun}
+\newcommand{\Sch}{\mathsf{Sch}}
+\newcommand{\ASch}{\mathsf{AffSch}}
+\newcommand{\PShv}{\mathsf{PSh}}
+\newcommand{\Shv}{\mathsf{Sh}}
+\newcommand{\Fun}{\mathsf{Fun}}
+\newcommand{\Loc}{\mathsf{Loc}}
+\newcommand{\Fra}{\mathsf{Fra}}
+\newcommand{\Ban}{\mathsf{Ban}}
+
+
+\DeclareMathOperator{\GL}{GL}
+
+\newcommand{\uHom}{\underline{\Hom}}
+
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\ff}{\mathbb{F}}
+\newcommand{\dd}{\mathbb{D}}
+\newcommand{\GG}{\mathbb{G}}
+
+\newcommand{\smc}{(\mathcal{C},\otimes,1)}
+\newcommand{\smd}{(\mathcal{D},\otimes,1)}
+\newcommand{\ccat}{\mathcal{C}}
+\newcommand{\dcat}{\mathcal{D}}
+\newcommand{\tcat}{\mathcal{D}}
+\newcommand{\ecat}{\mathcal{E}}
+
+\newcommand{\commk}{\mathsf{CommAlg}_k}
+\newcommand{\Cat}{\mathsf{Cat}}
+\newcommand{\Set}{\mathsf{Set}}
+\newcommand{\Ab}{\mathsf{Ab}}
+\newcommand{\Grp}{\mathsf{Grp}}
+\newcommand{\CRing}{\mathsf{CRing}}
+\newcommand{\CSemiring}{\mathsf{CSemiring}}
+\newcommand{\CMon}{\mathsf{CMon}}
+
+\newcommand{\modc}[1]{{{#1}\hbox{-}\mathsf{Mod}}}
+\newcommand{\algc}[1]{{{#1}\hbox{-}\mathsf{CommAlg}}}
+\newcommand{\comm}[1]{\mathsf{Comm}\left({#1}\right)}
+\newcommand{\schc}[1]{{#1}\hbox{-}\mathsf{Sch}}
+\newcommand{\aff}[1]{\mathsf{Aff}_{#1}}
+\newcommand{\Sp}[1]{\mathsf{Sp}_{#1}}
+\newcommand{\Op}[1]{\mathsf{Op}(#1)}
+\newcommand{\Zar}[1]{\mathsf{Zar}(#1)}
+\newcommand{\AffZar}[1]{\mathsf{AffZar}(#1)}
+
+\newcommand{\op}[1]{{#1}^{\mathrm{op}}}
+
+\newcommand{\blank}{{-}}
+\newcommand{\singleton}{\{*\}}
+
+\newcommand{\nt}{\Rightarrow}
+\newcommand{\congto}{\overset{\sim}{\longrightarrow}}
+
+\newcommand{\famofmor}{\{p_i\colon X_i\to X\}_{i\in I}}
+
+\newcommand{\tightunderset}[2]{\underset{\makebox[0pt]{\text{\footnotesize {#1}}}}{#2}}
+\newcommand{\tightoverset}[2]{\overset{\makebox[0pt]{\text{\footnotesize {#1}}}}{#2}}

@@ -1,0 +1,208 @@
+% !TEX root = ../under-spec-z.tex
+
+\documentclass[12pt]{article}
+
+
+
+
+
+%%% Tools/essentials %%%
+
+\usepackage[utf8]{inputenc}
+\usepackage{embedfile}
+\usepackage{enumerate}
+\usepackage{mathtools}
+
+\usepackage{tikz-cd}
+
+\usepackage[left=1.5in, right=1.5in, top=1in, footskip=0.5in, bottom=1.2in]{geometry}
+
+
+
+
+%%% Typography %%%
+
+\usepackage{charter}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{fnpct}
+\usepackage[symbol,perpage]{footmisc}
+
+\usepackage[xspace]{ellipsis}
+
+\renewcommand\labelitemi{{\boldmath$\cdot$}}
+
+\usepackage{soul}
+\newcommand{\ghl}[1]{{\sethlcolor{green}\hl{#1}}}
+\newcommand{\rhl}[1]{{\sethlcolor{red}\hl{#1}}}
+
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage[font=footnotesize]{caption}
+
+
+
+
+
+%%% Translation and commentary %%%
+
+\makeatletter
+\AtBeginEnvironment{mdframed}{%
+\def\@fnsymbol#1{\ensuremath{\ifcase#1\or \dagger\or \ddagger\or
+    \|\or **\or \dagger\dagger
+   \or \ddagger\ddagger \else\@ctrerr\fi}}%
+}   
+\renewcommand\thempfootnote{\fnsymbol{mpfootnote}}
+\makeatother
+
+\newenvironment{translation}[2]
+{%
+    \par\noindent
+    \vspace{0.4cm}%
+    \begin{flushleft}%
+        \marginpar{%
+            \vspace{.6cm}\footnotesize\S\,#1\\\P\,#2%
+        }%
+        \begin{mdframed}%
+            \textsf\bgroup\noindent\ignorespaces%%
+}%
+{%
+            \noindent\ignorespacesafterend%
+            \egroup%
+        \hfill{\ensuremath{\blacksquare}}
+        \end{mdframed}%
+    \end{flushleft}%
+    \vspace{0.4cm}%
+}
+
+\usepackage[%
+linewidth=1pt,
+linecolor=gray,
+topline=true,
+leftline=false,
+rightline=true,
+bottomline=false,
+skipabove=0pt,
+skipbelow=0pt,
+innertopmargin=0.5cm,
+leftmargin=0pt,
+innerleftmargin=0pt,
+rightmargin=-0.5cm,
+innerrightmargin=0.5cm,
+innerbottommargin=0.1cm,
+]{mdframed}
+
+
+
+
+
+%%% Titles, headers, and footers %%%
+
+\usepackage{titlesec}
+
+\usepackage{needspace}
+
+\input{content/headings.tex}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\makeatletter
+\newcommand{\resetHeadWidth}{\fancy@setoffs}
+\makeatother
+
+\fancypagestyle{pagenumbers}{%
+  \fancyhf{}%
+  \fancyfoot[C]{{\thepage ~of \pageref{LastPage}}}
+}
+
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+
+
+%%% Table of contents %%%
+
+\usepackage{multicol}
+% \usepackage[toc]{multitoc}
+\usepackage{tocloft}
+
+\makeatletter
+\renewcommand{\@cftmaketoctitle}{}
+\makeatother
+
+\renewcommand{\cftdot}{}
+\renewcommand{\cftpnumalign}{r}
+
+% \renewcommand{\cftsecleader}{\quad}
+\renewcommand{\cftsecafterpnum}{\cftparfillskip}
+\renewcommand{\cftsecpagefont}{\bfseries\itshape}
+\setlength{\cftbeforesecskip}{1em}
+
+% \renewcommand{\cftsubsecleader}{\quad}
+\renewcommand{\cftsubsecafterpnum}{\cftparfillskip}
+\renewcommand{\cftsubsecpagefont}{\itshape}
+\cftsetindents{subsection}{1em}{2.4em}
+\setlength{\cftbeforesecskip}{.5em}
+
+\renewcommand{\cftsubsubsecafterpnum}{\cftparfillskip}
+\renewcommand{\cftsubsubsecpagefont}{\itshape}
+\renewcommand{\cftsubsubsecaftersnumb}{\itshape}
+\cftsetindents{subsubsection}{2em}{3.4em}
+\setlength{\cftbeforesecskip}{.5em}
+
+
+
+
+
+%%% Citations %%%
+
+\usepackage[backend=biber,defernumbers=true,bibencoding=ascii,style=alphabetic,maxbibnames=99,maxalphanames=5]{biblatex}
+\addbibresource{under-spec-z.bib}
+
+\let\cite\autocite
+
+\nocite{*}
+
+
+
+
+
+%%% Theorem environments %%%
+
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+
+% \usepackage[pdfpagelabels]{hyperref}
+\usepackage[noabbrev,nameinlink,capitalize]{cleveref}
+
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+
+\input{content/thm-environments.tex}
+
+
+
+
+
+%%% Appendices %%%
+
+\usepackage{appendix}
+\crefname{appsec}{Appendix}{Appendices}
+
+
+
+
+
+%%% Notes to self %%%
+
+\usepackage{environ}
+\NewEnviron{fix}{\marginpar{\textcolor{magenta}{\BODY$\rightarrow$}}}

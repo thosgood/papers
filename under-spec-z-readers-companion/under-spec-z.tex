@@ -1,0 +1,120 @@
+\input{content/preamble.tex}
+
+\input{content/shortcuts.tex}
+
+\title{Under $\spec\zz$\\ \Large{\textit{A reader's companion}}}
+\author{Timothy Hosgood}
+
+%%% Document %%%
+
+\begin{document}
+
+    \embedfile{\jobname.tex}
+
+    %%% Title %%%
+
+    \input{content/title.tex}
+
+    %%% Abstract and thanks %%%
+
+    \pagestyle{pagenumbers}
+    \setcounter{page}{1}
+    
+    \input{content/abstract.tex}
+    
+    % \vfill
+
+    \begin{figure}[h!]
+        \centering
+        \begin{minipage}[t]{0.45\textwidth}
+            \vspace{0pt}
+            \includegraphics[width=\textwidth]{images/riemann-zeta.jpg}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.53\textwidth}
+            \vspace{0pt}
+            \footnotesize
+            \centering\textbf{Thanks}\\[.7em]
+            \raggedright
+            \begin{verse}
+                \emph{Many thanks to give;}\\
+                \emph{word limit too tight -- I swim}\\
+                \emph{in deep gratitude.}
+            \end{verse}
+            Firstly, thanks to \cite{Lan:2012tj} for creating such an invaluable mathematical French dictionary.
+            Secondly, thanks to Kobi Kremnitzer and Christopher Hollings for their excellent supervision, and for not complaining about the vast number of questions I asked.
+            Lastly, thanks to all my family and friends, without whom I would not be lucky enough to be at university, let alone be able write this dissertation.
+        \end{minipage}
+    \end{figure}
+
+    \begin{quotation}
+        \footnotesize\emph{Point n'est besoin d'espérer pour entreprendre, ni de réussir pour perséverer}\\
+        \raggedleft -- Willem van Oranje Nassau
+    \end{quotation}
+
+
+    % \vspace{4em}
+
+    %%% Table of contents %%%
+
+    \clearpage
+
+    % \newgeometry{left=.5in,right=.5in}
+
+    % \section*{Contents}
+    % \vspace{-1em}
+
+    \begin{center}
+        \textbf{Contents}
+    \end{center}
+
+    \tableofcontents
+
+    % \restoregeometry
+
+
+    %%% REVERSE MARGINPAR SIDE %%%
+
+    \reversemarginpar
+
+
+
+    %%% Content %%%
+
+    %TC:group figure 0 0
+
+    \clearpage
+    \input{content/sections/introduction/introduction.tex}
+    \clearpage
+    \input{content/sections/relative-algebraic-geometry/relative-algebraic-geometry.tex}
+    \clearpage
+    % \input{content/sections/three-examples/three-examples.tex}
+    \input{content/sections/short-three-examples.tex}
+    % \clearpage
+    % \input{content/sections/some-examples/some-examples.tex}
+    \clearpage
+    \input{content/sections/further-applications/further-applications.tex}
+
+
+
+    \clearpage
+
+    %%% Appendices %%%
+
+    % \addtocontents{toc}{\protect\addvspace{15pt}\hrule\protect\addvspace{15pt}}
+    
+    % \begin{appendices}
+    %     \crefalias{section}{appsec}
+    %     % \input{content/appendices/quick-alg-geom.tex}
+    % \end{appendices}
+
+
+
+    \clearpage
+
+    %%% Bibliographies %%%
+    
+    \addcontentsline{toc}{section}{Bibliography}
+    \printbibliography
+
+\end{document}

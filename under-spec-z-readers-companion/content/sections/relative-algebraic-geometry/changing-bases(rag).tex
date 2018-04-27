@@ -1,0 +1,232 @@
+
+% !TEX root = ../../../under-spec-z.tex
+
+\subsection{Changes of base} % (fold)
+\label{sub:changes_of_bases}
+
+    % \emph{Throughout this section $(\ccat,\otimes,1_\ccat)$ and $(\dcat,\odot,1_\dcat)$ are both cosmoses.}
+
+    The aim of this section is to provide some technical machinery that we will use in \cref{sec:three_examples_of_relative_geometry}, so we only state the main result of \cite[\S2.5]{Toen:2005wxa} and refer the reader back to there for more details.
+
+    % \bigskip
+
+    % Suppose we have some strong\footnote{
+    %     \cite{Toen:2005wxa} uses the name \emph{monoidal functor} (as do many other sources) to refer to what is sometimes called a \emph{strong monoidal functor}.
+    %     The choice of nomenclature is only important insofar as consistency; we decide to use `strong'.
+    % } symmetric monoidal functor\footnote{
+    %     That is, a functor that respects the symmetric monoidal structure of both $\ccat$ and $\dcat$.
+    %     To be slightly more precise, the functor comes with an isomorphism $f(X)\odot f(Y)\congto f(X\otimes Y)$, natural in $X$ and $Y$, which respects the symmetry of $\otimes$ and $\odot$, and an isomorphism $1_\dcat\congto f(1_\ccat)$ satisfying certain coherence conditions.
+    % } \mbox{$f\colon\ccat\to\dcat$} that has a right adjoint $g\colon\dcat\to\ccat$.
+    % This right adjoint is not necessarily a strong monoidal functor, but it is a \emph{lax monoidal functor}\footnote{
+    %     That is, we do have morphisms $g(X)\otimes g(Y)\to g(X\odot Y)$ and $1_\ccat\to g(1_\dcat)$ respecting coherence conditions and the symmetry of $\otimes$ and $\odot$, but they are not necessarily isomorphisms.
+    % }, which turns out to be enough for $g$ to induce a functor on the categories of commutative monoids and on the category of modules.
+
+    % By its symmetric monoidality, the functor $f\colon\ccat\to\dcat$ induces a functor $f\colon\aff{\ccat}\to\aff{\dcat}$.
+    % This in turn induces a functor $f_!^\sim\colon\Shv(\aff{\ccat}\to\Shv(\aff{\dcat})$, given by precomposition by $g$ (and the use of \emph{sheafification}\footnote{
+    %     Similar to classical algebraic geometry, the inclusion functor $\iota\colon\Shv(\aff{\ccat})\to\PShv(\aff{\ccat})$ admits a left adjoint $a\colon\PShv(\aff{\ccat})\to\Shv(\aff{\ccat})$ which we call the \emph{sheafification functor}.
+    %     For (vastly many) more details, see \cite[\S III.5,~Theorem~1]{MacLane:1992uz}.
+    % }).
+
+    \begin{theorem}[\mbox{}{(Corollaire~2.22,~\S2.5,~p.27)}]\label{co:that-base-change-lemma-that-is-important}
+        Let $(\ccat,\otimes,1_\ccat)$ and $(\dcat,\odot,1_\dcat)$ be cosmoses, and $f\colon\ccat\to\dcat$ be a strong symmetric monoidal functor\footnote{
+            That is, a functor that respects the symmetric monoidal structure of both $\ccat$ and $\dcat$.
+            To be slightly more precise, the functor comes with an isomorphism $f(X)\odot f(Y)\congto f(X\otimes Y)$, natural in $X$ and $Y$, which respects the symmetry of $\otimes$ and $\odot$, and an isomorphism \mbox{$1_\dcat\congto f(1_\ccat)$} satisfying certain coherence conditions.
+            \cite{Toen:2005wxa} and many others use the name \emph{monoidal functor} to refer to what we (and some others) call a \emph{strong monoidal functor}.
+            The choice of nomenclature is only important insofar as consistency; we agree to use `strong'.
+        } with left adjoint $g\colon\dcat\to\ccat$.
+        Define
+        % \begin{align*}
+        %     f_!\colon\PShv(\aff{\ccat})&\to\PShv(\aff{\dcat})\\
+        %     F&\mapsto(F\circ g)
+        % \end{align*}
+        % and
+        \begin{align*}
+            f_!^\sim\colon\Shv(\aff{\ccat})&\to\Shv(\aff{\dcat})\\
+            F&\mapsto(a\circ F\circ g)
+        \end{align*}
+        where $a$ is the \emph{sheafification}\footnote{
+            Similar to classical algebraic geometry: the inclusion functor $\iota\colon\Shv(\aff{\ccat})\to\PShv(\aff{\ccat})$ admits a left adjoint $a\colon\PShv(\aff{\ccat})\to\Shv(\aff{\ccat})$ which we call the \emph{sheafification functor}.
+            For (vastly many) more details, see \cite[\S III.5,~Theorem~1]{MacLane:1992uz}.
+        } functor.
+        Suppose that $g\colon\dcat\to\ccat$ is conservative and commutes with filtered colimits, and that, for every flat morphism $A\to B$ in $\comm{\ccat}$ and every $N\in \modc{f(A)}$, the natural morphism
+        \begin{equation*}
+            g(N)\otimes_A B\to g(N\odot_{f(A)}f(B))
+        \end{equation*}
+        is an isomorphism in $\modc{B}$.
+        Then
+        \begin{enumerate}[(i)]
+            \item $f\colon\aff{\ccat}\to\aff{\dcat}$ is continuous in the Zariski topology;
+            \item the functor $f_!^\sim\colon\Shv(\aff{\ccat})\to\Shv(\aff{\dcat})$ preserves the subcategories of schemes, and induces a functor (called the \emph{change of base functor})
+                \begin{align*}
+                    \Sch(\ccat)&\to\Sch(\dcat)\\
+                    X&\mapsto X\otimes\dcat := f_!^\sim(X);
+                \end{align*}
+            \item we have an isomorphism
+                \begin{equation*}
+                    f_!^\sim(X)\cong f(X)
+                \end{equation*}
+                for every $X\in\ASch(\ccat)$.\qedhere
+        \end{enumerate}
+    \end{theorem}
+
+    % \begin{proof}
+    %     See \cite{Toen:2005wxa}.
+    % \end{proof}
+
+    \begin{note}[Notation]
+        Say $(\mathcal{T},\otimes,1)$ is a cosmos and $A,B\in\comm{\mathcal{T}}$.
+        Then, with $\ccat=\modc{A}$ and $\dcat=\modc{B}$, we write
+        \begin{equation*}
+            F_!^\sim(\blank)=(\blank\otimes_A B)\colon\Sch(\modc{A})\to\Sch(\modc{B}),
+        \end{equation*}
+        extending the definition of $(\blank\otimes_A B)$ from \cref{ssub:commutative_algebras}.
+    \end{note}
+
+    % The functor $F$ induces a functor $\comm{\ccat}\to\comm{\ccat}$, and thus $\aff{\ccat}\to\aff{\dcat}$, and this latter functor has a \emph{left}\footnote{
+    %     Since $\aff{\ccat}$ is defined as the opposite category $\comm{\ccat}$, the handedness of the adjunction swaps when we descend to the induced functors.
+    % } adjoint, induced by $G$.
+    % That is, keeping the same notation for the induced functors as the original functors,
+    % \begin{equation*}
+    %     (G\colon\aff{\dcat}\to\aff{\ccat}) \dashv (F\colon\aff{\ccat}\to\aff{\dcat}).
+    % \end{equation*}
+
+    % Now, the functor $G\colon\aff{\dcat}\to\aff{\ccat}$ induces a functor on presheaf categories
+    % \begin{equation*}
+    %     G^*\colon\PShv(\aff{\ccat})\to\PShv(\aff{\dcat})
+    % \end{equation*}
+    % given, on objects, by precomposition:
+    % \begin{equation*}
+    %     G^*\colon X\mapsto (X\circ G),
+    % \end{equation*}
+    % and similarly for $F^*$.
+    % We claim that there exists a left adjoint $G_!\dashv G^*$, and that it is given by $G_!=F^*$.
+    % We do not prove this fact here, but it can be done in various ways\footnote{
+    %     In our particularly nice situation (assuming smallness of categories, and using the fact that $\Set$ is, in particular, cocomplete) we can construct a left-adjoint $G_!$ for $G^*$ using the \emph{left Kan extension functor}.
+    %     In fact, since $\Set$ is also complete, we also have a right adjoint $G^*\dashv G_*$, which turns out to be given by $G_*=F^*$.
+    %     Full details can be found in \cite[\S X.3]{Lane:1998fe}.
+    % }.
+
+    % In fact, the adjuction $(F_!\dashv F^*)$ induces an adjuction $(F_!^\sim \dashv F^*)$ on the category of sheaves, where we use the \emph{sheafification\footnote{
+    %     Similar to classical algebraic geometry, the inclusion functor $\iota\colon\Shv(\aff{\ccat})\to\PShv(\aff{\ccat})$ admits a left adjoint $a\colon\PShv(\aff{\ccat})\to\Shv(\aff{\ccat})$ which we call the \emph{sheafification functor}.
+    %     For (vastly many) more details, see \cite[\S III.5,~Theorem~1]{MacLane:1992uz}.
+    % } functor $a$} to define
+    % \begin{equation*}
+    %     F_!^\sim=(a\circ F_!)\colon\Shv(\aff{\ccat})\to\Shv(\aff{\dcat}).
+    % \end{equation*}
+    % Since $F$ has a right adjoint, and thus commutes with colimits, $F_!^\sim$ commutes in particular with finite limits.
+    % An adjuction $(f\dashv g)$ between sites\footnote{
+    %     It should really be an adjuction between \emph{toposes}, though we don't have time to discuss this notion properly.
+    % } is said to be a \emph{geometric morphism} if $f$ commutes with finite limits, and we have just shown that $(F_!^\sim \dashv F^*)$ is such an adjuction.
+    
+    % \begin{definition}[Continuous in a topology]\label{df:continuous-in-topology}
+    %     A functor $F\colon\aff{\ccat}\to\aff{\dcat}$ is said to be \emph{continuous in the Zariski} (resp. \emph{fpqc}) \emph{topology} if the induced functor
+    %     \begin{equation*}
+    %         F^*\colon\PShv(\aff{\dcat})\to\PShv(\aff{\ccat})
+    %     \end{equation*}
+    %     (as defined above) preserves the subcategory of Zariski (resp. fpqc) sheaves.
+    % \end{definition}
+
+    % Note that this definition is different from the definition of a continuous functor in the sense of preserving small limits.
+    % Because of this we will always ensure to talk of a functor being continuous \emph{in a topology} if we mean continuous in the sense of \cref{df:continuous-in-topology}.
+
+    % \begin{lemma}[\mbox{}{Proposition~2.21,~\S2.5,~p.26}]
+    %     Using the above notation,
+    %     \begin{enumerate}[(i)]
+    %         \item $F\colon\aff{\ccat}\to\aff{\dcat}$ preserves monomorphisms and finite limits;
+    %         \item if $F\colon\aff{\ccat}\to\aff{\dcat}$ is continuous in the fpqc topology and $G\colon\dcat\to\ccat$ commutes with filtered colimits, then $F\colon\aff{\ccat}\to\aff{\dcat}$ is also continuous in the Zariski topology.\qedhere
+    %     \end{enumerate}
+    % \end{lemma}
+
+    % \begin{proof}
+    %     This is largely just unpacking definitions.
+    %     See \cite{Toen:2005wxa}.
+    % \end{proof}
+
+    % \begin{corollary}[\mbox{}{(Corollaire~2.22,~\S2.5,~p.27)}]\label{co:that-base-change-lemma-that-is-important}
+    %     Using the above notation, suppose that the functor $G\colon\dcat\to\ccat$ is conservative and commutes with filtered colimits.
+    %     Suppose further that, for every flat morphism $A\to B$ in $\comm{\ccat}$ and every $N\in \modc{F(A)}$, the natural morphism
+    %     \begin{equation*}
+    %         G(N)\otimes_A B\to G(N\odot_{F(A)}F(B))
+    %     \end{equation*}
+    %     is an isomorphism in $\modc{B}$.
+    %     Then
+    %     \begin{enumerate}[(i)]
+    %         \item $F\colon\aff{\ccat}\to\aff{\dcat}$ is continuous in the Zariski topology;
+    %         \item the functor $F_!^\sim\colon\Shv(\aff{\ccat})\to\Shv(\aff{\dcat})$ preserves the subcategories of schemes, and induces a functor
+    %             \begin{align*}
+    %                 \Sch(\ccat)&\to\Sch(\dcat)\\
+    %                 X&\mapsto X\otimes\dcat := F_!^\sim(X);
+    %             \end{align*}
+    %         \item we have an isomorphism
+    %             \begin{equation*}
+    %                 F_!^\sim(X)\cong F(X)
+    %             \end{equation*}
+    %             for every $X\in\ASch(\ccat)$.\qedhere
+    %     \end{enumerate}
+    % \end{corollary}
+
+    % \begin{proof}
+    %     See \cite{Toen:2005wxa}.
+    % \end{proof}
+
+    % \begin{note}[Notation]
+    %     Say $(\mathcal{T},\otimes,1)$ is a cosmos and $A,B\in\comm{\mathcal{T}}$.
+    %     Then, with $\ccat=\modc{A}$ and $\dcat=\modc{B}$, we write
+    %     \begin{equation*}
+    %         F_!^\sim(\blank)=(\blank\otimes_A B)\colon\Sch(\modc{A})\to\Sch(\modc{B}),
+    %     \end{equation*}
+    %     extending the definition of $(\blank\otimes_A B)$ from \cref{ssub:commutative_algebras}.
+    % \end{note}
+
+    
+    As we would (very much) hope, the change of base functor is functorial: it doesn't matter in which order we change base and sheafify.
+    In particular, if $X=\spec A\in\aff{\ccat}$ for some $A\in\comm{\ccat}$ then \cref{co:that-base-change-lemma-that-is-important}~(iii) tells us\footnote{
+        \cite[\S2.5,~\P-1]{Toen:2005wxa}
+    } that
+    \begin{equation*}
+        f_!^\sim(\spec A)\cong\spec f(A).
+    \end{equation*}
+    Thus, using the Hom-set isomorphism from the adjunction $(f\dashv g)$,
+    \begin{align*}
+        f_!^\sim(\spec A)\colon\comm{\dcat}&\to\Set\\
+        B&\mapsto\Hom(f(A),B)\cong\Hom(A,g(B)).
+    \end{align*}
+    We think of $\spec f(A)$ as\footnote{
+        Again, recall \cref{df:affine-schemes-general}.
+    }
+    \begin{align*}
+        \spec f(A) \quad\mlq=\mrq\quad &\Hom_{\aff{\dcat}}(\blank,\spec f(A))\\
+        =&\Hom_{\comm{\dcat}}(f(A),\blank).
+    \end{align*}
+    So, remembering \cref{ssub:motivating_example}, $f_!^\sim(\spec A)$ gives the \emph{functor of points of $A$}.
+
+    % As we would (very much) hope, the change of base functor is functorial: spelling out \cref{co:that-base-change-lemma-that-is-important}~(iii) below tells us that it doesn't matter in which order we change base and sheafify.
+
+    % \begin{translation}{2.5}{-1}
+    %     For a commutative monoid $A\in\comm{\ccat}$ we have a natural isomorphism
+    %     \begin{equation*}
+    %         F_!^\sim(\spec A)\cong\spec F(A).
+    %     \end{equation*}
+    %     Indeed, by definition the functor $F_!^\sim$ is the composition of $F_!$ (defined on presheaves) and $a$ (the sheafification functor).
+    %     It is easy to see that $F_!(\spec A)\cong\spec F(A)$ as \emph{presheaves}.
+    %     Since presheaves that are representable by affine schemes are sheaves, we see that $F_!^\sim(\spec A)\cong\spec F(A)$.
+    %     This tells us that
+    %     \begin{align*}
+    %         F_!^\sim(\spec A)\colon\comm{\dcat}&\to\Set\\
+    %         B&\mapsto\Hom_{\comm{\ccat}}(A,G(B)).
+    %     \end{align*}
+    %     for all $\spec A\in\aff{\ccat}$.
+    % \end{translation}
+
+    % TJH what does this mean?
+    % TJH recall functor of points ($\Hom(A,\blank)$) and use Yoneda \emph{lemma}
+    % ...
+    % \begin{align*}
+    %     &F_!^\sim(\spec A)(\blank)\\
+    %     \cong &\Hom_{\comm{\dcat}}(F(A),\blank)\\
+    %     \cong &\Hom_{\PShv(\aff{\dcat})}(\spec \blank,\spec F(A))\in\PShv(\aff{\dcat})
+    % \end{align*}
+    % \textbf{\emph{...so what?}}
+    % the second one doesn't need Yoneda, but looks like the functor of points approach for $F(A)$?
+
+% subsection changes_of_bases (end)

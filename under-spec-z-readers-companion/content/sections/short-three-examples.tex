@@ -1,0 +1,143 @@
+% !TEX root = ../../under-spec-z.tex
+
+\section{Three examples of relative geometry} % (fold)
+\label{sec:three_examples_of_relative_geometry}
+
+    \emph{We now present our first three examples of categories of relative schemes.} (\S3~\P1)
+
+    \begin{note}
+        As stated in \cref{ssub:conventions}, we adopt the convention that $0\in\nn$.
+    \end{note}
+
+    \subsection{Under $\spec\zz$} % (fold)
+    \label{sub:under_}
+
+        Instead of just restating the results of \cite[\S3.1--3.3,~4]{Toen:2005wxa} we try here to provide some motivation for these choices of examples.
+
+        \bigskip
+
+        We know that $\zz$ is the initial object in the category $\CRing$ of commutative rings; we said in \cref{sub:overview} that we would have to leave $\CRing$ in order to find schemes over bases that lie \emph{under} $\spec\zz$.
+        If we remove all algebraic structure from $\CRing$ we end up with the category $\Set$ of sets, and we might worry that we have discarded too much structure to be able to define schemes any more.
+        But $(\Set,\times,\singleton)$, where $\times$ is the cartesian product and $\singleton$ is a singleton, \emph{is} a cosmos\footnote{
+            It is arguably the most tautological example of a cosmos.
+        }, and so we can define schemes over $\Set$.
+        Since $\Set$ is the prototype of a concrete category we can't really go down any further without becoming too far removed from our usual concept of algebraic structures.
+        So we look at what (commutative associative and unital) structures we can find in between $\Set$ and $\CRing$.
+
+        % We can endow a set with some commutative associative binary operation, which we might as well call addition, and pick an object to be the additive identity.
+        % This results in a \emph{commutative monoid}.
+        % All of the language that we have built so far heavily depends on the objects we study having \emph{commutative} and \emph{associative} operations, as well as an \emph{identity}.
+        % So we have actually passed over a few less-strict structures -- \emph{semigroups} (where we don't require an identity) and \emph{magmas} (where we don't require associativity) -- but our tools are not general enough to deal with them.
+
+        % Next we could go one of two ways: introducing additive inverses to our commutative monoid, thus making it an \emph{abelian group}; introducing some commutative multiplication with identity, thus making it a \emph{commutative semi\-ring}.
+        % Either way, the only thing (of interest to us now) sitting above these two structure comes from combining the two, resulting in a \emph{commutative ring} -- this is where we stop, since classical algebraic geometry can deal with things from here on in.
+
+        We can endow a set with some commutative associative binary operation, which we might as well call addition, and pick an object to be the additive identity -- this results in a \emph{commutative monoid}.
+        Then we could go one of two ways: introducing additive inverses to our commutative monoid, making it an \emph{abelian group}; or introducing some commutative multiplication with identity, making it a \emph{commutative semi\-ring}.
+        Either way, the only thing (of interest to us now) sitting above these two structure comes from combining the two, resulting in a \emph{commutative ring} -- this is where we stop, since classical algebraic geometry can deal with things from here.
+
+        \begin{note}
+            A very important thing to be aware of (that notation doesn't make entirely clear) is that when we speak about $\modc{A}$ for $A\in\comm{\ccat}$, \emph{this category depends on $\ccat$}.
+            For example, if we take $\zz\in\comm{\Ab}=\CRing$ then $\modc{\zz}$ is the category of abelian groups, but if we consider \mbox{$\zz\in\comm{\Set}=\CMon$} then $\modc{\zz}$ is the category of \emph{monoid actions}, or \emph{$\zz$-actions} (sometimes confusingly written $\zz\hbox{-}\mathsf{Set}$).
+            \emph{To avoid confusion in this section, we adopt the following (non-standard) notation:} we write $\modc{A}_\ccat$ to emphasise that \mbox{$A\in\comm{\ccat}$}.
+        \end{note}
+
+        Recalling \cref{df:comm-c,df:module-over-monoid}, the following pattern emerges:
+        % \footnote{
+        %     In fact, there is a much more general statement: when $\smc$ is a cosmos then $1$ is initial in $\comm{\ccat}$, \emph{and} $\modc{1}\equiv\ccat$.
+        %     This follows straight from the definitions.
+        %     A different way to approach this might be the following: there is a monoidal forgetful functor $\Ab\to\Set$ which lifts to a functor $\modc{A}_\Ab\to\modc{A}_\Set$, and by some abstract nonsense this has an adjoint, so we could hope to lift $X\in\modc{A}_\Set$ to some $X'\in\modc{A}_\Ab$.
+        %     But for us, once we know what we are aiming for, it is much easier to start with some algebraic object $A$, and then pick some $\ccat$ with $A\in\comm{\ccat}$ such that $\modc{A}_\ccat$ is exactly what we want it to be.
+        % }:
+        \begin{equation*}
+            \begin{tikzcd}
+                & \modc{1}_\ccat & (1,\ccat) & \comm{\modc{1}_\ccat} &\\[-1.8em]
+                \,\arrow[rrrr, dash] & & & & \,\\[-1.5em]
+                & \Ab & (\zz,\Ab) & \CRing &\\
+                & \CMon \arrow[u] & (\nn,\CMon) \arrow[u, "\text{introduce additive inverses}" description] & \CSemiring \arrow[u] &\\
+                & \Set \arrow[u] & (\singleton,\Set) \arrow[u, "\text{introduce addition}" description] & \CMon \arrow[u] &
+            \end{tikzcd}
+        \end{equation*}
+
+        It is true that $\modc{\singleton}_\Set=\Set$, but here lies the subtle issue: when we introduce addition we need our singleton to contain an additive identity \emph{and} an additive generator for $\nn$, but by definition these things must be distinct.
+        That is, we want $0,1\in\singleton$ with $0\neq1$.
+        Clearly, such a singleton doesn't exist, but in \cite{Tits:1957tq} Jacques Tits introduced the idea of the \emph{field with one element}: $\ff_1$.
+        Although it is not a well-defined mathematical object\footnote{
+            At least, not within our current definitions of algebraic objects.
+        }, it is interesting to put aside such concerns and try to glean as much information from it as possible, especially when it arises in such a natural way as it does here\footnote{
+            In fact, studying this $\ff_1$ is one of the main motivations for developing all of this abstract theory -- see \cref{sub:the_riemann_hypothesis}.
+        }.
+
+        \bigskip
+
+        By definition, $1$ is initial in $\comm{\ccat}$ and so $\spec1$ is terminal in $\aff{\ccat}$.
+        Thus we can think of schemes relative to $\modc{1}_\ccat$ as being schemes \emph{over} $\spec1$.
+        It can be shown\footnote{
+                These are relatively standard facts -- they can be found, for example, on the $n$Lab.
+        } that $(\Ab,\otimes,\zz)$, $(\CMon,\otimes,\nn)$, and $(\Set,\times,\ff_1)$ are all cosmoses.
+        In \cite[\S3.1--3.3]{Toen:2005wxa}, the authors work up to defining $\ff_1$-schemes, as well as a base change to $\zz$-schemes:
+        \begin{equation}\label{eq:change-of-base-ff1-to-zz}
+            (\blank\otimes_{\ff_1}\zz)\colon\schc{\ff_1}\to\schc{\zz}
+        \end{equation}
+        which acts on affine schemes by
+        \begin{equation}\label{eq:ff1-to-zz-affine}
+            \begin{alignedat}{3}
+                (\blank\otimes_{\ff_1}\zz)\colon\aff{\modc{\ff_1}}&\to\aff{\modc{\nn}}&&\to\aff{\modc{\zz}}\\
+                \op{\CMon}&\to\op{\CSemiring}&&\to\op{\CRing}\\
+                M&\mapsto\nn[M]&&\mapsto\zz[M].
+            \end{alignedat}
+        \end{equation}
+    
+    % subsection under_ (end)
+
+
+
+
+
+
+
+    \subsection{Diagonalisable group schemes} % (fold)
+    \label{sub:diagonalisable_group_schemes}
+
+        With \cref{eq:change-of-base-ff1-to-zz} we can try to generalise some constructions of classical schemes to $\schc{\nn}$ and $\schc{\ff_1}$.
+        We now look at one such example, straight from \cite[\S4]{Toen:2005wxa}.
+
+        \bigskip
+
+        \emph{\Cite[\S XIV.3,~p.217]{Milne:2012wc} provides a general introduction to diagonalisable group schemes.}
+        \emph{The basic idea is to define a functor}
+        \begin{align*}
+            \dd\colon\Ab&\to\Fun(\CRing,\Grp)\\
+            M&\mapsto\Hom_\Grp(M,\blank^\times)
+        \end{align*}
+        \emph{Then $\dd(M)\colon R\mapsto\Hom_\Grp(M,R^\times)$ can be viewed as an `affine group'.}
+
+        \bigskip
+
+        An abelian group is also a commutative monoid, and $\aff{\modc{\ff_1}}=\op{\CMon}$.
+        So for $M\in\Ab$ we can define
+        \begin{equation*}
+            \dd_{\ff_1}(M) = \spec M\in\schc{\ff_1}.
+        \end{equation*}
+        Now \cite[Proposition~3.3,~\S XIV.3,~p.217]{Milne:2012wc} tells us two things:
+        \begin{enumerate}[(i)]
+            \item $\dd(M)\cong\spec\zz[M]$;
+            \item if $M$ is finitely generated then $\dd(M)$ is isomorphic to a finite product of copies of $\GG_m$ and $\mu_n$ (for various $n\in\nn$).
+        \end{enumerate}
+        If we define the affine $\ff_1$-scheme
+        \begin{equation*}
+            \spec(\ff_{1^n}) = \dd_{\ff_1}(\zz/n\zz)
+        \end{equation*}
+        then, using the above results and \cref{eq:ff1-to-zz-affine}, we see that
+        \begin{enumerate}[(i)]
+            \item $\dd_{\ff_1}(M)\otimes_{\ff_1}\zz \cong \dd(M)$;
+            \item $\spec(\ff_{1^n})\otimes_{\ff_1}\zz \cong \mu_n \cong \dd(\zz/n\zz)$.
+        \end{enumerate}
+        So we can generalise $\dd(\blank)$ to $\dd_{\ff_1}(\blank)$ to obtain \emph{diagonalisable group schemes over $\ff_1$} that, after a change of base $\ff_1\to\zz$, agree with our existing notions of diagonalisable group schemes.
+        By using a change of base $\ff_1\to\nn$ we can also recover a definition for $\nn$-schemes.
+
+        This idea of $\spec\ff_{1^n}$ plays a major role in \cref{sub:the_riemann_hypothesis}.
+    
+    % subsection diagonalisable_group_schemes (end)
+
+% section three_examples_of_relative_geometry (end)

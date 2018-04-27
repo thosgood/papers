@@ -1,0 +1,995 @@
+\documentclass[10pt,fleqn]{article}
+
+\author{Timothy Hosgood}
+\title{Metric spaces}
+\pagestyle{headings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{embedfile}
+
+\newcommand{\diff}{\,\mathrm{d}}
+\newcommand{\met}{\mathrm{d}}
+\newcommand{\comps}{\mathbb{C}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\vc}[1]{\boldsymbol{#1}}
+\theoremstyle{definition} \newtheorem{defn}{Definition}[section]
+\theoremstyle{plain}      \newtheorem{thm}[defn]{Theorem}
+\theoremstyle{definition} \newtheorem{prop}[defn]{Proposition}
+\theoremstyle{definition} \newtheorem{cor}[defn]{Corollary}
+\theoremstyle{definition} \newtheorem{ex}[defn]{Example}
+\theoremstyle{definition} \newtheorem{rem}[defn]{Remark}
+
+\begin{document}
+\embedfile{\jobname.tex}
+\maketitle
+\begin{abstract}
+    These notes are based entirely on lectures given by Richard Earl to second-year undergraduates at the University of Oxford in the year 2013/14.
+\end{abstract}
+\tableofcontents
+
+
+\section{Metric Spaces}
+
+\begin{defn}[Metric spaces]
+    A \emph{metric space} $(M,\met)$ constitues a set $M$ and a \emph{metric} \mbox{$\met:M\times M\to[0,\infty)$} such that, for $x,y,z\in M$,
+    \begin{description}
+        \item[M1] $\met(x,y) = 0$ iff $x = y$
+        \item[M2] $\met(x,y) = \met(y,x)$
+        \item[M3] $\met(x,z) \leq \met(x,y) + \met(y,z)$
+    \end{description}
+\end{defn}
+
+\begin{ex}[$\met_n$ metrics]
+    Let $M=\reals^n$. Three commonly used metrics are
+    \begin{enumerate}[(i)]
+        \item $\met_1(\vc{x},\vc{y}) := |x_1-y_1| + \ldots + |x_n-y_n|$
+        \item $\met_2(\vc{x},\vc{y}) := \sqrt{(x_1-y_1)^2 + \ldots + (x_n-y_n)^2}\qquad$ (i.e. Euclidean metric)
+        \item $\met_{\infty}(\vc{x},\vc{y}) := \mathrm{max}\left\{|x_1-y_1|, \ldots, |x_n-y_n|\right\}$
+    \end{enumerate}
+\end{ex}
+
+\begin{defn}[Normed vector spaces]
+    A \emph{normed vector space} is a real vector space $V$ endowed with a \emph{norm} $\|\quad\|:V\to[0,\infty)$ such that, for $\vc{v},\vc{w}\in V, \lambda\in\reals$,
+    \begin{description}
+        \item[N1] $\|\vc{v}\| = 0$ iff $\vc{v}=0_V$
+        \item[N2] $\|\lambda\vc{v}\| = |\lambda|.\|\vc{v}\|$
+        \item[N3] $\|\vc{v}+\vc{w}\| \leq \|\vc{v}\|+\|\vc{w}\|$
+    \end{description}
+    Note that an inner product, $\langle,\rangle$, induces a norm, $\|\vc{x}\| := \sqrt{\langle\vc{x},\vc{x}\rangle}$, which further induces a metric, $\met(\vc{x},\vc{y}) := \|\vc{x}-\vc{y}\| = \sqrt{\langle\vc{x}-\vc{y},\vc{x}-\vc{y}\rangle}$.
+\end{defn}
+
+\begin{ex}[Sequences spaces]
+    Three commonly used spaces of real sequences $(x_n)$ are
+    \begin{enumerate}[(i)]
+        \item $\ell_1 := \left\{(x_n) \mid \sum|x_n|\text{ converges}\right\}$
+        \item $\ell_2 := \left\{(x_n) \mid \sum|x_n|^2\text{ converges}\right\}$
+        \item $\ell_{\infty} := \left\{(x_n) \mid |x_n|\text{ is bounded}\right\}$
+    \end{enumerate}
+    All of the above are also normed vector spaces, where the norms are given, respectively, by
+    \begin{enumerate}[(i)]
+        \item $\|(x_n)\|_1 := \sum|x_n|$
+        \item $\|(x_n)\|_2 := \sqrt{\big(\sum|x_n|^2\big)}$
+        \item $\|(x_n)\|_{\infty} := \mathrm{sup}\{|x_n|\}$
+    \end{enumerate}
+\end{ex}
+
+\begin{defn}[Subspace metrics]
+    Let $(M,\met)$ be a metric space and $A\subseteq M$.
+    Then $\met$ induces a metric $\met_A$ on $A$, where, for $x,y\in A$,
+    \[
+        \met_A(x,y)
+        := \met(x,y).
+    \]
+\end{defn}
+
+
+\section{Convergence and continuity}
+
+\begin{defn}[Convergence]
+    Let $(M,\met)$ be a metric space and $(x_k)\in M$ a sequence.
+    We say that $(x_k)$ \emph{converges to} $x\in M$ if
+    \[
+        \lim_{k\to\infty}\met(x_k,x) = 0
+    \]
+    or, equivalently, if
+    \[
+        \forall\eps>0,~
+        \exists K\in\mathbb{N},~
+        \left[k\geq K \implies \met(x_k,x)<\eps\right].
+    \]
+\end{defn}
+
+\begin{defn}[Continuity]
+    A function $f:M\to N$ between metric spaces $(M,\met_M),(N,\met_N)$ is said to be \emph{continuous at} $x\in M$ if
+    \[
+        \forall\eps>0,~
+        \exists\delta>0,~
+        \forall y\in M,~
+        \left[\met_M(x,y)<\delta \implies \met_N(f(x),f(y))<\eps\right].
+    \]
+\end{defn}
+
+\begin{rem}[$\met_{\infty}$ as the uniform convergence metric]
+    We see that $f_n$ converges to $f$ in $(\mathcal{C}[a,b],\met_{\infty})$ iff $f_n$ converges to $f$ \emph{uniformly}.
+\end{rem}
+
+\begin{thm}[Limit definition of continuity]
+    Let $f:M\to N$ be a map between metric spaces $(M,\met_M),(N,\met_N)$.
+    Then $f$ is continuous at $x\in M$ iff
+    \[
+        \underbrace{x_k\to x}_{\text{in M}}
+        \implies \underbrace{f(x_k)\to f(x)}_{\text{in N}}
+    \]
+\end{thm}
+
+\begin{proof}
+    Suppose firstly that $f$ is continuous at $x\in M$:\\
+    As $x_k\to x$ we have that, for all $\eps_1>0$, we can get $\met_M(x_k,x)<\eps_1$ for large enough $k$.
+    As $f$ is continuous we have that, for all $\eps_2>0$ there exists some $\delta>0$ such that $\met_M(x_k,x)<\delta \implies \met_N(f(x_k),f(x))<\eps_2$.
+    So fix $\eps_2>0$, find $\delta>0$ such that the continuity of $f$ holds, set $\eps_1=\delta$, and then for large enough $k$ we have that $\met_N(f(x_k),f(x))<\eps_2$, so $f(x_k)\to f(x)$.
+
+    Conversely, suppose that $f$ is not continuous at $x\in M$:\\
+    There exists $\eps>0$ such that, for all $x_k\in M$ and all $\delta>0$, $\met_M(x_k,x)<\delta$ but $\met_N(f(x_k),f(x))\geq\eps$.
+    So take $\delta = \frac{1}{k}$, and then $x_k\to x$ and yet $f(x_k)\nrightarrow f(x)$.
+\end{proof}
+
+
+\section{Open and closed sets}
+
+Throughout the following, $(M,\met)$ will be taken to be a metric space, and $M$ will either refer to either the set or the metric space, depending on the context.
+
+\begin{defn}[Open and closed balls]
+    Let $x\in M$ and $\eps>0$.
+    Then the \emph{open ball} $B_M(x,\eps)$ and \emph{closed ball} $\bar{B}_M(x,\eps)$ are defined as
+    \begin{align*}
+        B_M(x,\eps) &:= \{y\in M \mid \met(x,y)<\eps\}\\
+        \bar{B}_M(x,\eps) &:= \{y\in M \mid \met(x,y)\leq\eps\}
+    \end{align*}
+\end{defn}
+
+\begin{defn}[Open and closed sets]
+    A subset $U\subseteq M$ is said to be \emph{open in} $M$ if
+    \[
+        \forall x\in U,~
+        \exists\eps>0,~
+        B(x,\eps)\subseteq U
+    \]
+    A subset $U\subseteq M$ is said to be \emph{closed in} $M$ if $M\setminus U$ is open
+\end{defn}
+
+\begin{defn}[Interior points]
+    We say that $x\in M$ is an \emph{interior point} of $U$ if there exists $\eps>0$ such that $B(x,\eps)\subseteq U$.
+    Hence $U$ is open in $M$ iff all its points are interior points.
+\end{defn}
+
+\begin{thm}[Continuity via open sets]\label{open-set-continuity}
+    Let $f:M\to N$ be a map between metric spaces $(M,\met_M),(N,\met_N)$.
+    Then $f$ is continuous iff the preimages of every open set in $N$ is open in $M$.
+\end{thm}
+
+\begin{proof}
+    Suppose first that $f$ is continuous and that $U$ is an open subset of $N$:\\
+    Let $x\in f^{-1}(U)$ so that $f(x)$ is an interior point of $U$ (as $U$ is open).
+    Then there exists $\eps>0$ such that $B_N(f(x),\eps)\subseteq U$.
+    As $f$ is continuous at $x$ there exists $\delta>0$ such that $f(B_M(x,\delta)) \subseteq B_N(f(x),\eps) \subseteq U$, and hence $B_M(x,\delta)\subseteq f^{-1}(U)$.
+    Thus $f^{-1}(U)$ is open, as $x$ was arbitrary.
+
+    Conversely, suppose that the preimage of every set open in $N$ is open in $M$:\\
+    Let $\eps>0$ and $x\in M$.
+    As $B_N(f(x),\eps)$ is open in $N$, by assumption $x$ is an interior point of $f^{-1}(B_N(f(x),\eps))$ and so there exists $\delta>0$ such that $B_M(x,\delta)\subseteq f^{-1}(B_N(f(x),\eps))$ and hence $f(B_M(x,\delta))\subseteq B_N(f(x),\eps)$, i.e. \mbox{$f$ is continuous}.
+\end{proof}
+
+\begin{prop}[Properties of open sets]\label{open-set-properties}
+    \begin{enumerate}[(i)]
+        \item An arbitrary union of open sets is open.
+        \item A finite intersection of open sets is open.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    For (i) we can find some open set such that the given point lies in it, and therefore some open ball around it that still lies in the set, and therefore the union of all the sets.
+
+    For (ii), given one of the open sets we can find some small enough open ball around any point such that it is contained within the set.
+    Therefore we can simply take the smallest such ball, as we can take the minimum of all the (finitely many) radii.
+\end{proof}
+
+\begin{prop}[Properties of closed sets]
+    \begin{enumerate}[(i)]
+        \item A finite union of closed sets is closed.
+        \item An arbitrary intersection of closed sets is closed.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    Simply apply De Morgan's laws to the results of Proposition~\ref{open-set-properties}.
+\end{proof}
+
+\begin{prop}[Open balls are open and closed balls are closed]
+    Let $x\in M$ and $\eps>0$.
+    Then $B(x,\eps)$ is open and $\bar{B}(x,\eps)$ is closed.
+\end{prop}
+
+\begin{proof}
+    Firstly, let $y\in B(x,\eps)$, set $\delta = \frac{1}{2}(\eps-\met(x,y))>0$, and choose $z\in B(y,\delta)$.
+    Then
+    \[
+        \met(z,x)\leq
+        \met(z.y)+\met(y,x)<
+        \delta+\met(y,x)=
+        \frac{\eps+\met(y,x)}{2}<
+        \frac{\eps+\eps}{2}=
+        \eps
+    \]
+    Thus $B(y,\delta)\subseteq B(x,\eps)$ and $B(x,\eps)$ is open.
+
+    For the second result, take $y\in M\setminus\bar{B}(x,\eps)$.
+    Then $\met(x,y)>\eps$.
+    Set $\delta = \frac{1}{2}(\met(x,y)-\eps)>0$ and choose $z\in B(y,\delta)$.
+    Then
+    \[
+        \met(z,x)\geq
+        \met(x,y)-\met(z,y)>
+        \met(x,y)-\delta=
+        \eps+\delta>
+        \eps
+    \]
+    and hence $z\in M\setminus\bar{B}(x,\eps)$ and $M\setminus\bar{B}(x,\eps)$ is thus open, and its complement therefore closed.
+\end{proof}
+
+\begin{defn}[Limit points]
+    Let $S\subseteq M$ and $x\in M$.
+    We say that $x$ is a \emph{limit point} of $S$, or an \emph{accumulation point} of $S$ if
+    \[
+        \forall\eps>0,~
+        (B(x,\eps)\cap S)\neq\varnothing
+    \]
+    We denote the set of limit points of $S$ as $S'$
+\end{defn}
+
+\begin{prop}[Limit points and interior points]
+    Any $x\in M$ is an interior point of $M\setminus C$ iff $x$ is not a limit point of $C$.
+\end{prop}
+
+\begin{cor}[Closed sets via limit points]
+    A subset $C\subseteq M$ is closed iff it contains all its limit points.
+\end{cor}
+
+\begin{cor}[To Theorem~\ref{open-set-continuity}]
+    Let $f:M\to N$ be a map between metric spaces $(M,\met_M),(N,\met_N)$.
+    Then $f$ is continuous iff the preimages of every closed set in $N$ is closed in $M$.
+\end{cor}
+
+\begin{proof}
+    Note that for any $S\subseteq N$ we have that $f^{-1}(N\setminus S) = M\setminus f^{-1}(S)$.
+    Consider this for some $S$ closed in $N$.
+\end{proof}
+
+\begin{cor}[Open balls are open and closed balls are closed (again)]
+    We have already showed this, but we can now apply a much slicker proof.
+\end{cor}
+
+\begin{proof}
+    Consider the continuous function $f_a(x)=\met(x,a)$ for some fixed $a\in M$.
+    Then note that $B(a,\eps)=f^{-1}\big((-\infty,\eps)\big)$ and $\bar{B}(a,\eps)=f^{-1}\big((-\infty,\eps]\big)$.
+\end{proof}
+
+
+\section{Subspaces, isometries, and homeomorphisms}
+
+\begin{prop}[Open and closed sets of subsets]
+    Let $S\subseteq T\subseteq M$.
+    Then
+    \begin{enumerate}[(i)]
+        \item $S$ is open in $T$ iff there is a set $U$ open in $M$ such that $S=T\cap U$.
+        \item $S$ is closed in $T$ iff there is a set $C$ closed in $M$ such that $S=T\cap C$.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    For (i), suppose first that $S$ is open in $T$.
+    Then for each $s\in S$ there exists some $\eps_s>0$ such that $B(s,\eps_s)\subseteq S$.
+    We then consider the union of all these open balls and see that $S=\big(\bigcup B(s,\eps_s)\big)\cap T$.\\
+    Conversely, if $S=T\cap U$ for some open $U$ with $S\subseteq U$ then for any $s\in S$ there exists some $\eps>0$ such that $B(s,\eps)\subseteq U$, and thus $B_T(s,\eps)\subseteq T\cap U = S$.
+    Hence $S$ is open.
+
+    For (ii) consider the complement of $S$ in $T$ and apply (i).
+\end{proof}
+
+\begin{prop}[Restriction of continuous maps]
+    Let $A\subseteq M$ and \mbox{$f\colon M\to N$} be a continuous map between two metric spaces $M$ and $N$.
+    Then the restriction $f\big|_A$ of $f$ to $A$ is continuous.
+\end{prop}
+
+\begin{proof}
+    Let $U$ be an open subset of $N$.
+    Then
+    \[
+        (f\big|_A)^{-1}(U) = f^{-1}(U)\cap A
+    \]
+    which is open in $A$ as $f^{-1}(U)$ is open in $M$.
+\end{proof}
+
+\begin{defn}[Closure]
+    Given $A\subseteq M$, the \emph{closure} of $A$, written $\bar{A}$, is the smallest closed subset of $M$ which contains $A$.
+    Note that this is well defined as
+    \[
+        \bar{A}=
+        \bigcap\left\{C \mid C\text{ is closed in }M\text{ and }A\subseteq C\right\}
+    \]
+    Or, equivalently,
+    \[
+        \bar{A} = A\cup A'
+    \]
+\end{defn}
+
+\begin{prop}[Closure in subsets]
+    Let $A\subseteq B\subseteq M$.
+    Let $\bar{A}^B$ and $\bar{A}^M$ denote the closures of $A$ in $B$ and $M$, respectively.
+    Then
+    \[
+        \bar{A}^B=\bar{A}^M\cap B
+    \]
+\end{prop}
+
+\begin{defn}[Isometries]\label{isometry-definition}
+    An \emph{isometry} between metric spaces $(M,\met_M),(N,\met_N)$ is a bijection $f:M\to N$ such that
+    \[
+        \forall x,y\in M,~
+        \met_M(x,y)=\met_N(f(x),f(y))
+    \]
+    If such an $f$ exists then we say that $M$ and $N$ are \emph{isometric}.
+\end{defn}
+
+\begin{rem}
+    Sometimes $f$ will be termed an isometry if it satisfies the condition in Definition~\ref{isometry-definition} without necessarily being surjective. Although injectivity will follow from the definition and the properties of metrics.
+\end{rem}
+
+\begin{ex}[Geometric examples]
+    \begin{enumerate}[(i)]
+        \item The isometry group of $\reals^n$ is called the \emph{Euclidean group}.
+        This consists of all maps of the form \mbox{$\vc{x}\mapsto A\vc{x}+\vc{b}$}, where $A\in\mathrm{O}(n)$ and $\vc{b}\in\reals^n$.
+        \item The isometry group of the unit sphere $\mathrm{S}^{n-1}\subset\reals^n$ is $\mathrm{O}(n)$.
+    \end{enumerate}
+\end{ex}
+
+\begin{rem}
+    From the point of view of continuous functions, as they are determined solely by the action on open sets, isometries are really too strict.
+    There are many examples of non-isometric metrics leading to the same open sets (topologies) and thus to the same family of continuous functions.
+    What we really need is the idea of a bijection between spaces that induces a bijection between the topologies.
+\end{rem}
+
+\begin{defn}
+    Let $M$ and $N$ be metric spaces.
+    A \emph{homeomorphism} \mbox{$f:M\to N$} is a bijection $f$ such that $f$ and $f^{-1}$ are continuous.
+\end{defn}
+
+\begin{prop}[Isometries are homeomorphisms]
+    An isometry is a homeomorphism.
+\end{prop}
+
+
+\section{Completeness}
+
+\begin{defn}[Cauchy sequences]
+    We say that a sequence $(x_n)\subseteq M$ is \emph{Cauchy} if
+    \[
+        \lim_{m,n\to\infty}\met(x_m,x_n)=0
+    \]
+\end{defn}
+
+\begin{prop}[Convergent sequences are Cauchy]
+    A convergent sequence is Cauchy.
+\end{prop}
+
+\begin{defn}[Completeness]
+    A metric space $M$ is said to be \emph{complete} if every Cauchy sequence in $M$ converges in $M$.
+\end{defn}
+
+\begin{prop}[Completeness of subsets]
+    Let $(M,\met)$ be a complete metric space with $S\subseteq M$.
+    Then $S$ is complete iff $S$ is closed in $M$.
+\end{prop}
+
+\begin{proof}
+    Suppose that $S$ is closed in $M$ and let $(x_n)\subseteq S$ be a Cauchy sequence in $S$.
+    Then $(x_n)$ is also Cauchy in $M$ and so convergent to $x\in M$ as $M$ is complete.
+    As $S$ is closed then we see that $x\in S$, and thus $S$ is complete.
+
+    Conversely, suppose that $S$ is complete and $x\in M$ is a limit point of $S$.
+    Then there is a sequence $(x_n)\subseteq S$ converging to $x$.
+    But convergent sequences are Cauchy so $x\in S$ as $S$ is complete.
+    Hence $S$ contains all its limit points and is thus closed in $M$.
+\end{proof}
+
+\begin{rem}
+    Completeness is not a topological invariant, but rather a property conserved by isometries.
+\end{rem}
+
+\begin{ex}
+    Even though $(0,1)$ and $\reals^n$ are homeomorphic, the latter is complete whereas the former is not.
+\end{ex}
+
+
+\begin{thm}[The set of bounded real-valued funtions on a set]\label{bounded-fns-complete}
+    Let $X$ be a set and $\mathcal{B}(X)$ denote the set of all bounded real-valued functions on $X$.
+    Then $\delta(f,g):=\sup\{|f(x)-g(x)|\colon x\in X\}=\|f-g\|_{\infty}$ defines a metric on $\mathcal{B}(X)$.
+    Further, $\mathcal{B}(X)$ is complete.
+\end{thm}
+
+\begin{proof}
+    The proof that $\delta$ is a metric is simple.
+
+    For completeness of $\mathcal{B}(X)$ we let $(f_n)\in\mathcal{B}(X)$ be a Cauchy sequence.
+    Then as $\lim_{m,n\to\infty}\|f-g\|_{\infty}=0$, in particular \mbox{$|f_n(x_0)-f_m(x_0)|\to0$} as $m,n\to\infty$ for some fixed $x_0$ as well, and so $(f_n(x_0))$ is a real Cauchy sequence.
+    By completeness of $\reals$ this must converge, so denote the limit $f(x_0)$.
+    As $(f_n)$ is Cauchy, we have that, for any $\eps>0$ there exists some $N$ such that, for $m,n\geq N$, $\|f_n-f_m\|_{\infty}<\frac{\eps}{2}$.
+    Then
+    \[
+        \|f\|_{\infty}\leq
+        \|f-f_N\|_{\infty} + \|f_N\|_{\infty}
+    \]
+    and as $f_N\in\mathcal{B}(X)$ it is bounded, and $\|f-f_N\|_{\infty}=\lim_{m\to\infty}\|f_m-f_N\|_{\infty}\leq\frac{\eps}{2}$.
+    So $f$ is bounded, and therefore $f\in\mathcal{B}(X)$, and it remains only to show that $f_n\to f$.
+    By the triangle inequality again, keeping $N$ as before, and applying the same argument to $\|f-f_N\|_{\infty}$,
+    \[
+        \|f_n-f\|_{\infty}\leq
+        \|f-f_N\|_{\infty}+\|f_N-f_n\|_{\infty}\leq
+        \frac{\eps}{2}+\frac{\eps}{2}
+        =\eps
+    \]
+    Thus $\mathcal{B}(X)$ is closed.
+\end{proof}
+
+\begin{thm}[The set of continuous real-valued functions on a set]
+    Let $(X,\met)$ be a metric space and let $\mathcal{C}(X)$ denote the subset of $\mathcal{B}(X)$ consisting of all continuous real-valued functions on $X$.
+    Then $\mathcal{C}(X)$ is complete.
+\end{thm}
+
+\begin{proof}
+    Let $(f_n)$ be a Cauchy sequence in $\mathcal{C}(X)$, therefore Cauchy in $\mathcal{B}(X)$, and therefore convergent to some $f\in\mathcal{B}(X)$ by Theorem~\ref{bounded-fns-complete}.
+    All that remains is to show that $f$ is continuous.
+    Let $\eps>0$.
+    Then
+    \begin{enumerate}[(i)]
+        \item As $(f_n)$ is Cauchy, there exists $N$ such that, for $m,n\geq N$, $\|f_n-f_m\|_{\infty}<\frac{\eps}{3}$.
+        Hence $|f(x)-f_N(x)|\leq\frac{\eps}{3}$ for all $x\in X$, as in the proof for Theorem~\ref{bounded-fns-complete}.
+        \item As each $f_n$ is continuous, there exists $\delta>0$ such that, in particular, $\met(x,y)<\delta\implies|f_N(x)-f_N(y)|<\frac{\eps}{3}$.
+    \end{enumerate}
+    Thus, for $\met(x,y)<\delta$,
+    \[
+        |f(x)-f(y)|\leq
+        |f(x)-f_N(x)|+|f_N(x)-f_N(y)|+|f_N(y)-f(y)|\leq
+        \frac{\eps}{3}+\frac{\eps}{3}+\frac{\eps}{3}=
+        \eps
+    \]
+\end{proof}
+
+\begin{cor}
+    The uniform limit of continuous functions is continuous.
+\end{cor}
+
+\begin{defn}[Lipschitz maps]
+    A map $f:(M,\met_M)\to (N,\met_N)$ is said to be \emph{Lipschitz} if there exists $K>0$ such that, for all $x,y\in M$,
+    \[
+        \met_N(f(x),f(y))\leq
+        K\met_M(x,y)
+    \]
+\end{defn}
+
+\begin{defn}[Contraction maps]
+    A map $f:(M,\met)\to(M,\met)$ is said to be a \emph{contraction} on $M$ if there exists $0<K<1$ such that, for all $x,y\in M$,
+    \[
+        \met(f(x),f(y))\leq
+        K\met(x,y)
+    \]
+\end{defn}
+
+\begin{prop}[Uniform continuity of Lipschitz maps]
+    Lipschitz maps (and therefore contractions) are uniformly continuous.
+\end{prop}
+
+\begin{proof}
+    Let $\delta=\frac{\eps}{K}$
+\end{proof}
+
+\begin{thm}[Contraction Mapping Theorem (Banach 1922)]
+    Let $(X,\met)$ be a complete metric space and $f:X\to X$ be a contraction.
+    Then there is a unique fixed point $x\in X$ such that $f(x)=x$.
+\end{thm}
+
+\begin{proof}
+    Let $0<K<1$ be such that $\met(f(x),f(y))\leq K\met(x,y)$ for all $x,y\in X$.
+    Let $x_0\in X$ and define the sequence $(x_n)$ by $x_{n+1}=f(x_n)$ for $n\geq 0$.
+    Then, for $m>n>0$,
+    \[
+        \met(x_n,x_{n-1})=
+        \met(f(x_{n-1}),f(x_{x-2}))\leq
+        K\met(x_{n-1},x_{n-2})\leq
+        \ldots\leq
+        K^{n-1}\met(x_1,x_0)
+    \]
+    and
+    \begin{align*}
+        \met(x_n,x_m)&\leq\met(x_n,x_{n-1}) + \met(x_{n-1},x_{n-2}) + \ldots + \met(x_{m+1},x_m)\\
+        &\leq(K^{n-1}+K^{n-2}+\ldots+K^{m-1})\met(x_1,x_0)\\
+        &=\frac{K^m-K^n}{1-K}\met(x_1,x_0)\to0\text{ as }m,n\to\infty
+    \end{align*}
+    Hence $(x_n)$ is Cauchy, and by the completeness of $X$ the sequence converges.
+    Define $x=\lim_{n\to\infty}x_n$.
+    Then, as $f$ is a contraction, and therefore (uniformly) continuous,
+    \[
+        x=
+        \lim_{n\to\infty}x_{n+1}=
+        \lim_{n\to\infty}f(x_n)=
+        f(\lim_{n\to\infty}x_n)=
+        f(x)
+    \]
+    Finally, if $x$ and $y$ are two fixed points of $f$ we have that
+    \[
+        \met(x,y)=
+        \met(f(x),f(y))\leq
+        K\met(x,y)
+    \]
+    which is a contradiction unless $\met(x,y)=0$, and thus $x=y$.
+\end{proof}
+
+
+\section{Connectedness}
+
+\begin{defn}[Connectedness]
+    A metric space $M$ is \emph{disconnected} if there exist disjoint, non-empty, open subsets $A,B$ of $M$ such that $M=A\cup B$.
+    We say that $M$ is \emph{connected} if it is not disconnected.
+\end{defn}
+
+\begin{prop}[Equivalent definitions of connectedness]
+    The following three statements are equivalent definitions for a space $M$ to be connected:
+    \begin{enumerate}[(i)]
+        \item There is no partition of $M$ into disjoint, non-empty, open subsets of $M$.
+        \item The only clopen subsets of $M$ are $\varnothing$ and $M$.
+        \item Any continuous function $f:M\to\mathbb{Z}$ is constant.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    $\neg(\text{i})\implies\neg(\text{ii})$: If $M=A\cup B$ with $A,B$ open, disjoint, and non empty, then $A=M\setminus B$ is closed, so $A$ is clopen in $M$.
+
+    $\neg(\text{ii})\implies\neg(\text{i})$: If $A$ is non-empty, proper clopen subset of $M$ then \mbox{$A\cup(M\setminus A)$} partitions $M$.
+\end{proof}
+
+\begin{prop}[Real intervals are connected]\label{real-intervals-connected}
+    Let $a,b\in\reals$ with $a\leq b$.
+    Then $[a,b]$ is connected.
+\end{prop}
+
+\begin{proof}
+    Let $C$ be a clopen subset of $[a,b]$.
+    Without any loss of generality we may assume $a\in C$; if not we could work with $[a,b]\setminus C$.
+    Set
+    \[
+        W = \{x\in[a,b]\colon[a,x]\subseteq C\}\quad
+        \text{and}\quad
+        c = \sup W
+    \]
+    which is well defined as $a\in W\neq\varnothing$.
+    \begin{enumerate}[(i)]
+        \item Let $\eps>0$.
+        By the approximation property there exists $x\in W$ such that $c-\eps<x\leq c$, and in particular $[a,c-\eps]\subseteq C$.
+        Hence
+        \[
+            \bigcup_{\eps>0}[a,c-\eps]=
+            [a,c)\subseteq C
+        \]
+        As $C$ is closed then $[a,c]\subseteq C$ and thus $c\in W$.
+        \item Suppose that $x\in W$ and that $x<b$.
+        Then $[a,x]\subseteq C$, and $C$ is open, so there exists $\eps>0$ such that $(x-2\eps,x+2\eps)\subseteq C$.
+        Thus
+        \[
+            [a,x]\cup(x-2\eps,x+2\eps)=
+            [a,x+2\eps]\subseteq C
+        \]
+        and hence $x+\eps\in W$.
+    \end{enumerate}
+    Combining (i) and (ii), if $c<b$ we would have $c+\delta\in W$ for some $\delta>0$ contradicting the fact that $c=\sup W$.
+    Hence $b=c\in W$ and $[a,b]=C$.
+\end{proof}
+
+\begin{cor}[Intermediate Value Theorem]
+    Let $f:[a,b]\to\reals$ be continuous with $f(a)<0<f(b)$.
+    Then there exists $c\in(a,b)$ such that $f(c)=0$.
+\end{cor}
+
+\begin{proof}
+    Suppose, for a contradiction, that $f(x)\neq0$ for all $x\in(a,b)$.
+    Then
+    \[
+        \{x\in[a,b]\mid f(x)>0\}=
+        f^{-1}(0,\infty)\quad
+        \text{and}\quad
+        \{x\in[a,b]\mid f(x)<0\}=
+        f^{-1}(-\infty,0)
+    \]
+    partition $[a,b]$ into disjoint, open, non-empty sets, contradicting the fact that $[a,b]$ is connected.
+\end{proof}
+
+\begin{prop}[The connected subsets of $\reals$]
+    The connected subsets of $\reals$ are exactly the intervals.
+\end{prop}
+
+\begin{proof}
+    The proof of Proposition~\ref{real-intervals-connected} can be adapted to show that any interval, be it open, closed, half opened/closed, bounded, unbounded, is connected.
+
+    Conversely, suppose, for a contradiction, that $C$ is a connected subset of $\reals$, and $a,b\in C$ with $a<b$.
+    If $a<b<c$ and $c\not\in C$ then
+    \[
+        C = [(-\infty,c)\cap C]\cup[(c,\infty)\cap C]
+    \]
+    is a partition of $C$ into disjoint, open, non-empty subsets of $C$.
+\end{proof}
+
+\begin{prop}[Connectedness is preserved by continuous maps]
+    If $f:M\to N$ is continuous and $C$ is a connected subset of $M$ then $f(C)$ is connected.
+\end{prop}
+
+\begin{proof}
+    Suppose that $A$ and $B$ provide a partition of $f(C)$ into non-empty, disjoint sets which are open in $f(C)$.
+    Then, as $f$ is continuous, the preimages $f^{-1}(A)$ and $f^{-1}(B)$ provide a partition of $C$ into non-empty, disjoint sets which are open in $C$.
+    As $C$ is connected then one of these preimages is empty, say $f^{-1}(A)=\varnothing$.
+    As $f$ maps onto $f(C)$ then $A=ff^{-1}(A)=\varnothing$.
+    Thus $f(C)$ is connected.
+\end{proof}
+
+\begin{cor}[Connectedness as a topological invariant]
+    Connectedness is preserved under homeomorphisms, and is therefore a topological invariant.
+\end{cor}
+
+\begin{prop}[Connectedness of cross products of sets]
+    Let $M$ and $N$ be metric spaces.
+    Let $M\times N$ be their product space with metric
+    \[
+        \met((m_1,n_1),(m_2,n_2))=\met_M(m_1,m_2)+\met_N(n_1,n_2)
+    \]
+    Then $M\times N$ is connected iff $M$ and $N$ are connected.
+\end{prop}
+
+\begin{proof}
+    Assume first that $M\times N$ is connected.
+    The two projection maps $\pi_1:M\times N\to M$ and $\pi_2:M\times\ N\to N$ are continuous, and thus the connectedness of $M\times N$ implies the connectedness of $M$ and $N$.
+
+    Conversely, assume that both $M$ and $N$ are connected and $f:M\times N\to\mathbb{Z}$ is continuous.
+    Then it must be constant on $\{m\}\times N$ and $M\times\{n\}$ for some fixed $m\in M,n\in N$.
+    So for any $m_1,m_2\in M,n_1,n_2\in M$,
+    \[
+        f(m_1,n_1)=
+        f(m_1,n_2)=
+        f(m_2,n_2)
+    \]
+    Hence $f$ is constant on $M\times N$, which we then see to be connected.
+\end{proof}
+
+\begin{defn}[Path connectedness]
+    A set $S\subseteq\reals^n$ is said to be \emph{path connected} if, given any $a,b\in S$, there exists a continuous map $\gamma:[0,1]\to S$ such that $\gamma(0)=a$ and $\gamma(1)=b$.
+\end{defn}
+
+\begin{defn}[Convex sets]
+    A set $S$ is \emph{convex} if, for all $v,w\in S$, the path $\gamma:[0,1]\to S$ given by
+    \[
+        \gamma(t)=tw+(1-t)v
+    \]
+    is contained within $S$.
+\end{defn}
+
+\begin{prop}[Path connectedness implies connectedness]
+    A path-connected set is connected.
+\end{prop}
+
+\begin{proof}
+    Let $U$ be a path-connected set and $f:U\to\mathbb{Z}$ be continuous.
+    If $a,b\in U$ then there exists a continuous map $\gamma:[0,1]\to U$ connecting $a$ to $b$.
+    Then $f\circ\gamma:[0,1]\to\mathbb{Z}$ is a continuous, integer-valued map on the connected set $[0,1]$, and so constant.
+    In particular,
+    \[
+        f(a)=
+        f(\gamma(0))=
+        f(\gamma(1))=
+        f(b)
+    \]
+    As $a$ and $b$ were arbitrary points then $f$ is constant on $U$, and hence $U$ is connected.
+\end{proof}
+
+\begin{prop}[Open connected subsets of $\reals^n$]
+    An open connected subset of $\reals^n$ is path connected.
+\end{prop}
+
+\begin{proof}
+    Let $U$ be an open connected subset of $\reals^n$ and let $\vc{x}\in U$.
+    Let $X$ denote the path component of $\vc{x}$, that is, all those points of $U$ that can be connected to $\vc{x}$ by a continuous path.
+    If $\vc{u}\in X$ then there is a continuous path $\gamma$ connection $\vc{x}$ to $\vc{u}$.
+    Further,as $U$ is open, there is $\eps>0$ such that $B(\vc{u},\eps)\subseteq U$.
+    Clearly $B(\vc{u},\eps)\subseteq X$ as the path $\gamma$ can be extended along a radius of the ball to any point of $B(\vc{u},\eps)$.
+    In particular, $X$ is open.
+
+    We can see that the path components partition $U$, and are all open by the same argument.
+    Therefore the union of all the other path components is open, and $X$ is thus closed, as it's the complement of this open union.
+    As $X$ is clopen and non empty, and a $U$ is connected, then $X=U$ and so $U$ is path connected.
+\end{proof}
+
+
+\section{Compactness and sequential compactness}
+
+\begin{defn}[Open covers and subcovers]
+    An \emph{open cover} $\mathcal{U}$ for a space $M$ is a collection of sets $U_i$, which are open in $M$, and such that
+    \[
+        M = \cup_{i\in I}U_i
+    \]
+    A \emph{subcover} of $\mathcal{U}$ is a collection $\{U_i\mid i\in J\}$ with $I\subseteq J$ such that
+    \[
+        M = \cup_{i\in J}U_i
+    \]
+    and we say this subover is finite if $J$ is finite.
+\end{defn}
+
+\begin{defn}[Compactness]
+    A space $M$ is said to be \emph{compact} if every open cover of $M$ has a finite subcover.
+\end{defn}
+
+\begin{prop}[Closed intervals are compact]\label{closed-intervals-compact}
+    The closed interval $[a,b]$ is compact.
+\end{prop}
+
+\begin{proof}
+    Let $\mathcal{U}$ be an open cover of $[a,b]$.
+    Define $W$ to be the set
+    \[
+        W = \{x\in[a,b]\colon\text{a finite subcover from }\mathcal{U}\text{ for }[a,x]\text{ exists}\}\quad
+        \text{and}\quad
+        c=\sup W
+    \]
+    Note that $c$ is well defined as $a\in W\neq\varnothing$.
+    \begin{enumerate}[(i)]
+        \item $c\in W$ as follows:
+        As $a$ is in some open subset in $\mathcal{U}$ then $c>a$.
+        If $0<\delta<c-a$ then, by the approximation property, there exists $w\in W$ with $c-\delta<w$ and so $c-\delta\in W$.
+        Say $c\in U\in\mathcal{U}$.
+        As $U$ is open then $(c-2\delta,c+2\delta\subseteq U$ for some $\delta>0$, and so a finite subset of $\mathcal{U}$ covers $[a,c-\delta]\cup(c-2\delta,c+2\delta)\supseteq [a,c]$.
+        In particular $c\in W$.
+        \item $c=b$ as follows:
+        Say $x\in W$ and $x<b$.
+        There exists $V\in\mathcal{U}$ such that $x\in V$ and $\delta>0$ such that $(x-2\delta,x+2\delta)\subseteq V$.
+        So a finite subset of $\mathcal{U}$ covers $[a,x]\cup(x-2\delta,x+2\delta)\supseteq[a,x+\delta]$
+        and hence $x+\delta\in W$.
+        This certainly means that $x\neq\sup W$, and so $c=b$ remains the only possibility.
+    \end{enumerate}
+\end{proof}
+
+\begin{prop}[Closed hypercuboids are compact]
+    A closed hypercuboid $[a_1,b_1]\times[a_2,b_2]\times\ldots\times[a_n,b_n]\subseteq\reals^n$ is compact.
+\end{prop}
+
+\begin{proof}
+    This proof is an adaptation of the proof for Proposition~\ref{closed-intervals-compact}, and we first prove the case of a closed rectangle in $\reals^2$.
+    Let $\mathcal{U}=\{U_i\mid i\in I\}$ be an open cover of $X=[a,b]\times[c,d]$.
+    Let
+    \[
+        W=\{x\in[a,b]\colon\text{a finite subcover from }\mathcal{U}\text{ for }[a,x]\times[c,d]\text{ exists}\}
+    \]
+    \begin{enumerate}[(i)]
+        \item $a\in W$ as $\{a\}\times[c,d]$ is compact given the previous result of Proposition~\ref{closed-intervals-compact}.
+        \item Define $e=\sup W$, which is well defined as $a\in W\neq\varnothing$.
+        For each $y\in[c,d]$ there is an open set $U_y\in\mathcal{U}$ containing $(e,y)$, and so some $\delta_y>0$ such that the square $(e-\delta_y,e+\delta_y)\times(y-\delta_y,y+\delta_y)\subseteq U_y$.
+        The intervals $(y-\delta_y,y+\delta_y)$ form an open cover of $[c,d]$, which is compact.
+        Hence there are finite $y_1,\ldots,y_n$ such that the $(y_i-\delta_{y_i},y_i+\delta_{y_i})$ cover $[c,d]$.
+        Let $\delta=\min\delta_{y_i}>0$.
+        Then $\{U_{y_1},\ldots,U_{y_n}\}$ is an open cover for $(e-\delta,e+\delta)\times[c,d]$.
+        By the approximation property there exists $w\in W$ with $e-\delta<w\leq e$.
+        This means that there is a finite subcover $\mathcal{V}$ of $\mathcal{U}$ for $[a,w]\times[c,d]$.
+        Hence $\mathcal{V}\cup\{U_{y_1},\ldots,U_{y_n}\}$ is a finite subcover of $\mathcal{U}$ for $[a,e+\delta)\times[c,d]$.
+        In particular this means that $e\in W$.\\
+        Furthermore, we have that, if $x\in W$ and $x<b$, then $x+\frac{\delta}{2}\in W$ for some $\delta>0$.
+        As $e\in W$ we would have a contradiction unless $e=b$.
+        Hence $X$ has a finite subcover from $\mathcal{U}$, and we see that $X$ is compact.
+        \item With an inductive proof based on the above argument we can see that closed bounded hypercuboids in $\reals^n$ are compact.
+    \end{enumerate}
+\end{proof}
+
+\begin{prop}[Compact implies closed]
+    Let $(M,\met)$ be a metric space and $A\subseteq M$.
+    If $A$ is compact then $A$ is closed (in $M$).
+\end{prop}
+
+\begin{proof}
+    Let $x\in M\setminus A$.
+    For any $y\in A$ there exists $\eps_y=\frac{1}{2}\met(x,y)>0$ such that $B(y,\eps_y)\cap B(x,\eps_y)=\varnothing$.
+    Now $\mathcal{U}=\{B_A(y,\eps_y)\mid y\in A\}$ is an open cover of $A$, and so, by compactness, there exist finitely many $y_1,\ldots,y_n$ such that $A=\bigcup_{i=1}^nB_A(y_i,\eps_{y_i})$.
+    Let $\eps=\min\eps_{y_i}>0$, and then we see that
+    \[
+        B(x,\eps)=
+        \bigcap B(x,\eps_{y_i})\subseteq
+        \left(\bigcup B(y_i,\eps_{y_i})\right)^c\subseteq
+        A^c
+    \]
+    and hence $A^c$ is open, and thus $A$ is closed.
+\end{proof}
+
+\begin{prop}[Compact implies bounded]
+    Let $M$ be a metric space and $A\subseteq M$.
+    If $A$ is compact then $A$ is bounded.
+\end{prop}
+
+\begin{proof}
+    Note that, for any $a\in A$, $\mathcal{U}=\{B_A(a,n)\mid n\in\mathbb{N}\}$ is an open cover of $A$.
+    As $A$ is compact then there exist $n_1<\ldots<n_k$ such that
+    \[
+        A\subseteq
+        \bigcup_{i=1}^kB_A(a,n_i)=
+        B_A(a,n_k)
+    \]
+    Hence $A$ is bounded
+\end{proof}
+
+\begin{prop}[Closed subsets of compact spaces]\label{closed-subsets-compact}
+    Let $M$ be a compact metric space and $C\subseteq M$ a closed subspace.
+    Then $C$ is compact.
+\end{prop}
+
+\begin{proof}
+    Let $\mathcal{U}=\{U_i\mid i\in I\}$ be an open cover of $A$.
+    As $A$ is closed then $M\setminus A$ is open, so $\mathcal{U}\cup\{M\setminus A\}$ is an open cover of $M$.
+    By the compactness of $M$ there is a finite subcover for $M$, say, $M=\left(\bigcup_{k=1}^nU_{i_k}\right)\cup\{M\setminus A\}$.
+    Then $A=\bigcup U_{i_k}$, and so there is a finite subcover of $\mathcal{U}$ for $A$.
+\end{proof}
+
+\begin{thm}[Heine-Borel]
+    Let $C\subseteq\reals^n$.
+    Then $C$ is compact iff $C$ is closed and bounded.
+\end{thm}
+
+\begin{proof}
+    We have shown generally in metric spaces that compact subsets are closed and bounded.
+
+    Conversely let $C$ be a closed and bounded subset of $\reals^n$.
+    As $C$ is bounded there exist real $a_i,b_i$ with $C\subseteq[a_1,b_1]\times\ldots\times[a_n,b_n]$.
+    This hypercuboid is compact and $C$ is a closed subset of it, so, by Proposition~\ref{closed-subsets-compact}, $C$ is compact.
+\end{proof}
+
+\begin{prop}[Compactness is preserved by continuous functions]\label{compactness-preserved-continuous}
+    Let $f:M\to N$ be continuous and $C$ a compact subspace of $M$.
+    Then $f(C)$ is compact.
+\end{prop}
+
+\begin{proof}
+    Let $\mathcal{U}=\{U_i\mid i\in I\}$ be an open cover of $f(C)$.
+    Then, as $f$ is continuous, $\{f^{-1}(U_i)\mid i\in I\}$ is an open cover of $C$.
+    As $C$ is compact there is a finite subcover $\bigcup_{k=1}^nf^{-1}(U_{i_k})$.
+    But then $\bigcup U_{i_k}$ is a finite subcover of $\mathcal{U}$.
+\end{proof}
+
+\begin{cor}[Compactness as a topological invariant]
+    Compactness is a topological invariant.
+\end{cor}
+
+\begin{cor}
+    A continuous real-valued function $f:C\to\reals$ on a compact subset $C$ of $\reals^n$ is bounded and attains its bounds.
+\end{cor}
+
+\begin{proof}
+    By Proposition~\ref{compactness-preserved-continuous} $f(C)$ is a compact subset of $\reals$.
+    By the Heine-Borel Theorem $f(C)$ is bounded and $f(C)$ is closed.
+    Thus $f$ attains its bounds, as the supremum and infimum of a set in the set or are limit points thereof.
+\end{proof}
+
+\begin{defn}[Uniform continuity]
+    We say that a map $f:M\to N$ between metric spaces is \emph{uniformly continuous} if
+    \[
+        \forall\eps>0,~
+        \exists\delta_\eps>0,~
+        \forall x\in M,~
+        [\met_M(x,y)<\delta\implies\met_N(f(x),f(y))<\eps]
+    \]
+    In the same way as for functions $f:\reals\to\reals$, the difference between uniform and non-uniform continuity is that $\delta$ must only depend on $\eps$, and work for all $x\in M$ for each $\eps$.
+\end{defn}
+
+\begin{thm}[Compactness and uniform continuity]
+    Let $f:M\to N$ be a continuous map between metric spaces.
+    If $M$ is compact then $f$ is uniformly continuous.
+\end{thm}
+
+\begin{proof}
+    Let $\eps>0$.
+    As $f$ is continuous then, for every $x\in M$, there exists $\delta_x>0$ such that $f(B(x,\delta_x))\subseteq B(f(x),\frac{\eps}{2})$.
+    The collection
+    \[
+        \mathcal{U}=
+        \left\{B(x,\frac{\delta_x}{2})\mid x\in M\right\}
+    \]
+    forms an open cover for $M$ and so, by compactness, this has a finite subcover $\{B\left(x_i,\frac{\delta_x}{2}\right)\mid i=1,\ldots,n\}$.
+    We set $\delta=\min_i\left(\frac{\delta_{x_i}}{2}\right)>0$.
+    Take $x\in M$.
+    Then $x\in B\left(x_k,\frac{\delta_{x_k}}{2}\right)$, for some $k$, as the sets form a subcover.
+    If $\met_M(x,y)<\delta$ then we have
+    \[
+        \met_M(x_k,y)\leq
+        \met_M(x_k,x)+\met_M(x,y)<
+        \frac{\delta_{x_k}}{2}+\delta\leq
+        \frac{\delta_{x_k}}{2}+\frac{\delta_{x_k}}{2}=
+        \delta_{x_k}
+    \]
+    Hence $x,y\in B(x_k,\delta_{x_k})$ and
+    \[
+        \met_N(f(x),f(y))\leq
+        \met_N(f(x),f(x_k))+\met_N(f(x_k),f(y))<
+        \frac{\eps}{2}+\frac{\eps}{2}=
+        \eps
+    \]
+\end{proof}
+
+\begin{defn}[Sequential compactness]
+    We say that a metric space $M$ is \emph{sequentially compact} if every sequence in $M$ has a convergent subsequence.
+\end{defn}
+
+\begin{thm}[Compact spaces are sequentially compact]\label{compact-spaces-convergent}
+    Compact spaces are sequentially compact.
+\end{thm}
+
+\begin{proof}
+    Let $(x_k)$ be a sequence in the compact metric space $M$.
+    Let
+    \[
+        X_n=\overline{\{x_k\mid k\geq n\}}\quad
+        \text{and}\quad
+        U_n=M\setminus X_n
+    \]
+    As $X_n$ is a decreasing sequence of closed sets then $U_n$ is an increasing sequence of open sets.
+    Suppose, for a contradiction, that $\bigcap X_n=\varnothing$ so that $\bigcup U_n=M$.
+    That is, the $U_n$ form an open cover for $M$.
+    As $M$ is compact then there is a finite subcover, so there exist $i_1<\ldots<i_n$ such that $M=\bigcup_{k=1}^nU_{i_k}$.
+    But then $X_{i_n}=\varnothing$, which is the required contradiction.
+    Hence there exists $x\in\bigcap X_n$.
+    This means that $B(x,\frac{1}{n})\cap\{x_k\mid k\geq n\}\neq\varnothing$ for each $n$.
+    So we can pick a subsequence $(x_{k_n})$ which converges to $x$.
+\end{proof}
+
+\begin{prop}[Sequentially compact metric spaces are compact]
+    Sequentially compact metric spaces are compact.
+\end{prop}
+
+\begin{proof}
+    The statement itself is on the syllabus, but the proof is beyond this course.
+\end{proof}
+
+\begin{prop}[Convergent subsequences of Cauchy sequences]\label{convergent-subsequences-cauchy}
+    If a Cauchy sequence has a convergent subsequence then the sequence itself is convergent.
+\end{prop}
+
+\begin{proof}
+    Let $(x_n)$ be a Cauchy sequence in a metric space $M$, and suppose that the subsequence $(x_{n_k})$ converges to $x$.
+    Let $\eps>0$.
+    As $(x_n)$ is Cauchy, there exists $N$ such that, for $m,n\geq N$, $\met(x_n,x_m)<\frac{\eps}{2}$.
+    As $x_{n_k}\to x$, there exists $K$ such that, for $k\geq K$, $\met(x_{n_k},x)<\frac{\eps}{2}$.
+    So for $n\geq N$ and $k\geq K$ such that $n_k\geq N$,
+    \[
+        \met(x_n,x)\leq
+        \met(x_n,x_{n_k})+\met(x_{n_k},x)<
+        \frac{\eps}{2}+\frac{\eps}{2}=
+        \eps
+    \]
+    Hence $x_n\to x$.
+\end{proof}
+
+\begin{cor}[Compact spaces are complete]
+    Compact spaces are complete.
+\end{cor}
+
+\begin{proof}
+    Let $(x_n)$ be a Cauchy sequence in a compact metric space $M$.
+    By Theorem~\ref{compact-spaces-convergent}, $(x_n)$ has a convergent subsequence converging to a limit $x$.
+    By Proposition~\ref{convergent-subsequences-cauchy}, the entire sequence converges to $x$.
+\end{proof}
+
+\begin{ex}
+    The unit cube in $\ell^{\infty}$ is closed and bounded, but not compact: the sequence $e_1=(1,0,0,\ldots),e_2=(0,1,0,\ldots),\ldots$ has no convergent subsequence, as $\|e_i-e_j\|_{\infty}=1$ for $i\neq j$.
+\end{ex}
+
+\end{document}

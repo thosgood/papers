@@ -1,0 +1,2466 @@
+\documentclass[10pt,fleqn]{article}
+
+\author{Timothy Hosgood}
+\title{Complex Analysis}
+\pagestyle{headings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{embedfile}
+
+\newcommand{\diff}{\,\mathrm{d}}
+\newcommand{\met}{\mathrm{d}}
+\newcommand{\comps}{\mathbb{C}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\vc}[1]{\boldsymbol{#1}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\im}{\mathrm{Im}}
+\newcommand{\res}{\mathrm{res}}
+\theoremstyle{definition} \newtheorem{defn}{Definition}[section]
+\theoremstyle{plain}      \newtheorem{thm}[defn]{Theorem}
+\theoremstyle{definition} \newtheorem{prop}[defn]{Proposition}
+\theoremstyle{plain}      \newtheorem{lem}[defn]{Lemma}
+\theoremstyle{definition} \newtheorem{cor}[defn]{Corollary}
+\theoremstyle{definition} \newtheorem{ex}[defn]{Example}
+\theoremstyle{definition} \newtheorem{rem}[defn]{Remark}
+
+\begin{document}
+\embedfile{\jobname.tex}
+\maketitle
+\begin{abstract}
+    These notes are based entirely on lectures given by Richard Earl to second-year undergraduates at the University of Oxford in the year 2013/14.
+\end{abstract}
+\tableofcontents
+
+
+\section{Geometry of the complex plane}
+
+\begin{prop}[Circles and lines]
+    Let $A,C\in\reals,B\in\comps$.
+    Then the equation
+    \begin{equation}
+        Az\bar{z}+B\bar{z}+\bar{B}z+C=0
+    \end{equation}
+    represents
+    \begin{enumerate}[(i)]
+        \item $A=0$:
+        a line
+        \item $A\neq0$ and $|B|^2\geq AC$:
+        a circle, centre $\frac{-B}{A}$, radius $\frac{1}{|A|}\sqrt{|B|^2-AC}$
+        \item otherwise:
+        no solutions
+    \end{enumerate}
+
+    Further, all circles and lines can be represented in this way.
+\end{prop}
+
+\begin{proof}
+    If $A\neq0$ then we can rewrite the equation as
+    \[
+        \left|z+\frac{B}{A}\right|^2=
+        \frac{|B|^2-AC}{A^2}
+    \]
+    which is the equation of the circle, as required, unless $|B|^2<AC$, in which case there are no solutions.
+
+    If $A=0$ then we can rewrite the equation as
+    \[
+        B\bar{z}+\bar{B}z+C=0
+    \]
+    Letting $B=u+iv$ and $z=x+iy$, this is
+    \[
+        2ux+2vy+C=0
+    \]
+    which is the equation of a line.
+
+    Clearly any line is of the above form, and any circle $|z-a|^2=r^2$ can be put into the above form too.
+\end{proof}
+
+\begin{thm}[Apollonius' Theorem]
+    Let $k>0$ with $k\neq1$, and $\alpha,\beta\in\comps$ with $\alpha\neq\beta$.
+    Then the locus of points satisfying the equation
+    \begin{equation}
+        |z-\alpha|=
+        k|z-\beta|
+    \end{equation}
+    is a circle centre $c$, radius $r$, where
+    \[
+        c=\frac{k^2\beta-\alpha}{k^2-1},\qquad
+        r=\frac{k|\alpha-\beta|}{|k^2-1|}
+    \]
+
+    Further, $\alpha$ and $\beta$ are inverse points.
+    That is, $\alpha$ and $\beta$ are collinear with $c$, and $|c-\alpha||c-\beta|=r^2$.
+\end{thm}
+
+\begin{proof}
+    Squaring the equation gives
+    \[
+        (z-\alpha)(\bar{z}-\bar{\alpha})=
+        k^2(z-\beta)(\bar{z}-\bar{\beta})
+    \]
+    which we can rearrange to get
+    \[
+        \left|z-\left(\frac{k^2\beta-\alpha}{k^2-1}\right)\right|^2=
+        \frac{k^2|\alpha-\beta|^2}{(k^2-1)^2}
+    \]
+
+    Note that $c$ is collinear with $\alpha$ and $\beta$ as
+    \[
+        c=
+        \alpha+\frac{k^2}{k^2-1}(\beta-\alpha)=
+        \beta+\frac{1}{k^2-1}(\beta-\alpha)
+    \]
+    and from these we also see that
+    \[
+        |c-\alpha||c-\beta|=r^2
+    \]
+\end{proof}
+
+
+\section{Holomorphic functions}
+
+\begin{defn}[Discs in the complex plane]
+    Let $a\in\comps$ and $r>0$.
+    Then we define
+    \begin{equation}
+        \begin{array}{rrcl}
+            \text{open disc:} & D(a,r) & := & \{z\in\comps \colon |z-a|<r\}\\
+            \text{closed disc:} & \bar{D}(a,r) & := & \{z\in\comps \colon |z-a|\leq r\}\\
+            \text{punctured disc:} & D'(a,r) & := & \{z\in\comps \colon 0<|z-a|<r\}
+        \end{array}
+    \end{equation}
+\end{defn}
+
+\begin{defn}[Differentiable and holomorphic functions]
+    Let $U$ be an open subset of $\comps$ and $f:U\to\comps$.
+    Let $z_0\in U$.
+    Then $f$ is \emph{differentiable} at $z_0$ if
+    \begin{equation}
+        \lim_{h\to0} \frac{f(z_0+h)-f(z_0)}{h}
+    \end{equation}
+    exists, in which case we write $f'(z_0)$ to mean this limit.
+
+    Precisely, this means that
+    \[
+        \exists L\in\comps,~
+        \forall\eps>0,~
+        \exists\delta>0,~
+        \left[h\in D'(0,\delta)\implies\left|\frac{f(z_0+h)-f(z_0)}{h}-L\right|<\eps\right]
+    \]
+
+    Further, $f$ is \emph{holomorphic} on $U$ if it is differentiable at every $x_0\in U$.
+\end{defn}
+
+\begin{thm}[Differentiable implies continuous]
+    Let $f:U\to\comps$ be differentiable at $x_0\in U$.
+    Then $f$ is continuous at $x_0$.
+\end{thm}
+
+\begin{proof}
+    \begin{align*}
+        \lim_{h\to0} [f(z_0+h)-f(z_0)]
+        &=
+        \lim_{h\to0} \left[h\cdot\frac{f(z_0+h)-f(z_0)}{h}\right]\\
+        &=
+        (\lim_{h\to0} h)(\lim_{h\to0}\left[\frac{f(z_0+h)-f(z_0)}{h}\right])\\
+        &=
+        (\lim_{h\to0} h)(f'(z_0))\\
+        &=
+        0
+    \end{align*}
+    So
+    \[
+        \lim_{z\to z_0}f(z)=
+        f(z_0)
+    \]
+    as required.
+\end{proof}
+
+\begin{rem}
+    Being differentiable is a stronger requirement than just $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ existing; $h$ must be able to approach 0 from any direction, and not just along either axis.
+\end{rem}
+
+\begin{thm}[Cauchy-Riemann Equations]
+    Let $f:U\to\comps$ be differentiable at $z_0\in U$.
+    For $z\in U$ let $x=\re z, y=\im z$, and let $u=\re f,v=\im f$.
+    Then, at $z_0$,
+    \[
+        u_x=v_y,\quad
+        u_y=-v_x
+    \]
+\end{thm}
+
+\begin{proof}
+    As $f$ is differentiable at $z_0\in U$, in particular the limits as $h\to0$ along the real axis and along the imaginary axis in the definition of $f'(z_0)$ must be equal.
+    Let $z_0=x_0+iy_0$.
+    Then
+    \begin{align*}
+        f'(z_0)
+        &=
+        \underset{h\in\reals}{\lim_{h\to0}}\left[\frac{f(z_0+h)-f(z_0)}{h}\right]\\
+        &=
+        \lim_{h\to0}\left[\frac{[u(x_0+h,y_0)+iv(x_0+h,y_0)]-[u(x_0,y_0)+iv(x_0,y_0)]}{h}\right]\\
+        &=
+        \lim_{h\to0}\left[\left(\frac{u(x_0+h,y_0)-u(x_0,y_0)}{h}\right)+i\left(\frac{v(x_0+h,y_0)-v(x_0,y_0)}{h}\right)\right]\\
+        &=
+        u_x(x_0,y_0)+iv_x(x_0,y_0)
+    \end{align*}
+    and
+    \begin{align*}
+        f'(z_0)
+        &=
+        \underset{h\in\reals}{\lim_{h\to0}}\left[\frac{f(z_0+ih)-f(z_0)}{ih}\right]\\
+        &=
+        \lim_{h\to0}\left[\frac{[u(x_0,y_0+h)+iv(x_0,y_0+h)]-[u(x_0,y_0)+iv(x_0,y_0)]}{ih}\right]\\
+        &=
+        \lim_{h\to0}\left[\frac{1}{i}\left(\frac{u(x_0,y_0+h)-u(x_0,y_0)}{h}\right)+\left(\frac{v(x_0,y_0+h)-v(x_0,y_0)}{h}\right)\right]\\
+        &=
+        -iu_y(x_0,y_0)+v_y(x_0,y_0)
+    \end{align*}
+
+    Hence, comparing real and imaginary parts gives the result required.
+\end{proof}
+
+\begin{defn}[Wirtinger derivatives]
+    The \emph{Wirtinger derivatives}, for a complex-valued function on $\comps$, are defined as
+    \begin{equation}
+        \frac{\partial}{\partial\bar{z}}=\frac{1}{2}\left(\frac{\partial}{\partial x}+i\frac{\partial}{\partial y}\right),\quad
+        \frac{\partial}{\partial z}=\frac{1}{2}\left(\frac{\partial}{\partial x}-i\frac{\partial}{\partial y}\right)
+    \end{equation}
+\end{defn}
+
+\begin{thm}[Equivalance of Cauchy-Riemann equations]
+    Let $f:U\to\comps$ be a complex-valued function on an open set $U\subseteq\comps$.
+    The Cauchy-Riemann equations are equivalent to
+    \[
+        \frac{\partial f}{\partial\bar{z}}=0
+    \]
+\end{thm}
+
+\begin{proof}
+    Let $u=\re f,v=\im f$.
+    Then
+    \[
+        \frac{\partial f}{\partial\bar{z}}=
+        \frac{1}{2}[(u_x-v_y)+i(u_y+v_x)]
+    \]
+
+    Comparing real and imaginary parts, we see that
+    \[
+        \frac{\partial f}{\partial\bar{z}}=0\Longleftrightarrow
+        \left\{
+        \begin{array}{l}
+            u_x = v_y\\
+            u_y = -v_x
+        \end{array}
+        \right.
+    \]
+\end{proof}
+
+\begin{prop}[Goursat]
+    Let $f=u+iv:U\to\comps$.
+    Suppose that $u_x,u_y,v_x,v_y$ exist, are continuous, and satisfy the Cauchy-Riemann equations at $z_0\in U$.
+    Then $f$ is differentiable at $z_0$.
+\end{prop}
+
+\begin{proof}
+    Let $z_0=x+iy$ and $\eps>0$ be such that $D(z_0,\eps)\subseteq U$.
+    Let $h=p+iq$ with $|h|<\eps$.
+    Then, by the Mean-value Theorem, with each $\theta_i\in(0,1)$, we have
+    \begin{align*}
+        \frac{f(z_0+h)-f(z_0)}{h}
+        &=
+        \frac{p}{h}\left(\frac{u(x+p,y+q)-u(x,y+q)+iv(x+p,y+q)-iv(x,y+q)}{p}\right)\\
+        &\quad+
+        \frac{q}{h}\left(\frac{u(x,y+q)-u(x,y)+iv(x,y+q)-ev(x,y)}{q}\right)\\
+        &=
+        \frac{p}{h}(u_x(x+\theta_1p,q)+iv_x(x+\theta_2p,q))\\
+        &\quad+
+        \frac{q}{h}(u_y(x,y+\theta_3q)+iv_y(x,y+\theta_4q))
+    \end{align*}
+
+    Using the Cauchy-Riemann equations, this can be rewritten as
+    \begin{align*}
+        \frac{f(z_0+h)-f(z_0)}{h}
+        &=
+        \frac{[pu_x(x+\theta_1p,y+q)+iqu_x(x,y+\theta_4q)]}{p+iq}\\
+        &\quad+
+        \frac{i[pv_x(x+\theta_2p,y+q)+iqv_x(x,y+\theta_3q)]}{p+iq}
+    \end{align*}
+
+    Finally, using the continuity of $u_x$ and $v_x$, we see that
+    \[
+        f'(z_0)=
+        \lim_{h\to0}\left(\frac{f(z_0+h)-f(z_0)}{h}\right)=
+        u_x(x,y)+iv_x(x,y)
+    \]
+    exists.
+\end{proof}
+
+\begin{cor}[Harmonic parts of $f$]
+    Let $f=u+iv$ be holomorphic on an open set $U$.
+    Then $u$ and $v$ are harmonic functions (that is, they satisfy Laplace's equation).
+\end{cor}
+
+\begin{proof}
+    As $f$ is holomorphic, the Cauchy-Riemann equations are satisfied.
+    But we have just shown that
+    \[
+        f'=u_x+iv_x
+    \]
+
+    If we assume that the derivative of $f$ is holomorphic (something which we shall soon prove), then we have that these real and imaginary parts of $f'$ must also satisfy the Cauchy-Riemann equations.
+    That is,
+    \begin{align*}
+        (u_x)_x&=(v_x)_y=(-u_y)_y\\
+        (v_x)_x&=-(u_x)_y=-(v_y)_y
+    \end{align*}
+    And as all these second derivatives are continuous (by the assumption that $f'$ is holomorphic), thus
+    \begin{align*}
+        u_{xx}+u_{yy}&=0\\
+        v_{xx}+v_{yy}&=0
+    \end{align*}
+\end{proof}
+
+\begin{defn}[Harmonic conjugates]
+    If $u,v$ are harmonic functions on the open set $U\subseteq\comps$ such that $u+iv$ is holomorphic on $U$, then $v$ is a \emph{harmonic conjugate} of $u$.
+\end{defn}
+
+
+\section{Power series and the complex exponential}
+
+\begin{defn}[Power series]
+    Let $a,z\in\comps$ and $(a_n)\subseteq\comps$ be a complex sequence.
+    A \emph{power series centered on $a$} is a series of the form
+    \begin{equation}
+        \sum_{n=0}^{\infty}a_n(z-a)^n
+    \end{equation}
+
+    We treat $(a_n)$ as given and $z$ as a complex variable, so that the series, where it converges, defines a function in $z$.
+\end{defn}
+
+\begin{thm}[Radius of convergence]
+    Given a power series $\sum_{n=0}^{\infty}a_n(z-a)^n$, there exists a unique $R\in[0,\infty)$, called the \emph{radius of convergence} of the series, such that the power series
+    \begin{enumerate}[(i)]
+        \item converges absolutely when $|z-a|<R$
+        \item diverges when $|z-a|>R$
+    \end{enumerate}
+
+    Further, within the \emph{disc of convergence} $|z-a|<R$, the power series defines a differentiable function $f(z)$, and term-by-term differentiation is valid within this disc.
+    That is,
+    \begin{equation}
+        f'(z)=
+        \sum_{n=1}^{\infty}na_n(z-a)^{n-1}
+    \end{equation}
+\end{thm}
+
+\begin{prop}[Strong ratio test]
+    Given a power series $\sum_{n=0}^{\infty}a_n(z-a)^n$, if
+    \begin{equation}
+        L:=
+        \lim_{n\to\infty}\frac{a_n}{a_{n+1}}
+    \end{equation}
+    exists then $R=|L|$
+\end{prop}
+
+\begin{prop}[$(1-z)^{-1}$]
+    The radius of convergence of
+    \begin{equation}
+        \sum_{n=0}^{\infty}z^n
+    \end{equation}
+    is 1, and so the series defines a holomorphic function on $D(0,1)$, which converges nowhere on the boundary $|z|=1$.
+
+    Then function it defines is $(1-z)^{-1}$.
+\end{prop}
+
+\begin{rem}
+    We later prove that any function holomorphic at $a$ has a power series centred at $a$, whose radius of convergence is equal to the distance from $a$ to the nearest singularity.
+\end{rem}
+
+\begin{thm}[Complex exponential and trigonometric functions]
+    The following power series, defining the complex exponential and trigonometric functions, converges on the entire complex plane:
+    \begin{equation}
+        \exp z:=\sum_{n=0}^{\infty}\frac{z^n}{n!},\qquad
+        \sin z:=\sum_{n=0}^{\infty}\frac{(-1)^nz^{2n+1}}{(2n+1)!},\qquad
+        \cos z:=\sum_{n=0}^{\infty}\frac{(-1)^nz^{2n}}{(2n)!}
+    \end{equation}
+
+    Further, these functions have the following properties for any $z,w\in\comps,r\in\reals$:
+    \begin{enumerate}[(i)]
+        \item $\exp'z=\exp z,\sin'z=\cos z$, and $\cos'z=-\sin z$
+        \item $\exp(z+w)=(\exp z)(\exp w)$
+        \item $\exp(iz)=\cos z+i\sin z$
+        \item $\cos z=\frac{\exp(iz)+\exp(-iz)}{2}$, and $\sin z=\frac{\exp(iz)-\exp(-iz)}{2i}$
+        \item $\sin^2z+\cos^2z=1$
+        \item $\cos$ and $\sin$ have smallest period $2\pi$
+        \item $\exp$ has smallest period $2\pi i$
+        \item $\exp r=e^r$ (and thus we often write $e^z$ for complex $z$ to mean $\exp z$)
+    \end{enumerate}
+\end{thm}
+
+\begin{prop}[Principal branch of the complex logarithm]
+    \begin{enumerate}[(i)]
+        \item Any $z\in\comps\setminus(-\infty,0]$ can be written uniquely as $z=re^{i\theta}$, where $r>0,\theta\in(-\pi,\pi)$.
+        \item The function $L:\comps\setminus(-\infty,0]$ given by
+        \begin{equation}
+            L(z)=\log r+i\theta
+        \end{equation}
+        satisfies $(\exp\circ L)(z)=z$, and is holomorphic, with $L'(z)=1/z$.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    \begin{enumerate}[(i)]
+        \item This follows from choosing $r=|z|$ and $\theta=\arg z$, which takes a unique prinicipal value in the given range.
+        \item First, note that
+        \[
+            exp(L(z))=
+            e^{\log r}e^{i\theta}=
+            re^{i\theta}=
+            z
+        \]
+        and that
+        \begin{align*}
+            u(x,y)
+            &=
+            \log\sqrt{x^2+y^2}
+            =
+            \frac{1}{2}\log(x^2+y^2)\\
+            v(x,y)
+            &=
+            \arctan(\frac{y}{x})
+        \end{align*}
+        and, by differentiating, we can see that the Cauchy-Riemann equations are satisfied.
+        Further, $u_x,u_y,v_x$, and $v_y$ are all clearly continuous, so $L$ is holomorphic.
+        Also
+        \[
+            L'(z)=
+            u_x+iv_x=
+            \frac{x-iy}{x^2+y^2}=
+            \frac{1}{x+iy}=
+            \frac{1}{z}
+        \]
+
+        \emph{N.B. Some care should be taken with the different formulae for $\arg$ depending on the sign of $y$, but all the above follows in a nearly identical fashion.}
+    \end{enumerate}
+\end{proof}
+
+\begin{cor}[Complex powers]
+    Let $\alpha\in\comps$.
+    Then
+    \begin{equation}
+        z^{\alpha}:=
+        \exp(\alpha L(z))
+    \end{equation}
+    defines a holomorphic function on $\comps\setminus(-\infty,0]$, and
+    \[
+        \frac{\mathrm{d}}{\mathrm{d}z}(z^{\alpha})=
+        \alpha z^{\alpha-1}
+    \]
+\end{cor}
+
+\begin{proof}
+    As $L$ and $\exp$ are both holomorphic, then so too is $z^{\alpha}$.
+    Then, by the chain rule,
+    \begin{align*}
+        \frac{\mathrm{d}}{\mathrm{d}z}
+        &=
+        \frac{\mathrm{d}}{\mathrm{d}z}\exp(\alpha L(z))\\
+        &=
+        \alpha L'(z)\exp(\alpha L(z))\\
+        &=
+        \frac{\alpha}{z}\exp(\alpha L(z))\\
+        &=
+        \alpha\exp(\alpha L(z))\exp(-L(z))\\
+        &=
+        \alpha\exp((\alpha-1)L(z))\\
+        &=
+        \alpha z^{\alpha-1}
+    \end{align*}
+\end{proof}
+
+\begin{rem}
+    Note that, for $z,w\in\comps\setminus(-\infty,0]$,
+    \[
+        L(zw)\neq
+        L(z)+L(w)
+    \]
+\end{rem}
+
+\begin{rem}[Holomorphic branches]
+    The function $L(z)$ defined on \\$\comps\setminus(-\infty,0]$ is a \emph{holomorphic branch} of the complex logarithm.
+    The other branches of the logarithm on this cut plane are $L(z)+2n\pi i$.
+    
+    We could also define a logarithm on other cut planes, for example on \\$\comps\setminus\{\text{negative imaginary axis}\}$, by simply taking $\arg z\in(-\pi/2,3\pi/2)$.
+\end{rem}
+
+\begin{defn}[Mutilvalued functions]
+    Let $\alpha,z\in\comps,z\neq0$.
+    Define
+    \begin{equation}
+        \begin{array}{rcl}
+            [\arg z] &=& \{\theta\in\reals \colon z=|z|e^{i\theta}\}\\
+            \left[\log z\right] &=& \{w\in\comps \colon e^w=z\}\\
+            \left[z^{\alpha}\right] &=& \exp(\alpha[\log z])
+        \end{array}
+    \end{equation}
+\end{defn}
+
+\begin{prop}
+    Let $z,w,\alpha,\beta\in\comps$ with $z,w\neq0$.
+    Then
+    \begin{enumerate}[(i)]
+        \item $[\log z]+[\log w]=[\log(zw)]$
+        \item $[z^{\alpha}][w^{\alpha}]=[(zw)^{\alpha}]$
+        \item $[z^{\alpha}][z^{\beta}]\neq[z^{\alpha+\beta}]$
+    \end{enumerate}
+\end{prop}
+
+
+\section{Cauchy's Theorem}
+
+\begin{defn}[Domains]
+    A subset $U\subseteq\comps$ is a \emph{domain} if it is non empty, open, and connected.
+\end{defn}
+
+\begin{defn}[Paths/Contours]
+    A \emph{path} or \emph{contour} $\gamma$ is a continuous and piecewise continuously differentiable function
+    \begin{equation}
+        \gamma:[a,b]\to\comps
+    \end{equation}
+
+    N.B. Sometimes the image of $\gamma$ is also referred to as the path or contour.
+
+    A path $\gamma:[a,b]\to\comps$ is said to be \emph{simple} if $\gamma$ is injective, with the possible exception that $\gamma(a)=\gamma(b)$ is allowed, in which case the path is said to be \emph{closed}.
+\end{defn}
+
+\begin{thm}[Jordan Curve Theorem]
+    Let $\gamma$ be the image of a simple closed path in $\comps$.
+    The complement $\comps\setminus\gamma$ has exactly two connected components.
+    One of these, known as the \emph{interior}, is bounded, and the other, known as the \emph{exterior}, is unbounded.
+\end{thm}
+
+\begin{proof}
+    The proof is far beyond the level of this course.
+\end{proof}
+
+\begin{defn}[Commonly used paths]
+    Let $a,b\in\comps,r>0$.
+    \begin{enumerate}[(i)]
+        \item We write $\gamma(a,r)$ to mean the circle centre $a$, radius $r$, with a \emph{positive orientation}.
+        That is, we traverse it anticlockwise.
+        We parametrise it by
+        \[
+            z=a+re^{i\theta},\quad
+            \theta\in[0,2\pi]
+        \]
+
+        We also define $\gamma^+(a,r)$ and $\gamma_-(a,r)$ to be the upper and lower semicircles, respectively.
+        \item We write $[a,b]$ to mean the straight path joining $a$ and $b$.
+        We parametrise is by
+        \[
+            z=a+t(b-a),\quad
+            t\in[0,1]
+        \]
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}[Reparametrisation]
+    Given a path $\gamma:[a,b]\to\comps$, a \emph{reparametrisation} of $\gamma$ is a map $\Gamma:[c,d]\to\comps$ such that
+    \[
+        \Gamma=
+        \gamma\circ\phi
+    \]
+    where $\phi:[c,d]\to[a,b]$ is a bijection with positive continuous derivative.
+    That is, $\phi$ can be thought of as a change of coordinates, taking a points $\Gamma$ coordinate to its relative $\gamma$ coordinate.
+\end{defn}
+
+\begin{defn}[Length of a path]
+    Given a path $\gamma:[a,b]\to\comps$, we define the \emph{length} of $\gamma$ as
+    \begin{equation}
+        \mathcal{L}(\gamma):=
+        \int_a^b|\gamma'(t)|\diff t
+    \end{equation}
+\end{defn}
+
+\begin{prop}[Length of a path under reparametrisation]
+    The length of a path is invariant under reparametrisation
+\end{prop}
+
+\begin{proof}
+    Let $\gamma_1:[a,b]\to\comps$ and $\gamma_2:[c,d]\to\comps$ be two parametrisations of the same path $\gamma$.
+    Let $\alpha:[a,b]\to[c,d]$ be the change of coordinates map, so that $\gamma_2(\alpha(t))=\gamma_1(t)$.
+    As $\alpha(a)=c$ and $\alpha(b)=d$, then
+    \begin{align*}
+        \int_a^b|\gamma_1'(t)|\diff t
+        &=
+        \int_a^b|\gamma_2'(\alpha(t))\alpha'(t)|\diff t\\
+        &=
+        \int_a^b|\gamma_2'(\alpha(t))|\alpha'(t)\diff t\\
+        &=
+        \int_c^d|\gamma_2'(u)|\diff u
+    \end{align*}
+\end{proof}
+
+\begin{defn}[Path integrals]
+    Let $f:U\to\comps$ be a continuous function defined on a domain $U$, and let $\gamma[a,b]\to U$ be a path in $U$.
+    We define the \emph{path integral}
+    \begin{equation}
+        \int_{\gamma} f(z)\diff z:=
+        \int_a^b f(\gamma(t))\gamma'(t)\diff t
+    \end{equation}
+
+    Note that the definition of complex integrals is exactly what one might expect.
+    That is,
+    \[
+        \int_a^b (x(t)+iy(t))\diff t:=
+        \int_a^b x(t)\diff t + i\int_a^b y(t)\diff t
+    \]
+
+    It is easy to check that integration remains linear when defined thusly.
+\end{defn}
+
+\begin{defn}[Join of paths]
+    Given two paths, $\gamma_1:[a,b]\to\comps$ and $\gamma_2:[c,d]\to\comps$, with $\gamma_1(b)=\gamma_2(c)$, we define their \emph{join}, $\gamma_1\cup\gamma_2:[a,b+d-c]\to\comps$, by
+    \begin{equation}
+        (\gamma_1\cup\gamma_2)(t)=
+        \left\{
+        \begin{array}{lr}
+            \gamma_1(t) & \text{for }t\in[a,b]\\
+            \gamma_2(t-b+c) & \text{for }t\in[b,b+d-c]
+        \end{array}
+        \right.
+    \end{equation}
+
+    That is, the join of two paths traces out the first path, then the second.
+\end{defn}
+
+\begin{prop}[Joined path integral]
+    For any continuous $f$ defined on $\gamma_1$ and $\gamma_2$,
+    \[
+        \int_{\gamma_1\cup\gamma_2} f(z)\diff z=
+        \int_{\gamma_1} f(z)\diff z + \int_{\gamma_2} f(z)\diff z
+    \]
+\end{prop}
+
+\begin{defn}[Reverse path]
+    Given a path $\gamma:[a,b]\to\comps$ we can define the \emph{reverse path} $-\gamma:[a,b]\to\comps$ by
+    \begin{equation}
+        -\gamma(t)=
+        \gamma(b+a-t)
+    \end{equation}
+\end{defn}
+
+\begin{prop}[Reverse path integral]
+    For any continuous $f$ defined on $\gamma$,
+    \[
+        \int_{-\gamma} f(z)\diff z=
+        -\int_{\gamma} f(z)\diff z
+    \]
+\end{prop}
+
+\begin{prop}[Path integrals under reparametrisation]
+    The path integral $\int_{\gamma} f(z)\diff z$ is invariant under reparametrisation.
+\end{prop}
+
+\begin{proof}
+    Let $\gamma_1:[a,b]\to\comps$ and $\gamma_2:[c,d]\to\comps$ be two parametrisations of the same path $\gamma$.
+    Let $\alpha:[a,b]\to[c,d]$ be the change of coordinates map, so that $\gamma_2(\alpha(t))=\gamma_1(t)$.
+    As $\alpha(a)=c$ and $\alpha(b)=d$, then, by the chain rule,
+    \[
+        \int_c^d f(\gamma_2(t))\gamma_2'(t)\diff t=
+        \int_a^b f(\gamma_2(\alpha(t)))\gamma_2'(\alpha(t))\alpha'(t)\diff t=
+        \int_a^b f(\gamma_1(t))\gamma_1'(t)\diff t
+    \]
+\end{proof}
+
+\begin{prop}[Integration of centred power series terms]
+    Let $a\in\comps,z\in\mathbb{Z},r>0$.
+    Then
+    \[
+        \int_{\gamma(a,r)} (z-a)^k\diff z=
+        \left\{
+        \begin{array}{lr}
+            2\pi i & \text{for }k=-1\\
+            0 & \text{otherwise}
+        \end{array}
+        \right.
+    \]
+\end{prop}
+
+\begin{proof}
+    Let $z=a+re^{i\theta}$ with $\theta\in[0,2\pi]$.
+    First assume that $k\neq-1$.
+    Then
+    \begin{align*}
+        \int_{\gamma(a,r)} (z-a)^k\diff z
+        &=
+        \int_0^{2\pi} \left(re^{i\theta}\right)^k\left(ire^{i\theta}\diff\theta\right)\\
+        &=
+        ir^{k+1}\int_0^{2\pi} e^{i(k+1)\theta}\diff\theta\\
+        &=
+        ir^{k+1}\int_0^{2\pi} [\cos(k+1)\theta+i\sin(k+1)\theta]\diff\theta\\
+        &=0
+    \end{align*}
+
+    Then, for $k=-1$,
+    \[
+        \int_{\gamma(a,r)} (z-a)^{-1}\diff z=
+        ir^0\int_0^{2\pi}\diff\theta=
+        2\pi i
+    \]
+\end{proof}
+
+\begin{thm}[Fundamental Theorem of Calculus for path integrals]
+    Let $f$ be a holomorphic function on domain $U$, and let $\gamma$ be a path in $U$ from $p$ to $q$.
+    Then
+    \begin{equation}
+        \int_{\gamma} f'(z)\diff z=
+        f(q)-f(p)
+    \end{equation}
+\end{thm}
+
+\begin{proof}
+    Let $\gamma:[a,b]\to U$ be a parametrisation of $\gamma$ with $\gamma(a)=p$ and $\gamma(b)=q$.
+    Then
+    \begin{align*}
+        \int_{\gamma} f'(z)\diff z
+        &=
+        \int_a^b f'(\gamma(t))\gamma'(t)\diff t\\
+        &=
+        \int_a^b \frac{\mathrm{d}}{\mathrm{d}t} f(\gamma(t))\diff t\\
+        &=
+        [f(\gamma(t))]_{t=a}^{t=b}\\
+        &=
+        f(\gamma(b))-f(\gamma(a))\\
+        &=
+        f(q)-f(p)
+    \end{align*}
+
+    \emph{N.B. The application of the usual Fundamental Theorem of Calculus requires the derivative to be continuous, but as we will later prove, holomorphic functions have continuous derivatives.}
+\end{proof}
+
+\begin{cor}[Zero derivatives]
+    If $f'=0$ on a domain $U$ then $f$ is constant.
+\end{cor}
+
+\begin{thm}[Estimation Theorem]
+    Let $U$ be a domain, $\gamma:[a,b]\to U$ a path in $U$, and $f:U\to\comps$ be continuous.
+    Then
+    \begin{equation}
+        \left|\int_{\gamma} f(z)\diff z\right|\leq
+        \int_a^b |f(\gamma(t))\gamma'(t)|\diff t
+    \end{equation}
+
+    In particular, if $|f(z)|\leq M$ on $\gamma$, then
+    \begin{equation}
+        \left|\int_{\gamma} f(z)\diff z\right|\leq
+        M\mathcal{L}(\gamma)
+    \end{equation}
+\end{thm}
+
+\begin{proof}
+    The proof that
+    \[
+        \left|\int_a^b z(t)\diff z\right|\leq
+        \int_a^b |z(t)|\diff t
+    \]
+    for a complex integrand follows in a similar fashion to that for real integrands (being essentially a continuous version of the triangle inequality).
+    We then have that
+    \[
+        \left|\int_{\gamma} f(z)\diff z\right|=
+        \left|\int_a^b f(\gamma(t))\gamma'(t)\diff t\right|\leq
+        \int_a^b |f(\gamma(t))\gamma'(t)|\diff t
+    \]
+
+    Further, if $|f(z)|\leq M$ on $\gamma$, then
+    \[
+        \left|\int_{\gamma}\diff z\right|\leq
+        \int_a^b M|\gamma'(t)|\diff t=
+        M\mathcal{L}(\gamma)
+    \]
+\end{proof}
+
+\begin{prop}[Uniform convergence]
+    Suppose that the functions $f_n(z)$ converge uniformly to $f(z)$ on the path $\gamma$.
+    Then
+    \begin{equation}
+        \lim_{n\to\infty}\int_{\gamma} f_n(z)\diff z=
+        \int_{\gamma} f(z)\diff z
+    \end{equation}
+\end{prop}
+
+\begin{proof}
+    Let $\eps>0$.
+    There exists $N$ such that, for $n\geq N$ and $z\in\gamma$,
+    \[
+        |f_n(z)-f(z)|<
+        \frac{\eps}{\mathcal{L}(\gamma)}
+    \]
+    Hence, for $n\geq N$, we have that
+    \[
+        \left|\left(\int_{\gamma} f_n(z)\diff z\right)-\left(\int_{\gamma} f(z)\diff z\right)\right|=
+        \left|\int_{\gamma}(f_n(z)-f(z))\diff z\right|\leq
+        \mathcal{L}(\gamma)\frac{\eps}{\mathcal{L}(\gamma)}=
+        \eps
+    \]
+\end{proof}
+
+\begin{thm}[Cauchy's Theorem, or, more correctly, The Cauchy-Goursat Theorem]
+    Let $f(z)$ be holomorphic inside and on a closed path $\gamma$.
+    Then
+    \begin{equation}
+        \int_{\gamma} f(z)\diff z
+        =0
+    \end{equation}
+\end{thm}
+
+\begin{proof}
+    Once more, the proof lies well outside the level of this course.
+    We will, however, prove the result for less general cases.
+\end{proof}
+
+\begin{thm}[Cauchy's Theorem for a triangle]
+    Let $f$ be holomorphic in a domain which includes a closed triangular region $T$.
+    Let $\Delta$ denote the boundary of $T$, positively oriented.
+    Then
+    \begin{equation}
+        \int_{\Delta} f(z)\diff z
+        =0
+    \end{equation}
+\end{thm}
+
+\begin{proof}
+    \emph{First, we create nested triangles and consider their intersection}:
+    If we join the three midpoints of the sides of $\Delta$ to make four new triangular paths, A, B, C, and D, and orient them all positively, then we see that
+    \[
+        \int_{\Delta} f(z)\diff z=
+        \int_A f(z)\diff z + \int_B f(z)\diff z + \int_C f(z)\diff z + \int_D f(z)\diff z
+    \]
+    as the contributions from the edges inside $\Delta$ cancel each other out with their opposite orientations.
+    But one of these four integrals, over A, B, C, and D, must have the maximal modulus; call it $\Delta_1$.
+    Then, by the triangle inequality,
+    \[
+        \left|\int_{\Delta} f(z)\diff z\right|\leq
+        4\left|\int_{\Delta_1} f(z)\diff z\right|
+    \]
+
+    We can do this repeatedly, creating triangles $\Delta_1,\Delta_2,\ldots$ such that, for any $n$,
+    \[
+        \left|\int_{\Delta} f(z)\diff z\right|\leq
+        4^n\left|\int_{\Delta_n} f(z)\diff z\right|        
+    \]
+
+    As the closed triangular regions (boundaries and interiors) are nested compact subsets then their intersection is non empty.
+    \emph{(We prove this in a lemma at the end of this proof).}
+    This intersection, however, cannot contain more than one point, as the triangles lie in discs whose radii tend to $0$.
+    Let $\zeta$ denote the single complex number in the intersection.
+    That is,
+    \[
+        \zeta=
+        \bigcap_{n=1}^{\infty}\Delta_n
+    \]
+
+    \emph{Next, we apply the fact that $f$ is holomorphic, and therefore differentiable at $\zeta$}:
+    As $f'(\zeta)$ exists, then, for any $\eps>0$, there exists some $\delta>0$ such that
+    \[
+        |z-\zeta|<\delta\implies
+        \left|\frac{f(z)-f(\zeta)}{z-\zeta}-f'(\zeta)\right|<\eps
+    \]
+    or, equivalently, that, for some $w$ with $|w|<\eps$,
+    \[
+        f(z)=
+        f(\zeta)+(z-\zeta)f'(\zeta)+(z-\zeta)w
+    \]
+
+    Now choose $n$ sufficiently large that $\Delta_n\subseteq D(\zeta,\delta)$, then
+    \[
+        \int_{\Delta_n} f(z)\diff z=
+        f(\zeta)\int_{\Delta_n} \diff z+
+        f'(\zeta)\int_{\Delta_n} (z-\zeta)\diff z+
+        \int_{\Delta_n} (z-\zeta)w(z)\diff z
+    \]
+
+    By the Fundamental Theorem of Calculus, the first two integrals are zero, and thus
+    \[
+        \int_{\Delta_n} f(z)\diff z=
+        \int_{\Delta_n} (z-\zeta)w(z)\diff z
+    \]
+
+    From the way we constructed the triangles, note that
+    \[
+        \mathcal{L}(\Delta_n)=
+        \frac{1}{2}\mathcal{L}(\Delta_{n-1})=
+        \frac{1}{2^n}\mathcal{L}(\Delta)
+    \]
+    and also, for any $z\in\Delta_n$, $|z-\zeta|<\mathcal{L}(\Delta_n)$.
+    So, by the Estimation Theorem,
+    \begin{align*}
+        \left|\int_{\Delta_n} f(z)\diff z\right|
+        &=
+        \left|\int_{\Delta_n} (z-\zeta)w(z)\diff z \right|\\
+        &\leq
+        \mathcal{L}(\Delta_n)\mathcal{L}(\Delta_n)\eps\\
+        &=
+        \frac{\eps}{4^n}\mathcal{L}(\Delta)^2
+    \end{align*}
+
+    Finally,
+    \[
+        \left|\int_{\Delta} f(z)\diff z\right|\leq
+        4^n\left|\int_{\Delta_n} f(z)\diff z\right|\leq
+        \eps\mathcal{L}(\Delta)^2
+    \]
+    which, as $\eps>0$ was arbitrary, concludes the proof.
+\end{proof}
+
+\begin{lem}[Intersection of decreasing sequence]
+    Let $M$ be a compact metric space and $C_n$ be a descreasing sequence of closed, non-empty subsets.
+    Then
+    \[
+        \bigcap C_n\neq\varnothing
+    \]
+\end{lem}
+
+\begin{proof}
+    Let $U_n=M\setminus C_n$, so that the $U_n$ form an increasing sequence of open subsets.
+    Suppose, for a contradiction, that $\bigcap C_n=\varnothing$.
+    Then, by De Morgan's Law,
+    \[
+        \bigcup U_n=
+        \bigcup (M\setminus C_n)=
+        M\setminus\left(\bigcap C_n\right)=
+        M
+    \]
+    and so the $U_n$ form an open cover for $M$.
+    By compactness there are $n_1<n_2<\ldots<n_k$ such that
+    \[
+        U_{n_k}=
+        U_{n_1}\cup\ldots\cup U_{n_k}=
+        M
+    \]
+    but then $C_{n_k}=\varnothing$, which is a contradiction.
+\end{proof}
+
+\begin{defn}[Convex domains]
+    A domain $U$ is \emph{convex} if
+    \[
+        a,b\in U\implies
+        [a,b]\in U
+    \]
+\end{defn}
+
+\begin{thm}[Antiderivative Theorem on a convex domain]
+    Let $f$ be holomorphic on a convex domain $U$.
+    Then there exists a holomorphic function $F$ on $U$ such that $F'(z)=f(z)$.
+\end{thm}
+
+\begin{proof}
+    Fix $a\in U$, and let $[a,z]$ denote the oriented line segment from $a$ to $z$.
+    Define
+    \[
+        F(z)=
+        \int_{[a,z]} f(w)\diff w
+    \]
+
+    Let $\eps>0$ be such that $D(z,\eps)\subseteq U$, and take $h$ with $|h|<\eps$.
+    By Cauchy's Theorem for triangles,
+    \[
+        \int_{[a,z]} f(w)\diff w+\int_{[z,z+h]} f(w)\diff w+\int_{[z+h,a]} f(w)\diff w=
+        0
+    \]
+    which may be rearranged to
+    \[
+        F(z+h)-F(z)=
+        \int_{[z,z+h]} f(w)\diff w
+    \]
+
+    So, as $\int_{[z,z+h]}k\diff w=kh$ for any constant function $k(w)$,
+    \[
+        \left|\frac{F(z+h)-F(z)}{h}-f(z)\right|=
+        \left|\left(\frac{1}{h}\int_{[z,z+h]}f(w)\diff w\right)-f(z)\right|=
+        \left|\frac{1}{h}\int_{[z,z+h]}[f(w)-f(z)]\diff w\right|
+    \]
+
+    Finally, by the Estimation Theorem, we have that
+    \begin{align*}
+        \left|\frac{F(z+h)-F(z)}{h}-f(z)\right|
+        &=
+        \left|\frac{1}{h}\int_{[z,z+h]}[f(w)-f(z)]\diff w\right|\\
+        &\leq
+        \frac{1}{|h|}|h|\sup_{w\in[z,z+h]}|f(w)-f(z)|\\
+        &=
+        \sup_{w\in[z,z+h]}|f(w)-f(z)|
+    \end{align*}
+    which tends to $0$ as $h\to0$ by the continuity of $f$ at $z$.
+    Thus $F'(z)=f(z)$, as required.
+\end{proof}
+
+\begin{cor}[Cauchy's Theorem for a convex domain]
+    Let $f$ be holomorphic on a convex domain $U$.
+    Then for any closed path $\gamma$ in $U$, we have that
+    \begin{equation}
+        \int_{\gamma} f(z)\diff z=0
+    \end{equation}
+\end{cor}
+
+\begin{proof}
+    This follows from the Antiderivative Theorem and the Fundamental Theorem of Calculus.
+\end{proof}
+
+\begin{defn}[Homotopy]
+    Let $\gamma_1:[0,1]\to U$ and $\gamma_2:[0,1]\to U$ be two closed paths in a domain $U$.
+    We say that $\gamma_1$ and $\gamma_2$ are \emph{homotopic} if there is a continuous function $H:[0,1]^2\to\comps$ such that, for each $u\in[0,1]$, $H(_,u):[0,1]\to U$ is a closed path in $U$, and, for all $t\in[0,1]$,
+    \[
+        H(t,0)=\gamma_1(t),\quad
+        H(t,1)=\gamma_2(t)
+    \]
+
+    We might think of the second variable $u$ as a time parameter.
+    The homotopy $H$ can then be viewed as a continuous deformation from $\gamma_1$ to $\gamma_2$
+\end{defn}
+
+\begin{thm}[Deformation Theorem]
+    Let $f$ be holomorphic on a domain $U$, and let $\gamma_1,\gamma_2$ be homotopic closed paths in $U$.
+    Then
+    \begin{equation}
+        \int_{\gamma_1} f(z)\diff z=
+        \int_{\gamma_2} f(z)\diff z
+    \end{equation}
+\end{thm}
+
+\begin{proof}
+    The full rigorous proof lies outside this course, but uses an appropriate version of Cauchy's Theorem on $\int_{\gamma_1\cup\gamma_2}f(z) \diff z$.
+\end{proof}
+
+\begin{defn}[Simple connectedness]
+    A domain $U$ is \emph{simply connected} if every closed curve in $U$ is homotopic to a single point in $U$.
+\end{defn}
+
+\begin{cor}[Cauchy's Theorem on a simply-connected domain]
+    Let $f$ be holomorphic on a simply-connected domain $U$, and let $\gamma$ be a closed path in $U$.
+    Then
+    \begin{equation}
+        \int_{\gamma} f(z)\diff z=0
+    \end{equation}
+\end{cor}
+
+\begin{proof}
+    $\gamma$ is homotopic to a constant path, $\Gamma$, and so, by the Deformation Theorem,
+    \[
+        \int_{\gamma} f(z)\diff z=
+        \int_{\Gamma} f(z)\diff z=
+        0
+    \]
+\end{proof}
+
+\begin{cor}[Path independence]
+    Let $f$ be holomorphic on a simply-connected domain $U$.
+    Let $a,b\in U$, and $\gamma_1,\gamma_2$ be two paths from $a$ to $b$.
+    Then
+    \[
+        \int_{\gamma_1} f(z)\diff z=
+        \int_{\gamma_2} f(z)\diff z
+    \]
+\end{cor}
+
+\begin{proof}
+    Apply Cauchy's Theorem on a simply-connected domain to the path $\gamma_1\cup\gamma_2$.
+\end{proof}
+
+\begin{cor}[Antiderivative Theorem for a simply-connected domain]
+    Let $f$ be holomorphic on a simply-connected domain $U$.
+    Then there exists $F$ on $U$ such that $F'=f$.
+\end{cor}
+
+\begin{proof}
+    Fix $a\in U$, and for $z\in U$ let $\gamma$ be a path from $a$ to $z$ in $U$.
+    Define
+    \[
+        F(z)=
+        \int_{\gamma} f(w)\diff w
+    \]
+
+    By the previous corollary about path independence, $F$ is independent of the choice of path, and is thus a function of $z$ alone.
+    By an argument identical to that for the Antiderivative Theorem for a convex domain, it follows that $F'(z)=f(z)$.
+\end{proof}
+
+\begin{cor}[Logarithm for a simply-connected domain]
+    Let $U$ be a simply-connected domain not containing $0$.
+    Then there exists a holomorphic function $l(z)$ on $U$ such that
+    \[
+        \exp(l(z))=z
+    \]
+\end{cor}
+
+\begin{proof}
+    Let $a\in U$ and $c\in[\log a]$, so that $\exp c=a$.
+    For $z\in U$ let $\gamma$ be a path from $a$ to $z$.
+    Define
+    \[
+        l(z)=
+        c+\int_{\gamma}\frac{\mathrm{d}w}{w}
+    \]
+
+    By the Antideriative Theorem for simply-connected domains, $l'(z)=z^{-1}$.
+    
+    Further, define
+    \[
+        G(z)=
+        \frac{\exp(l(z))}{z}
+    \]
+    Then, by the quotient rule,
+    \[
+        G'(z)=
+        \frac{zl'(z)\exp(l(z))-\exp(l(z))}{z^2}=
+        \frac{\exp(l(z))-\exp(l(z))}{z^2}
+        =0
+    \]
+    and so $G$ is constant on $U$ by connectedness.
+    At $z=a$ we see that
+    \[
+        G(a)=
+        \frac{\exp(l(a))}{a}=
+        \frac{\exp c}{a}=
+        \frac{a}{a}
+        =1
+    \]
+    and hence $\exp(l(z))=z$, as required.
+\end{proof}
+
+
+\section{Consequences of Cauchy's Theorem}
+
+\begin{defn}[Orientation]
+    Let $\gamma:[0,1]\to\comps$ be a simple path in $\comps$.
+    Then $\gamma$ is a homeomorphism onto its image.
+    If $\Gamma:[0,1]\to\comps$ is also a homeomorphism onto the image of $\gamma$ then $\gamma\circ\Gamma^{-1}$ is a homeomorphism of $[0,1]$.
+    This means that $\gamma\circ\Gamma^{-1}$ is strictly monotone, and so either increasing or decreasing.
+
+    We say that $\gamma$ and $\Gamma$ have the same \emph{orientation} if $\gamma\circ\Gamma^{-1}$ is increasing, and have \emph{reverse orientations} if $\gamma\circ\Gamma^{-1}$ is decreasing.
+
+    If they have the same orientation then
+    \[
+        \int_{\gamma} f(z)\diff z=
+        \int_{\Gamma} f(z)\diff z
+    \]
+
+    If they have reverse orientations then
+    \[
+        \int_{\gamma} f(z)\diff z=
+        -\int_{\Gamma} f(z)\diff z        
+    \]
+\end{defn}
+
+\begin{prop}
+    Let $\gamma$ be a simple closed path in $\comps$.
+    Let $a$ be in the interior of $\gamma$ (which exists, and is connected, by the Jordan Curve Theorem), and $r>0$ such that $\gamma(a,r)$ is also in the interior of $\gamma$.
+    Then $\gamma$ is either homotopic to $\gamma(a,r)$ or $-\gamma(a,r)$
+    So, by the Deformation Theorem, if $\gamma$ is homotopic to $\pm\gamma(a,r)$, then
+    \[
+        \int_{\gamma}\frac{\mathrm{d}z}{z-a}
+        =\pm2\pi i
+    \]
+\end{prop}
+
+\begin{defn}[Positive orientation]\label{positive-orientation}
+    Let $\gamma$ be a simple closed curve and $a$ be a point in the interior of $\gamma$.
+    Then $\gamma$ is positively oriented if
+    \begin{equation}
+        \int_{\gamma}\frac{\mathrm{d}z}{z-a}=
+        2\pi i
+    \end{equation}
+\end{defn}
+
+\begin{defn}[Winding number]
+    Let $\gamma$ be a closed curve, and $a$ be a point not on $\gamma$.
+    Then the \emph{winding number of $\gamma$ about $a$} is
+    \begin{equation}
+        \frac{1}{2\pi i}\int_{\gamma}\frac{\mathrm{d}z}{z-a}
+    \end{equation}
+\end{defn}
+
+\begin{thm}[Cauchy's Integral Formula]
+    Let $f$ be holomorphic on and inside a positively oriented, simple, closed curve $\gamma$, and $a$ be a point inside $\gamma$.
+    Then
+    \begin{equation}
+        \frac{1}{2\pi i}\int_{\gamma}\frac{f(w)}{w-a}\diff w=
+        f(a)
+    \end{equation}
+\end{thm}
+
+\begin{proof}
+    By the Deformation Theorem we know that
+    \[
+        \frac{1}{2\pi i}\int_{\gamma}\frac{f(w)}{w-a}\diff w=
+        \frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(w)}{w-a}\diff w
+    \]
+    for \emph{any} circle $\gamma(a,r)$ inside $\gamma$.
+
+    By definition~\ref{positive-orientation} we know that
+    \[
+        \int_{\gamma(a,r)}\frac{\mathrm{d}w}{w-a}=
+        2\pi i
+    \]
+    so that
+    \[
+        f(a)=
+        \frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(a)}{w-a}\diff w
+    \]
+
+    Hence
+    \begin{align*}
+        \left|\left(\frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(w)}{w-a}\diff w\right)-f(a)\right|
+        &=
+        \left|\frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(w)-f(a)}{w-a}\diff w\right|\\
+        &=
+        \frac{1}{2\pi}\left|\int_0^{2\pi}\frac{f(a+re^{i\theta})-f(a)}{re^{i\theta}}ire^{i\theta}\diff\theta\right|\\
+        &=
+        \frac{1}{2\pi}\left|\int_0^{2\pi}[f(a+re^{i\theta})-f(a)]\diff\theta\right|\\
+        &\leq
+        \frac{1}{2\pi}2\pi\sup_{\theta\in[0,2\pi]}|f(a+re^{i\theta})-f(a)|\\
+        &=
+        \sup_{\theta\in[0,2\pi]}|f(a+re^{i\theta})-f(a)|
+    \end{align*}
+    and, by the continuity of $f$ at $a$,
+    \[
+        \lim_{r\to0}\left[\sup_{\theta\in[0,2\pi]}|f(a+re^{i\theta})-f(a)|\right]
+        =0
+    \]
+\end{proof}
+
+\begin{thm}[Taylor's Theorem and Cauchy's Formula for Derivatives]
+    Let $a\in\comps,\eps>0$, and $f:D(a,\eps)\to\comps$ be a holomorphic function.
+    Then there exist unique $c_n\in\comps$ such that, for $z\in D(a,\eps)$,
+    \begin{equation}
+        f(z)=
+        \sum_{n=0}^{\infty} c_n(z-a)^n
+    \end{equation}
+
+    Further, for $0<r<\eps$,
+    \begin{equation}\label{cauchys-derivative}
+        c_n=
+        \frac{f^{(n)}(a)}{n!}=
+        \frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(w)}{(w-a)^{n+1}}\diff w
+    \end{equation}
+
+    Equation~\ref{cauchys-derivative} is often referred to as \emph{Cauchy's Formula for Derivatives}.
+    We refer to the $c_n$ as the \emph{Taylor coefficients}.
+\end{thm}
+
+\begin{proof}
+    \begin{enumerate}[(i)]
+        \item \emph{Existence}:
+        Choose $r$ such that $|z-a|<r<\eps$.
+        By Cauchy's Integral Formula,
+        \begin{align*}
+            f(z)
+            &=
+            \frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(w)}{w-z}\diff w\\
+            &=
+            \frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(w)}{(w-a)-(z-a)}\diff w\\
+            &=
+            \frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(w)/(w-a)}{1-\left(\frac{z-a}{w-a}\right)}\diff w
+        \end{align*}
+
+        For $w\in\gamma(a,r)$ we have $|z-a|<|w-a|=r$, and so
+        \[
+            \left(1-\left(\frac{z-a}{w-a}\right)\right)^{-1}=
+            \sum_{n=0}^{\infty}\left(\frac{z-a}{w-a}\right)^n
+        \]
+        and hence
+        \[
+            f(z)=
+            \frac{1}{2\pi i}\int_{\gamma(a,r)}\left[\sum_{n=0}^{\infty}f(w)\frac{(z-a)^n}{(w-a)^{n+1}}\right]\diff w
+        \]
+
+        As $\gamma(a,r)$ is compact and $f(w)$ continuous, then there exists $M>0$ such that $|f(w)|<M$ on $\gamma(a,r)$.
+        So, for $w\in\gamma(a,r)$,
+        \begin{align*}
+            \left|f(w)\frac{(z-a)^n}{(w-a)^{n+1}}\right|
+            &<
+            M\frac{|z-a|^n}{r^{n+1}}\\
+            &=
+            \frac{M}{r}\left(\frac{|z-a|}{r}\right)^n\\
+            &=:
+            M_n
+        \end{align*}
+
+        As $\sum M_n$ is a convergent geometric series, then, by the Weierstrass M-Test,
+        \[
+            \sum_{n=0}^{\infty}f(w)\frac{(z-a)^n}{(w-a)^{n+1}}
+        \]
+        converges uniformly, and we can interchange the sum and the integral to find that
+        \begin{align*}
+            f(z)
+            &=
+            \frac{1}{2\pi i}\int_{\gamma(a,r)}\left[\sum_{n=0}^{\infty}f(w)\frac{(z-a)^n}{(w-a)^{n+1}}\right]\diff w\\
+            &=
+            \sum_{n=0}^{\infty}\underbrace{\left[\frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(w)\mathrm{d}w}{(w-a)^{n+1}}\right]}_{c_n}(z-a)^n
+        \end{align*}
+        \item \emph{Uniqueness}:
+        To demonstrate uniqueness we make use of the fact that, within the disc of convergence, the term-by-term derivative of a power series converges to the derivative of the function.
+        Hence, if Taylor's Theorem holds, then
+        \[
+            f^{(k)}(z)=
+            \sum_{n=0}^{\infty}\frac{n!c_n}{(n-k)!}(z-a)^{n-k}
+        \]
+        and, in particular, $c_k=\frac{f^{(k)}(a)}{k!}$, which is unique.
+    \end{enumerate}
+\end{proof}
+
+\begin{cor}[Holomorphic functions have holomorphic derivatives]
+    Let $f$ be holomorphic on a domain $U$.
+    Then $f^{(n)}$ exists on $U$ and is holomorphic for all $n\geq0$.
+\end{cor}
+
+\begin{proof}
+    Let $a\in U$ and $\eps>0$ such that $D(a,\eps)\subseteq U$.
+    By Taylor's Theorem, we know that $f(z)=\sum_{n=0}^{\infty}a_nz^n$.
+    From first year analysis we know that a power series defines a differentiable function on its disc of convergence, and that term-by-term differentiation is valid.
+    Thus $f'(z)=\sum_{n=0}^{\infty}na_nz^{n-1}$.
+    By induction, $f$ has derivatives of all orders.
+\end{proof}
+
+\begin{defn}[Zeros of a function]
+    Let $f$ be holomorphic on some domain $U$, and let $a\in U$.
+    Let the Taylor series of $f$ at $a$ be
+    \[
+        f(z)=
+        \sum_{n=0}^{\infty}c_n(z-a)^n
+    \]
+    Then $a$ is a \emph{zero} of $f$ if $f(a)=c_0=0$, and the \emph{order} of the zero is $N$, where $N$ is the least $n$ such that $c_n\neq0$
+\end{defn}
+
+\begin{thm}[Liouville's Theorem]
+    Let $f:\comps\to\comps$ be a holomorphic function which is bounded.
+    Then $f$ is constant.
+\end{thm}
+
+\begin{proof}
+    As $f$ is bounded then there exists $M$ such that $|f(z)|<M$ for all $z\in\comps$.
+    By Taylor's Theorem we have that $f(z)=\sum_{n=0}^{\infty}c_nz^n$ for all $z\in\comps$.
+    So, for $n\geq1$ and $r>0$, we have that
+    \begin{align*}
+        |c_n|
+        &=
+        \left|\frac{1}{2\pi i}\int_{\gamma(0,r)}\frac{f(w)}{w^{n+1}}\diff w\right|\\
+        &\leq
+        \frac{1}{2\pi}2\pi r\sup_{|w|=r}\left|\frac{f(w)}{w^{n+1}}\right|\\
+        &\leq
+        r\frac{M}{r^{n+1}}\\
+        &=
+        \frac{M}{r^n}\to0\quad\text{as }r\to\infty
+    \end{align*}
+    Hence $c_n=0$ for $n\geq1$ and $f(z)=c_0$ is constant.
+\end{proof}
+
+\begin{cor}[Density of holomorphic functions]
+    Let $f$ be holomorphic on $\comps$ and non constant.
+    Then $f(\comps)$ is dense in $\comps$.
+    That is, $\overline{f(\comps)}=\comps$.
+\end{cor}
+
+\begin{proof}
+    Take $a\in\comps$ and $\delta>0$, and suppose, for a contradiction, that $D(a,\delta)\subseteq\comps\setminus f(\comps)$.
+    Then, for all $z\in\comps$,
+    \[
+        |f(z)-a|\geq\delta
+    \]
+    and so
+    \[
+        \frac{1}{|f(z)-a|}\leq\frac{1}{\delta}
+    \]
+
+    Hence $(f(z)-a)^{-1}$ is a bounded holomorphic function on $\comps$, and by Liouville's Theorem, constant.
+    Thus $f(z)$ is constant, which is a contradiction.
+\end{proof}
+
+\begin{thm}[Fundamental Theorem of Algebra]
+    Let $p$ be a non-constant polynomial with complex coefficients.
+    Then there exists $\alpha\in\comps$ such that $p(\alpha)=0$.
+\end{thm}
+
+\begin{proof}
+    Say that $p(z)=a_nz^n+\ldots+a_0$, where $n\geq1,a_i\in\comps$, and $a_n\neq0$.
+    As $\lim_{z\to\infty}p(z)/z^n=a_n$, then there exists $R>0$ such that, for $z$ with $|z|>R$,
+    \[
+        \left|\frac{p(z)}{z^n}\right|>\frac{|a_n|}{2}
+    \]
+
+    Suppose, for a contradiction, that $p$ has no roots, so that $1/p$ is holomorphic.
+    Then, by Cauchy's Integral Formula, with $r>R$, we have that
+    \begin{align*}
+        0
+        &\neq
+        \left|\frac{1}{p(0)}\right|\\
+        &=
+        \left|\frac{1}{2\pi i}\int_{\gamma(0,r)}\frac{1/f(w)}{w}\diff w\right|\\
+        &\leq
+        \frac{1}{2\pi}2\pi r\sum_{|w|=r}\left|\frac{1}{wp(w)}\right|\\
+        &\leq
+        \frac{1}{2\pi}2\pi r\frac{2}{|a_n|r^{n+1}}\\
+        &=
+        \frac{2}{|a_n|r^n}\to0\quad\text{as }r\to\infty
+    \end{align*}
+    which is a contradiction.
+\end{proof}
+
+\begin{thm}[Morera's Theorem]
+    Let $f:U\to\comps$ be a continuous function on a domain $U$ such that
+    \[
+        \int_{\gamma} f(z)\diff z=0
+    \]
+    for any closed path $\gamma$ in $U$.
+    Then $f$ is holomorphic.
+\end{thm}
+
+\begin{proof}
+    Let $z_0\in U$.
+    As $U$ is open and connected then it is path connected, and so for any $z\in U$ there is a path $\gamma(z)$ connecting $z_0$ to $z$.
+    Define
+    \[
+        F(z)=
+        \int_{\gamma(z)} f(w)\diff w
+    \]
+    Note that if $\gamma_1$ and $\gamma_2$ are two such paths, then $\gamma_1\cup(-\gamma_2)$ is a closed path, and by the hypothesis and properties of joins of paths, we have that $F(z)$ is the same for either choice of path.
+    That is, $F(z)$ is well defined.
+
+    Now choose $r>0$ such that $D(z_0,r)\subseteq U$ and choose $h\in D(z_0,r)$.
+    Then
+    \[
+        F(z_0+h)=
+        F(z_0)+\int_{[z_0,z_0+h]} f(w)\diff w
+    \]
+
+    Hence, by the Estimation Theorem, and the continuity of $f$ at $z_0$,
+    \begin{align*}
+        \left|\frac{F(z_0+h)-F(z_0)}{h}-f(z_0)\right|
+        &=
+        \left|\left(\frac{1}{h}\int_{[z_0,z_0+h]} f(w)\diff w\right)-f(z_0)\right|\\
+        &=
+        \left|\frac{1}{h}\int_{[z_0,z_0+h]} [f(w)-f(z_0)]\diff w\right|\\
+        &\leq
+        \frac{1}{|h|}|h|\sup_{w\in[z_0,z_0+h]}|f(w)-f(z_0)|\\
+        &=
+        \sup_{w\in[z_0,z_0+h]}|f(w)-f(z_0)|\to0\quad\text{as }h\to0
+    \end{align*}
+
+    Thus $F$ is holomorphic and $F'=f$, which is therefore also holomorphic.
+\end{proof}
+
+\begin{thm}[Identity Theorem]
+    Let $f$ be holomorphic on a domain $U$.
+    Then the following are equivalent:
+    \begin{enumerate}[(i)]
+        \item $f(z)=0$ for all $z\in U$
+        \item The zero set $f^{-1}(0)$ has a limit point in $U$
+        \item There exists $a\in U$ such that $f^{(k)}(a)=0$ for all $k\geq 0$
+    \end{enumerate}
+\end{thm}
+
+\begin{proof}
+    We shall prove that $(i)\implies(iii)\implies(ii)\implies(i)$.
+
+    \begin{enumerate}
+        \item[$(i)\implies(iii)$:]
+        Choose $a$ to be any $z\in U$.
+        \item[$(iii)\implies(ii)$:]
+        As $U$ is open, there exists $\eps>0$ such that $D(a,\eps)\subseteq U$.
+        By Taylor's Theorem, for $z\in D(a,\eps)$, we have
+        \[
+            f(z)=
+            \sum_{k=0}^{\infty}\frac{f^{(k)}(a)}{k!}(z-a)^k=
+            0
+        \]
+
+        Thus $D(a,\eps)\subseteq f^{-1}(0)$, and so $f^{-1}(0)$ has a limit point in $U$.
+        \item[$(ii)\implies(i)$:]
+        Let $a$ be a limit point of $f^{-1}(0)$ in $U$.
+        Let $\eps>0$ be such that $D(a,\eps)\subseteq U$, and let
+        \[
+            f(z)=
+            \sum_{k=0}^{\infty}c_k(z-a)^k
+        \]
+        be the Taylor expansion of $f$ centred about $a$.
+        Suppose, for a contradiction, that not all $c_k$ are zero, and let $K$ be the smallest $k$ such that $c_k\neq0$.
+
+        Define
+        \[
+            g(z)=
+            \sum_{k=K}^{\infty}c_k(z-a)^{k-K}
+        \]
+        and then
+        \[
+            f(z)=
+            (z-a)^Kg(z)
+        \]
+
+        Note that $g(z)$ is holomorphic on $D(a,\eps)$, and $g(a)=c_K\neq0$.
+        By continuity there exists $\delta>0$ such that $g(z)\neq0$ on $D(a,\delta)$.
+        Thus, in $D(a,\delta)$, we see that $f(z)=0$ holds only at $z=a$, contradicting the fact that $a$ is a limit point of $f^{-1}(0)$.
+        Hence $c_k=0$ for all $k\geq0$, and so $f(z)=0$ on $D(a,\eps)$.
+
+        Now let $S$ denote the set of all limits points of $f^{-1}(0)$.
+        By assumption $S\neq\varnothing$.
+        As $f$ is continuous, then $f^{-1}(0)$ is closed, and so $S\subseteq f^{-1}(0)$.
+        By the previous part of the argument, if $a\in S$ then $D(a,\eps)\subseteq S$ for some $\eps>0$, and hence $S$ is open.
+
+        Finally, if $z\in U\setminus S$, then $z$ is not a limit point of $f^{-1}(0)$ and so there exists $r>0$ such that $D(z,r)\subseteq U\setminus S$, and we see that $U\setminus S$ is open, and thus $S$ is closed.
+
+        As $S$ is both open and closed, and $U$ is connected, then $U=S\subseteq f^{-1}(0)$.
+    \end{enumerate}
+\end{proof}
+
+\begin{cor}
+    Let $f$ and $g$ be holomorphic on a domain $U$.
+    Then the following are equivalent:
+    \begin{enumerate}[(i)]
+        \item $f(z)=g(z)$ for all $z\in U$
+        \item $f(z)=g(z)$ for all $z\in S$, where $S\subseteq U$ has a limit point in $U$
+        \item There exists $a\in U$ such that $f^{(k)}(a)=g^{(k)}(a)$ for all $k\geq0$
+    \end{enumerate}
+\end{cor}
+
+\begin{proof}
+    Apply the identity theorem to $f-g$.
+\end{proof}
+
+\begin{prop}[Counting zeros]
+    Let $f$ be holomorphic inside and on a postively-oriented closed path $\gamma$.
+    Assume further that $f$ is non-zero on $\gamma$.
+    Then
+    \begin{equation}
+        \text{number of zeros of }f\text{ in }\gamma\text{ (counting multiplicites)}=
+        \frac{1}{2\pi i}\int_{\gamma}\frac{f'(z)}{f(z)}\diff z
+    \end{equation}
+\end{prop}
+
+\begin{proof}
+    Let the zeros of $f$ be $a_1,\ldots,a_k$, with multiplicities $m_1,\ldots,m_k$.
+    Then $f'(z)/f(z)$ is holomorphic inside $\gamma$ except at the $a_i$.
+    By Taylor's Theorem, we know that, in an open disc $D(a_i,r_i)$ around $a_i$, we can write
+    \begin{align*}
+        f(z)
+        &=
+        \sum_{k=m_i}^{\infty}c_k(z-a_i)^k\\
+        &=
+        (z-a_i)^{m_i}\underbrace{\sum_{k=m_i}^{\infty}c_k(z-a_i)^{k-m_i}}_{g(z)}\\
+        &=
+        (z-a_i)^{m_i}g(z)
+    \end{align*}
+    where $g(z)$ is holomorphic and $g(a_i)\neq0$.
+
+    So in $D'(a_i,r_i)$ we have that
+    \[
+        \frac{f'(z)}{f(z)}=
+        \frac{m_i(z-a_i)^{m_i-1}g(z)+(z-a_i)^{m_i}g'(z)}{(z-a_i)^{m_i}g(z)}=
+        \frac{m_i}{z-a_i}+\frac{g'(z)}{g(z)}
+    \]
+    In particular,
+    \[
+        \frac{f'(z)}{f(z)}-\frac{m_i}{z-a_i}=
+        \frac{g'(z)}{g(z)}
+    \]
+    is holomorphic in $D(a,r)$.
+    So, similarly, we see that
+    \[
+        F(z)=
+        \frac{f'(z)}{f(z)}-\sum_{i=1}^{k}\frac{m_i}{z-a_i}
+    \]
+    is holomorphic inside and on $\gamma$, having been suitably adjusted at each zero $a_i$.
+
+    By Cauchy's Theorem,
+    \begin{align*}
+        0
+        &=
+        \int_{\gamma} F(z)\diff z\\
+        &=
+        \int_{\gamma} \frac{f'(z)}{f(z)}\diff z-\sum_{i=1}^{k}\left(\int_{\gamma}\frac{m_i}{z-a_i}\diff z\right)\\
+        &=
+        \int_{\gamma} \frac{f'(z)}{f(z)}\diff z-2\pi i\sum_{i=1}^k m_i
+    \end{align*}
+\end{proof}
+
+
+\section{Laurent's Theorem}
+
+\begin{thm}[Laurent's Theorem]
+    Let $f$ be holomorphic on the annulus
+    \[
+        A=
+        \{z\in\comps\colon R<|z-a|<S\}
+    \]
+
+    Then there exist unique $c_k$ ($k\in\mathbb{Z}$) such that, for $z\in A$,
+    \[
+        f(z)=
+        \sum_{-\infty}^{\infty}c_k(z-a)^k
+    \]
+    where, for $R<r<S$,
+    \[
+        c_k=
+        \frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(w)}{(w-a)^{k+1}}\diff w
+    \]
+\end{thm}
+
+\begin{proof}
+    \begin{enumerate}[(i)]
+        \item \emph{Existence}:
+        Let $z\in A$ and choose $P,Q$ such that
+        \[
+            R<P<|z-a|<Q<S
+        \]
+
+        Let $\gamma_1$ be the path $\gamma^+(a,Q)\cup[a-Q,a-P]\cup(-\gamma^+(a,P))\cup[a+P,a+Q]$.
+        Similarly let $\gamma_2$ be the path $\gamma^-(a,Q)\cup[a+Q,a+P]\cup(-\gamma^-(a,P))\cup[a-P,a-Q]$.
+
+        By Cauchy's Integral Formula and Cauchy's Theorem, respectively, we know that
+        \begin{align*}
+            f(z)
+            &=
+            \frac{1}{2\pi i}\int_{\gamma_1}\frac{f(w)}{w-z}\diff w\\
+            0
+            &=
+            \frac{1}{2\pi i}\int_{\gamma_2}\frac{f(w)}{w-z}\diff w
+        \end{align*}
+
+        As the path integrals along the internal line segments cancel out, we then have that
+        \begin{align*}
+            f(z)
+            &=
+            \frac{1}{2\pi i}\int_{\gamma_1}\frac{f(w)}{w-z}\diff w+\frac{1}{2\pi i}\int_{\gamma_2}\frac{f(w)}{w-z}\diff w\\
+            &=
+            \frac{1}{2\pi i}\int_{\gamma(a,Q)}\frac{f(w)}{w-z}\diff w-\frac{1}{2\pi i}\int_{\gamma(a,P)}\frac{f(w)}{w-z}\diff w
+        \end{align*}
+
+        For $w\in\gamma(a,Q)$, note that $|z-a|<|w-a|$, and for $w\in\gamma(a,P)$, note that $|z-a|>|w-a|$.
+        Hence
+        \begin{align*}
+            f(z)
+            &=
+            \frac{1}{2\pi i}\int_{\gamma(a,Q)}\frac{f(w)/(w-a)}{1-\frac{z-a}{w-a}}\diff w+\frac{1}{2\pi i}\int_{\gamma(a,P)}\frac{f(w)/(z-a)}{1-\frac{w-a}{z-a}}\diff w\\
+            &=
+            \frac{1}{2\pi i}\int_{\gamma(a,Q)}\sum_{k=0}^{\infty}\frac{f(w)(z-a)^k}{(w-a)^{k+1}}\diff w+\frac{1}{2\pi i}\int_{\gamma(a,P)}\sum_{k=0}^{\infty}\frac{f(w)(w-a)^k}{(z-a)^{k+1}}\diff w
+        \end{align*}
+
+        Arguing as in the proof for Taylor's Theorem, with the Weierstrass M-Test, we may show that these sums converge uniformly.
+        Hence we may change the order of integration and summation to obtain
+        \begin{align*}
+            f(z)
+            &=
+            \sum_{k=0}^{\infty}\left(\frac{1}{2\pi i}\int_{\gamma(a,Q)}\frac{f(w)}{(w-a)^{k+1}}\diff w\right)(z-a)^k\\
+            &\quad+
+            \sum_{k=0}^{\infty}\left(\frac{1}{2\pi i}\int_{\gamma(a,P)}f(w)(w-a)^k\diff w\right)(z-a)^{-k-1}\\
+            &=
+            \sum_{k=0}^{\infty}\left(\frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(w)}{(w-a)^{k+1}}\diff w\right)(z-a)^k\\
+            &\quad+
+            \sum_{k=0}^{\infty}\left(\frac{1}{2\pi i}\int_{\gamma(a,r)}f(w)(w-a)^k\diff w\right)(z-a)^{-k-1}\\
+            &=
+            \sum_{k=-\infty}^{\infty}\left(\frac{1}{2\pi i}\int_{\gamma(a,r)}\frac{f(w)}{(w-a)^{k+1}}\diff w\right)(z-a)^k
+        \end{align*}
+        as required.
+        \item \emph{Uniqueness}:
+        Suppose now that, for $z\in A$,
+        \[
+            f(z)=
+            \sum_{k=-\infty}^{\infty}d_k(z-a)^k
+        \]
+
+        For $R<r<S$, we have that
+        \begin{align*}
+            2\pi ic_n
+            &=
+            \int_{\gamma(a,r)}\frac{f(w)}{(w-a)^{n+1}}\diff w\\
+            &=
+            \int_{\gamma(a,r)}\sum_{k=-\infty}^{\infty}d_k(w-a)^{k-n-1}\diff w\\
+            &=
+            \left(\int_{\gamma(a,r)}\sum_{k=0}^{\infty}d_k(w-a)^{k-n-1}\diff w\right)\\
+            &\quad+
+            \left(\int_{\gamma(a,r)}\sum_{k=1}^{\infty}d_{-k}(w-a)^{-k-n-1}\diff w\right)
+        \end{align*}
+
+        As the seperate power series converge uniformly on $\gamma(a,r)$ then we may exchange the order of integration and summation, and find that
+        \[
+            2\pi ic_n=
+            \sum_{k=-\infty}^{\infty}\left(\int_{\gamma(a,r)}\sum_{k=0}^{\infty}d_k(w-a)^{k-n-1}\diff w\right)=
+            2\pi id_n
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{rem}
+    We almost never use the integral expression to find the Laurent coefficients.
+    Instead, we tend to use standard power series for familiar functions to determinte the Laurent series.
+\end{rem}
+
+\begin{prop}[Equality of Laurent and Taylor series]
+    If $f$ is holomorphic at $a$ then, by uniqueness, the Laurent series of $f$ centred at $a$ is simply the Taylor series of $f$ centred at $a$.
+\end{prop}
+
+\begin{defn}[Regular points, singularities, and isolated points]
+    Let $f:U\to\comps$ be defined on a domain $U$.
+    Then $a\in U$ is a(n)
+    \begin{enumerate}[(i)]
+        \item \emph{regular point} if $f$ is holomorphic at $a$
+        \item \emph{singularity} if $f$ is not holomorphic at $a$, but $a$ is a limit point of regular points
+        \item \emph{isolated singularity} if $a$ is a singularity, but $f$ is holomorphic on some $D'(a,r)\subseteq U$
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}[Residues, poles, and singularities]
+    Let $a$ be an isolated singularity of $f$.
+    By Laurent's Theorem, there exist unique $c_n$ such that, for $z\in D'(a,\eps)$,
+    \[
+        f(z)=
+        \sum_{n=-\infty}^{\infty}c_n(z-a)^n
+    \]
+
+    Then
+    \begin{enumerate}[(i)]
+        \item The \emph{principal part of $f$ at $a$} is
+        \[
+            \sum_{n=-\infty}^{-1}c_n(z-a)^n
+        \]
+        \item The \emph{residue of $f$ at $a$} is $c_{-1}$
+        \item $a$ is a \emph{removable singularity of $f$} if $c_n=0$ for all $n<0$
+        \item $a$ is an \emph{essential singularity of $f$} if there are infinitely many negative $n$ such that $c_n\neq0$
+        \item $a$ is said to be a \emph{pole of order $k$} if $c_{-k}\neq0$ and $c_n=0$ for all $n<-k$.
+        Poles of order one are referred to as \emph{simple poles}.
+    \end{enumerate}
+\end{defn}
+
+\begin{prop}
+    Let $f,g:U\to\comps$ be holomorphic and $a\in U$.
+    Suppose that $f$ has a zero of order $m$ at $a$ and $g$ has a zero of order $n$ at $a$.
+    Then
+    \[
+        f/g\text{ has }
+        \left\{
+        \begin{array}{lr}
+            \text{a pole of order }n-m\text{ at }a & \text{if }m<n\\
+            \text{a removable singularity at }a & \text{if }m\geq n
+        \end{array}
+        \right.
+    \]
+\end{prop}
+
+\begin{proof}
+    Given the hypothesis, $f(z)=(z-a)^mF(z)$ and $g(z)=(z-a)^nG(z)$, where $F$ and $G$ are holomorphic on $U$, and $F(a)\neq0\neq G(a)$.
+    Hence, for $z\neq a$,
+    \[
+        \frac{f(z)}{g(z)}=
+        (z-a)^{m-n}\frac{F(z)}{G(z)}
+    \]
+    where $F/G$ is holomorphic about $a$ and non zero.
+    This proves the first case.
+
+    Now note that, if $m\geq n$, then there is still a singularity at $a$, as the function is undefined, but if this singularity were removed then $f/g$ would have a zero of order $m-n$ at $a$.
+\end{proof}
+
+\begin{prop}[Residues at simple poles]
+    Suppose that $f(z)$ has a simple pole at $a$.
+    Then
+    \begin{equation}
+        \res(f;a)=
+        \lim_{z\to a}[(z-a)f(z)]
+    \end{equation}
+
+    Further, if $f(z)=g(z)/h(z)$, where $g$ and $h$ are holomorphic at $a$, and $h$ has a simple zero at $a$, then
+    \begin{equation}
+        \res(f;a)=
+        \frac{g(a)}{h'(a)}
+    \end{equation}
+
+    Thus if $f(z)=g(z)/(z-a)$, then $\res(f;a)=g(a)$.
+
+\end{prop}
+
+\begin{proof}
+    Let $R=\res(f;a)$.
+    Then there exists a holomorphic function $h$ such that, on some $D'(a,\eps)$,
+    \[
+        f(z)=
+        \frac{R}{z-a}+h(z)
+    \]
+    and so
+    \[
+        (z-a)f(z)=
+        R+(z-a)h(z)\to R\quad\text{as }z\to a
+    \]
+
+    If $f(z)=g(z)/h(z)$ as given, then, by Taylor's Theorem,
+    \begin{align*}
+        g(z)
+        &=
+        g(a)+\mathcal{O}(z-a)\\
+        h(z)
+        &=
+        h'(a)(z-a)+\mathcal{O}((z-a)^2)
+    \end{align*}
+    so that
+    \begin{align*}
+        \lim_{z\to a}[(z-a)f(z)]
+        &=
+        \lim_{z\to a}\left[\frac{(z-a)g(z)}{h(z)}\right]\\
+        &=
+        \lim_{z\to a}\left[\frac{(z-a)(g(a)+\mathcal{O}(z-a))}{h'(a)(z-a)+\mathcal{O}((z-a)^2)}\right]\\
+        &=
+        \lim_{z\to a}\left[\frac{g(a)+\mathcal{O}(z-a)}{h'(a)+\mathcal{O}(z-a)}\right]\\
+        &=
+        \frac{g(a)}{h'(a)}
+    \end{align*}
+\end{proof}
+
+\begin{prop}[Residues at overt multiple poles]
+    Suppose that
+    \[
+        f(z)=
+        \frac{g(z)}{(z-a)^n}
+    \]
+    where $g$ is holomorphic at $a$ and $g(a)\neq0$.
+    (That is, $f$ has an overt pole of order $n$ at $a$.)
+    Then
+    \begin{equation}
+        \res(f;a)=
+        \frac{g^{(n-1)}(a)}{(n-1)!}
+    \end{equation}
+\end{prop}
+
+\begin{proof}
+    By Taylor's Theorem, we can write, on some $D(a,\eps)$,
+    \[
+        g(z)=
+        \sum_{k=0}^{\infty}c_k(z-a)^k
+    \]
+    where
+    \[
+        c_k=
+        \frac{g^{(k)}(a)}{k!}
+    \]
+
+    So on $D'(a,\eps)$ we have that
+    \[
+        f(z)=
+        \sum_{k=0}^{\infty}c_k(z-a)^{k-n}
+    \]
+    and we see that $\res(f;a)=c_{n-1}$, as required.
+\end{proof}
+
+\begin{rem}
+    Note that, if a function is even about $a$, then its residue will be 0, simply because the Laurent expansion will only involve even powers of $z$.
+\end{rem}
+
+
+\section{Cauchy's Residue Theorem and its applications}
+
+\begin{thm}[Cauchy's Residue Theorem]
+    Let $f$ be holomorphic inside and on a simple, closed, positively-oriented path $\gamma$, except at points $a_1,\ldots,a_n$ inside $\gamma$.
+    Then
+    \begin{equation}
+        \int_{\gamma} f(z)\diff z=
+        2\pi i\sum_{k=1}^n\res(f;a_k)
+    \end{equation}
+\end{thm}
+
+\begin{proof}
+    On a disc $D(a_k,\eps_k)$ we can expand $f(z)$ as a Laurent expansion:
+    \[
+        f(z)=
+        \underbrace{\sum_{n=0}^{\infty}c_n^{(k)}(z-a_k)^n}_{g_k(z)}+
+        \underbrace{\sum_{n=-\infty}^{-1}c_n^{(k)}(z-a_k)^n}_{h_k(z)}=
+        g_k(z)+h_k(z)
+    \]
+    so that $h_k(z)$ is the principal part of $f$ around $a_k$.
+    Note that the sum defining $h_k(z)$ converges, except at $a_k$.
+    Hence
+    \[
+        F(z)=
+        f(z)-\sum_{k=1}^nh_k(z)
+    \]
+    is holomorphic in $\gamma$ except for removable singularities at $a_1,\ldots,a_n$.
+    As we have seen, each $F(a_k)$ may be assigned a value so as to extend $F$ to a holomorphic function in $\gamma$.
+
+    By Cauchy's Theorem and the Deformation Theorem, for $0<r_k<\eps_k$,
+    \[
+        \int_{\gamma} f(z)\diff z=
+        \sum_{k=1}^n\int_{\gamma} h_k(z)\diff z=
+        \sum_{k=1}^n\int_{\gamma(a_k,r_k)} h_k(z)\diff z
+    \]
+    As we saw in the proof of Laurent's Theorem, the sum defining $h_k(z)$ converges uniformly on $\gamma(a_k,r_k)$, and hence
+    \begin{align*}
+        \int_{\gamma(a_k,r_k)} h_k(z)\diff z
+        &=
+        \int_{\gamma(a_k,r_k)} \sum_{n=-\infty}^{-1}\left[c_n^{(k)}(z-a_k)^n\right]\diff z\\
+        &=
+        \sum_{n=-\infty}^{-1}c_n^{(k)}\left[\int_{\gamma(a_k,r_k)} (z-a_k)^n\diff z\right]\\
+        &=
+        2\pi ic_{-1}^{(k)}
+    \end{align*}
+    and the result follows.
+\end{proof}
+
+\begin{rem}[Standard contours]
+    We often use the Residue Theorem to calculate real integrals.
+    What follows is a list of the types of real integrals we often calculate with this theorem, as well as the contours we use to calculate them:
+    \begin{enumerate}[(i)]
+        \item \emph{Integrals from $0$ to $2\pi$}:
+        We use the circle $\gamma(0,1)$, and then the substitution $z=e^{i\theta}$
+        \item \emph{Integrals from $0$ or $-\infty$ to $\infty$}:
+        We use the semicircle $\gamma^+(0,R)\cup[-R,R]$, with the aim of showing that the contribution from $\gamma^+(0,R)\to0$ as $R\to\infty$.
+        If the integral is even then the integral on $(0,\infty)$ will be half that of the integral on $(-\infty,\infty)$.
+        \item \emph{Infinite sums}:
+        We use the square $\Gamma_N$, with vertices at $(N+\frac{1}{2})(\pm1\pm i)$, where $N$ is a positive integer, and aim to show that the integral tends to 0 as $N\to\infty$.
+    \end{enumerate}
+\end{rem}
+
+\begin{prop}
+    Suppose that the function $\phi(z)$ is holomorphic at $z=n\in\mathbb{Z}$, with $\phi(n)\neq0$.
+    Then
+    \begin{enumerate}[(i)]
+        \item $\pi\phi(z)\cot\pi z$ has a simple pole at $n$ with residue $\phi(n)$
+        \item $\pi\phi(z)\csc\pi z$ has a simple pole at $n$ with residue $(-1)^n\phi(n)$
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    Note that $\tan\pi z$ and $\sin\pi z$ have simple zeros at $z=n$, and hence $\pi\phi(z)\cot\pi z$ and $\pi\phi(z)\csc\pi z$ have simple poles there.
+    So
+    \[
+        \res\left(\frac{\pi\phi(z)}{\tan\pi z};n\right)=
+        \frac{\pi\phi(n)}{\pi\sec^2\pi n}=
+        \phi(n),\qquad
+        \res\left(\frac{\pi\phi(z)}{\sin\pi z};n\right)=
+        \frac{\pi\phi(n)}{\pi\cos\pi n}=
+        (-1)^n\phi(n)
+    \]
+\end{proof}
+
+\begin{lem}[Jordan's Lemma]
+    Let $\theta\in(0,\pi/2)$.
+    Then
+    \begin{equation}
+        \frac{2}{\pi}<
+        \frac{\sin\theta}{\theta}<
+        1
+    \end{equation}
+\end{lem}
+
+\begin{proof}
+    Throughout the proof, let $\theta\in(0,\pi/2)$
+    Let $f(\theta)=\sin\theta/\theta$.
+    Note that
+    \[
+        f'(\theta)=
+        \frac{\theta\cos\theta-\sin\theta}{\theta^2}
+    \]
+
+    Let $g(\theta)=\theta\cos\theta-\sin\theta$.
+    Then
+    \[
+        g'(\theta)=
+        -\theta\sin\theta+\cos\theta-\cos\theta=
+        -\theta\sin\theta<
+        0
+    \]
+    so that $g$ is decreasing.
+    Further, as $g(0)=0$, then $g(\theta)<0$, and
+    \[
+        f'(\theta)=
+        \frac{g(\theta)}{\theta^2}<
+        0
+    \]
+    so that $f$ is decreasing.
+
+    As $f(\theta)\to1$ as $\theta\to0$, we have that
+    \[
+        \frac{2}{\pi}<
+        f(\theta)<
+        1
+    \]
+\end{proof}
+
+\begin{prop}[Indentation of contours]
+    Let $f$ be holomorphic on $D'(a,\eps)$ with a simple pole at $a$.
+    Let $0<r<\eps$, and let $\gamma_r$ be the positively oriented arc
+    \[
+        \gamma_r(\theta)=
+        a+re^{i\theta},\qquad
+        \theta\in(\alpha,\beta)
+    \]
+    Then
+    \[
+        \lim_{r\to0}\int_{\gamma_r} f(z)\diff z=
+        i(\beta-\alpha)\res(f;a)
+    \]
+\end{prop}
+
+\begin{proof}
+    Let $R=\res(f;a)$.
+    There is a holomorphic function $h$ on $D'(a,\eps)$ such that
+    \[
+        f(z)=
+        \frac{R}{z-a}+h(z)
+    \]
+
+    Now
+    \[
+        \int_{\gamma_r}\frac{\mathrm{d}z}{z-a}=
+        \int_{\alpha}^{\beta}\frac{ire^{i\theta}}{re^{i\theta}}\diff\theta=
+        i\int_{\alpha}^{\beta}\diff\theta=
+        i(\beta-\alpha)
+    \]
+
+    Further, $h$ is bounded on $\bar{D}(a,\eps/2)$ (as the former is continuous and the latter compact), and so $h$ is also bounded on every $\gamma_r$, with $r<\eps/2$, say by $M$.
+    So, by the Estimation Theorem,
+    \[
+        \left|\int_{\gamma_r} h(z)\diff z\right|\leq
+        M\mathcal{L}(\gamma_r)=
+        Mr(\beta-\alpha)\to0\quad\text{as }r\to0
+    \]
+
+    Finally
+    \begin{align*}
+        \lim_{r\to0}\int_{\gamma_r} f(z)\diff z
+        &=
+        \lim_{r\to0}\int_{\gamma_r}\frac{R\diff z}{z-a} + \lim_{r\to0}\int_{\gamma_r} h(z)\diff z\\
+        &=
+        iR(\beta-\alpha)+0\\
+        &=
+        i(\beta-\alpha)R
+    \end{align*}
+    as required.
+\end{proof}
+
+
+\section{The Riemann Sphere and M\"obius transformations}
+
+\begin{defn}[Stereographic projection]
+    Let $S^2\subseteq\reals^3$ denote the unit sphere $x^2+y^2+z^2=1$, and let $N=(0,0,1)$ denote the `north pole' of $S^2$.
+    Given a point $M\in S^2$, other than $N$, the line connecting $N$ and $M$ intersects the $xy$-plane at a point $P$.
+    If we identify the $xy$-plane with $\comps$ in the natural way, then the \emph{stereographic projection} is the map
+    \begin{equation}
+        \pi:S^2\setminus\{N\}\to\comps,\quad
+        \text{given by }M\mapsto P
+    \end{equation}
+\end{defn}
+
+\begin{prop}[The stereographic map]
+    The map $\pi$ is given by
+    \begin{equation}
+        \pi(a,b,c)=
+        \frac{a+ib}{1-c}
+    \end{equation}
+
+    The inverse map is given by
+    \begin{equation}
+        \pi^{-1}(x+iy)=
+        \frac{(2x,2y,x^2+y^2-1)}{x^2+y^2+1}
+    \end{equation}
+\end{prop}
+
+\begin{proof}
+    Say $M=(a,b,c)$.
+    Then the line connecting $M$ and $N$ can be written parametrically as
+    \[
+        \vc{r}(t)=
+        (0,0,1)+t(a,b,c-1)
+    \]
+    This intersects the $xy$-plane when $1+t(z-1)=0$.
+    That is, when $t=(1-z)^{-1}$.
+    Hence
+    \[
+        P=
+        \vc{r}\left(\frac{1}{1-c}\right)=
+        \left(\frac{a}{1-c},\frac{b}{1-c},0\right)
+    \]
+    which is naturally identified with
+    \[
+        \frac{a+ib}{1-c}\in\comps
+    \]
+
+    On the other hand, if $\pi(a,b,c)=x+iy$, then
+    \[
+        \frac{a+ib}{1-c}=x+iy
+        \quad\text{and}\quad
+        a^2+b^2+c^2=1
+    \]
+    so
+    \begin{align*}
+        x^2+y^2
+        &=
+        (x+iy)(x-iy)\\
+        &=
+        \left(\frac{a+ib}{1-c}\right)\left(\frac{a-ib}{1-c}\right)\\
+        &=
+        \frac{a^2+b^2}{(1-c)^2}\\
+        &=
+        \frac{1-c^2}{(1-c)^2}\\
+        &=
+        \frac{1+c}{1-c}\\
+        &=
+        -1+\frac{2}{1-c}
+    \end{align*}
+    which rearranges to
+    \[
+        c=
+        \frac{x^2+y^2-1}{x^2+y^2+1}
+    \]
+
+    Then
+    \[
+        a+ib=
+        \frac{2(x+iy)}{x^2+y^2+1}
+    \]
+    and we may compare real and imaginary parts for the required result.
+\end{proof}
+
+\begin{defn}[Extended complex plane]
+    The \emph{extended complex plane} is the set $\comps\cup\{\infty\}$, which is denoted by $\tilde{\comps}$.
+    Note that $\infty$ corresponds to $N\in S^2$.
+\end{defn}
+
+\begin{defn}[Riemann sphere]
+    When we identify $S^2$ with $\tilde{\comps}$ using stereographic projection, $S^2$ is known as the \emph{Riemann sphere}.
+\end{defn}
+
+\begin{cor}[Antipodal points]
+    If $M\in S^2$ corresponds to $z\in\tilde{\comps}$, then the antipodal point, $-M$, corresponds to $-1/\bar{z}$.
+\end{cor}
+
+\begin{proof}
+    Say $M=(a,b,c)$, which corresponds to $z=(a+ib)/(1-c)$.
+    Then $-M$ corresponds to
+    \[
+        w=
+        \frac{-a-ib}{1+c}
+    \]
+    and
+    \begin{align*}
+        w\bar{z}
+        &=
+        \frac{(a-ib)(-a-ib)}{(1-c)(1+c)}\\
+        &=
+        \frac{-a^2-b^2}{1-c^2}\\
+        &=
+        \frac{c^2-1}{1-c^2}\\
+        &=
+        -1
+    \end{align*}
+\end{proof}
+
+\begin{thm}
+    Circles and lines in the extended complex plane correspond to circles on the Riemann sphere, and vice-versa.
+    In particular, lines in the extended complex plane correspond to circles passing through $N$.
+\end{thm}
+
+\begin{proof}
+    Consider the plane $\Pi$ with equation $Aa+Bb+Cc=D$.
+    This plane will intersect with $S^2$ in a circle if $A^2+B^2+C^2>D^2$.
+    The point corresponding to $z=x+iy$ lies on $\Pi$ iff
+    \[
+        2Ax+2By+C(x^2+y^2-1)=
+        D(x^2+y^2+1)
+    \]
+    which can be rewritten as
+    \[
+        (C-D)(x^2+y^2)+2Ax+2By+(-C-D)=0
+    \]
+    This is the equation of a circle in $\tilde{\comps}$ if $C\neq D$.
+    The centre is then
+    \[
+    \left(\frac{A}{D-C},\frac{B}{D-C}\right)
+    \]
+    and the radius is
+    \[
+    \frac{\sqrt{A^2+B^2+C^2-D^2}}{C-D}
+    \]
+
+    Further, all circles can be written like this: set $C-D=1$ and let $A,B,C+D$ vary arbitrarily.
+
+    On the other hand, if $C=D$ then we have the equation
+    \[
+        Ax+By=C
+    \]
+    which is the equation of a line.
+    Moreover, any line can be written in this form.
+    Note that $C=D$ iff $N=(0,0,1)\in\Pi$.
+\end{proof}
+
+\begin{defn}[Circlines]
+    A \emph{circline} is any subset of $\tilde{\comps}$ which is either a line or a circle.
+\end{defn}
+
+\begin{prop}
+    Stereographic projection is conformal (that is, angle preserving).
+\end{prop}
+
+\begin{proof}
+    Without loss of generality, we can consider the angle defined by the real axis and an arbitrary line meeting it at the point $p\in\reals$ and making an angle $\theta$.
+    So points on the two lines can be parametrised as
+    \[
+        z=p+t,\qquad
+        z=p+te^{i\theta}
+    \]
+    where $t$ is real.
+    These points map onto the sphere as
+    \[
+        \vc{r}(t)=
+        \frac{(2(p+t),0,(p+t)^2-1)}{1+(p+t)^2},\qquad
+        \vc{s}(t)=
+        \frac{(2(p+t\cos\theta),2t\sin\theta,(p+t\cos\theta)^2+t^2\sin^2\theta-1)}{1+(p+t)^2}
+    \]
+
+    We can calculate the tangent vectors at $0$ of each line by calculating $\vc{r}'(0)$ and $\vc{s}'(0)$.
+    Then then angle $\phi$ between these two tangent vectors is given by
+    \[
+        \cos\phi=
+        \frac{\vc{r}'(0)\cdot\vc{s}'(0)}{|\vc{r}'(0)||\vc{s}'(0)|}
+    \]
+    and, upon calculation, we see that
+    \[
+        \cos\phi=
+        \cos\theta
+    \]
+    as required.
+\end{proof}
+
+\begin{defn}[M\"obius transformations]
+    A \emph{M\"obius transformation} is a map $f:\tilde{\comps}\to\tilde{\comps}$ of the form
+    \begin{equation}
+        f(z)=
+        \frac{az+b}{cz+d},\quad
+        \text{where }ad\neq bc
+    \end{equation}
+
+    We define
+    \[
+        f(\infty)=
+        \left\{
+        \begin{array}{lr}
+            \frac{a}{c} & \text{if }c\neq0\\
+            \infty & \text{if }c=0
+        \end{array}
+        \right.
+    \]
+    and, if $c\neq0$,
+    \[
+        f(-\frac{d}{c})=
+        \infty,
+    \]
+\end{defn}
+
+\begin{prop}
+    M\"obius transformations form a group of transformations $\tilde{\comps}\to\tilde{\comps}$ generated (under composition) by
+    \begin{enumerate}[(i)]
+        \item \emph{translations}:
+        maps of the form $z\mapsto z+k$, where $k\in\comps$
+        \item \emph{scalings} or \emph{dilations}:
+        maps of the form $z\mapsto kz$, where $k\in\comps$
+        \item \emph{inversions}:
+        the map $z\mapsto 1/z$ (N.B. this may not always look like an `inversion'; the name can be misleading)
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    Note that, if $c\neq0$, then
+    \[
+        \frac{az+b}{cz+d}=
+        \frac{a}{c}-\frac{bc-ad}{c^2z+cd}
+    \]
+    is a composition of various translations, scalings, and inversions.
+    If $c=0$ then $d\neq0$, and clearly $z\mapsto(a/d)z+(b/d)$ is a composition of a scaling and a translation.
+
+    This shows that M\"obius transformations are a subset of the group generated by translations, scalings, and inversions.
+    It is also clear that these three types of transformations are all special types of M\"obius transformations.
+    Finally, if $f(z)$ is a M\"obius transformation, then we can check that $f(z+k),f(kz)$, and $f(1/z)$ are all M\"obius transformations too.
+\end{proof}
+
+\begin{prop}
+    M\"obius transformations are bijections from $\tilde{\comps}\to\tilde{\comps}$.
+\end{prop}
+
+\begin{proof}
+    Only remains to prove that translations, scalings, and inversions are all bijections (when we include $\infty$).
+\end{proof}
+
+\begin{prop}
+    Given two triples of distinct points, $z_1,z_2,z_3$ and $w_1,w_2,w_3$, both in $\tilde{\comps}$, there is a unique M\"obius transformation $f$ such that $f(z_i)=w_i$ for $i=1,2,3$.
+\end{prop}
+
+\begin{proof}
+    Note that the map
+    \[
+        f(z)=
+        \frac{(z_2-z_3)(z-z_1)}{(z_2-z_1)(z-z_3)}
+    \]
+    is a M\"obius transformation which maps $z_1,z_2,z_3$ to $0,1,\infty$, respectively.
+    There is a similar transformation $g$ which maps $w_1,w_2,w_3$ to $0,1,\infty$, respectively.
+    By the properties of M\"obius transformations, $g^{-1}f$ is a M\"obius transformation which maps each $z_i$ to $w_i$.
+
+    To show uniqueness, suppose that $h$ is another such map.
+    Then $ghf^{-1}$ is a M\"obius transformation which maps $0,1,\infty$ to $0,1,\infty$.
+    If we write
+    \[
+        ghf^{-1}(z)=
+        \frac{az+b}{cz+d}
+    \]
+    then $0\mapsto0$ means that $b=1$, $1\mapsto1$ means that $a+b=c+d$, and $\infty\mapsto\infty$ means that $c=0$.
+    Hence $ghf^{-1}(z)=z$ for all $z$, and $h=g^{-1}f$, as required.
+\end{proof}
+
+\begin{prop}
+    M\"obius transformations map circlines to circlines.
+\end{prop}
+
+\begin{proof}
+    Let $A,C\in\reals,B\in\comps$.
+    Then the circlines are the solutions sets of the equation
+    \[
+        Az\bar{z}+\bar{B}z+B\bar{z}+C=0
+    \]
+    as we have already shown.
+
+    Inversion maps this to
+    \[
+        Cz\bar{z}+\bar{B}\bar{z}+Bz+a=0
+    \]
+    and it is clear that translations map circlines to circlines.
+    Scaling in the form $z\mapsto kz$ maps the circline equation to
+    \[
+        Az\bar{z}+\bar{Bk}z+Bk\bar{z}+|k^2|C=0
+    \]
+    which is another circline.
+
+    Hence, a M\"obius transformation, which is a composition of these maps, also maps circlines to circlines.
+\end{proof}
+
+
+\section{Conformal maps}
+
+\begin{defn}[Conformal maps]
+    A holomorphic map $f:U\to\comps$ is said to be \emph{conformal} if $f'(z)\neq0$ for all $z\in U$.
+\end{defn}
+
+\begin{prop}
+    A conformal map is angle preserving and sense preserving.
+\end{prop}
+
+\begin{proof}
+    Let $f:U\to\comps$ be holomorphic on a an open set $U$.
+    Let $z_0\in U$, and $\gamma_1:[-1,1]\to U$ and $\gamma_2:[-1,1]\to U$ be two paths which meet at $z_0=\gamma_1(0)=\gamma_2(0)$.
+    The original curves meet at $z_0$ with the (signed) angle
+    \[
+        \theta=
+        \arg\gamma_2'(0)-\arg\gamma_1'(0)=
+        \arg\frac{\gamma_2'(0)}{\gamma_1'(0)}
+    \]
+
+    The images of the curves, $f(\gamma_1)$ and $f(\gamma_2)$, meet at $f(z_0)$ at the angle
+    \begin{align*}
+        \phi
+        &=
+        \arg(f\circ\gamma_2)'(0)-\arg(f\circ\gamma_1)'(0)\\
+        &=
+        \arg\frac{(f\circ\gamma_2)'(0)}{(f\circ\gamma_1)'(0)}\\
+        &=
+        \arg\frac{f'(\gamma_2(0))\gamma_2'(0)}{f'(\gamma_1(0))\gamma_1'(0)}\\
+        &=
+        \arg\frac{f'(z_0)\gamma_2'(0)}{f'(z_0)\gamma_1'(0)}\\
+        &=
+        \arg\frac{\gamma_2'(0)}{\gamma_1'(0)}\\
+        &=
+        \theta
+    \end{align*}
+\end{proof}
+
+\begin{defn}[Conformal equivalence]
+    Two domains are \emph{conformally equivalent} if there exists a conformal bijection between them.
+\end{defn}
+
+\begin{rem}
+    There are three main types of conformal which are used:
+    \begin{enumerate}[(i)]
+        \item \emph{M\"obius transformations}:
+        We can check that M\"obius transformations are conformal maps.
+        These maps are useful for conformally mapping regions bounded by circlines.
+        \item \emph{Power maps}:
+        Maps of the form $z\mapsto z^{\alpha}$ are conformal everywhere except at $0$.
+        These are very useful for changing the angle at the origin (but obviously only when the origin is on the boundary of the region, and, crucially, not in it).
+        \item \emph{Exponential}:
+        The map $z\mapsto\exp z$ is particularly useful for mapping semi-infinite and infinite bars.
+    \end{enumerate}
+\end{rem}
+
+\begin{rem}
+    If a domain $U$ is bounded by two circline arcs or segments which meet at $\alpha$ and $\beta$, then the best thing to do first, almost without any further consideration, is to apply the map $(z-\alpha)/(z-\beta)$.
+    This map sends $\alpha$ to $0$ and $\beta$ to $\infty$, and so takes the two circline arcs or segments to half lines meeting at the origin.
+\end{rem}
+
+\begin{thm}[Riemann Mapping Theorem]
+    Let $U$ be a simply-connected domain with $U\neq\comps$.
+    Then $U$ is conformally equivalent to $D(0,1)$.
+    Further, if the boundary of $U$ is smooth, then the conformal equivalence can be extended between $U\cup\partial U$ and $D(0,1)$.
+\end{thm}
+
+\begin{proof}
+    Once again, beyond the level of this course.
+\end{proof}
+
+\begin{prop}
+    Let $U$ and $V$ be open subsets of $\comps$.
+    Let $f:U\to V$ be holomorphic, and $\phi:V\to\reals$ be harmonic.
+    Then $\phi\circ f$ is harmonic.
+\end{prop}
+
+\begin{proof}
+    Let $f=u+iv$, and also define $\psi=\phi\circ f$.
+    If $z=x+iy$ then we can write $\psi$ as
+    \[
+        \psi(x+iy)=
+        \phi(u(x,y),v(x,y))
+    \]
+
+    As $\phi$ is harmonic we have that $\phi_{xx}+\phi_{yy}=0$, and as $f$ is holomorphic it satisfies the Cauchy-Riemann equations, and thus (as proven before) $u$ and $v$ are both harmonic too.
+    Thus, and also by the chain rule,
+    \[
+        \psi_{xx}+\psi_{yy}=
+        \phi_{uu}(u_x^2+u_y^2)+\phi_{vv}(v_x^2+v_y^2)
+    \]
+
+    Now, also by the Cauchy-Riemann equations,
+    \[
+        |f'(z)|^2=
+        u_x^2+u_y^2=
+        v_x^2+v_y^2
+    \]
+    and thus, as $\phi$ is harmonic,
+    \[
+        \psi_{xx}+\psi_{yy}=
+        |f'(z)|^2(\phi_{uu}+\phi_{vv})=
+        0
+    \]
+\end{proof}
+
+\begin{defn}[Space of harmonic functions]
+    Given an open subset $U\subseteq\comps$, we define $H(U)$ to be the vector space of harmonic functions on $U$.
+\end{defn}
+
+\begin{cor}
+    Let $U$ and $V$ be conformally equivalent open subsets of $\comps$.
+    Then $H(U)$ and $H(V)$ are isomorphic as vector spaces.
+\end{cor}
+
+\begin{proof}
+    Let $f:U\to V$ be a conformal equivalence.
+    This then induces the map
+    \begin{align*}
+        H(V)\to H(U)&\text{ given by }\phi\mapsto\phi\circ f\\
+        H(U)\to H(V)&\text{ given by }\phi\mapsto\phi\circ f^{-1}
+    \end{align*}
+    which are clearly linear (in $\phi$) and inverses of one another.
+\end{proof}
+
+\end{document}

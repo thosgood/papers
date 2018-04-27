@@ -1,0 +1,35 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Notation, conventions, assumptions, and citations}{3}{subsection.1.1}
+\contentsline {subsubsection}{\numberline {1.1.1}List of notation and assumptions}{4}{subsubsection.1.1.1}
+\contentsline {subsection}{\numberline {1.2}The main aims}{5}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}An overview of the journey}{5}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Acknowledgements}{6}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Corrections}{6}{subsection.1.5}
+\contentsline {section}{\numberline {2}Weighted projective space}{7}{section.2}
+\contentsline {subsection}{\numberline {2.1}Geometric construction of weighted projective space}{7}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Coordinate patches}{9}{subsection.2.2}
+\contentsline {section}{\numberline {3}Weighted projective varieties}{11}{section.3}
+\contentsline {subsection}{\numberline {3.1}Weighted projective varieties}{14}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}The weighted projective Nullstellensatz}{18}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Coordinate rings}{22}{subsection.3.3}
+\contentsline {section}{\numberline {4}An algebraic approach}{23}{section.4}
+\contentsline {subsection}{\numberline {4.1}Explaining $\proj $ with the Nullstellensatz}{23}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Morphisms between varieties}{25}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Truncation of graded rings}{27}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}The first claim}{29}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Well-formed weighted projective spaces}{29}{subsubsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.3}Embedding $\mathbb {P}(a_0,\ldots ,a_n)$ into $\mathbb {P}^N$}{31}{subsubsection.4.3.3}
+\contentsline {subsection}{\numberline {4.4}A worked example}{32}{subsection.4.4}
+\contentsline {section}{\numberline {5}Plane curves in weighted projective space}{35}{section.5}
+\contentsline {subsection}{\numberline {5.1}Some facts about different notions of quotients}{36}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}Topological quotients (orbit spaces)}{37}{subsubsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.2}Quotients of Riemann surfaces by group actions}{37}{subsubsection.5.1.2}
+\contentsline {subsubsection}{\numberline {5.1.3}Projective GIT quotients}{37}{subsubsection.5.1.3}
+\contentsline {subsection}{\numberline {5.2}Weighted projective plane curves as Riemann surfaces}{38}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}What happens to the affine patches?}{43}{subsubsection.5.2.1}
+\contentsline {subsection}{\numberline {5.3}The degree-genus formula for weighted projective varieties}{44}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}What does sufficiently general mean?}{44}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}Riemann-Hurwitz and the usual degree-genus formula}{47}{subsubsection.5.3.2}
+\contentsline {section}{\numberline {6}The view from where we've ended up}{49}{section.6}
+\contentsline {subsection}{\numberline {6.1}Elliptic curves and friends}{50}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Syzygies and some homological algebra}{53}{subsection.6.2}

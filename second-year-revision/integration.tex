@@ -1,0 +1,2010 @@
+\documentclass{maths}
+
+\author{Tim Hosgood\thanks{Based on Z. Qian's 2014 University of Oxford lecture notes.}\\\texttt{contact@timhosgood.co.uk}}
+\title{Part A Integration Notes}
+\usepackage{bbm}
+\usepackage{hyperref}
+
+\newcommand{\mleb}{\mathcal{M}_{\text{Leb}}}
+\newcommand{\mbor}{\mathcal{M}_{\text{Bor}}}
+\newcommand{\lp}{\mathcal{L}^p}
+\newcommand{\alg}{\mathcal{F}}
+\newcommand{\intvl}{\mathcal{J}}
+\newcommand{\smpl}{\mathcal{S}}
+\newcommand{\ind}{\mathbbm{1}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    These notes summarise the contents of a second-year integration course at the University of Oxford.
+    Because of this, there are many references to certain proofs being `non-examinable', though the contents are still intended to be as self contained as possible.
+
+    Please email any corrections to \href{mailto:contact@timhosgood.co.uk}{\texttt{contact@timhosgood.co.uk}}.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+
+\subsection{Important results from Riemann integration}
+
+In Riemann integration, we defined some set $\mathcal{L}$ of step functions.
+That is, $\varphi\in\mathcal{L}$ means that $\varphi=\sum_{i=1}^n c_i\ind_{A_i}$, where the $A_i$ are finite intervals.
+Then it was possible to define some form of integration on $\mathcal{L}$: for $\varphi\in\mathcal{L}$, let
+\[
+    I(\varphi)=
+    \sum_{i=1}^n c_i\int\ind_{A_i}=
+    \sum_{i=1}^n c_i |A_i|
+\]
+where $|A_i|$ is the `length' of $A_i$.
+We then proceeded to define upper and lower integrals of functions $f:[a,b]\to\R$ by
+\[
+    \underline{\int_a^b} f=
+    \sup\{I(\varphi)\mid \varphi\in\mathcal{L}, \varphi\leqslant f\ind_{[a,b]}\}
+    \qq{and}
+    \overline{\int_a^b} f=
+    \inf\{I(\psi)\mid \psi\in\mathcal{L}, \psi\geqslant f\ind_{[a,b]}\}
+\]
+This then gave us the condition: \emph{$f:[a,b]\to\R$ is Riemann integrable if and only if $\underline{\int_a^b}f=\overline{\int_a^b}f=:\int_a^b f$}.
+
+We obtained two important theorems in our development of Riemann integration which we shall be able to make use of in applying the theory of Lebesgue integration:
+\begin{enumerate}
+    \item $f$ is Riemann integrable on $[a,b]$, where $a,b\in\R$, if and only if $f$ continuous on $[a,b]$ (and thus bounded and uniformly continuous);
+    \item \emph{(The Fundamental Theorem of Calculus)} If $F$ has continuous derivative on $[a,b]$ then $\int_a^b F'(x)\dd{x}=F(b)-F(a)$.
+\end{enumerate}
+
+The main problem with this system is that $\mathcal{L}$ is quite a small set, and we are led to the idea that increasing the size of the set of `simple' function that we know how to integrate might be able to reduce the difference between $\underline{\int}$ and $\overline{\int}$, and thus be able to integrate even more functions.
+
+\subsection{Overview/Summary}
+
+One thing to bear in mind when we define Lebesgue integration is that, from the point of view of `integration is the area under the graph', whereas Riemann integration involves partitioning the $x$-axis, Lebesgue integration in a sense instead partitions the $y$-axis and looks at the preimage of these partitions (which is evident in the definition of a measurable function).
+
+First of all we define a measure space, then a semi-measure $m^*$ (the outer measure), then the set $\mleb$ of subsets of $\R$ such that $m^*$ becomes a measure (and thus the idea of a (Lebesgue) measurable set).
+Next we define what it means for a function to be measurable in a general measure space, and then in particular look at Lebesgue measurable functions (which we from now on refer to simply as measurable functions).
+
+In what follows, we then ignore measure spaces in general (and so we simply say `measurable' to mean Lebesgue measurable) and focus solely on our measure space $(\R,\mleb,m)$.
+The big step that all the previous work has been leading up to (and our motivation for the preceeding content): we define our new class of simple functions, which turn out to be measurable functions. We next define integrals for non-negative simple functions, and further for non-negative measurable functions (via approximation by simple functions, just as in Riemann integration), and finally for any measurable function.
+Here we end up with Fatou's lemma, the MCT, DCT, etc. etc.
+
+Penultimately, we look at products of measure spaces (but really only just $\R^2$), and then at what it means to be integrable in these spaces.
+Both Tonelli's and Fubini's theorem arise here, in an attempt to categorise the functions that are now integrable.
+
+Lastly, we see how the set of all (Lebesgue) $p$-integrable (that is, integrable when raised to the $p^{\text{th}}$ power) functions form a vector space, and that, when we quotient this space by the equivalence relation given by two functions be equal almost everywhere, a norm arises from integrating $f^p$.
+It turns out that this space is complete, so that we have a complete normed vector space, i.e. a Banach space.
+Along the way we also find out some things about functions converging under this norm, and how that relates to them converging in other ways.
+
+\section{General measure spaces}
+
+\subsection{Extended real number system}
+
+We introduce the idea of infinity into our real number system: $[-\infty,\infty]=\{-\infty\}\cup\R\cup\{\infty\}$.
+Everything is extended in the expected way, apart from the fact that $\frac{\infty}{\infty}$, $\infty-\infty$, and $\frac{a}{0}$ are undefined, and we set $0.\infty=0.(-\infty)=0$.
+
+This turns out to be useful for various reasons: any subset of $\R$ now has an infimum and a supremum (which are both obtained); and any monotonic sequence has a limit; any series of non-negative terms has a sum.
+
+We now consider a different way of looking at infinite sums.
+
+\begin{prop}
+    \begin{enumerate}
+        \item Let $(a_n)_{n\geqslant1}$ be a sequence of non-negative terms.
+        Then
+        \[
+            \sum_{n=1}^{\infty} a_n =
+            \sup\qty{\sum_{n\in J} a_n : J\subseteq\N,|J|<\infty}.
+        \]
+        \item Let $(b_{mn})_{m,n\geqslant1}$ be a double sequence of non-negative terms, and $\qty{(m_k,n_k) : k\geqslant1}$ be any enumeration of $\N\times\N$.
+        Then
+        \begin{gather*}
+            \sum_{m=1}^{\infty}\sum_{n=1}^{\infty} b_{mn} =
+            \sum_{n=1}^{\infty}\sum_{m=1}^{\infty} b_{mn} =
+            \sum_{k=1}^{\infty} b_{m_kn_k}\\
+            =\sup\qty{\sum_{(m,n)\in J} b_{mn} : J\subseteq\N\times\N,|J|<\infty}.
+        \end{gather*}
+    \end{enumerate}
+    That is, these sums can be arbitrarily rearranged.
+\end{prop}
+
+\begin{defn}
+    For a sequence $(a_n)\subset[-\infty,\infty]$ we define
+    \begin{enumerate}
+        \item $\limsup\limits_{n\to\infty} a_n = \lim\limits_{m\to\infty}\qty(\sup\limits_{n\geqslant m} a_n)$;
+        \item $\liminf\limits_{n\to\infty} a_n = \lim\limits_{m\to\infty}\qty(\inf\limits_{n\geqslant m} a_n)$.
+    \end{enumerate}
+    We can be sure that these exist since $(\sup_{n\geqslant m} a_n)_{m\geqslant1}$ is a decreasing sequence.
+
+    The use of these definitions is that $\limsup_{n\to\infty} a_n$ is the largest number $\ell$ such that there is a subsequence of $(a_n)$ converging to $\ell$.
+\end{defn}
+
+\begin{prop}
+    Some useful properties of $\liminf$ and $\limsup$ are as follows:
+    \begin{enumerate}
+        \item $\liminf_{n\to\infty} a_n = -\limsup_{n\to\infty} (-a_n)$;
+        \item $\liminf_{n\to\infty} a_n \leqslant \limsup_{n\to\infty} a_n$;
+        \item $\lim_{n\to\infty} a_n$ exists if and only if $\liminf_{n\to\infty} a_n = \limsup_{n\to\infty} a_n$, and then all three are equal;
+        \item if $a_n\leqslant b_n$ for all $n$ then $\limsup_{n\to\infty} a_n\leqslant \limsup_{n\to\infty} b_n$;
+        \item $\limsup_{n\to\infty} (a_n+b_n)\leqslant\limsup_{n\to\infty} a_n+\limsup_{n\to\infty} b_n$ (if all sums exist).
+    \end{enumerate}
+\end{prop}
+
+\subsection{Measure spaces}
+
+\begin{defn}[Algebras, $\sigma$-algebras, and measurable spaces]
+    Let $\Omega$ be a set (called a \emph{space}), and let $\alg$ be a collection of some subsets of $\Omega$.
+    \begin{enumerate}
+        \item $\alg$ is called an \emph{algebra} on $\Omega$ if
+        \begin{enumerate}
+            \item $\emptyset,\Omega\in\alg$;
+            \item $A\in\alg\implies A^c\in\alg$
+            \item $A,B\in\alg\implies A\cup B\in\alg$.
+        \end{enumerate}
+        \item $\alg$ is further called a \emph{$\sigma$-algebra} on $\Omega$ if it is an algebra, and also closed under countable unions (that is, $A_1,A_2,\ldots\in\alg\implies\cup_{n=1}^{\infty}A_n\in\alg$).
+        \item A pair $(\Omega,\alg)$, where $\alg$ is a $\sigma$-algebra on $\Omega$, is called a \emph{measurable space}.
+        If $E\in\alg$ then $E$ is said to be a \emph{measurable subset} of $\Omega$ (with respect to $\alg$).
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}[Measures and measure spaces]
+    Let $(\Omega,\alg)$ be a measurable space.
+    A function $\mu\colon\alg\to[0,\infty]$ is called a \emph{measure} on $(\Omega,\alg)$ if
+    \begin{enumerate}
+        \item $\mu(\emptyset)=0$;
+        \item if $A_i\in\alg$ for $i=1,2,\ldots$ and the $A_i$ are disjoint then
+        \[
+            \mu\qty(\bigcup_{i=1}^{\infty} A_i) =
+            \sum_{i=1}^{\infty} \mu(A_i).
+        \]
+    \end{enumerate}
+
+    A triple $(\Omega,\alg,\mu)$, where $\alg$ is a $\sigma$-algebra and $\mu$ is a measure on $(\Omega,\alg)$, is called a \emph{measure space}.
+\end{defn}
+
+\begin{prop}
+    Let $(\Omega,\alg,\mu)$ be a measure space.
+    Then
+    \begin{enumerate}
+        \item if $A\subset B$ then $\mu(A)\leqslant\mu(B)$;
+        \item if $A_n\in\alg$ and $A_n\uparrow$ (that is, $A_n\subset A_{n+1}$ for all $n$) then $\mu(\cup_{n=1}^{\infty} A_n) = \lim_{n\to\infty} \mu(A_n)$;
+        \item if $A_n\in\alg$ and $A_n\downarrow$ (that is, $A_{n+1}\subset A_n$ for all $n$) and $\mu(A_1)<\infty$ then $\mu(\cap_{n=1}^{\infty} A_n) = \lim_{n\to\infty} \mu(A_n)$
+    \end{enumerate}
+\end{prop}
+
+\begin{prf}
+    \begin{enumerate}
+        \item If $A\subset B$ then $B = A\cup(B\cap A^c)$.
+        Then, since $A$ and $B\cap A^{c}$ are disjoint, we have that $\mu(B) = \mu(A) + \mu(B\cap A^c) \geqslant \mu(A)$.
+        \item Let $E_1 = A_1$ and $E_n = A_n\setminus A_{n-1}$ for $n\geq2$.
+        Then the $E_n$ are disjoint, and $\cup_{n=1}^{\infty} A_n = \cup_{n=1}^{\infty} E_n$.
+        So
+        \[
+            \mu\qty(\bigcup_{n=1}^{\infty} A_n) = \mu\qty(\bigcup_{n=1}^{\infty} E_n) = \sum_{n=1}^{\infty} \mu(E_n).  
+        \]
+        But also, since $A_n\uparrow$, we have $\cup_{n=1}^n E_k = A_n$, and thus
+        \[
+            \sum_{n=1}^{\infty} \mu(E_n) =
+            \lim_{n\to\infty} \sum_{k=1}^n \mu(E_k) =
+            \lim_{n\to\infty} \mu\qty(\bigcup_{k=1}^n E_k) =
+            \lim_{n\to\infty} \mu(A_n).
+        \]
+        \item Let $B_n = A_1\setminus A_n$.
+        Then $B_n\uparrow$.
+        Since $A_1 = B_n\cup A_n$ and $B_n$ and $A_n$ are disjoint, we have that $\mu(A_1) = \mu(B_n) + \mu(A_n)$, and hence $\mu(B_n) = \mu(A_1) - \mu(A_n)$ (as $\mu(A_n)\leqslant\mu(A_1)\leqslant\infty$).
+        By de Morgan's law,
+        \[
+            \bigcup_{n=1}^{\infty} B_n =
+            A_1\setminus\bigcap_{n=1}^{\infty} A_n
+        \]
+        and so, by applying the previous part of the proposition to $B_n$, we obtain
+        \begin{align*}
+            \mu(A_1) - \mu\qty(\bigcap_{n=1}^{\infty} A_n) =
+            \mu\qty(A_1\setminus\bigcap_{n=1}^{\infty} A_n)
+            &= \mu\qty(\bigcup_{n=1}^{\infty} B_n)\\
+            &= \lim_{n\to\infty} \mu(B_n)\\
+            &= \lim_{n\to\infty} \qty(\mu(A_1) - \mu(A_n))\\
+            &= \mu(A_1) - \lim_{n\to\infty} \mu(A_n)
+        \end{align*}
+    \end{enumerate}
+\end{prf}
+
+\section{The Lebesgue measure}
+
+\subsection{The outer measure}
+
+\emph{From here on in, $\intvl$ denotes the set of all intervals of $\R$.
+That is, we will simply say $I\in\intvl$ to mean that $I$ is an interval of $\R$.
+Recall that for $I\in\intvl$, $|I|$ denotes the length of $I$, which might be $\infty$ if $I$ is unbounded.
+Also, when we say `subset', we mean a subset of $\R$ unless otherwise stated.}
+
+\begin{defn}[Outer measure]
+    Let $A\subset\R$.
+    Then the \emph{outer measure} of $A$, denoted by $m^*(A)$, is defined by
+    \[
+        m^*(A) =
+        \inf\qty{\sum_{n=1}^{\infty} |J_n| : J_n\in\intvl, A\subseteq\bigcup_{n=1}^{\infty} J_n}.
+    \]
+
+    Note that it follows immediately from this definition that
+    \begin{enumerate}
+        \item $m^*(\emptyset)=0$;
+        \item $m^*(A)\geqslant0$ for all $A\subset\R$;
+        \item $A\subset B\implies m^*(A)\leqslant m^*(B)$.
+    \end{enumerate}
+\end{defn}
+
+A very important point is that $m^*$ is \emph{not} a measure: even though it is defined on all subsets of $\R$ it is not always countably additive.
+But it turns out that this is the fault of $\R$, not $m^*$, since really $\mathcal{P}(\R)$ (the power set of $\R$) is just `too big' for any measure to make sense of it all.
+Thus our next goal is to find a $\sigma$-algebra (which we call shall $\mleb$) on which $m^*$ is countably additive.
+We build up to this in a sequence of lemmas and propositions, but it is a good idea to keep our goal in mind throughout.
+
+\begin{lem}[Countable subadditivity of the outer measure]
+    Let $\qty{A_n : n = 1,2,\ldots}$ be a sequence of subsets.
+    Then
+    \[
+        m^*\qty(\bigcup_{n=1}^{\infty}) \leqslant
+        \sum_{n=1}^{\infty} m^*(A_n).
+    \]
+\end{lem}
+
+\begin{prf}
+    Clearly if $\sum_{n=1}^{\infty} m^*(A_n) = \infty$ then the lemma is vacuously true, so suppose that $\sum_{n=1}^{\infty} m^*(A_n) < \infty$.
+    Then $m^*(A_n) < \infty$ for each $n$.
+    By definition of $m^*(A_n)$, for every $\eps>0$ there is exists a countable cover $\qty{J_i^{(n)}\in\intvl : i = 1,2,\ldots}$ of $A_n$ such that $\sum_{n=1}^{\infty} \abs{J_i^{(n)}} \leqslant m^*(A_n) + \eps/2^n$.
+    Then $\qty{J_i^{(n)} : n,i = 1,2,\ldots}$ forms a countable cover of $\cup_{n=1}^{\infty} A_n$, and so
+    \begin{align*}
+        m^*\qty(\bigcup_{n=1}^{\infty} A_n) \leqslant
+        \sum_{n=1}^{\infty} \sum_{i=1}^{\infty} \abs{J_i^{(n)}}
+        &\leqslant \sum_{n=1}^{\infty} \qty(m^*(A_n) + \frac{\eps}{2^n})\\
+        &= \sum_{n=1}^{\infty} m^*(A_n) + \eps
+    \end{align*}
+
+    Thus, since $\eps>0$ is arbitrary, we are done.
+\end{prf}
+
+An important thing to note is that our definition of the outer measure is only one of a few equivalent definitions.
+We could, instead, have said that the infimum need run over all possible countable coverings consisting only of open intervals, or half-closed, half-open intervals, or closed intervals, etc.
+First of all we introduce some new notation: $\intvl_o$ is the collection of all open intervals in $\R$ and similarly $\intvl_c$ is the collection of all closed intervals in $\R$.
+That is, $J\in\intvl_o$ if and only if $J=(a,b)$, for some $a,b\in[-\infty,\infty]$.
+
+So just for completeness, we now prove that the definition where the infimum is over countable open covers is equivalent to the more general one that we have given.
+
+\begin{prop}
+    \[
+        m^*(A) :=
+        \inf\qty{\sum_{n=1}^{\infty} |J_n| : J_n\in\intvl, A\subseteq\bigcup_{n=1}^{\infty} J_n} =
+        \inf\qty{\sum_{n=1}^{\infty} |J_n| : J_n\in\intvl_o, A\subseteq\bigcup_{n=1}^{\infty} J_n}.
+    \]
+\end{prop}
+
+\begin{prf}
+    Suppose that $m^*(A) < \infty$, then for every $\eps >0$ there exists a countable cover $\qty{J_i : i = 1,2,\ldots}$ of $A$ such that $m^*(A)\geqslant\sum_{n=1}^{\infty} |J_i| - \eps/2$.
+    Let $a_i\leqslant b_i$ be the ends of the interval $J_i$, and define the slightly larger open intervals $O_i = (a_i - \eps/2^{i+2}, b_i + \eps/2^{i+2})$.
+    Then $\qty{O_i : i = 1,2\ldots}$ is also a countable cover of $A$, and clearly $|O_i| = |J_i| + \eps/2^{i+1}$.
+    Hence
+    \begin{align*}
+        m^*(A) \geqslant
+        \sum_{i=1}^{\infty} |J_i| - \frac{\eps}{2}
+        &= \sum_{i=1}^{\infty} |O_i| - \sum_{i=1}^{\infty} \frac{\eps}{2^{i+1}} - \frac{\eps}{2}\\
+        &= \sum_{i=1}^{\infty} |O_i| - \frac{\eps}{2} - \frac{\eps}{2}\\
+        &= \sum_{i=1}^{\infty} |O_i| - \eps.
+    \end{align*}
+
+    Since this is true for arbitrary $\eps>0$, and $m^*(A)$ is defined as the infimum, we see that our proposition holds.
+\end{prf}
+
+\begin{lem}
+    Let $J\in\intvl$ have endpoints $a < b$.
+    Then $m^*(J)=b-a$.
+\end{lem}
+
+\begin{prf}
+    By the definition of $m^*$, we have $m^*(J)\leqslant b-a$.
+    On the other hand, for every $\eps>0$ there exists a countable cover $\qty{I_k\in\intvl_o : k = 1,2,\ldots}$ of $J$ such that $m^*(J)\geqslant\sum_{k=1}^{\infty} |I_k| - \eps$.
+
+    First assume that $J\in\intvl_c$, so that $J=[a,b]$.
+    Since $[a,b]$ is compact, there is a finite subcover $\qty{I_{k_1},\ldots,I_{k_n}}$ of $[a,b]$.
+    We may assume that $I_{k_i} = (a_i, b_i)$ and arrange them in the order $a_1\leqslant a_2\leqslant\ldots\leqslant a_n$.
+    Then we must have $a_1\leqslant a$, $b_n\geqslant b$, and $b_k\geqslant a_{k+1}$.
+    Thus
+    \[
+        \sum_{k=1}^{\infty} |I_k| \leqslant
+        \sum_{i=1}^n |J_{k_i}| =
+        \sum_{i=1}^n (b_i - a_i) \geqslant
+        b - a.
+    \]
+    Therefore $m^*(J)\geqslant (b - a) - \eps$.
+    Since $\eps>0$ is arbitrary, we have that $m^*(J) = |J|$ for all $J\in\intvl_c$.
+
+    Now let $J\in\intvl_o$.
+    Then for every $\eps\in(0, \frac{b-a}{2})$ we have $m^*(J)\geqslant m^*([a + \eps, b - \eps]) = b - a - 2\eps$.
+    Since $\eps>0$ is arbitrary, we have that $m^*(J) = |J|$ for all $J\in\intvl_o$ as well.
+
+    Thus for any $J\in\intvl$ with endpoints $a < b$ we have
+    \[
+        b - a \geqslant
+        m^*(J) \geqslant
+        m^*\big((a,b)\big) =
+        b - a
+    \]
+    and we are done.
+\end{prf}
+
+\begin{lem}
+    Let $A=\cup_{i=1}^n J_i$, where $J_i\in\intvl$ are disjoint.
+    Then $m^*(A) = \sum_{i=1}^n |J_i|$.
+\end{lem}
+
+\begin{prf}
+    We may assume that each $J_i$ is finite, otherwise the lemma is vacuously true.
+    Now, for every $\eps>0$ there exists a cover $\qty{I_k\in\intvl : k = 1,2,\ldots}$ of $A$ such that
+    \[
+        m^*(A) \leqslant
+        \sum_{k=1}^{\infty} |I_k| \leqslant
+        m^*(A) + \eps.
+    \]
+
+    Note that $(I_k\cap J_i)\subset I_k$ is an interval (potentially empty), and $\qty{I_k\cap J_i : i = 1,\ldots,n}$ is a set of disjoint subintervals of $I_k$ for each fixed $k$.
+    Thus $\sum_{i=1}^n |I_k\cap J_i| \leqslant |I_k|$.
+
+    On the other hand,
+    \begin{align*}
+        |J_i| =
+        m^*(J_i) =
+        m^*\qty(\bigcup_{k=1}^{\infty} (I_k\cap J_i))
+        &\leqslant \sum_{k=1}^{\infty} m^*(I_k\cap J_i)\\
+        &= \sum_{k=1}^{\infty} |I_k\cap J_i|.
+    \end{align*}
+    Thus
+    \begin{align*}
+        \sum_{i=1}^n |J_i| \leqslant
+        \sum_{i=1}^n\sum_{k=1}^{\infty} |I_k\cap J_i|
+        &= \sum_{k=1}^{\infty}\sum_{i=1}^n |I_k\cap J_i|\\
+        &\leqslant \sum_{k=1}^{\infty} |I_k|\\
+        &\leqslant m^*(A) + \eps.
+    \end{align*}
+    Since $\eps>0$ is arbitrary, we may conclude that $\sum_{i=1}^n |J_i| \leqslant m^*(A)$.
+    The partial converse to this comes from the definition of $m^*$, and thus we have that $m^*(A)=\sum_{i=1}^n |J_i|$.
+\end{prf}
+
+Note that even though this isn't countable additivity, it is still a promising sign that intervals seem to be very well behaved with $m^*$, and so it seems very likely that we will want $\intvl\subseteq\mleb$ when we define $\mleb$.
+But the way in which we shall proceed is slightly less constructive: first we define $\mleb$ in a more general manner, then show that $m^*$ is a measure on the measure space $(\R,\mleb)$, and then, finally, we will get around to examining the kind of subsets that make up $\mleb$, and it will turn out that, indeed, $\intvl\subset\mleb$.
+
+Before this, we examine the idea of a set with measure zero, since these sets turn out to be both important and useful later on.
+
+\subsection{Null sets and almost-sure properties}
+
+\begin{defn}[Null sets]
+    A subset $A\subset\R$ is called a \emph{null set} if it has zero outer measure.
+    That is, $m^*(A)=0$.
+\end{defn}
+
+\begin{lem}
+    Let $\qty{A_n : n = 1,2,\ldots}$ be a sequence of null subsets.
+    Then $\cup_{n=1}^{\infty} A_n$ is also null.
+\end{lem}
+
+\begin{prf}
+    By the countable subadditivity of $m^*$:
+    \[
+        m^*\qty(\bigcup_{n=1}^{\infty} A_n) \leqslant
+        \sum_{n=1}^{\infty} m^*(A_n) =
+        0.
+    \]
+\end{prf}
+
+\begin{rem}
+    All countable subsets $A\subset\R$ are null, but not every null set is countable.
+\end{rem}
+
+\begin{defn}[The Cantor ternary set]
+    Consider the closed interval $J_1^{(0)}=[0,1]$.
+    First divide $J_1^{(0)}$ into three equal subintervals: the middle open interval $I_1^{(1)}=\qty(\frac{1}{3},\frac{2}{3})$ is removed from $J_1^{(0)}$, and the remaining two closed subintervals are labelled $J_1^{(1)}=\qty[0,\frac{1}{3}]$ and $J_2^{(1)}=\qty[\frac{2}{3},1]$.
+
+    Now we repeat this idea on each of the closed intervals $J_1^{(1)}$ and $J_2^{(1)}$ by taking out their middle thirds (labelled $I_1^{(2)}$ and $I_2^{(2)}$, respectively), and naming the four remaining closed intervals $J_1^{(2)}$, $J_2^{(2)}$, $J_3^{(2)}$, and $J_4^{(2)}$.
+
+    Repeating this process, for each $n$ we have $2^{n-1}$ disjoint open intervals $I_i^{(n)}$ (for $i = 1,\ldots,2^{n-1}$) with equal length $\frac{1}{3^n}$, and $2^n$ disjoint closed intervals $J_i^{(n)}$ (for $i = 1,\ldots,2^n$) with equal length $\frac{1}{3^n}$.
+    So, for each $n$, we have
+    \[
+        \qty(\bigcup_{k=1}^n \bigcup_{i=1}^{2^{k-1}} I_i^{(k)}) \cup \qty(\bigcup_{k=1}^{2^n} J_k^{(n)}) =
+        [0,1]
+    \]
+
+    Then the Cantor ternary set $C$ is defined to be the subset of $[0,1]$ obtained by removing all middle thirds $I_i^{(n)}$.
+    That is,
+    \[
+        C =
+        [0,1] \setminus \qty(\bigcup_{n=1}^{\infty} \bigcup_{i=1}^{2^{n-1}} I_i^{(n)}).
+    \]
+\end{defn}
+
+\begin{prop}
+    The Cantor ternary set $C$ is null but uncountable.
+\end{prop}
+
+\begin{prf}
+    By definition, for every $n$, we have that $J_i^(n)$ (for $i = 1,\ldots,2^n$) is a finite cover of $C$, so that
+    \[
+        m^*(C) \leqslant
+        \sum_{i=1}^{2^n} \abs{J_i^{(n)}} =
+        2^n \frac{1}{3^n} \to
+        0
+    \]
+    Thus $C$ is null.
+    Showing that $C$ is uncountable is left `as an exercise to the reader'.
+\end{prf}
+
+\begin{defn}[Almost-sure properties]
+    Suppose that $P(x)$ is a property depending on $x\in\R$.
+    We say that the property $P$ hold \emph{almost surely}, or \emph{almost everywhere}, if the set $\qty{x\in\R : \neg P(x)}$ is a null set.
+\end{defn}
+
+\subsection{Lebesgue measurable sets and measurable functions}
+
+Really, there are many equivalent ways of defining $\mleb$, the set of all Lebesgue measurable sets.
+The following way (with the Carath\'eodory condition) has a non-examinable proof of its properties (which shall thus be omitted) and seems unintuative at first glance (and in fact at second and third glances as well), but turns out to be rather simple to work with.
+
+\begin{defn}[Lebesgue measurable sets and the Carath\'eodory condition]
+    A subset $E\subset\R$ is \emph{Lebesgue measurable} if $E$ satisfies the \emph{Carath\'eodory condition}.
+    That is
+    \[
+        E\in\mleb \iff
+        m^*(F) =
+        m^*(F\cap E) + m^*(F\cap E^c)\quad\forall F\subset\R
+    \]
+
+    The collection of all Lebesgue measurable subsets is denoted by $\mleb$.
+\end{defn}
+
+\begin{rem}
+    Since $(F\cap E)$ and $(F\cap E^c)$ are disjoint, and their union is $F$, by the subadditivity of $m^*$ we have $m^*(F)\leqslant m^*(F\cap E) + m^*(F\cap E^c)$ for all $F\subset\R$.
+    Thus the Carath\'eodory condition is equivalent to the inequality
+    \[
+        m^*(F) \geqslant
+        m^*(F\cap E) + m^*(F\setminus E)\quad\forall F\subset\R.
+    \]
+    (Note that $F\cap E^c = F\setminus E$.)
+\end{rem}
+
+\begin{thm}
+    $\mleb$ is a $\sigma$-algebra on $\R$ and $m^*$ is a measure on $\mleb$.
+\end{thm}
+
+\begin{prf}
+    The proof of this theorem is not examinable, and has thus been omitted (due to of lack of time$\ldots$)
+\end{prf}
+
+\begin{defn}[Lebesgue measure space]
+    The restriction of $m^*$ to $\mleb$ is simply denoted $m$, and is called the \emph{Lebesgue measure}.
+    The measure space $(\R,\mleb,m)$ is called the \emph{Lebesgue measure space}.
+\end{defn}
+
+Now we come back to the question of wondering what the $\sigma$-algebra $\mleb$ actually looks like.
+
+\begin{prop}
+    Let $A$ be a null set.
+    Then $A\in\mleb$.
+\end{prop}
+
+\begin{prf}
+    For every subset $F\subset\R$ we have $m^*(F\cap A)\leqslant m^*(A)=0$.
+    Then
+    \[
+        m^*(F) \geqslant
+        m^*(F\cap A^c) =
+        m^*(F\cap A) + m^*(F\cap A^c).
+    \]
+\end{prf}
+
+\begin{prop}
+    Let $J\in\intvl$ be finite.
+    Then $J\in\mleb$ and $m(J)=J$.
+\end{prop}
+
+\begin{prf}
+    We already know that $m^*(J)=J$, so if we show that $J\in\mleb$ then we prove both parts of the proposition.
+    That is, we need to show that $m^*(F) \geqslant m^*(F\cap J) + m^*(F\cap J^c)$ for all $F\subset\R$.
+    This inequality is trivial if $m^*(F)=\infty$, so we can assume that $m^*(F)<\infty$.
+    Then for every $\eps>0$ there exist intervals $J_k$ such that $F\subset\cup_{k=1}^{\infty} J_k$ and $m^*(F)\leqslant\sum_{k=1}^{\infty} |J_k|\leqslant m^*(F) + \eps$.
+
+    Now $J_k\cap J$ is an interval, and $J_k\cap J^c$ is a union of at most two intervals, so that
+    \[
+        |J_k| =
+        |J_k\cap J| + m^*(J_k\cap J^c) =
+        m^*(J_k\cap J) + m^*(J_k\cap J^c)
+    \]
+    for every $k$.
+    Therefore
+    \begin{align*}
+        m^*(F) \geqslant
+        \sum_{k=1}^{\infty} |J_k| - \eps
+        &= \sum_{k=1}^{\infty} \qty(m^*(J_k\cap J) + m^*(J_k\cap J^c)) - \eps\\
+        &= \sum_{k=1}^{\infty} m^*(J_k\cap J) + \sum_{k=1}^{\infty} m^*(J_k\cap J^c) - \eps\\
+        \geqslant m^*(F\cap J) + m^*(F\cap J^c) - \eps.
+    \end{align*}
+    Since $\eps>0$ is arbitrary we must have $m^*(F) \geqslant m^*(F\cap J) + m^*(F\cap J^c)$ for all $F\subset\R$.
+\end{prf}
+
+\begin{defn}[Borel algebra]
+    The Borel $\sigma$-algebra $\mbor$ is defined to be the smallest $\sigma$-algebra containing all finite intervals.
+\end{defn}
+
+\begin{prop}
+    $\mbor\subsetneq\mleb$.
+    That is, any Borel subset is Lebesgue measurable.
+\end{prop}
+
+\begin{prf}
+    Since $\mleb$ is a $\sigma$-algebra and contains all finite intervals, by definition $\mbor\subset\mleb$.
+\end{prf}
+
+\begin{rem}
+    In particular, $\intvl\subsetneq\mbor\subsetneq\mleb$.
+\end{rem}
+
+\begin{cor}
+    Open and closed sets are measurable.
+\end{cor}
+
+\begin{prf}
+    If $U$ is an open set in $\R$ then $U$ can be written as a union of at most countably many open intervals, so that $U\in\mleb$.
+    Since $\mleb$ is a $\sigma$-algebra (and thus contains complements) any closed set is also measurable.
+\end{prf}
+
+\begin{prop}
+    Let $E\in\mleb$.
+    Then there exist $A,B\in\mbor$ such that $A\subset E\subset B$, and both $B\setminus E$ and $E\setminus A$ are null sets.
+\end{prop}
+
+\begin{prf}
+    This proof has been left, oh so generously, as an exercise for the reader.
+\end{prf}
+
+\section{Measurable functions}
+
+Now we identify a class of functions, called \emph{measurable functions}, for which we aim to define integrals.
+The concept of measurable functions can be developed independent of a choice of measure, so we work now with a general measurable space $(\Omega,\alg)$.
+In particular, we continue to use words such as `measurable' in their most general sense.
+After this chapter, however, we will then move onto using such words to mean specifically `Lebesgue measurable', but we will make this transition explicit.
+
+\begin{defn}[$\alg$-measurable functions]
+    Let $f\colon\Omega\to\R$ be a function on $\Omega$.
+    Then $f$ is \emph{$\alg$-measurable} if $f^{-1}(I)\in\alg$ for every $I\in\intvl$.
+\end{defn}
+
+\begin{rem}
+    We often write $\qty{f\in I}$ to mean $f^{-1}(I)=\qty{x\in\Omega : f(x)\in I}$.
+    Similarly, we also have notations such as $\qty{f>a}$ to mean $f^{-1}\big((a,\infty)\big)=\qty{x\in\Omega : f(x)>a}$, and $\qty{f\neq g}$ to mean $\qty{x\in\Omega : f(x)\neq g(x)}$, etc.
+\end{rem}
+
+\begin{prop}
+    Let $\mathcal{B}$ be a collection of any type of intervals (all intervals, only open intervals, half-open half-closed intervals, half-infinite intervals, etc.) or the collection of all open subsets of $\R$.
+    Let $\sigma\qty{B}$ denote the smallest $\sigma$-algebra containing $\mathcal{B}$.
+    Then $\sigma\qty{B}=\mbor$ for all of the above $\mathcal{B}$.
+\end{prop}
+
+\begin{prf}
+    Once again, the proof has been left as an exercise for the reader.
+\end{prf}
+
+\begin{prop}
+    Let $f\colon\Omega\to\R$ be a function.
+    Then $\alg_f = \qty{B\subset\R : f^{-1}(B)\in\alg}$ is a $\sigma$-algebra.
+\end{prop}
+
+\begin{prf}
+    Clearly both $\emptyset$ and $\Omega$ belong to $\alg_f$.
+    Now assume that $B\in\alg_f$.
+    Then
+    \begin{align*}
+        f^{-1}(B^c) =
+        \qty{\omega : f(\omega)\in B^c}
+        &= \qty{\omega : f(\omega)\not\in B}\\
+        &= \Omega\setminus f^{-1}(B)\\
+        &= \qty(f^{-1}(B))^c.
+    \end{align*}
+    Thus, since $\alg$ is closed under complements, $B^c\in\alg_f$ as well.
+    Finally, suppose that $B_i\in\alg_f$ for $i = 1,2,\ldots$.
+    Then
+    \[
+        f^{-1}\qty(\bigcup_{i=1}^{\infty} B_i) =
+        \bigcup_{i=1}^{\infty} f^{-1}(B_i) \in
+        \alg_f.
+    \]
+    Hence $\alg_f$ is a $\sigma$-algebra.
+\end{prf}
+
+\begin{thm}
+    Let $f\colon\Omega\to\R$.
+    Then $f$ is $\alg$-measurable if and only if $f^{-1}(G)\in\alg$ for every $G\in\mbor$.
+\end{thm}
+
+\begin{prf}
+    Suppose that $f$ is $\alg$-measurable, then any interval $I\in\alg_f$.
+    Since $\mbor$ is the smallest $\sigma$-algebra containing all intervals, and since $\alg_f$ is a $\sigma$-algebra, it follows that $\mbor\subseteq\alg_f$.
+    Thus $f^{-1}(G)\in\alg$ for any $G\in\mbor$.
+    The other direction follows from the definition of a measurable function.
+\end{prf}
+
+\begin{prop}
+    $f\colon\Omega\to\R$ is $\alg$-measurable if one of the following holds for all $a\in\R$:
+    \begin{enumerate}
+        \item $\qty{f > a}\in\alg$;
+        \item $\qty{f < a}\in\alg$;
+        \item $\qty{f \geqslant a}\in\alg$;
+        \item $\qty{f \leqslant a}\in\alg$.
+    \end{enumerate}
+\end{prop}
+
+\begin{prf}
+    This follows directly from the previous two propositions, but we shall explicity prove, say, the first for clarity.
+    So assume that $\qty{f>a}\in\alg$.
+    By definition, this says that $f^{-1}\big((a,\infty)\big)\in\alg$.
+    Now $\alg_f$ is a $\sigma$-algebra, and $(a,\infty)\in\alg_f$ for all $a\in\R$.
+    Since $\mbor$ is the smallest $\sigma$-algebra containing all intervals of the form $(a,\infty)$, we must have that $\mbor\subseteq\alg_f$.
+    But this simply says that $f^{-1}(G)\in\alg$ for every $G\in\mbor$, which, by the previous theorem, is exactly what we need to say that $f$ is $\alg$-measurable.
+\end{prf}
+
+\begin{prop}
+    Let $A\subset\Omega$.
+    Then $\ind_A$ is $\alg$-measurable if and only if $A\in\alg$.
+\end{prop}
+
+\begin{prf}
+    Since $\ind_A\colon\Omega\to\qty{0,1}$, there are only four sets to consider the preimages of: $\qty{0}$, $\qty{1}$, $\qty{0,1}$, and $\emptyset$.
+    The preimages of these sets are, respectively, $\qty{A^c}$, $\qty{A}$, $\Omega$, and $\emptyset$.
+    Thus $\ind_A$ is measurable if and only if $A\in\alg$.
+\end{prf}
+
+\begin{defn}[Lebesgue measurable functions]
+    A function $f\colon\R\to\R$ which is $\mleb$-measurable is called a \emph{Lebesgue measurable function}, or simply a measurable function, if no confusion may arise.
+    Similarly, a function $f\colon\R\to\R$ which is $\mbor$-measurable is called a \emph{Borel measurable function}.
+    Note that, since $\mbor\subset\mleb$, a Borel measurable function is Lebesgue measurable.
+\end{defn}
+
+\begin{rem}
+    A function $f\colon\R\to\R$ is continuous if the preimage of every open set is also open.
+    But since $\mbor$ contains all open sets, this says (after some working) that $f^{-1}(G)\in\mbor$ for any $G\in\mbor$.
+    Hence a continuous function is Borel measurable, and thus Lebesgue measurable.
+\end{rem}
+
+\begin{prop}
+    Let $f\colon\Omega\to\R$ be $\alg$-measurable, and $h\colon\R\to\R$ be Borel measurable.
+    Then $h\circ f$ is $\alg$-measurable.
+\end{prop}
+
+\begin{prf}
+    We have that $h^{-1}(G)\in\mbor$ for any $G\in\mbor$.
+    Thus $(h\circ f)^{-1}(G)=f^{-1}(h^{-1}(G))\in\alg$, and so $h\circ f$ is $\alg$-measurable.
+\end{prf}
+
+\begin{prop}
+    Let $f,g\colon\Omega\to\R$ be $\alg$-measurable and $a\in\R$.
+    Then the following are measureable:
+    \begin{enumerate}
+        \item $af$;
+        \item $f\pm g$;
+        \item $fg$ and $f/g$ (if $g\neq0$);
+        \item $|f|$, $f\wedge g$, and $f\vee g$;
+        \item $f^+$ and $f^-$.
+    \end{enumerate}
+\end{prop}
+
+\begin{prf}
+    \begin{enumerate}
+        \item There is nothing to prove if $a=0$, so assume that $a>0$.
+        Then for any $b\in\R$ we have $\qty{af>b}=\qty{f>\frac{b}{a}}\in\alg$.
+        Similarly for $a<0$, we have $\qty{af>b}=\qty{f<\frac{b}{a}}\in\alg$.
+        \item Since $ag$ is $\alg$-measurable, in particular $-g$ is $\alg$-measurable, so it suffices to prove the case $f+g$.
+        For any $b\in\R$ we have
+        \[
+            \qty{f + g > b} =
+            \bigcup_{q\in\Q} \qty[\qty{f > q} \cap \qty{g > b - q}].
+        \]
+        Since $f$ and $g$ are both $\alg$-measurable we have $\qty{f > q}, \qty{g > b - q}\in\alg$.
+        Therefore $\qty{f > q} \cap \qty{g > b - q}\in\alg$ for all $q\in\Q$.
+        Since $\Q$ is countable, it follows that the union of this intersection over all $q\in\Q$ is also a $\alg$-measurable set, and so we are done.
+        \item Since $h(x)=x^2$ is continuous and therefore Borel measurable, by a previous proposition $f^2$ is $\alg$-measurable.
+        Then $fg = \frac{1}{4}\qty[(f + g)^2 - (f - g)^2]$ is $\alg$-measurable.
+        For $f/g$ consider the continuous (for non-zero $x$) function $h(x)=1/x$ and its composition with $g$.
+        \item Since $h(x)=|x|$ is continuous, $|f|$ is $\alg$-measurable.
+        Then $f\wedge g = \frac{1}{2}\qty[(f + g) - |f - g|]$ is $\alg$-measurable, and similarly for $f\vee g$.
+        \item Note that $f^+=f\vee0$ and $f^-=(-f)\vee0$.
+    \end{enumerate}
+\end{prf}
+
+\begin{defn}[Measurable functions with infinity]
+    A function $f\colon\Omega\to[-\infty,\infty] = [-\infty,\infty]$ is $\alg$-measurable if $\qty{f=-\infty},\qty{f=\infty}\in\alg$ and $\qty{f\in I}\in\alg$ for every $I\in\intvl$.
+\end{defn}
+
+Now we prove a very important point.
+One of the main problems with the Riemann integral was its inability to exchange the order of limit functions and integration except under certain specific conditions.
+It turns out that Lebesgue integration combats this problem much more slickly, and one of the reasons it does so is the fact that measurable functions are also very well behaved under limit operations.
+
+\begin{thm}
+    The class of $\alg$-measurable functions on a measurable space $(\Omega,\alg)$ is closed under limit operations.
+\end{thm}
+
+\begin{prf}
+    Let $\qty{f_n}$ be a sequence of $\alg$-measurable functions on $\Omega$.
+    Recall our definitions of $\limsup$ and $\liminf$, and apply them here pointwise to our sequence of functions $\qty{f_n}$.
+    That is, $(\limsup_{n\to\infty} f_n)(x) = \sup_{m\geqslant n}\qty{f_m(x)}$.
+    Now let $g_n(x)=\sup_{m\geqslant n}\qty{f_m(x)}$, so that $(g_n)$ is a pointwise increasing sequence, and $g_n\uparrow g$, where $g=\limsup_{n\to\infty} f_n$.
+    Similarly define $(h_n)$ to be the pointwise decreasing sequence where $h_n(x)=\inf_{m\geqslant n}\qty{f_m(x)}$, so that $h_n\downarrow h$, where $h\liminf_{n\to\infty} f_n$.
+
+    For any $a\in\R$ we have
+    \[
+        \qty{g_n \leqslant a} =
+        \bigcap_{m=n}^{\infty} \qty{f_m \leqslant a}
+    \]
+    which implies that $g_n$ is $\alg$-measurable (since $\sigma$-algebras are closed under complements and countable unions, and thus countable intersections).
+    Then $h_n = -\sup{m\geqslant n}\qty{-f_m(x)}$, so that $h_n$ is also $\alg$-measurable.
+
+    Finally, since $\limsup_{n\to\infty} f_n = \inf_{n\geqslant 1}\qty{g_n}$ we have that $\limsup_{n\to\infty} f_n$ is $\alg$-measurable, and thus so too is $\liminf_{n\to\infty} f_n = -\limsup_{n\to\infty} (-f_n)$.
+    So if $f=\lim_{n\to\infty} f_n$ exists then it is $\alg$-measurable.
+\end{prf}
+
+The following definition seems rather pointless now, but eventuallys make our notation quite a bit simpler when we get around to talking about integrals.
+
+\begin{defn}[Lebesgue subspaces]
+    Let $E\subset\R$ be Lebesgue measurable.
+    Then
+    \begin{align*}
+        \mleb(E)
+        &= \qty{E\cap A : A\in\mleb}\\
+        &= \qty{A\subseteq E : A\in\mleb}
+    \end{align*}
+    is a $\sigma$-algebra on $E$.
+    Also, $\mleb(E)\subseteq\mleb$, so that the restriction of the Lebesgue measure $m$, denoted by $m|_E$, or simply $m$ if the meaning is clear, if obviously a measure on $(E,\mleb(E))$, called the \emph{Lebesgue measure on $E$}.
+    The triple $(E,\mleb(E),m)$ is therefore a measure space, called a \emph{Lebesgue subspace}.
+    A function $f$ defined on $E$ which is $\mleb(E)$-measurable is said to be \emph{Lebesgue measureable on $E$}.
+\end{defn}
+
+\subsection{Further convergence of functions}
+
+Let $(\Omega,\alg)$ be a measurable space.
+Suppose that $f_n\colon\Omega\to\R$ are $\alg$-measurable.
+Recall that $\qty{f_n}$ converges (to a finite number) at $x\in\Omega$ if and only if $\qty{f_n(x)}$ is a Cauchy sequence.
+Hence both
+\[
+    \qty{f_n\to\ell\in\R}=
+    \bigcap_{k=1}^{\infty} \bigcup_{N=1}^{\infty} \bigcap_{m,n=N}^{\infty} \qty{|f_n - f_m| < \frac{1}{k}}
+    \qq{and}
+    \qty{f_n\nrightarrow\ell\in\R}=
+    \bigcup_{k=1}^{\infty} \bigcap_{N=1}^{\infty} \bigcup_{m,n=N}^{\infty} \qty{|f_n - f_m| \geqslant \frac{1}{k}}
+\]
+are measurable sets.
+
+In particular, if $f\colon\Omega\to\R$ is measurable, then both
+\[
+    \qty{f_n\to f}=
+    \bigcap_{k=1}^{\infty} \bigcup_{N=1}^{\infty} \bigcap_{n=N}^{\infty} \qty{|f_n - f| < \frac{1}{k}}
+    \qq{and}
+    \qty{f_n\nrightarrow f}=
+    \bigcup_{k=1}^{\infty} \bigcap_{N=1}^{\infty} \bigcup_{n=N}^{\infty} \qty{|f_n - f| \geqslant \frac{1}{k}}
+\]
+are measurable sets.
+
+Now let $E\subset\R$, and $f,f_n\colon E\to\R$ for $n = 1,2,\ldots$ be the Lebesgue measurable functions on $E$.
+Then $f_n\to f$ almost everywhere on $E$ (with respect to the Lebesgue measure) if and only if $m(\qty{f_n\nrightarrow f}\cap E)=0$ (by definition).
+But by the above, this is to say that, for all $\eps>0$ we have
+\[
+    m\qty(\bigcap_{N=1}^{\infty} \bigcup_{n=N}^{\infty} \qty{|f_n - f| \geqslant\eps}).
+\]
+Now assume that $m(E)<\infty$.
+Then, if we set $A_N = \cup_{n=N}^{\infty} \qty{|f_n - f| \geqslant\eps}$, we have that $A_N\in\alg$, and $A_N\downarrow$ (that is, $A_{N+1}\subset A_N$ for each $N\in\N$), so by a previous lemma, we can rewrite the above condition: $f_n\to f$ almost everywhere on $E$ if and only if, for all $\eps>0$, we have
+\[
+    \lim_{N\to\infty} m\qty(\bigcup_{n=N}^{\infty} \qty{|f_n - f| \geqslant\eps}) =
+    0.
+\]
+
+\begin{ex}
+    Let $E=(0,\infty)$ and $f_n(x) = \ind_{(0,n]}$.
+    Then $f_n\to f = \ind_{(0,\infty)}$ everywhere.
+    But now, for every $\eps\in(0,1)$ we have $\qty{|f_n - f|\geqslant\eps} = (n,\infty)$.
+    Thus $m\qty(\qty{|f_n - f| \geqslant\eps})=\infty$.
+    So we see that the previous equivalent statement of almost everywhere convergence does indeed require $m(E)<\infty$ in general (though it may be the case that $m(E)=\infty$ and it is true nonetheless).
+
+    On the other hand, we have
+    \[
+        \bigcap_{N=1}^{\infty} \bigcup_{n=N}^{\infty} \qty{|f_n -f|\geqslant\eps} =
+        \bigcap_{N=1}^{\infty} (N,\infty) =
+        \emptyset.
+    \]
+
+    This is an example of how $f_n\to f$ everywhere (and thus, clearly, almost everywhere as well), but $f_n$ does \emph{not} converge to $f$ \emph{in measure}.
+    This is something that will be expanded upon later on in the notes, when we come to $\mathcal{L}^p$ spaces.
+\end{ex}
+
+\begin{thm}[Egorov's Theorem]
+    Let $E\subset\R$ be measurable and $m(E)<\infty$.
+    Let $f_n,f\colon E\to\R$ be measurable and such that $f_n\to f$ almost everywhere on $E$.
+    Then, for every $\delta>0$ there exists a measurable $E_{\delta}\subset E$ such that $m(E\setminus E_{\delta})<\delta$ and $f_n\to f$ uniformly on $E_{\delta}$.
+\end{thm}
+
+\begin{prf}
+    We use all the previous stuff in this section to prove this.
+    Since $f_n\to f$ almost everywhere on $E$ and $m(E)<\infty$, we have that, for every $\delta>0$ and $k=1,2,\ldots$, there exists some $n_k\in\N$ such that, for $n\geqslant n_k$, we have
+    \[
+        m\qty(\bigcup_{i=n}^{\infty} \qty{|f_i - f| \geqslant \frac{1}{k}}) \leqslant
+        \frac{\delta}{2^k}.
+    \]
+    Now let
+    \[
+        E_k =
+        \bigcap_{i=n_k}^{\infty} \qty{|f_i - f| < \frac{1}{k}} =
+        \qty{|f_i - f| < \frac{1}{k} : j\geqslant n_k}
+        \qq{and}
+        E_{\delta} =
+        \bigcap_{k=1}^{\infty} E_k.
+    \]
+    Then $m(E_k^c)=\frac{\delta}{2^k}$, and
+    \[
+        m(E\setminus E_{\delta}) =
+        m\qty(\bigcup_{k=1}^{\infty} E_k^c) \leqslant
+        \sum_{k=1}^{\infty} m(E_k^c) \leqslant
+        \sum_{k=1}^{\infty} \frac{\delta}{2^k} =
+        \delta.
+    \]
+
+    We now claim that $f_n\to f$ uniformly on $E_{\delta}$.
+    In fact, we see that $x\in E_{\delta}$ if and only if $x\in E_k$ for all $k=1,2,\ldots$, and this is if and only if, for all $i\geqslant n_k$ we have $|f_i(x) - f(x)| < \frac{1}{k}$.
+    Therefore, for all $i\geqslant n_k$ we have
+    \[
+        \sup_{x\in E_{\delta}} |f_i(x) - f(x)| \leqslant \frac{1}{k}
+    \]
+    which says that $f_n\to f$ uniformly on $E_{\delta}$.
+\end{prf}
+
+\section{Lebesgue integration}
+
+Now, at long last, we reach the point in the notes that is the namesake of the course.
+First of all we define the class of simple (and, not surprisingly, measurable) functions, and then we define integrals for non-negative measurable functions using these simple functions.
+Finally we define Lebesgue integrals for measurable functions.
+
+Although we only deal with the Lebesgue space, the approach we use applies to a general measure space, so could be transferred to, say, Lebesgue-Stieltjes integrals, without too much hassle.
+
+\subsection{Non-negative simple (measurable) functions}
+
+\begin{defn}[Simple (measurable) functions]
+    Let $(\Omega,\alg)$ be a measurable space.
+    Then a function $\varphi\colon\Omega\to\R$ is \emph{simple} if $\varphi = \sum_{i=1}^k c_i \ind_{E_i}$ for some $k\in\N$, $c_i\in\R$, and $E_i\in\alg$.
+    If the $E_i$ are all disjoint then we say that $\varphi$ is in \emph{standard form}.
+
+    Clearly, but importantly, a simple function is $\alg$-measurable.
+\end{defn}
+
+\begin{lem}
+    Let $\varphi=\sum_{i=1}^k c_i \ind_{E_i}$ be a simple function, where the $E_i$ are all disjoint.
+    Then $\varphi$ is a non-negative function if and only if $c_i\geqslant0$ for all $i=1,.\ldots,k$.
+
+    The collection of all non-negative, simple functions is denoted by $\smpl^+(\Omega,\alg)$, or simply $\smpl^+$ if no confusion will arise.
+\end{lem}
+
+\begin{prf}
+    This is obvious by definition.
+\end{prf}
+
+\begin{thm}
+    Suppose that $f\colon\Omega\to[0,\infty]$ is a $\alg$-measurable function.
+    Then there exists an increasing sequence of simple function $(f_n)$ such that $f_n\uparrow f$.
+\end{thm}
+
+\begin{prf}
+    For each $n$ we define
+    \[
+        f_n =
+        \sum_{k=0}^{2^{2n}-1} \frac{k}{2^n} \ind_{E_k^{(n)}} + 2^n\ind_{A_n}
+    \]
+    where
+    \[
+        E_k^{(n)} =
+        \qty{x : \frac{k}{2^n}\leqslant f(x)\leqslant\frac{k+1}{2^n}}
+        \qq{and}
+        A_n =
+        \qty{x : f(x)\geqslant 2^n}.
+    \]
+    Now each $E_k^{(n)}$ and $A_n$ are measurable, and $0\leqslant f_n\uparrow f$.
+\end{prf}
+
+\begin{cor}
+    A function $f\colon\Omega\to[-\infty,\infty]$ is measurable if and only if there is a sequence of simple measurable functions $(f_n)$ such that $f_n\to f$.
+\end{cor}
+
+\begin{prf}
+    Note that $f=f^+-f^-$ is measurable if and only if both $f^+$ and $f^-$ are, but we see that this is indeed the case by the previous theorem.
+\end{prf}
+
+\begin{rem}
+    From now on, we work entirely with the Lebesgue space $(\R,\mleb,m)$, so when we use words such as `measurable' we mean with respect to the Lebesgue space.
+    Some results may hold more generally, but here we are only really interested in the Lebesgue case.
+    If it is ever the case that we go back to talking about more general measure space theory, it will be explicitly stated beforehand.
+\end{rem}
+
+\begin{defn}[Lebesgue integrals of indicator functions]
+    Let $E\in\mleb$ be a measurable subset of $\R$.
+    Then we define the integral of the indicator function of $E$ to be
+    \[
+        \int_{\R} \ind_E \dd{m} =
+        m(E).
+    \]
+    We write $\dd{m}$ to make clear that we are working with our Lebesgue measure $m$, but this can be omitted.
+    Note that this definition is consistent with our idea of what integration should represent.
+\end{defn}
+
+\begin{defn}[Lebesgue integrals of simple functions]
+    Let $\varphi=\sum_{i=1}^k c_i \ind_{E_i}$ be a simple measurable function, where $c_i\geqslant0$ (that is, $\varphi\in\smpl^+$).
+    Then the (Lebesgue) integral of $\varphi$ is defined by extending our notion for indicator functions linearly:
+    \[
+        \int_{\R} \varphi \dd{m} =
+        \int_{\R} \sum_{i=1}^k c_i \ind_{E_i} \dd{m} =
+        \sum_{i=1}^k \int_{\R} \ind_{E_i} \dd{m} =
+        \sum_{i=1}^k c_i m(E_i)
+    \]
+    where we use the convention $0\cdot\infty=0$.
+
+    An important point to note is that the definition of $\int_{\R}\varphi$ doesn't depend on the representation of $\varphi$, as long as $\varphi\in\smpl^+$.
+    That is, if $\varphi=\sum_{i=1}^k c_i \ind_{E_i}=\sum_{i=1}^{\ell} d_i \ind_{F_i}$ then $\sum_{i=1}^k c_i m(E_i)=\sum_{i=1}^{\ell} d_i m(F_i)$.
+    This follows from the additivity of $m$.
+
+    If $\varphi\in\smpl^+$ then $\int_{\R}\varphi<\infty$ if and only if $m(E_i)<\infty$ for $i=1,\ldots,k$.
+    If this is the case, then we say that the non-negative simple function $\varphi$ is \emph{(Lebesgue) integrable}.
+\end{defn}
+
+\begin{prop}
+    Let $\varphi,\psi\in\smpl^+$ and $\lambda\geqslant0\in\R$.
+    Then
+    \begin{enumerate}
+        \item $\int_{\R}(\varphi+\psi) = \int_{\R}\varphi + \int_{\R}\psi$;
+        \item $\int_{\R}\lambda\varphi = \lambda\int_{\R}\varphi$;
+        \item if $\varphi\leqslant\psi$ then $\int_{\R}\varphi\leqslant\int_{\R}\psi$.
+    \end{enumerate}
+\end{prop}
+
+\begin{prf}
+    We may choose measure sets $E_i$ for $i=1,\ldots,k$ that are all disjoint such that
+        \[
+            \varphi =
+            \sum_{i=1}^k c_i \ind_{E_i}
+            \qq{and}
+            \psi =
+            \sum_{i=1}^k d_i \ind_{E_i}.
+        \]
+    \begin{enumerate}
+        \item Now $\varphi+\psi=\sum_{i=1}^k (c_i + d_i)\ind_{E_i}$, so that $\int_{\R}(\varphi+\psi)=\sum_{i=1}^k (c_i + d_i)m(E_i)=\int_{\R}\varphi + \int_{\R}\psi$.
+        \item $\int_{\R}\lambda\varphi=\int_{\R}\lambda\sum_{i=1}^k c_i \ind_{E_i}=\int_{\R}\sum_{i=1}^k (\lambda c_i) \ind_{E_i}=\sum_{i=1}^k (\lambda c_i) m(E_i)=\lambda\qty(\sum_{i=1}^k c_i m(E_i))=\lambda\int_{\R}\varphi$.
+        \item If $\varphi\leqslant\psi$ then $c_i\leqslant d_i$ for all $i$, and hence $\int_{\R}\varphi=\sum_{i=1}^k c_i m(E_i)\leqslant\sum_{i=1}^k d_i m(E_i)=\int_{\R}\psi$.
+    \end{enumerate}
+\end{prf}
+
+\subsection{Non-negative measurable functions}
+
+We can now proceed to the next step in our development of the Lebesgue integral: defining integration for all non-negative measurable functions, not just simple ones.
+
+\begin{defn}[Lebesgue integrals of non-negative measurable functions]
+    Let $f\colon\R\to[0,\infty]$ be measurable.
+    Then the (Lebesgue) integral of $f$ is defined by
+    \[
+        \int_{\R} f =
+        \sup\qty{\int_{\R} \varphi : \varphi\in\smpl^+,\varphi\leqslant f}.
+    \]
+    A non-negative measurable function $f$ is then said to be \emph{(Lebesgue) integrable} if $\int_{\R}f<\infty$.
+\end{defn}
+
+\begin{prop}
+    Let $f\colon\R\to[0,\infty]$ be integrable.
+    Then $m(\qty{f=\infty})=0$.
+    That is, $f$ is finite almost everywhere.
+\end{prop}
+
+\begin{prf}
+    Let $E=\qty{f=\infty}$, which is measurable, and define $\varphi_n = n\ind_{E}$.
+    Then $\varphi_n\in\smpl^+$ are $\varphi_n\leqslant f$, so that $\int_{\R}f\geqslant\int_{\R}\varphi_n = n\cdot m(E)$.
+    Thus $m(E)\leqslant\frac{1}{n}\int_{\R} f$ for all $n\in\N$.
+    Letting $n\to\infty$ we get that $m(E)\leqslant0$.
+    Thus, since $m$ is non negative, we get that $m(E)=0$.
+\end{prf}
+
+The above definition of integrals for non-negative measurable functions applies equally well to measurable functions on a general measure space.
+In particular, it applies also to a Lebesgue subspace $(E,\mleb(E),m)$, where $E\in\mleb$, where we can define the Lebesgue integral $\int_E f$ for some function $f$ on $E$.
+That is,
+\[
+    \int_E f =
+    \sup\qty{\int_E \varphi : \varphi\in\smpl^+(E,\mleb(E)), \varphi\leqslant f}.
+\]
+Similarly to before, we say that a non-negative measurable function $f\colon E\to[0,\infty]$ is integrable over $E$ if $\int_E f<\infty$.
+
+\begin{prop}
+    Let $E\in\mleb$, and $f\colon E\to[0.\infty]$ be measurable.
+    Then $\int_E f = \int_{\R} f\ind_E$.
+\end{prop}
+
+\begin{prf}
+    This is immediate from the definition of $\int_E f$.
+\end{prf}
+
+This means that we can omit the $\R$ or $E$ from the integral sign, if no confusion may arise, and simply write $\int f$ instead.
+
+Before we go on to finish our definition of integratation, and answer the question of `which functions are integrable, and how do we define their integrals', we first linger with these non-negative measurable functions a bit more to see if we can gain any useful knowledge of how they behave.
+
+\begin{prop}
+    Let $f,g$ be non-negative measurable functions, with $f\leqslant g$, and $\lambda\geqslant0$.
+    Then
+    \begin{enumerate}
+        \item $\int\lambda f = \lambda\int f$;
+        \item $\int f\leqslant \int g$.
+    \end{enumerate}
+\end{prop}
+
+\begin{prf}
+    Both of these are immediate from the definitions, and any working follows that which we did before for non-negative simple functions.
+\end{prf}
+
+The following theorem is one of the most important results in the theory of Lebesgue integration, and the proof is not examinable (and thus omitted).
+
+\begin{thm}[Monotone Convergence Theorem]
+    Let $(f_n)$ be an increasing sequence (that is, $f_n\leqslant f_{n+1}$ for all $n\in\N$) of non-negative measurable functions.
+    Then
+    \[
+        \int \lim_{n\to\infty} f_n =
+        \lim_{n\to\infty}\int f_n.
+    \]
+\end{thm}
+
+\begin{prf}
+    As mentioned, the proof is not examinable.
+\end{prf}
+
+Now we can obtain quite a few useful consequences from the MCT.
+
+\begin{cor}
+    Let $f$ be a non-negative measurable function.
+    Then there exists a sequence $(\varphi_n)$ with $\varphi_n\in\smpl^+$ such that $\varphi_n\uparrow f$ and $\int f = \lim_{n\to\infty}\int \varphi_n$.
+\end{cor}
+
+\begin{prf}
+    This follows directly from the MCT and a previous theorem.
+\end{prf}
+
+\begin{cor}
+    Let $f,g$ be non-negative functions.
+    Then $\int (f+g) = \int f + \int g$.
+\end{cor}
+
+\begin{prf}
+    Choose $\varphi_n,\psi_n\in\smpl^+$ such that $\varphi_n\uparrow f$ and $\psi_n\uparrow g$.
+    Then $\varphi_n+\psi_n\uparrow f+g$.
+    Thus
+    \begin{align*}
+        \int (f + g) =
+        \lim_{n\to\infty} \int (\varphi_n + \psi_n)
+        &= \lim_{n\to\infty} \qty(\int \varphi_n + \int \psi_n)\\
+        &= \lim_{n\to\infty} \int \varphi_n + \lim_{n\to\infty} \int \psi_n\\
+        &= \int f+ \int g.
+    \end{align*}
+\end{prf}
+
+\begin{thm}[MCT for series of non-negative measurable functions]
+    Let $(f_n)$ be a sequence of non-negative measurable functions.
+    Then
+    \[
+        \int \sum_{n=1}^{\infty} f_n =
+        \sum_{n=1}^{\infty} \int f_n.
+    \]
+    Therefore $f$ is integrable if and only if $\sum_{n=1}^{\infty} \int f_n < \infty$.
+\end{thm}
+
+\begin{prf}
+    Apply the MCT to the sequence of partial sums $(S_n)$, where $S_n = \sum_{i=1}^n f_i$, to get that
+    \[
+        \int \sum_{n=1}^{\infty} f_n =
+        \lim_{n=1}^{\infty} \int \sum_{i=1}^n f_i =
+        \lim_{n=1}^{\infty} \sum_{i=1}^n \int f_i =
+        \sum_{i=1}^{\infty} \int f_i.
+    \]
+\end{prf}
+
+\begin{thm}
+    Let $E_n\in\mleb$ be disjoint measurable sets for $n=1,2,\ldots$ and $f\colon E\to[0,\infty]$ be measurable.
+    Then
+    \[
+        \int_{\bigcup\limits_{n=1}^{\infty} E_n} f =
+        \sum_{n=1}^{\infty} \int_{E_n} f.
+    \]
+\end{thm}
+
+\begin{prf}
+    Let $f_n=\sum_{i=1}^{\infty} f\ind_{E_i}$ and $E=\cup_{n=1}^{\infty} E_n$.
+    Then each $f_n$ is measurable, and $f_n\uparrow f$ on $E$.
+    Therefore, by the MCT,
+    \begin{align*}
+        \int_E f =
+        \lim_{n\to\infty} \int_E f_n
+        &= \lim_{n\to\infty} \int_E \sum_{i=1}^n f\ind_{E_i}\\
+        &= \lim_{n\to\infty} \sum_{i=1}^n \int_E f\ind_{E_i}
+        = \lim_{n\to\infty} \sum_{i=1}^n \int_{E_i} f
+        = \sum_{i=1}^{\infty} \int_{E_i} f.
+    \end{align*}
+\end{prf}
+
+\begin{cor}
+    Let $h\colon\R\to[0,\infty]$ be Lebesgue measurable.
+    Define $\mu(E)=\int_E h$ for any $E\in\mleb$.
+    Then $\mu$ is a measure on $(\R,\mleb)$.
+    We denote $\dd{\mu}$ by $h\dd{m}$, where $h$ is called the \emph{density of the measure $\mu$ with respect to the Lebesgue measure}.
+
+    Now let $f\colon\R\to[0,\infty]$ be Lebesgue measurable.
+    Then
+    \[
+        \int f \dd{\mu} =
+        \int fh \dd{m}.
+    \]
+\end{cor}
+
+\begin{prf}
+    First we prove this statement for simple functions.
+    Let $\varphi\in\smpl^+$.
+    Then $\varphi=\sum_{i=1}^k c_i\ind_{E_i}$ for some $c_i\geqslant0$ and disjoint $E_i$.
+    Now, by definition,
+    \begin{align*}
+        \int \varphi \dd{\mu}
+        &= \sum_{i=1}^k c_i\mu(E_i)
+        = \sum_{i=1}^k c_i \int_{E_i} h \dd{m}\\
+        &= \sum_{i=1}^k c_i \int \ind_{E_i} h \dd{m}
+        = \int \sum_{i=1}^k c_i\ind_{E_i} h \dd{m}
+        = \int fh \dd{m}.
+    \end{align*}
+
+    Since $f$ is Lebesgue measurable, there exists a sequence $(\varphi_n)$ of non-negative simple functions such that $\varphi_n\uparrow f$.
+    In particular then, $(\varphi_n)$ is an increasing sequence of non-negative functions.
+
+    Now each $\varphi_n$ is Lebesgue measurable, and since $\mu$ is also a measure on $\mleb$, each $\varphi_n$ is also $\mu$ measurable.
+    Thus, by the MCT on the measure space $(\R,\mleb,\mu)$, we have that
+    \[
+        \int f \dd{\mu} =
+        \int \lim_{n\to\infty} \varphi_n \dd{\mu} =
+        \lim_{n\to\infty} \int \varphi_n \dd{\mu}.
+    \]
+
+    Since $\varphi_n\in\smpl^+$, and we have proven the statement for simple functions, we know that
+    \[
+        \lim_{n\to\infty} \int \varphi_n \dd{\mu} =
+        \lim_{n\to\infty} \int \varphi_n h \dd{m}.
+    \]
+    Then by the MCT, since the product $\varphi_n h$ is measurable, increasing, and non negative, we have that
+    \[
+        \lim_{n\to\infty} \int \varphi_n h \dd{m} =
+        \int \lim_{n\to\infty} \varphi_n h \dd{m} =
+        \int f h \dd{m}.
+    \]
+\end{prf}
+
+\begin{thm}[Fatou's Lemma]
+    Let $E\in\mleb$ and $(f_n)$ be a sequence of measurable functions, where $f_n\colon E\to[0,\infty]$.
+    Then
+    \[
+        \int_E \liminf_{n\to\infty} f_n \leqslant
+        \liminf_{n\to\infty} \int_E f_n.
+    \]
+\end{thm}
+
+\begin{prf}
+    \emph{This proof is also not examinable, but is included for completeness' sake.}
+
+    Let $g_n(x)=\inf_{i\geqslant n} f_i(x)$, so that $g_n\leqslant f_i$ for all $i\geqslant n$, and $g_n\uparrow \liminf_{n\to\infty} f_n$.
+    Now applying the MCT to $(g_n)$ we have that $\int\liminf_{n\to\infty} f_n = \lim_{n\to\infty} \int g_n$.
+    Also, since $\int g_n\leqslant \int f_i$ for all $i\geqslant n$, in particular $\int g_n\leqslant \inf_{i\geqslant n} \int f_i$.
+    Thus
+    \[
+        \int \liminf_{n\to\infty} f_n =
+        \lim_{n\to\infty} \int g_n \leqslant
+        \lim_{n\to\infty} \inf_{i\geqslant n} \int f_i =
+        \liminf_{n\to\infty} \int f_n.
+    \]
+\end{prf}
+
+\subsection{Integrable functions}
+
+We can now give a definition of integrals for all measurable functions, not just non negative ones.
+
+\begin{defn}[Lebesgue integrals of measurable functions]
+    Let $f\colon E\to[-\infty,\infty]$ be a measurable function.
+    Then its positive part $f^+$ and negative part $f^-$ are both measurable.
+    Thus $\int f^+$ and $\int f^-$ are both well defined.
+    If both $\int f^+<\infty$ and $\int f^-<\infty$ then we say that $f$ is (Lebesgue) integrable on $E$, and define its integral:
+    \[
+        \int_E f =
+        \int_E f^+ - \int_E f^-.
+    \]
+
+    If $f$ is Lebesgue integrable on $E$ then we say that $f\in \lp(E)$.
+    From the definition we see that, if $f\colon E\to[-\infty,\infty]$ is measurable, then $f\in \mathcal{L}^1(E)$ if and only if $\int_E |f|<\infty$.
+    Then $m(\qty{|f|=\infty})=0$, by a previous proposition.
+\end{defn}
+
+There are some important properties of this definition that we now take some time to examine.
+
+\begin{enumerate}
+    \item Let $N\subset\R$ be a null set.
+    Then any function $f$ on $N$ is measurable, and $\int_N f=0$, for any such $f$.
+    \item Let $E\in\mleb$ and $f,g\colon E\to[-\infty,\infty]$ be two functions.
+    Now let $f$ be measurable, and $g$ be such that $f=g$ almost everywhere on $E$.
+    That is, $N=\qty{f\neq g}$ is a null set.
+    Then $g$ is measurable too, and both $N$ and $E\setminus N$ are measurable.
+    Thus
+    \[
+        \int_E g^+ =
+        \int_{E\setminus N} g^+ + \int_N g^+ =
+        \int_{E\setminus N} g^+ =
+        \int_{E\setminus N} f^+ =
+        \int_E f^+,
+    \]
+    and similarly $\int_E g^- = \int_E f^-$.
+    Therefore $f\in \mathcal{L}^1(E)$ if and only if $g\in \mathcal{L}^1(E)$, and if so then $\int_E f = \int_E g$.
+
+    This means that the definition of Lebesgue integrals on a measurable set $E$ applies to measurable functions defined only almost everywhere on $E$.
+    \item Let $E,F\in\mleb$ with $F\subset E$ and $E\setminus F$ a null set.
+    Let $f\colon E\to[-\infty,\infty]$ be measurable.
+    Then
+    \[
+        \int_E f =
+        \int_F f + \int_{E\setminus F} f =
+        \int_F f.
+    \]
+
+    In particular, if $a<b$ then
+    \[
+        \int_{(a,b)} f =
+        \int_{(a,b]} f =
+        \int_{[a,b)} f =
+        \int_{[a,b]} f.
+    \]
+    So we can use $\int_a^b f(x)\dd{x}$ to denote the Lebesgue integral of $f$ on an interval with ends $a<b$.
+
+    \emph{Note, however, that this last point is actually a lot deeper than it sounds, since we're saying that the Lebesgue integral in this case is actually equal to the Riemann integral.
+    A proper proof of this will come later in the notes.}
+\end{enumerate}
+
+\begin{thm}
+    Let $E\in\mleb$.
+    Then $\mathcal{L}^1(E)$ is a linear space, and the integral operation $\int_E\colon f\mapsto \int_E f$ is linear.
+\end{thm}
+
+\begin{prf}
+    This follows from the definition and a previous corollary about addition of non-negative measurable functions.
+
+    Take $f,g\in \mathcal{L}^1(E)$.
+    Then $\int_E f^+,\int_E f^- < \infty$.
+    Also, $(f+g)^+\leqslant f^+ + g^+$, and similarly $(f+g)^-\leqslant f^- + g^-$.
+    Thus $\int_E(f+g)^+,\int_E(f+g)^- < \infty$, so that $f+g\in \mathcal{L}^1(E)$.
+
+    Moreover, $(f+g)^+ - (f+g)^- = f^+ - f^- + g^+ - g^-$.
+    Rearranging gives
+    \[
+        (f+g)^+ - f^+ - g^+ =
+        (f+g)^-  - f^- - g^-,
+    \]
+    and integrating this yields
+    \[
+        \int_E (f+g)^+ - \int_E f^+ - \int_E g^+ =
+        \int_E (f+g)^-  - \int_E f^- - \int_E g^-.
+    \]
+    Thus
+    \[
+        \int_E (f+g) =
+        \int_E f + \int_E g.
+    \]
+\end{prf}
+
+Next we state and prove a very simple comparison proposition for integrability, which turns out to be very useful in showing that various functions are integrable.
+However, much of this will be superseded by a later theorem stating the conditions under which Riemann and Lebesgue integrals are equivalent, but this is still an immeasurably useful proposition at times.
+
+\begin{prop}
+    \begin{enumerate}
+        \item Let $E\in\mleb$, and $f,g\colon E\to[-\infty,\infty]$ be measurable with $g\in \mathcal{L}^1(E)$ and $|f|\leqslant g$ almost everywhere on $E$.
+        Then $f\in \mathcal{L}^1(E)$ and $\int_E |f| \leqslant \int_E g$.
+        \item Let $E\in\mleb$ be such that $m(E)<\infty$, and $f\colon E\to\R$ be measurable and bounded.
+        Then $f\in \mathcal{L}^1(E)$.
+    \end{enumerate}
+\end{prop}
+
+\begin{prf}
+    \begin{enumerate}
+        \item This is immediate by definition, since both $f^+$ and $f^-$ are dominated by $g$ under the assumptions.
+        \item Let $\varphi\in\smpl^+$ with $\varphi\leqslant|f|$.
+        Then in particular $\varphi\leqslant\sup|f|<\infty$.
+        Thus
+        \[
+            \int_E \varphi \leqslant
+            \int_E \sup |f|\ind_E =
+            \sup |f| m(E).
+        \]
+        Hence
+        \[
+            \int_E |f| =
+            \sup_{\substack{\varphi\leqslant|f|\\\varphi\in\smpl^+}} \int_E \varphi \leqslant
+            \sup |f| m(E) <
+            \infty.
+        \]
+        Thus $f\in \mathcal{L}^1(E)$.
+    \end{enumerate}
+\end{prf}
+
+\begin{prop}
+    Let $E\in\mleb$ and $f,g\in \mathcal{L}^1(E)$ with $\int_E |f-g| =0$.
+    Then $f=g$ almost everywhere on $E$.
+\end{prop}
+
+\begin{prf}
+    Let $E_n = \qty{|f-g| \geqslant \frac{1}{n}}$.
+    Since $\frac{1}{n}\ind_{E_n}\in\smpl^+(E_n)$ and $\frac{1}{n}\ind_{E_n}\leqslant|f-g|$ on $E_n$, by definition we have that
+    \[
+        \int_{E_n} \frac{1}{n} \leqslant
+        \int_{E_n} |f-g| \leqslant
+        \int_E |f-g| =
+        0.
+    \]
+    Thus $E_n$ is null for $n=1,2,\ldots$, and so the countable union $\cup_{n\in\N} E_n = \qty{|f-g|>0}$ is also null.
+\end{prf}
+
+We now state another derivative of the MCT.
+
+\begin{thm}[MCT for sequences of integrable functions]
+    Let $E\in\mleb$ and $(f_n)$ be a sequence of functions with $f_n\in \mathcal{L}^1(E)$ such that $f_n\uparrow f$ almost everywhere on $E$.
+    (That is, there exists a null set $N\subset E$ such that $f_n\leqslant f_{n+1}$ on $E\setminus N$, and we define $f=\lim_{n\to\infty} f_n$ on $E\setminus N$.)
+    Also let the sequence $(\int_E f_n)$ be bounded above.
+    Then $f\in \mathcal{L}^1(E)$ and $\int_E f = \lim_{n\to\infty}\int_E f_n$.
+\end{thm}
+
+\begin{prf}
+    Apply the MCT to $f_n-f_1$ (which is definitely non negative) to obtain
+    \[
+        \int_E (f-f_1) =
+        \lim_{n\to\infty} \int_E (f_n-f_1) =
+        \lim_{n\to\infty} \int_E f_n - \int_E f_1,
+    \]
+    which is finite, and thus $f-f_1\in \mathcal{L}^1(E)$.
+    Hence $f\in \mathcal{L}^1(E)$ and $\int_E f = \lim_{n\to\infty} \int_E f_n$.
+\end{prf}
+
+At long last we describe explicitly the link between Riemann integrals and Lebesgue integrals.
+This turns out to be extremely useful, since after this we can use everything we know about Riemann integration, as well as all the theory that we have built up about Lebesgue integration.
+
+\begin{rem}
+    Generally, in both these notes and texts elsewhere, $\int_{[a,b]} f$ is the Lebesgue integral of $f$ (if it exists), whereas $\int_a^b f(x)\dd{x}$ is the Riemann integral of $f$ (if it exists).
+    The fact that we previously said that we could write $\int_a^b f$ for a Lebesgue integral over any interval with end points $a<b$ really relies on this theorem.
+
+    But, however, and this is an important but, this is all purely notational convention.
+    If there is ever any risk of confusion it is most likely that it will be explicitly stated that such and such integral is to be understood `in the sense of Lebesgue', say.
+\end{rem}
+
+\begin{thm}
+    Let $f\colon[a,b]\to\R$ be Riemann integrable.
+    Then $f$ is measurable.
+    Further, the Lebesgue integral $\int_{[a,b]} f$ coincides with the Riemann integral of $\int_a^b f(x)\dd{x}$.
+\end{thm}
+
+\begin{prf}
+    \emph{(Since $f$ is Riemann integrable on $[a,b]$ we can quote any results about Riemann integrable functions from the Prelims integration module.
+    The main two results are stated in the introduction to these notes, and we use them here without proof.
+    Further, we use notation from the Prelims module as well, but most of this is stated again in the introduction.)}
+
+    Since $f$ is Riemann integrable on $[a,b]$ it is also bounded and uniformly continuous on this interval, and in particular thus measurable.
+    Also, since it is Riemann integrable, for every $n\in\N$ there exist step functions (which are a specific example of simple measurable functions) $\varphi_n$ and $\psi_n$ such that
+    \begin{enumerate}
+        \item $\varphi_n\leqslant f\ind_{(a,b)}\leqslant\psi_n$;
+        \item $\int\varphi_n\leqslant\int_a^b f(x)\dd{x}\leqslant \int\psi_n$;
+        \item $\int\psi_n-\int\varphi_n<\frac{1}{n}$.
+    \end{enumerate}
+    (Note that we use the notation $\int\varphi$ instead of $I(\varphi)$, since for simple measurable functions the two are interchangable, but in both cases we use the definition for simple measurable functions, not for step functions.)
+
+    Clearly we can choose $\varphi_n\uparrow$ and $\psi_n\downarrow$.
+    Let $g=\lim_{n\to\infty}\varphi_n$ and $h=\lim_{n\to\infty}\psi_n$.
+    Then both $g$ and $h$ are measurable, and
+    \[
+        \int(\varphi_n - \varphi_1) =
+        \int\varphi_n - \int\varphi_1 \leqslant
+        \int_a^b f(x)\dd{x} - \int\varphi_1.
+    \]
+    Thus, thanks to the MCT, $g-\varphi_1\in \mathcal{L}^1([a,b])$, and therefore $g\in \mathcal{L}^1([a,b])$.
+    Similarly we can show that $h\in \mathcal{L}^1([a,b])$.
+
+    Now since $I(\psi_n)-I(\varphi_n)<\frac{1}{n}$, by the MCT again we have that
+    \[
+        \int\lim_{n\to\infty}\psi_n - \int\lim_{n\to\infty}\varphi_n \leqslant
+        \lim_{n\to\infty}\frac{1}{n} =
+        0,
+    \]
+    so that $\int_{[a,b]}g=\int_{[a,b]}h$.
+    Also since $\int\varphi_n\leqslant\int_a^b f(x)\dd{x}\leqslant \int\psi_n$ for all $n\in\N$ we have that
+    \[
+        \int_{[a,b]}g=\int_{[a,b]}h=\int_a^b f(x)\dd{x}.
+    \]
+
+    Finally, $h-g\geqslant0$ and $\int_{[a,b]}(h-g)=0$, we have that $h=g$ almost surely on $[a,b]$.
+    However, $g\leqslant f\leqslant h$, so that $f=g=h$ almost surely, and thus their Lebesgue integrals over $[a,b]$ will be the equivalent.
+    Hence $f$ is Lebesgue integrable on $[a,b]$, and
+    \[
+        \int_{[a,b]} f =
+        \int_{[a,b]} h =
+        \int_{[a,b]} g =
+        \int_a^b f(x) \dd{x}.
+    \]
+\end{prf}
+
+\begin{thm}[Dominated Convergence Theorem]
+    Let $E\in\mleb$ and $(f_n)$ be a sequence of measurable functions on $E$.
+    Let $f=\lim_{n\to\infty}f_n$ almost surely on $E$.
+    If there exists a $g\in \mathcal{L}^1(E)$ such that $|f_n|\leqslant g$ almost everywhere on $E$, then
+    \begin{enumerate}
+        \item $f$ and $f_n$ are integrable, for all $n\in\N$;
+        \item $\int_E f = \lim_{n\to\infty}\int_E f_n$.
+    \end{enumerate}
+\end{thm}
+
+\begin{prf}
+    Since $f$ is measurable and $|f|\leqslant g$ almost surely, by comparison all $f_n$ and $f$ are integrable on $E$.
+    We then apply Fatou's Lemma to $g-f_n$ to obtain
+    \[
+        \int_E (g-f) =
+        \int_E \lim_{n\to\infty} (g-f_n) \leqslant
+        \limsup \int_E (g-f_n) =
+        \int_E g - \limsup \int_E f_n.
+    \]
+    Thus $\limsup\int_E f_n\leqslant \int_E f$.
+    Similarly, by applying Fatou's Lemma to $g+f_n$ we get that $\int_E f\leqslant\liminf\int_E f_n$.
+    That is,
+    \[
+        \limsup\int_E f_n \leqslant
+        \int_E f \leqslant
+        \liminf\int_E f_n,
+    \]
+    and since $\liminf\int_E f_n\leqslant\limsup\int_E f_n$, we must have that
+    \[
+        \limsup\int_E f_n =
+        \int_E f =
+        \liminf\int_E f_n.
+    \]
+    So $\lim_{n\to\infty}\int_E f_n$ exists, and equals $\int_E f$.
+\end{prf}
+
+\begin{cor}[Bounded Convergence Theorem]
+    Let $E\in\mleb$ be such that $m(E)<\infty$, and $(f_n)$ be a sequence of measurable functions with $f_n\to f$ almost everywhere on $E$ such that $|f_n|\leqslant K$ for all $n\in\N$ almost everywhere on $E$, where $K$ is a constant.
+    Then $f_n$ and $f$ are integrable on $E$, and
+    \[
+        \int_E f =
+        \lim_{n\to\infty} \int_E f_n.
+    \]
+\end{cor}
+
+\begin{prf}
+    Apply the DCT with $g=K$.
+\end{prf}
+
+\begin{rem}
+    So in summary, we have proved in this chapter the following convergence theorems (all of which are used extremely often, and therefore necessary to remember):
+    \begin{enumerate}
+        \item Fatou's Lemma;
+        \item \begin{enumerate}
+            \item MCT (for sequences of non-negative measurable functions);
+            \item MCT for series of non-negative measurable functions;
+            \item MCT for sequences of integrable functions;
+        \end{enumerate}
+        \item DCT.
+    \end{enumerate}
+\end{rem}
+
+\subsection{Integrals depending on parameters}
+
+Suppoes we have some function $f_\lambda$, defined for some values of $\lambda$, say $\lambda\in G$, on some measurable set $E$.
+That is, we think of a function of two variables, $f(\lambda,x)$, as instead a collection of functions of a single variable, $\qty{f_\lambda(x) : \lambda\in G}$.
+Then we can define a function $F\colon G\to\R$ by setting $F(\lambda)=\int_E f_\lambda$ (which seems arbitrary, but actually turns out to have at least some uses).
+This leads us to seek sufficient conditions to ensure that such an $F$ is continuous on $G$.
+
+\begin{thm}
+    Let $E\in\mleb$ and $J\in\intvl$.
+    Let $f_\lambda\colon E\to[-\infty,\infty]$ be measurable for each $\lambda\in J$, and be such that $f_\lambda\to f_{\lambda_0}$ as $\lambda\to \lambda_0$ almost everywhere on $E$ for any $\lambda_0\in J$.
+    If there exists a $g\in \mathcal{L}^1(E)$ such that $|f_\lambda|\leqslant g$ almost everywhere on $E$ for every $t\in J$ (that is, one $g$ `works' for all $\lambda$), then $f_\lambda\in \mathcal{L}^1(E)$ and $F(\lambda)=\int_E f_\lambda$ is continuous on $J$.
+\end{thm}
+
+\begin{prf}
+    Since $f_\lambda$ is bounded by $g\in \mathcal{L}^1(E)$, we have that $f_\lambda\in \mathcal{L}^1(E)$ for every $\lambda\in J$, and so $F(t)=\int_E f_\lambda$ is a well-defined real function on $J$.
+
+    To see the continuity at $\lambda_0\in J$, consider any sequence $(\lambda_n)\subset J$ such that $\lambda_n\to\lambda_0$.
+    Then apply the DCT to $f_{\lambda_n}$ to see that
+    \[
+        F(\lambda_n) =
+        \int_E f_{\lambda_n} \overset{\lambda_n\to\lambda_0}{\longrightarrow}
+        \int_E f_{\lambda_0} =
+        F(\lambda_0).
+    \]
+\end{prf}
+
+We can now use the above theorem to prove the following result (which can be used to solve integrals by `differentiating under the integral').
+
+\begin{thm}
+    Let $E\in\mleb$ and $J\in\intvl$, and $f_\lambda\colon E\to\R$ be measurable for each $\lambda\in J$, and also $f_\lambda\in \mathcal{L}^1(E)$ for each $\lambda\in J$.
+    Define $F(\lambda)=\int_E f_\lambda$ for $\lambda\in J$.
+    Further, let the following conditions be satisfied:
+    \begin{enumerate}
+        \item for every $x\in E$ the partial derivative
+        \[
+            \pdv{\lambda} f_\lambda(x) =
+            \lim_{\substack{h\to0\\\lambda+h\in J}} \frac{f_{\lambda+h}(x) - f_\lambda(x)}{h}
+        \]
+        exists for every $\lambda\in J$;
+        \item there exists some $g\in \mathcal{L}^1(E)$ such that
+        \[
+            \abs{\pdv{\lambda} f_\lambda} \leqslant
+            g
+        \]
+        almost everywhere on $E$ for all $\lambda\in J$ (that is, one $g$ `works' for all $\lambda$).
+    \end{enumerate}
+    Then $F$ is differentiable on $J$, and $F'(\lambda)=\int_E \pdv{\lambda} f_\lambda$.
+    Or, more explicitly,
+    \[
+        \dv{\lambda} \int_E f_\lambda =
+        \int_E \pdv{\lambda} f_\lambda.
+    \]
+\end{thm}
+
+\begin{prf}
+    Let $\lambda\in J$.
+    We may assume that there exists $\eps>0$ such that $[\lambda,\lambda+\eps)\subset J$ (and if not, we can similarly consider the case that $(\lambda-\eps,\lambda]\subset J$).
+    Consider
+    \[
+        g_h(x) =
+        \frac{f_{\lambda+h}(x) - f_\lambda(x)}{h}
+    \]
+    for $x\in E$ and $h\in(0,\eps)$.
+
+    By the Mean Value Theorem, there exists $\lambda_0\in[\lambda,\lambda+\eps)$ such that $\pdv{\lambda}f_{\lambda_0}(x)=g_h(x)$.
+    Thus $|g_h|\leqslant g$ almost surely on $E$ for all $h\in(0,\eps)$.
+
+    Applying the DCT to $g_{h_n}$, where $(h_n)\subset(0,\eps)$ such that $h_n\to0$, we obtain
+    \[
+        \frac{F(\lambda+h_n) - F(\lambda)}{h_n} =
+        \int_E g_{h_n} \to
+        \int_E \pdv{\lambda} f_\lambda.
+    \]
+    Thus $F'$ exists, and $F'(\lambda)=\int_E\pdv{\lambda}f_\lambda$.
+\end{prf}
+
+\begin{ex}[The Gamma function]
+    Consider the Gamma function, defined as
+    \[
+        \Gamma(\alpha) =
+        \int_0^{\infty} x^{\alpha-1} e^{-x} \dd{x}.
+    \]
+    Our aim is to show that $\Gamma$ is continuous on $(0,\infty)$.
+
+    Let $\alpha_0>0$, and $f_\alpha(x)=x^{\alpha-1}e^{-x}$.
+    Choose $J=(a,b)$ such that $0<a<\alpha_0<b$.
+    Define
+    \[
+        g(x) =
+        x^{a-1}\ind_{(0,1]} + x^{b-1}e^{-x}\ind_{(1,\infty)}.
+    \]
+    Then $g\in \mathcal{L}^1\big((0,\infty)\big)$ and $|f_\alpha|\leqslant g$ for all $x\in(0,\infty)$ and $\alpha\in(a,b)$.
+    By the previous theorem then, $\Gamma(\alpha)$ is continuous at $\alpha_0$.
+    Since $\alpha_0$ was arbitrary, $\Gamma$ is continuous on $(0,\infty)$.
+\end{ex}
+
+\section{Fubini and Tonelli}
+
+We may construct the Lebesgue measure on $\R^n$ in a similar way to the case where $n=1$, and then proceed with our theory of integration on $\R^n$, just as before.
+We now consider the specific case $\R^2$, and briefly bring ourselves up to speed in this new space, to the same point that we were with $\R$.
+
+\subsection{A speedy outline of Lebesgue theory on \texorpdfstring{$\R^2$}{R2}}
+
+We consider $\R^2$ as $\R\times\R$.
+Let $A,B\in\mleb$, then $A\times B\subset\R^2$ is called a \emph{measurable rectangle type set}, and its measure is naturally defined to be $\mu(A\times B)=m(A)m(B)$, where we again use the convention that $0\cdot\infty=\infty\cdot0=0$.
+The collection of all subsets $E\subset\R^2$ of the form $E=\cup_{i=1}^k A_i\times B_i$, where $A_i,B_i\in\mleb$, is denoted by $\mathcal{R}$.
+For $E\in\mathcal{R}$ with the above representation, but where the $A_i\times B_i$ are all disjoint, we then define $m(E)=\sum_{i=1}^k m(A_i)m(B_i)$.
+This definition is independent of the choice of representation, as one would hope.
+
+Back to our goal of constructing the Lebesgue measure $m$ on $\R^2$, we proceed as we did for $\R$: define the outer measure on $\R^2$ by
+\[
+    m^*(G) =
+    \inf\qty{\sum_{i=1}^{\infty} m(A_i)m(B_i) : A_i,B_i\in\mleb, G\subseteq\bigcup_{i=1}^{\infty} A_i\times B_i}
+\]
+for any subset $G\subseteq\R^2$.
+
+We have the following properties of $m^*$ on $\R^2$ which are completely similar to those of the outer measure on the real line:
+\begin{enumerate}
+    \item $m^*(G)\geqslant0$;
+    \item $m^*(E)=m(E)$ for $E\in\mathcal{R}$;
+    \item $m^*(G)\leqslant m^*(Q)$ for $G\subset Q$;
+    \item (countable subadditivity:) $m^*(\cup_{i=1}^{\infty} G_i)\leqslant\sum_{i=1}^{\infty}m^*(G_i)$.
+\end{enumerate}
+
+We say that a subset $E\subset\R^2$ is Lebesgue measurable if $m^*(F)=m^*(F\cap E)+m^*(F\cap E^c)$ for any $F\subset\R^2$.
+Then the collection of all Lebesgue measurable subsets of $\R^2$ is a $\sigma$-algebra, denoted again by $\mleb$, and $m^*$ is a measure on the measurable space $(\R^2,\mleb)$, which is denoted by $m$.
+As expected, $\mathcal{R}\subset\mleb$.
+
+If $E\subset\mleb$, then $\mleb(E)=\qty{E\cap F : F\in\mleb}$ is a $\sigma$-algebra on $E$ and $\mleb(E)\subset\mleb$.
+Thus the restriction of the Lebesgue measure $m$ on $\mleb(E)$ is a measure on $(E,\mleb(E))$.
+
+Lebesgue's theory of integration is applicable to the measure spaces $(\R^2,\mleb,m)$ and $(E,\mleb(E),m)$ for $E\in\mleb$.
+
+The integral of a non-negative measurable function or integrable function $f$ on $E\in\mleb$ is denoted by $\int_E f(x,y)\dd{x}\dd{y}$ or simply $\int_E f$, and is called the \emph{double (Lebesgue) integral}.
+
+Let $E\subset\R^2$ be bounded and closed, and $f\colon E\to\R$ continuous.
+Then the double Riemann integral $\iint_E f(x,y)\dd{x}\dd{y}$ exists.
+In this case, $f\in \mathcal{L}^1(E)$ and the Lebesgue integral $\int_E f$ coincides with the Riemann double integral.
+
+\subsection{Fubini's Theorem and Tonelli's Theorem}
+
+\begin{lem}
+    Let $\varphi$ be a non-negative simple function on $\R^2$:
+    \[
+        \varphi =
+        \sum_{i=1}^k c_i\ind_{A_i\times B_i},
+    \]
+    where $A_i,B_i\in\mleb$ and $c_i\geqslant0$.
+    Then
+    \begin{enumerate}
+        \item $\varphi_y\in\smpl^+$ for all $y\in\R$, where $\varphi_y(x)=\varphi(x,y)$, and $F\in\smpl^+$ as well, where $F(y)=\int_\R\varphi_y$;
+        \item $\int_\R F = \int_{\R^2}\varphi$.
+        That is,
+        \[
+            \int_\R \qty(\int_\R \varphi(x,y) \dd{x}) \dd{y} =
+            \int_\R \qty(\int_\R \varphi(x,y) \dd{y}) \dd{x} =
+            \int_{\R^2} \varphi(x,y) \dd{x} \dd{y}.
+        \]
+    \end{enumerate}
+\end{lem}
+
+\begin{prf}
+    According to the definition of the Lebesgue measure on $\R^2$ we have
+    \[
+        \int_{\R^2} \varphi(x,y) \dd{x} \dd{y} =
+        \sum_{i=1}^k c_i m(A_i\times B_i) =
+        \sum_{i=1}^k c_i m(A_i)m(B_i).
+    \]
+    On the other hand, for each $y$, we have $\varphi_y=\varphi(\cdot,y)=\sum_{i=1}^k c_i\ind_{B_i}(y)\ind_{A_i}$, which is a non-negative measurable simple function on $\R$.
+    Then
+    \begin{align*}
+        F(y) =
+        \int_\R \varphi_y
+        &= \int_\R \varphi(x,y) \dd{x}\\
+        &= \sum_{i=1}^k c_i \ind_{B_i}(y) m(A_i)\\
+        &= \sum_{i=1}^k c_i m(A_i) \ind_{B_i}(y),
+    \end{align*}
+    which is a non-negative simple function on $\R$, and we can calculate its integral:
+    \begin{align*}
+        \int_\R F =
+        \int_\R \qty(\int_\R \varphi(x,y) \dd{x}) \dd{y}
+        &= \sum_{i=1}^k c_i m(A_i) m(B_i)\\
+        &= \int_{\R^2} \varphi(x,y) \dd{x} \dd{y}.
+    \end{align*}
+\end{prf}
+
+\begin{prop}
+    Let $f\colon\R^2\to[0,\infty)$ be measurable.
+    Then
+    \begin{enumerate}
+        \item $x\mapsto f(x,y)$ is measurable for almost all $y\in\R$;
+        \item $y\mapsto \int_\R f(x,y) \dd{x}$ (defined for almost all $y\in\R$) is non-negative and measurable;
+        \item \[
+            \int_{\R^2} f(x,y) \dd{x} \dd{y} =
+            \int_\R \qty(\int_\R f(x,y) \dd{x}) \dd{y} =
+            \int_\R \qty(\int_\R f(x,y) \dd{y}) \dd{x}.
+        \]
+    \end{enumerate}
+\end{prop}
+
+\begin{prf}
+    The proof is a careful application of the DCT, together with the definition of the outer measure, but the details are omitted (and therefore probably, or at least hopefully, not examinable).
+\end{prf}
+
+\begin{thm}[Fubini's Theorem]
+    Let $A,B\in\mleb$, so $A\times B\in\mleb(\R^2)$, and $f\in L^2(A\times B)$.
+    Then
+    \begin{enumerate}
+        \item $f_y\in L^2(B)$ for almost all $y\in B$, where $f_y(x)=f(x,y)$ for $x\in A$, so $F(y)=\int_A f_y$ is well defined for almost all $y\in B$;
+        \item $F$, as defined above, is integrable on $B$ (so, in particular, $F$ is Lebesgue measurable), and $\int_B F=\int_{A\times B} f$.
+        Therefore
+        \[
+            \int_B \qty(\int_A f(x,y) \dd{x}) \dd{y} =
+            \int_A \qty(\int_B f(x,y) \dd{y}) \dd{x} =
+            \int_{A\times B} f(x,y) \dd{x} \dd{y}.
+        \]
+    \end{enumerate}
+\end{thm}
+
+\begin{prf}
+    Apply the previous proposition to $f^+$ and $f^-$.
+\end{prf}
+
+\begin{thm}[Tonelli's Theorem]
+    Let $f\colon\R^2\to\R$ be measurable.
+    If either of the repeated integrals
+    \[
+        \int_\R \qty(\int_\R |f(x,y)| \dd{x}) \dd{y}
+        \qq{or}
+        \int_\R \qty(\int_\R |f(x,y)| \dd{y}) \dd{x}
+    \]
+    exists and is finite, then $f\in \mathcal{L}^1(\R^2)$, so that Fubini's Theorem is applicable to both $f$ and $|f|$.
+\end{thm}
+
+\begin{prf}
+    Applying the previous proposition to the assumptions gives us that $\int_{\R^2}|f|<\infty$, so that $f\in \mathcal{L}^1(\R^2)$.
+\end{prf}
+
+\subsection{Change of variables}
+
+\begin{thm}
+    Let $G$ be an open subset of $\R^2$, and $T\colon G\to T(G)=E$ be injective and differentiable.
+    Let $f\colon E\to\R$ be measurable.
+    Then $f$ is integrable if and only if $f\circ T(|\det J_T|)$ is integrable on $G$, where $\det J_T$ is the Jacobian of $T$.
+    In that case,
+    \[
+        \int_E f=
+        \int_G f\circ T(|\det J_T|).
+    \]
+\end{thm}
+
+Recall that, if we write $T(u,v)=(x(u,v),y(u,v))$, then
+\[
+    J_T =
+    \mqty(\pdv{x}{u} & \pdv{x}{v}\\\pdv{x}{v} & \pdv{y}{v}).
+\]
+
+For example, if we use polar coordinates, $T(r,\theta)=(x,y)$, where $x=r\cos\theta,y=r\sin\theta$, then $|\det J_T|=r$.
+Let $E=T(G)$ and $f$ be measurable.
+Then $f$ is integrable on $E$ if and only if $f(r\cos\theta,r\sin\theta)r$ is integrable on $G$.
+
+\section{\texorpdfstring{$\lp$}{lp} and \texorpdfstring{$L^p$}{Lp} spaces}
+
+\begin{defn}[$\lp$ spaces]
+    Let $E\in\mleb$ be a subset of $\R$ or $\R^2$, and $f\colon E\to[-\infty,\infty]$ be measurable.
+    Then $|f|^p$ is measurable for any positive constant $p$.
+    If $f$ is measurable and $|f|^p$ is integrable on $E$, that is, $\int_E |f|^p<\infty$, then we say that $f$ is $p$-th integrable.
+    For fixed $p>0$, the collection of all such functions on $E$ is denoted by $\lp(E)$.
+\end{defn}
+
+An important property of $\lp(E)$ is that it is a vector space.
+The fact that $\lambda f\in\lp$ for some constant $\lambda$ follows from definitions.
+
+To show that $f+g\in\lp$ for $f,g\in\lp$, we consider the definition of a convex function.
+We say that a function $h\colon(a,b)\to\R$ is convex on $(a,b)$ if, for all $s,t\in(a,b)$ and $\lambda\in[0,1]$,
+\[
+    h(\lambda s + (1-\lambda)t) \leqslant
+    \lambda h(s) + (1-\lambda)h(t)
+\]
+(The left-hand side of this inequality corresponds to the segment of the graph of $h$ varying between the points $s$ and $t$, and the right-hand side corresponds to the straight line joining $h(s)$ and $h(t)$.)
+From last year's analysis courses, we know that, if the second derivative of $h$ exists and is non negative on $(a,b)$, then $h$ is convex on $(a,b)$.
+
+Consider the function $h(t)=t^p$ for $t\geqslant0$, where $p\geqslant1$.
+Then $h''(t)=p(p-1)t^{p-2}$ is non negative on $(0,\infty)$.
+Thus
+\[
+    (\lambda s +(1-\lambda)t)^p \leqslant
+    \lambda s^p + (1-\lambda)t^p
+\]
+for all $s,t\geqslant0$ and $\lambda\in[0,1]$.
+
+Applying this now to $\qty(\frac{1}{2}|f|+\frac{1}{2}|g|)^p$, i.e. where $\lambda=\frac{1}{2}$, gives us
+\[
+    \abs{\frac{1}{2}f + \frac{1}{2}g}^p \leqslant
+    \qty(\frac{1}{2}|f| + \frac{1}{2}|g|)^p \leqslant
+    \frac{1}{2}|f|^p + \frac{1}{2}|g|^p.
+\]
+Thus
+\[
+    |f+g|^p \leqslant
+    \frac{1}{2}|2f|^p + \frac{1}{2}|2g|^p =
+    2^{p-1}(|f|^p+|g|^p),
+\]
+and as the right-hand side is integrable, so too is the left, and thus $f+g\in\lp$.
+
+The main issue that we have with $\lp$ though is trying to define a norm on it.
+One of the properties of a norm $N\colon\lp\to[0,\infty)$ is that $N(v)=0$ if and only if $v=0$, but if we try to define a norm on $\lp$ by something like $\|v\| = \int |f|^p$, we quickly run into the issue that there are many (in fact, infinitely many) functions who have a `norm' of zero without being zero themselves (in fact, the best we can develop is a \emph{seminorm}, which is simply a norm without this zero property).
+So we are led to the following definition.
+
+\begin{defn}[$L^p$ spaces]
+    If we identify the functions in $\lp(E)$ that are equal almost everywhere on $E$ (that is, consider the quotient space, where the equivalence classes are given by functions that are equal almost everywhere) then we denote the resulting vector space by $L^p$.
+\end{defn}
+
+For $p=1$ we could try to define a norm on $L^1(E)$ by considering $\int_E|f|$.
+The triangle inequality for this norm follows from the definition of integration, and the other properties can be verified.
+
+We can try to extend this to a definition of a metric for $L^p$.
+
+\begin{defn}[The $L^p$ `norm']
+    Let $p>0$, $E\in\mleb$, $f$ be measurable, and $|f|^p$ be integrable on $E$.
+    Define the $L^p$ `norm', denoted by $\|\cdot\|_p$, for $f\in L^p$, as
+    \[
+        \|f\| =
+        \qty(\int_E |f|^p)^{1/p},
+    \]
+    which is a norm on $L^p(E)$ only if $p\geqslant1$.
+    Then we can define the $L^p$ distance, denoted by $d_p$, as
+    \[
+        d_p(f,g) =
+        \|f-g\|_p,
+    \]
+    which is a metric on $L^p(E)$ only if $p\geqslant1$.
+
+    The proof that $d_p$ is a metric is equivalent to a proof of Minkowski's inequality, which we shall look at next, since all other properties required of $d_p$ we have already, or can see from definitions.
+\end{defn}
+
+\begin{rem}
+    From now on we assume that $p\geqslant1$ and $E\in\mleb$, unless stated otherwise.
+\end{rem}
+
+As we said previously, to see that $L^p(E)$ is a metric space under $d_p$ for $p\geqslant1$ we need to prove Minkowski's inequality, and one of the most common ways of doing so is by using another inequality, called \emph{H\"older's inequality}.
+
+\begin{lem}[H\"older's inequality]
+    Let $p,q\in(1,\infty)$ be such that $\frac{1}{p}+\frac{1}{q}=1$, and $f\in L^p(E)$, $g\in L^q(E)$.
+    Then $fg\in L^1(E)$, and
+    \[
+        \|fg\|_{~1} \leqslant\|f\|_p \|g\|_q.
+    \]
+    That is,
+    \[
+        \int_E |fg| \leqslant
+        \qty(\int_E |f|^p)^{1/p} \qty(\int_E |g|^q)^{1/q}
+    \]
+\end{lem}
+
+\begin{prf}
+    The proof of this inequality can be quite fiddly, and is thus not examinable.
+    However, there is yet another inequality, called \emph{Young's inequality}, which states that, for $p$ and $q$ satisfying the assumptions of H\"older's inequality, $ab\leqslant\frac{a^p}{p}+\frac{b^q}{q}$ for all $a,b\geqslant0$.
+    Then it is often the case that we use Young's to prove H\"older's, and H\"older's to prove Minkowski's.
+\end{prf}
+
+\begin{lem}[Minkowski's inequality]
+    Let $p\geqslant1$ and $f,g\in L^p(E)$.
+    Then $\|f+g\|_p\leqslant\|f\|_p+\|g\|_p$.
+\end{lem}
+
+\begin{prf}
+    \emph{Technically this proof is not examinable, but it is included here because, by using H\"older's inequality, it is not too messy.}
+
+    If $\|f+g\|_p=0$ then there is nothing to really prove, so assume that $\|f+g\|_p\neq0$.
+    Now
+    \begin{align*}
+        \|f + g\|_p^p =
+        \int_E |f + g|^p
+        &\leqslant \int_E \qty(|f| + |g|) |f + g|^{p-1}\\
+        &= \int_E |f||f + g|^{p-1} + \int_E |g||f + g|^{p-1}.
+    \end{align*}
+    We know that $f,g,f+g\in L^p$, and so we can apply H\"older's inequality here (albeit rather confusingly, at first glance):
+    \begin{gather*}
+        \int_E |f||f + g|^{p-1} + \int_E |g||f + g|^{p-1}\\
+        \leqslant \qty(\int_E |f|^p)^{1/p} \qty(\int_E \qty(|f+g|^{(p-1)})^{p/(p-1)})^{(p-1)/p}\\
+        + \qty(\int_E |g|^p)^{1/p} \qty(\int_E \qty(|f+g|^{(p-1)})^{p/(p-1)})^{(p-1)/p}\\
+        = (\|f\|_p + \|g\|_p) \frac{\|f+g\|_p^p}{\|f+g\|_p}.
+    \end{gather*}
+    So we have shown that
+    \[
+        \|f+g\|_p^p \leqslant
+        (\|f\|_p + \|g\|_p) \frac{\|f+g\|_p^p}{\|f+g\|_p},
+    \]
+    which gives us Minkowski's inequality when we multiply both sides by $\frac{\|f+g\|_p}{\|f+g\|_p^p}$.
+\end{prf}
+
+\begin{prop}
+    Let $p\geqslant1$.
+    Then $\|\cdot\|_p$ is a norm on $L^p(E)$.
+    That is, $\|\cdot\|_p$ possesses the following three properties:
+    \begin{enumerate}
+        \item $\|f\|_p=0$ if and only if $f=0$;
+        \item $\|\lambda f\|_p=|\lambda|\|f\|_p$ for $f\in L^p(E)$ and $\alpha\in\R$;
+        \item $\|f+g\|_p\leqslant\|f\|_p+\|g\|_p$.
+    \end{enumerate}
+
+    Remember that, since we are talking about $L^p$, and not $\lp$, when we mention a function $f$, what we really mean is the equivalence class $\bar{f}$, where
+    \[
+    \bar{f}=\qty{g\in\lp : g=f \text{ almost everywhere}}.
+    \]
+\end{prop}
+
+\begin{prf}
+    This follows from all the above, and anything that doesn't should follow reasonably immediately from definitions.
+\end{prf}
+
+\begin{cor}
+    Let $E\in\mleb$ be such that $m(E)<\infty$, and $1\leqslant p\leqslant q$.
+    Then $L^q(E)\subset L^p(E)$.
+\end{cor}
+
+\begin{prf}
+    Let $f\in L^q(E)$.
+    Define $g=|f|^p$ and $r=q/p$.
+    Then $g\in L^r(E)$ and $1\in L^s(E)$, where $s=r/(r-1)$, so that $1/r+1/s=1$.
+    By H\"older's inequality on $g$ and $1$, we then have that $g\in L^1(E)$, so that $|f|^p\in L^1(E)$.
+    Thus $\int_E |f|^p<\infty$, and so $f\in L^p(E)$.
+
+    H\"older's inequality also tells us that $\|g\|_{~1}\leqslant\|g\|_r\|1\|_s$, which, after some algebra, gives us $\|f\|_p\leqslant m(E)^{1/p-1/q}\|f\|_q$, which we use to prove the next corollary.
+\end{prf}
+
+\begin{cor}
+    Let $E\in\mleb$ be such that $m(E)=1$.
+    Then $p\mapsto\|f\|_p$ is increasing.
+    That is, for $1\leqslant p\leqslant q$, we have $\|f\|_p\leqslant\|f\|_q$.
+\end{cor}
+
+\begin{prf}
+    This follows from the previous corollary, since $m(E)=1$.
+\end{prf}
+
+\subsection{Convergence in measure}
+
+Recall that we say $f_n\to f$ almost everywhere on $E$ if $\qty{f_n\not\to f}$ is a null set.
+We have seen before that, if $E\in\mleb$ is such that $m(E)<\infty$, and $f_n,f\colon E\to\R$ are measurable, then $f_n\to f$ almost everywhere on $E$ if and only if, for all $\eps>0$,
+\[
+    \lim_{n\to\infty} m\qty(\bigcup_{i=n}^{\infty}\qty{|f_n-f|>\eps}) =
+    0.
+\]
+
+So we introduce the following definition, for reasons that will become clear.
+
+\begin{defn}[Convergence in measure]
+    Let $E\in\mleb$ and $f_n,f\colon E\to\R$ be measurable.
+    Then $f_n\to f$ \emph{in measure} if, for every $\eps>0$,
+    \[
+        \lim_{n\to\infty} m(\qty{|f_n-f|>\eps}) =
+        0.
+    \]
+\end{defn}
+
+One reason for this definition is the following corollary.
+
+\begin{cor}
+    Let $E\in\mleb$ be such that $m(E)<\infty$.
+    Then $f_n\to f$ almost everywhere on $E$ implies that $f_n\to f$ in measure.
+\end{cor}
+
+This has a partial converse, which we will state (but not prove).
+
+\begin{prop}
+    Let $f_n\to f$ in measure.
+    Then there exists a subsequence $(f_{n_k})$ such that $f_{n_k}\to f$ almost everywhere.
+\end{prop}
+
+\begin{prf}
+    Just as in a race, however well paced it may be, one always ends sprinting.
+    In this dash to the finish, it seems that we are going too quick to be expected to prove everything we pass, and so most proofs are non-examinable ones as we approach the finish line.
+    This one, in particular, is not examinable.
+\end{prf}
+
+\subsection{Convergence in \texorpdfstring{$L^p$}{Lp} space}
+
+\begin{defn}[Convergence in $L^p$]
+    Let $p\geqslant1$.
+    We say that $f_n\to f$ \emph{in the $L^p$ norm} if $\|f_n-f\|_p\to0$ as $n\to\infty$.
+\end{defn}
+
+\begin{prop}
+    Let $f_n\to f$ in the $L^p$ norm.
+    Then $f_n\to f$ in measure (and there thus exists a subsequence $(f_{n_k})$ such that $f_{n_k}\to f$ almost everywhere).
+\end{prop}
+
+\begin{prf}
+    For any $\eps>0$ we have
+    \begin{align*}
+        m(\qty{|f_n-f|>\eps}) =
+        \int_E \ind_{\qty{|f_n-f|>\eps}}
+        &\leqslant \int_E \frac{|f_n-f|^p}{\eps^p} \ind_{\qty{|f_n-f|>\eps}}\\
+        &\leqslant \frac{1}{\eps^p} \int_E |f_n-f|^p\\
+        &= \frac{1}{\eps^p} \|f_n - f\|_p^p,
+    \end{align*}
+    which tends to zero as $n\to\infty$, and so $f_n\to f$ in measure.
+\end{prf}
+
+\begin{thm}
+    Let $p\geqslant1$ and $E\in\mleb$.
+    Then $L^p(E)$, with the metric $d_p(f,g)=\|f-g\|_p$, is a complete metric space.
+    That is, every Cauchy sequence $(f_n)$ is convergent to some $f\in L^p(E)$ in the $L^p$ norm, and, in particular, $f_n\to f$ in measure as well, and there exists a subsequence $(f_{n_k})$ such that $f_{n_k}\to f$ almost everywhere.
+
+    Therefore $L^p(E)$ equipped with the norm $\|\cdot\|_p$ is a \emph{Banach space}.
+\end{thm}
+
+\begin{prf}
+    Being the last theorem in the module, we are given it for free, as it were.
+    The proof is not examinable.
+\end{prf}
+
+\end{document}

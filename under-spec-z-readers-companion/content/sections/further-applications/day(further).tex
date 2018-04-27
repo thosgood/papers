@@ -1,0 +1,175 @@
+% !TEX root = ../../../under-spec-z.tex
+
+\subsection{Day convolution} % (fold)
+\label{sub:day_convolution}
+
+    The theory developed in \cite{Toen:2005wxa} is very powerful, but relies on working with a \emph{cosmos} -- we assume, in particular, that our category is bicomplete.
+    However, many categories with which we would like to work are \emph{not} bicomplete.
+    If this is the case then there are two reasonably natural approaches towards a solution:
+    \begin{enumerate}[(i)]
+        \item throw away some morphisms -- the fewer the morphisms the `easier' it is for a morphism to be universal in some way;
+        \item add in some objects -- `bicomplete' this category in some way.
+    \end{enumerate}
+
+    An example of the first approach is when we define the category of Banach spaces to be $\Ban_1$, whose morphisms are weak contractions, instead of the more general $\Ban$, whose morphisms are any bounded linear maps -- $\Ban_1$ is bicomplete\footnote{
+        \cite{Yuan:2012vt}
+    } whereas $\Ban$ isn't.
+    This approach forms the beginning of the study of \emph{categorical Banach space theory}: see e.g. \cite{Anonymous:-VM0nEAk} for explicit descriptions of certain objects and functors (such as the change of base); \cite{Cruttwell:2008wl} for an enriched-category view; and \cite{Castillo:2010vt} for a general survey.
+
+    % \subsubsection{Approach \textrm{(ii)}: $\PShv(\Ban)$} % (fold)
+    % \label{ssub:approach_ii}
+    
+        As for the second approach, it is a standard fact\footnote{
+            Since (co)limits are computed pointwise in $\Set$, and $\Set$ is bicomplete.
+        } that $\PShv(\dcat)$ is bicomplete for any category $\dcat$, so here we consider $\PShv(\Ban)$.
+        But now the issue is giving $\PShv(\Ban)$ a closed symmetric monoidal structure.
+        A method to do this was given in \cite{Day:ve} in the form of the eponymous \emph{Day convolution}\footnote{
+            Most of the results we quote in this section are actually far more powerful than we need; they can be found in all their generality in \cite{Day:ve} and \cite{Anonymous:czsXyaOO}, for example.
+        }.
+        We can sometimes use a simpler method though, if we start with a category $\dcat$ that is \emph{closed} symmetric monoidal (for example, $\Ban$).
+        Then the tensor product commutes with colimits, since it is left adjoint to the internal Hom.
+        Since every presheaf is (canonically, in fact) a colimit of representable presheaves\footnote{
+            \cite[Theorem~1,~\S III.7]{Lane:1998fe}
+        } we can define a tensor product on $\PShv(\dcat)$ by simply writing all presheaves as such colimits and then using our tensor product from $\dcat$.
+        It turns out, however, that this gives exactly the same structure as Day convolution does, but is described in a much simpler fashion.
+
+    %     % Most of the results we quote in this section are actually far more general than we need: they deal with \emph{$\mathcal{V}$-valued presheaves} where $\mathcal{V}\neq\Set$ is some other `nice' category, and \emph{promonoidal} categories instead of monoidal categories (the latter being a specific example of the former).
+    %     % They can be found in all their generality in \cite{Day:ve} and \cite{Anonymous:czsXyaOO}, for example.
+
+
+        \begin{definition}[Day convolution]
+            Let $\smc$ be a monoidal category, and $F,G\in\PShv(\ccat)$.
+            Define the \emph{Day convolution product} as the \emph{coend}
+            \begin{equation*}
+                F\star G = \int^{d\in\ccat}\int^{c\in\ccat}F(c)\times G(d)\times\Hom_\ccat(\blank,c\otimes d)
+            \end{equation*}
+            where, for $S\colon\op{\ccat}\times\ccat\to\dcat$ with $\dcat$ cocomplete, we define the coend by
+            \begin{equation*}
+                \int^{c\in\ccat}S(c,c) = \coeq\left(\prod_{c\to c'}S(c',c)\rightrightarrows\prod_{c\in\ccat} S(c,c)\right)
+            \end{equation*}
+            with the morphisms on the right coming from $S(c',c)\to S(c,c)$ and $S(c',c)\to S(c',c')$.
+        \end{definition}
+
+        \begin{definition}
+            Let $\mathcal{A}$ be a small\footnote{
+                Following \cite{Toen:2005wxa}, we ignore issues of universe.
+            } symmetric monoidal category and $\dcat$ be a cosmos.
+            Define the symmetric monoidal category
+            \begin{equation*}
+                \{\mathcal{A},\dcat\} = \big(\Fun(\mathcal{A},\dcat),\star,\Hom_\mathcal{A}(1_\mathcal{A},\blank)\big)
+            \end{equation*}
+            where $\star$ is the Day convolution.
+            Also define
+            \begin{equation*}
+                \Fun_{\mathrm{LSM}}(\mathcal{A},\dcat) \subseteq \Fun(\mathcal{A},\dcat)
+            \end{equation*}
+            to be the full subcategory whose objects are lax\footnote{
+                That is, a strong symmetric monoidal functor $F\colon\mathcal{A}\to\dcat$ but where the morphisms $f(X)\odot f(Y)\to f(X\otimes Y)$ and $1_\dcat\to f(1_\mathcal{A})$ are not necessarily isomorphisms (but still satisfy the coherence conditions).
+            } symmetric monoidal functors \mbox{$\mathcal{A}\to\dcat$.}
+        \end{definition}
+
+        It turns out that we can characterise the objects of $\comm{\{\mathcal{A},\dcat\}}$ when $\dcat=\Set$ in more explicit terms, and then use this to better understand $\ASch(\{\mathcal{A},\dcat\})$.
+
+        \begin{lemma}\label{le:comm-in-psh-are-lsm}
+            \mbox{}
+            \vspace{-1em}
+            \begin{enumerate}[(i)]
+                \item $\{\mathcal{A},\dcat\}$ is a cosmos;
+                \item $\comm{\{\mathcal{A},\dcat\}} \equiv \Fun_{\mathrm{LSM}}(\mathcal{A},\dcat)$.\qedhere
+            \end{enumerate}
+        \end{lemma}
+
+        \begin{proof}
+            For (i), see \cite{Anonymous:QU19aScS}; for (ii) see \cite[Example~3.2.2]{Day:ve} or \cite[Proposition~22.1]{Anonymous:czsXyaOO}.
+        \end{proof}
+
+    %     \begin{corollary}\label{co:comm-in-pshban-are-lsm}
+    %         \mbox{}
+    %         \vspace{-1em}
+    %         \begin{enumerate}[(i)]
+    %             \item $\{\op{\Ban},\Set\}$ is a cosmos;
+    %             \item $\comm{\{\op{\Ban},\Set\}} \equiv \Fun_{\mathrm{LSM}}(\op{\Ban},\Set)$\qedhere
+    %         \end{enumerate}
+    %     \end{corollary}
+
+    %     This gives us a different view of what commutative monoids in $\{\op{\Ban},\Set\}$ are, but we can actually come up with some more explicit examples by looking at representable presheaves, which we do now.
+    %     % It will be useful (\cref{le:commutative-banach-double-rep}) to know what the objects of $\comm{\Ban}$ are in a more explicit manner.
+    %     It will be useful (\cref{le:commutative-banach-double-rep}) to know what the objects of $\comm{\Ban}$ are in a more explicit manner, but we content ourselves with knowing that any \emph{Banach algebra $B$} is in $\comm{\Ban}$.
+
+    %     % A \emph{Banach algebra} is a Banach space $B$ that also has a commutative (unital and associative)\footnote{
+    %     %     From here on we write `algebra' to mean `commutative unital associative algebra'.
+    %     % } $\cc$-algebra structure respecting the norm: $\|xy\|\leqslant\|x\|\|y\|$ and $\|1_B\|=1$.
+    %     % It follows straight from the definitions that if $B$ is a Banach algebra then $B\in\comm{\Ban}$, and that $\mu\colon B\otimes B\to B$ has norm $1$.
+    %     % More generally, $\comm{\Ban}$ consists of Banach spaces with a $\cc$-algebra structure that has bounded multiplication.
+    %     % In particular, $\comm{\Ban_1}$ is very well behaved, in that multiplication is continuous ($\lim(x_ny_n)=(\lim x_n)(\lim y_n)$); when $\mu\colon B\otimes B\to B$ has norm greater than one we don't necessarily have this continuity.
+    %     % But note that if the norm of $\mu$ is strictly less than $1$ then $\|1_B\|\neq1$, and so we recover Banach algebras exactly when $\mu$ has norm $1$.
+
+        \begin{lemma}\label{le:double-rep}
+            Let $\spec A,\spec B\in\aff{\ccat}$.
+            Then
+            \begin{enumerate}[(i)]
+                \item $Y_A\in\aff{\{\op{\ccat},\Set\}}$;
+                \item $Y_{Y_A}\in\ASch(\{\op{\ccat},\Set\})$;
+                \item $\Hom(Y_{Y_A},Y_{Y_B})\cong\Hom(A,B).$\qedhere
+            \end{enumerate}
+        \end{lemma}
+
+        \begin{proof}
+            Claims (ii) and (iii) follow straight from Yoneda's lemma; claim (i) is the only one that we need to explain.
+            By \cref{le:comm-in-psh-are-lsm} we need to show that $Y_A$ is lax symmetric monoidal\footnote{
+                We can think of $Y_A\in\comm{\{\op{\ccat},\Set\}}$ since $\op{\Fun(\dcat,\ecat)}\equiv\Fun(\op{\dcat},\op{\ecat})$.
+            }.
+            One of the morphisms we need to provide is
+            \begin{equation*}
+                \mu_{X,Y}\colon\Hom(X,A)\times\Hom(Y,A)\to\Hom(X\otimes Y,A).
+            \end{equation*}
+            All we generally have is a morphism
+            \begin{equation*}
+                (\blank\otimes\blank)\colon\Hom(X,A)\times\Hom(Y,A)\to\Hom(X\otimes Y,A\otimes A),
+            \end{equation*}
+            but if we have $\mu\colon A\otimes A\to A$ coming from the commutative monoid structure of $A$ then we can compose the two to obtain $\mu_{X,Y}=\mu\circ(\blank\otimes\blank)$.
+            Some diagram chasing (omitted here) shows that this $\mu_{X,Y}$ satisfies the required conditions, and that the conditions concerning units and symmetry also hold.
+        \end{proof}
+
+    %     TJH mention how this isn't necessarily all of the things
+    %     TJH in fact, it \textbf{isn't}, because there are some not-representable things (at both stages)
+    %     TJH BUT it just reassures us that we're still studying $\comm{\Ban}$
+    %     TJH see \cref{tb:representability}
+        
+    %     \begin{table}[h]
+    %         \centering
+    %         \begin{tabular}{ccccll}
+    %             $\aff{\Ban}$ & $\hookrightarrow$ & $\aff{\{\op{\Ban},\Set\}}$ & $\hookrightarrow$ & $\PShv\big(\aff{\{\op{\Ban},\Set\}}\big)$ &\\[.3em]
+    %             \toprule
+    %             $\spec A$ & $\mapsto$ & $Y_A$ & $\mapsto$ & $Y_{Y_A}$ {\footnotesize representable} &\\
+    %             & & $\mathfrak{F}$ & $\mapsto$ & $Y_\mathfrak{F}$ {\footnotesize representable} &\\
+    %             & & & & $\mathscr{F}$ {\footnotesize fpqc} &\\
+    %             & & & & $\mathscr{G}$ {\footnotesize Zariski} &\\
+    %             & & & & $\mathscr{H}$ {\footnotesize other}&
+    %         \end{tabular}
+    %         \caption{Representability \textbf{TJH DRAW as like a venn diagram type thing? make sure we stress that we are `starting from' the centre column and `working' in the right column}}
+    %         \label{tb:representability}
+    %     \end{table}
+
+    %     \textbf{TJH so what?! what does zariski correspond to?! scheme?!}
+
+    %     \textbf{TJH naively consider}
+    %     \begin{align*}
+    %         g\colon\{\op{\Ban},\Set\}&\to\modc{\ff_1}\\
+    %         \mathfrak{F}&\mapsto\mathfrak{F}(\cc)\overset{?}{\cong}B\\
+    %         f\colon\modc{\ff_1}&\to\{\op{\Ban},\Set\}\\
+    %         S&\mapsto\Hom_\Ban(\blank,\ell^1(S)).
+    %     \end{align*}
+    %     \textbf{TJH ???}
+
+    %     TJH my issue with all this is that $\comm{\Ban}$ doesn't really respect the normed structure on $B\in\Ban$ (the whole issue of having `banach algebras' but with not-even-continuous multiplication)
+    %     TJH so really we should be thinking about the enriched structure of $\Ban$?
+    %     TJH \cite{Cruttwell:2008wl} says `a normed vector space is a $\mathsf{NormAb}$ functor' -- this approach?
+
+    %     \textbf{TJH OR do we want to look at $\mathcal{V}$-valued presheaves instead?? -- can still use Day convolution etc}
+
+        Unfortunately we don't have the space to discuss this further, but this approach could lead to some very interesting research projects by using what seems like a new combination of techniques.
+
+    % % subsubsection approach_ii (end)
+
+% subsection day_convolution (end)

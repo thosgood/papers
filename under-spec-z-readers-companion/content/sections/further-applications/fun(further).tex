@@ -1,0 +1,64 @@
+% !TEX root = ../../../under-spec-z.tex
+
+\subsection{The Riemann hypothesis} % (fold)
+\label{sub:the_riemann_hypothesis}
+
+    One of the main motivations for trying to study $\ff_1$ is the hope that it will lead to a proof of the Riemann hypothesis.
+    An excellent history of $\ff_1$, starting from Tit's original idea of `interpreting $S_n$ as the Chevalley group over the field of characteristic one' in \cite{Tits:1957tq} (aiming to explain an analogy from \cite{Steinberg:1951vd}), and ending with the relatively recent paper \cite{Connes:fkN5ADoK} (which deals with this zeta function approach) can be found in the introduction of \cite{Pena:2009vb}.
+
+    In \cite{Kapranov:1996vk}, treating $\ff_1$ as any other finite field $\ff_p$ for $p$ prime, we think of its extension of degree $n$, denoted $\ff_{1^n}$, coming from adjoining the $n$th roots of unity.
+    This idea is built upon in \cite[\S2.4]{Soule:2008wq}, where it is conjectured that
+    \begin{equation*}
+        \ff_{1^n}\otimes_{\ff_1}\zz = \zz[T]/(T^n-1).
+    \end{equation*}
+    Comparing this to the results in \cref{sub:diagonalisable_group_schemes}, we see that our definitions match, as we would hope.
+
+    The Riemann zeta function, defined, for $s\in\cc$ with $\Re(s)>1$, as
+    \begin{equation*}
+        \zeta(s) = \sum_{n=1}^\infty\frac1{n^s}
+    \end{equation*}
+    is a particular example of an \emph{$L$-function}\footnote{
+        Certain meromorphic functions on the complex plane (conjecturally) coming from the analytic continuation of an infinite series called an \emph{$L$-series}, which is associated to some mathematical object (for example, an \emph{Artin $L$-function} is associated to a linear representation of a Galois group).
+        \emph{Dirichlet $L$-series} are of the form $\sum_{n=1}^\infty a_n/n^s$ where $(a_n)_{n\in\nn}$ is a complex sequence and $s\in\cc$.
+    }.
+    In fact, it is really the \emph{generalised Riemann hypothesis} -- which states that the non-trivial zeros of global\footnote{
+        Defined as \emph{Euler products} of \emph{local zeta functions}.
+    } $L$-functions lie on the line $\Re(z)=1/2$ in the complex plane -- that has profound implications across the whole of mathematics\footnote{
+        Although nobody would likely turn their nose up at a proof of the Riemann hypothesis.
+    }.
+    The link between a conjecture by Emil Artin on Artin $L$-functions \cite{Artin:1923hi} and the Riemann hypothesis was pointed out by André Weil in a letter to Artin written on July 10th 1942\footnote{
+        Listed as [1942] in the bibliography of \cite{Weil:2009vp}.
+    }, and was later mentioned more concretely in \cite[4]{Weil:1947wd}\footnote{
+        What follows is a translation by the author -- the original is in French.
+    }:
+    \begin{quotation}
+        \emph{The Riemann hypothesis, after having lost hope of proving it by methods of the theory of functions, appears to us today in a new light, that shows it inseparable from the Artin conjecture on $L$-functions, these two problems being two sides of the same arithmetic-algebraic question, where the simultaneous study of all the cyclotomic extensions of a given number field will certainly play a vital role.}
+    \end{quotation}
+    Prior to this, in 1940\footnote{
+        \cite{Weil:1940ub}, though he later showed that his result was independent of \emph{this ``transcendental'' theory} in \cite{Weil:1941tx}.
+    }, Weil proved the \emph{Riemann hypothesis for curves over finite fields} by taking a smooth curve $C$ over a finite field $\ff_p$ and looking at the diagonal of $C\times_{\ff_p}C$.
+    If we could think of $\zz$ as a smooth curve over some finite field (which seems natural since $\zz$ is of dimension one) then Weil's proof could hopefully be extended to a proof of the Riemann hypothesis.
+    But $\zz$ is not an algebra over any field.
+    However, one of the conjectured properties of $\ff_1$ is that $\zz$ is an $\ff_1$-algebra, and so we would be able to construct $\zz\times_{\ff_1}\zz$.
+
+    Building on this idea, as well as previous conjectures by Artin \cite{Artin:1924ie}, led Weil in 1949 to the famous \emph{Weil conjectures} \cite{Weil:1949tx}, the proof of which provided the main impetus for Alexander Grothendieck's two decades of work building upon that of Jean-Pierre Serre.
+    There were four conjectures: the \emph{rationality conjecture}, proved by Bernand Dwork in 1960 \cite{Dwork:1960ul}; the \emph{functional equation} and the \emph{Betti number} conjectures, proved by Grothendieck\footnote{
+        Together with Michael Artin, Pierre Deligne, Michel Raynaud, Jean Girard, and many others.
+    } in 1965 \cite{FormuledeLefschetz:1965vd,Cohomologieladique:1965uc}; and the \emph{Riemann hypothesis analogue}, proved by Deligne in 1974 \cite{Deligne:1974vf}.
+    This last conjecture implies that, if $X$ is a smooth projective variety of dimension $n$ over $\ff_q$, then its \emph{local zeta function}
+    \begin{equation*}
+        \zeta_X(s)=\exp\left(\sum_{m=1}^\infty\frac{N_m q^{-sm}}{m}\right)
+    \end{equation*}
+    (where $N_m$ is the number of points of $X$ defined over the degree-$m$ extension $\ff_{q^m}$ of $\ff_q$) is such that its zeros and poles lie on the lines $\Re(s)=j/2$ for $j=1,2,\ldots,2n$.
+    So, if we could realise $X=\spec\zz$ as a smooth projective variety of dimension $1$ over $\ff_1$, then $\zeta_X(s)=$ would be the Riemann zeta function, and a proof of the Riemann hypothesis would almost fall straight out, or so we might hope.
+
+    \bigskip
+
+    Obviously though, there are some obstructions, otherwise the Riemann hypothesis would have been solved by now.
+    The main problem is that we have many definitions for $\ff_1$, and there have been many different ideas for what $\ff_1$-schemes should be (see \cite{Pena:2009vb}), but none of them have all of the properties that we need to prove the Riemann hypothesis.
+    Even if we \emph{did} find some perfect definition, we would need to come up with new cohomology theorems, just as Grothendieck, Deligne, et al. did to solve the Weil conjectures.
+    In fact, it seems as if solving the Riemann hypothesis is more a question of doing \emph{analytic} geometry over $\ff_1$ rather than \emph{algebraic} geometry over $\ff_1$.
+    So where should we go from here?
+
+
+% subsection the_riemann_hypothesis (end)

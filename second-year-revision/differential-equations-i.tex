@@ -1,0 +1,1234 @@
+\documentclass[10pt,fleqn]{article}
+
+\author{Timothy Hosgood}
+\title{Differential Equations I}
+\pagestyle{headings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{embedfile}
+
+\newcommand{\diff}{\,\mathrm{d}}
+\newcommand{\met}{\mathrm{d}}
+\newcommand{\comps}{\mathbb{C}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\rect}{\mathcal{R}}
+\newcommand{\vc}[1]{\boldsymbol{#1}}
+\theoremstyle{definition} \newtheorem{defn}{Definition}[section]
+\theoremstyle{plain}      \newtheorem{thm}[defn]{Theorem}
+\theoremstyle{plain}      \newtheorem{lem}[defn]{Lemma}
+\theoremstyle{definition} \newtheorem{prop}[defn]{Proposition}
+\theoremstyle{definition} \newtheorem{cor}[defn]{Corollary}
+\theoremstyle{definition} \newtheorem{ex}[defn]{Example}
+\theoremstyle{definition} \newtheorem{rem}[defn]{Remark}
+
+\begin{document}
+\embedfile{\jobname.tex}
+\maketitle
+\begin{abstract}
+    These notes are based entirely on lectures given by Peter Grindrod to second-year undergraduates at the University of Oxford in the year 2013/14.
+\end{abstract}
+\tableofcontents
+
+
+\section{ODEs, Picard iterations, and Picard's Theorem}
+
+\subsection{ODEs}
+
+\begin{defn}[ODEs]
+    An \emph{$n^{th}$-order ODE} is an equation of the form
+    \[
+        G(x,y(x),y'(x),\ldots,y^{(n)}(x))=0
+    \]
+\end{defn}
+
+We might concern ourselves with the \emph{existence} and \emph{uniqueness} of solutions $y(x)$ to an ODE.
+It is possible that a solution might exist without being unique, and there may in fact be infinitely many solutions.
+Note that we often talk of a `unique solution' with the assumption that existence is implicit, i.e., a solution must exist to be unique.
+We shall, however, be very careful with our usage of the phrase `unique solution' in the technical parts of these notes, just to avoid ambiguity concerning existence.
+
+If we want to guarantee existence of a unique solution to an ODE we must impose certain conditions on $f$.
+It turns out that we will discover what these are in the process of proving that a solution exists.
+
+For simplicity we will consider the first-order ODE posed as an IVP:
+\begin{equation}\label{fo-ivp}
+    y'(x)=f(x,y)\quad\text{with}\quad y(a)=b
+\end{equation}
+
+To be precise, we shall seek a solution in a rectangle $\rect$ about the initial point $(x,y)=(a,b)$, so suppose
+\begin{equation}\label{rectangle}
+    \rect:=\{(x,y)\colon |x-a|\leq h\text{ and }|y-b|\leq k\}
+\end{equation}
+
+Our first assumption is that \emph{$f(x,y)$ is continuous in $\rect$}.
+Now we can integrate equation~\ref{fo-ivp} from $a$ to $x$:
+\[
+    [y(x)]_a^x=
+    \int_a^x f(t,y(t))\diff t=
+    y(x)-y(a)
+\]
+
+Rearranging this gives an equivalent statement of equation~\ref{fo-ivp}, but rephrased as an integral equation, and without the need to explicitly state the initial value conditions seperately:
+\begin{equation}\label{integral-ivp}
+    y(x)=
+    b+\int_a^x f(t,y(t))\diff t
+\end{equation}
+
+The standard approach to solving problems of this form is to seek a solution by iteration.
+
+
+\subsection{Picard iterations}
+
+\begin{defn}[Picard iterations]
+    We define the sequence $(y_n(x))$ of Picard iterations as
+    \begin{equation}
+        \begin{array}{rcl}
+            y_0(x) &:=& b\\
+            y_{n+1}(x) &:=& b + \int_a^x f(t,y_n(t))\diff t
+        \end{array}
+    \end{equation}
+    and we also consider the sequence $(e_n(x))$ of differences between succesive iterations:
+    \begin{equation}
+        \begin{array}{rcl}
+            e_0(x) &:=& b\\
+            e_{n+1}(x) &:=& y_{n+1}(x) - y_n(x)
+        \end{array} 
+    \end{equation}
+\end{defn}
+
+With these definitions it is clear that
+\begin{equation}\label{yn-series}
+    y_n(x)=\sum_{i=0}^n e_i(x)
+\end{equation}
+and with this relation we see that it is enough to prove that this series in equation~\ref{yn-series} converges, as that will imply existence, and we can then apply uniqueness of limits to get uniqueness.
+
+We need one more definition to proceed with the proof: the idea of a Lipschitz function.
+
+\begin{defn}[Lipschitz function]\label{lip-def}
+    A function $f:[a-h,a+h]\times\reals^n\to\reals^{n}$ is Lipschitz (in the second argument) inside some region $\mathcal{S}\subseteq[a-h,a+h]\times\reals^n$ if
+    \[
+        \exists A>0,~
+        \forall (x,\vc{u}),(x,\vc{v})\in\mathcal{S},~
+        \|f(x,u)-f(x,v)\|\leq
+        A\|u-v\|
+    \]
+    where $\|.\|$ is the standard Euclidean norm.
+
+    Note that being Lipschitz is a stronger requirement than being continuous, but weaker than being differentiable.
+\end{defn}
+
+
+\subsection{Picard's Theorem}
+
+\begin{thm}[Picard's Theorem for first-order ODEs]
+    Let $f:[a-h,a+h]\times\reals\to\reals$ and define the rectangle $\rect=\{(x,y)\colon|x-a|\leq h\text{ and }|y-b|\leq k\}$, where $h,k>0$.
+    If the following three conditions are satisfied:
+    \begin{enumerate}[(i)]
+        \item $f$ is continuous in $x$ and $y$ inside $\rect$.
+        \item $f$ is Lipschitz in $y$ inside $\rect$.
+        \item $f$ is bounded on $\rect$ by some $M$, with $Mh\leq k$
+    \end{enumerate}
+    then the ODE
+    \[
+        \begin{array}{rcl}
+            y'(x) &=& f(x,y(x))\\
+            y(a) &=& b
+        \end{array}
+    \]
+    has a solution for $x\in[a-h,a+h]$ (contained in $\rect$), which further is unique in $\rect$.
+\end{thm}
+
+\begin{proof}
+    As stated before, it is sufficient to prove that $\sum_{i=0}^n e_n(x)$ converges as $n\to\infty$.
+    We break the proof into a series of steps.
+    \begin{enumerate}[(i)]
+        \item \emph{Each $y_n(x)$ is continuous}:
+        Continuity follows by induction on the definition of $y_n(x)$ and using the fact that $f$ is continuous.
+        \item \emph{The graph of each $y_n(x)$ lies within $\rect$}:
+        This is a simpler way of saying that $y_n(x)\in[b-k,b+k]$ for all $x\in[a-h,a+h]$.
+        Using the bounded condition we see that, for $x\in[a-h,a+h]$,
+        \[
+            |y_{n+1}(x)-b|\leq
+            \left|\int_a^x|f(t,y_n(t))|\diff t\right|\leq
+            M|x-a|\leq
+            Mh\leq
+            k
+        \]
+        That is, $y_n(x)$ doesn't get any further from $b$ than $k$, so the graph of $y_n$ `doesn't go out the top or bottom of the rectangle'.
+        \item \emph{The $e_n(x)$ tend to 0}:
+        The Lipschitz condition means that, for some positive $A$
+        \[
+            |f(t,y_n(t))-f(t,y_{n-1}(t))|\leq
+            A|y_n(t)-y_{n-1}(t)|
+        \]
+        Thus
+        \begin{align*}
+            |e_{n+1}(x)|
+            &=
+            \left|\int_a^x f(t,y_n(t))-f(t,y_{n-1}(t))\diff t\right|\\
+            &\leq
+            \left|\int_a^x |f(t,y_n(t))-f(t,y_{n-1}(t))|\diff t\right|\\
+            &\leq
+            A\left|\int_a^x |y_n(t)-y_{n-1}(t)|\diff t\right|\\
+            &=
+            A\left|\int_a^x |e_n(t)|\diff t\right|
+        \end{align*}
+        Now note that
+        \[
+            |e_1(x)|=
+            |y_1(x)-b|=
+            \left|\int_a^x f(t,b)\diff t\right|\leq
+            \left|\int_a^x |f(t,b)\diff t|\right|\leq
+            M|x-a|
+        \]
+        So, from the above,
+        \[
+            |e_2(x)|\leq
+            A\left|\int_a^x |e_1(t)|\diff t\right|\leq
+            \frac{AM}{2}|x-a|^2
+        \]
+        Then, by induction,
+        \[
+            |e_n(x)|\leq
+            \frac{A^{n-1}M}{n!}|x-a|^n\leq
+            \frac{A^{n-1}M}{n!}h^n\to0
+        \]
+        \item \emph{The $y_n(x)$ converge to a continuous function}:
+        We can apply the Weierstrass M-test to the series with the last inequality of the previous point to see that the $y_n$ converge to a continuous function.
+        \item \emph{$y_{\infty}(x)$ solves the ODE}:
+        Taking the limit of the definition of $y_n(x)$ (and using some nice properties of integrals and the continuity of $f$) gives
+        \[
+            y_{\infty}(x)=
+            b+\int_a^x f(t,y_{\infty}(t))\diff t
+        \]
+        As the RHS of this equation is differentiable, so too is the LHS.
+        Upon differentiation we see that
+        \[
+            y_{\infty}'(x)=
+            f(x,y_{\infty}(x))
+        \]
+        and since $y_{\infty}(a)=b$, we have that $y_{\infty}(x)$ solves the ODE.
+        \item \emph{Uniqueness of solution}:
+        Let $y(x)$ and $\tilde{y}(x)$ be two solutions to the ODE and define
+        \[
+            e(x):=
+            y(x)-\tilde{y}(x)=
+            \int_a^x(f(t,y(t))-f(t,\tilde{y}(t)))\diff t
+        \]
+        Then, by using the Lipschitz condition,
+            \begin{align*}
+                |e(x)|
+                &\leq
+                \left|\int_a^x |f(t,y(t))-f(t,\tilde{y}(t)|\diff t\right|\\
+                &\leq
+                A\left|\int_a^x |y(t)-\tilde{y}(t)|\diff t\right|\\
+                &=
+                A\left|\int_a^x |e(t)|\diff t\right|
+            \end{align*}
+        As $e(x)$ is continuous on $[a-h,a+h]$ it is also bounded, say $|e(x)|\leq B$.
+        So
+        \[
+            |e(x)|\leq
+            A\left|\int_a^x B\diff t\right|=
+            AB|x-a|
+        \]
+        However, this provides a new bound for $e(x)$, so we can procede inductively to obtain that
+        \[
+            |e(x)|\leq
+            B\frac{A^n|x-a|^n}{n!}\leq
+            B\frac{A^nh^n}{n!}\to0
+        \]
+        Hence $0\leq |e(x)|\leq0$, and so, for all $x\in[a-h,a+h]$, $e(x)=0$ and we have that $y=\tilde{y}$.
+    \end{enumerate}
+\end{proof}
+
+\begin{thm}[Contraction Mapping Theorem]
+    Let $(X,\met)$ be a complete metric space and $T:X\to X$ such that
+    \[
+        \exists A\in(0,1),~
+        \forall u,v\in X,~
+        \met(T(u),T(v))\leq
+        A\met(u,v)
+    \]
+    Then there exists a unique fixed point $x\in X$ such that $T(x)=x$.
+    Futher, the sequence $(x_n)$ defined by $x_{n+1}=T(x_n)$ converges to $x$ for all choices of $x_0\in X$.
+\end{thm}
+
+\begin{proof}
+    The proof is not included in this course, but can be found in the Part A Metric Spaces course.
+\end{proof}
+
+\begin{thm}[Picard's Theorem for non-autonomous systems of first-order ODEs]
+    Let $f:[a-h,a+h]\times\reals^n\to\reals^n$ and define the $n+1$-dimensional `tube' $\mathcal{T}=\{(x,\vc{y})\in\reals^{n+1}\colon|x-a|\leq h\text{ and }\|\vc{y}-\vc{b}\|\leq k\}\subseteq\reals^n$, where $h,k>0$ (and $\|\|=\|.\|_2$ denotes the standard Euclidean norm).
+    If the following three conditions are satisfied:
+    \begin{enumerate}[(i)]
+        \item $f$ is continuous in all variables inside $\mathcal{T}$.
+        \item $f$ is Lipschitz in $y$ inside $\mathcal{T}$.
+        \item $f$ is bounded for all $(x,\vc{y})\in\mathcal{T}$ for all by some $M$, with $Mh\leq k$
+    \end{enumerate}
+    then the ODE
+    \[
+        \begin{array}{rcl}
+            \vc{y}'(x) &=& f(x,\vc{y}(x))\\
+            \vc{y}(a) &=& \vc{b}
+        \end{array}
+    \]
+    has a solution for $x\in[a-h,a+h]$, which further is unique in $\mathcal{T}$.
+\end{thm}
+
+\begin{proof}
+    Let $X=\mathcal{C}([a-\eta,a+\eta],\mathcal{T})$ be the space of continuous functions\\ $\vc{y}:[a-\eta,a+\eta]\to\mathcal{T}\subseteq\reals^{n+1}$ for some $0<\eta\leq h$.
+    Then $X$ is complete under the supremum metric:
+    \[
+        \met(\vc{y},\vc{z})=
+        \sup_{|x-a|\leq\eta}\|\vc{y}(x)-\vc{z}(x)\|
+    \]
+
+    Consider $T$ given by
+    \[
+        (T\vc{y})(x)=
+        b+\int_a^x f(s,\vc{y}(s))\diff s
+    \]
+
+    We claim that:
+
+    \begin{enumerate}[(i)]
+        \item \emph{$T:X\to X$}:
+        By using the fact that $f$ is bounded for $x\in[a-\eta,a+\eta]$ and the properties of intergrals,
+        \[
+            \|(T\vc{y})(x)-\vc{b}\|=
+            \left\|\int_a^x f(s,\vc{y}(s))\diff s\right\|\leq
+            Mh\leq
+            k
+        \]
+        i.e. $(T\vc{y})(x)\in\mathcal{T}$ for $x\in[a-\eta,a+\eta]$, so $T$ maps $X$ into itself.
+        \item \emph{$T$ is a contraction}:
+        By using the fact that $f$ is Lipschitz in $y$ inside $\mathcal{T}$, say with Lipschitz constant $L$, and the properties of integrals,
+        \begin{align*}
+            \met(T\vc{y},T\vc{z})
+            &=
+            \sup_{|x-a|\leq \eta}\left\|\int_a^x f(s,\vc{y}(s))-f(s,\vc{z}(s))\diff s\right\|\\
+            &\leq
+            \sup_{|x-a|\leq \eta}\left|\int_a^x \|f(s,\vc{y}(s))-f(s,\vc{z}(s))\|\diff s\right|\\
+            &\leq
+            \sup_{|x-a|\leq \eta}|x-a|L\met(\vc{y},\vc{z})\\
+            &\leq
+            \eta L\met(\vc{y},\vc{z})
+        \end{align*}
+
+        Thus $T$ is a contraction as long as $\eta<\frac{1}{L}$, or, for a weaker bound, $\eta\leq\frac{1}{2L}$.
+    \end{enumerate}
+
+    So we can apply the Contraction Mapping Theorem to $T$ to obtain that $T$ has a unique fixed point $\vc{y}$, which we see solves the given ODE on $[a-\eta,a+\eta]$ with the given conditions.
+
+    However, we have a constraint on $\eta$, namely that $\eta\leq\min\{h,\frac{1}{2L}\}$.
+    We then have two cases:
+    \begin{enumerate}[(i)]
+        \item $h\leq\frac{1}{2L}$:
+        We can take $\eta=h$ and thus a solution in the whole range $[a-h,a+h]$.
+        \item $h>\frac{1}{2L}$:
+        We have unique existence for $x\in[a-\frac{1}{2L},a+\frac{1}{2L}]$, so we can iterate again, with new $a_1,b_1,\eta_1,k_1$.
+        Define $a_1=a+\frac{1}{2L}$, $\vc{b}_1=\vc{y}(a_1)$, $\eta_1=\eta-\frac{1}{2L}$, and $k_1=k-\|\vc{b}_1-\vc{b}\|$.
+        Note that $a_1\in[a-h,a+h]$, $\mathcal{T}_1:=\{(x,\vc{y})\in\reals^{n+1}\colon|x-a_1|\leq \eta_1\text{ and }\|\vc{y}-\vc{b}_1\|\leq k_1\}\subseteq\mathcal{T}$, so $M$ is still a bound, and $L$ a Lipschitz constant.
+
+        We can then apply the CMT again to get existence for $x\leq a+\min\{\left(\frac{1}{2L}+\frac{1}{2L}\right),h\}$.
+        So we have either reached $a+h$, or we can simply iterate once more.
+        It is clear that this procedure will have to terminate after a finite number of steps, because $0<\frac{1}{2L}$, so there exists some $N$ with $\frac{N}{2L}\geq h$.
+
+        After iterating to get existence to the right (that is, $x\leq a+h$), we can iterate again to get existence to the left (that is, $x\geq a-h$), and thus for our whole interval $[a-h,a+h]$.
+    \end{enumerate}
+\end{proof}
+
+Picard's Theomem can also apply to higher-order ODEs, as an $n^{th}$-order linear ODE can be written as an $n$-dimensional system of first-order linear ODEs.
+
+
+\subsection{Global existence}
+
+
+\emph{This section is not complete, nor necessarily even true.
+It would probably be a good idea to sort it out at some time.}
+
+
+\subsubsection{Global existence via uniform Lipschitz constant}
+
+\begin{thm}[Global existence via uniform Lipschitz constant]
+    Suppose that $f:\reals\times\reals^n\to\reals^n$ satisfies all the requirements of Picard's Theorem, and further the Lipschitz constant is global.
+    That is, one constant is a valid Lipschitz constant in $\vc{y}$ for all $x\in\reals$.
+    Suppose also that $f(x,\vc{0})$ is locally bounded (that is, $\forall h,~\exists C_h,~[|x|\leq h\implies\|f(x,\vc{0})\|\leq C_h]$) and $f$ is continuous everywhere for all variables.
+    Then the ODE has a global solution.
+\end{thm}
+
+\begin{proof}
+    Take the interval $[a,a+x_0]$ for some positive $x_0$.
+    Then all the conditions of Picard's are satisfied for $x\in[a,a+x_0]$ by the assumptions, apart from boundedness.
+    Note, however:
+    \begin{align*}
+        \|f(x,\vc{y})\|
+        &\leq
+        \|f(x,\vc{y})-f(x,\vc{0})\|+\|f(x,\vc{0})\|\\
+        &\leq
+        L(\smashoperator{\sup_{x\in[a,x_0]}}\|\vc{y}\|)+\|f(x,\vc{0})\|\\
+        &=:
+        C
+    \end{align*}
+    where $L$ is the uniform Lipschitz constant.
+    Then $f(x,\vc{y})$ is bounded for $x\in[a,a+x_0]$ by this $C$.
+    As $f$ is continuous and Lipschitz everywhere, we may take $k$ to be as large as we like, so we can always guarantee $Ch\leq k$ by taking $k=\frac{C}{x_0-a}+1$, say.
+
+    We can construct a bound for any arbitrarily large interval using our Lipschitz constant in this way, and can thus guarantee existence for all $x\geq a$. Similarly we can extend to the left, and get existence for the whole of $x\in\reals$.
+\end{proof}
+
+
+\subsubsection{Global existence via positively invariant sets}
+
+If there exists some positively invariant set, then if $\vc{y}(x_0)$ is in this set, then so too is $\vc{y}(x)$ for any $x>x_0$.
+As this set is bounded, we can find a bound on $f$ and also some Lipschitz constant, and then apply Picard's Theorem for any arbitrarily large interval.
+
+\emph{$\ldots$ and thus ends the section of uncertain validity.}
+
+
+\section{Classification of second-order (quasi-)linear PDEs}
+
+
+\subsection{Second-order linear PDEs}
+
+A second-order linear PDE is an equation of the form
+\begin{equation}\label{so-pde}
+    \underbrace{a(x,y)u_{xx} + 2b(x,y)u_{xy} + c(x,y)u_{yy}}_{\text{principal part}} + \underbrace{f(x,y,u,u_x,u_y)}_{\text{linear in }u,u_x,u_y}=0
+\end{equation}
+
+With the aim of simplifying the principal part of this general equation, we consider a change of coordinates
+\begin{equation}
+    (x,y)\to(\varphi(x,y),\psi(x,y))
+\end{equation}
+with non-vanishing Jacobian
+\[
+    \frac{\partial(\varphi,\psi)}{\partial(x,y)}=
+    \varphi_x\psi_y-\varphi_y\psi_x\neq0
+\]
+and with $v(\varphi,\psi)=u(x,y)$.
+
+Using the chain rule and the product rule, we can calculate that
+\begin{align*}
+    u_{xx}
+    &=
+    v_{\varphi\varphi}\varphi_x^2+2v_{\varphi\psi}\varphi_x\psi_x+v_{\psi\psi}\psi_x^2+v_{\varphi}\varphi_{xx}+v_{\psi}\psi_{xx}\\
+    u_{yy}
+    &=
+    v_{\varphi\varphi}\varphi_y^2+2v_{\varphi\psi}\varphi_y\psi_y+v_{\psi\psi}\psi_y^2+v_{\varphi}\varphi_{yy}+v_{\psi}\psi_{yy}\\
+    u_{xy}
+    &=
+    v_{\varphi\varphi}\varphi_x\varphi_y+v_{\varphi\psi}(\varphi_x\psi_y+\varphi_y\psi_x)+v_{\psi\psi}\psi_x\psi_y+v_{\varphi}\varphi_{xy}+v_{\psi}\psi_{xy}
+\end{align*}
+
+Substituting these into equation~\ref{so-pde} gives
+\begin{equation}\label{pde-coc}
+    Av_{\varphi\varphi}+2Bv_{\varphi\psi}+Cv_{\psi\psi}+F(\varphi,\psi,v,v_{\varphi},v_{\psi})=0
+\end{equation}
+where
+\begin{equation}\label{pde-new-coefficients}
+    \begin{array}{rcl}
+        A &=& a\varphi_x^2+2b\varphi_x\varphi_y+c\varphi_y^2\\
+        B &=& a\varphi_x\psi_x+b(\varphi_x\psi_y+\varphi_y\psi_x)+c\varphi_y\psi_y\\
+        C &=& a\psi_x^2+2b\psi_x\psi_y+c\psi_y^2
+    \end{array}
+\end{equation}
+which, in matrix notation, is
+\begin{equation}
+    \left(
+    \begin{array}{cc}
+        A & B\\
+        B & C
+    \end{array}
+    \right)
+    =
+    \left(
+    \begin{array}{cc}
+        \varphi_x & \varphi_y\\
+        \psi_x & \psi_y
+    \end{array}
+    \right)
+    \left(
+    \begin{array}{cc}
+        a & b\\
+        b & c
+    \end{array}
+    \right)
+    \left(
+    \begin{array}{cc}
+        \varphi_x & \varphi_y\\
+        \psi_x & \psi_y
+    \end{array}
+    \right)^T
+\end{equation}
+and thus
+\begin{equation}
+    (AC-B^2)=(ac-b^2)(\varphi_x\psi_y-\varphi_y\psi_x)^2
+\end{equation}
+
+That is to say, the sign of $ac-b^2$ is invariant under any non-degenerate change of coordinates.
+This gives rise to a classification of second-order linear PDEs.
+
+
+\subsection{Classification of second-order linear PDEs}
+
+Second-order linear PDEs of the form in equation~\ref{so-pde} are classified into three types, as follows:
+\begin{enumerate}[(i)]
+    \item $b^2>ac$: hyperbolic\qquad e.g. Wave equation
+    \item $b^2<ac$: elliptic\qquad e.g. Laplace equation
+    \item $ac=b^2$: parabolic\qquad e.g. Heat equation
+\end{enumerate}
+
+We will examine each type and reduce to \emph{canonical form} by a change of coordinates to the \emph{characterstic variables}, by using the quadratic polynomial
+\begin{equation}\label{pde-quadratic}
+    a(x,y)\lambda^2-2b(x,y)\lambda+c(x,y)=0
+\end{equation}
+
+\begin{enumerate}[(i)]
+    \item \emph{Hyperbolic}:
+    As $b^2>ac$, the quadratic in equation~\ref{pde-quadratic} has distinct, real roots, $\lambda_1(x,y),\lambda_2(x,y)$.
+    We solve the first-order quasi-linear PDEs:
+    \[
+        \begin{array}{rcl}
+            \varphi_x+\lambda_1(x,y)\varphi_y
+            &=0\\
+            \psi_x+\lambda_2(x,y)\psi_y
+            &=0
+        \end{array}
+    \]
+    to find new coordinates $\varphi,\psi$.
+    Substituting these into \ref{pde-new-coefficients} gives $A=C=0$.
+    Dividing then equation~\ref{pde-coc} by $B$ gives the canonical form:
+    \begin{equation}
+        v_{\varphi\psi}+G(\varphi,\psi,v,v_{\varphi},v_{\psi})=0
+    \end{equation}
+
+    Note that this can often be solved explicitly.
+    \item \emph{Elliptic}:
+    As $b^2<ac$, equation~\ref{pde-quadratic} has a complex conjugate pair of roots.
+    We solve
+    \[
+        \begin{array}{rcl}
+            \varphi_x+\lambda(x,y)\varphi_y
+            &=0\\
+            \psi_x+\bar{\lambda}(x,y)\psi_y
+            &=0
+        \end{array}
+    \]
+    with solutions $\psi=\bar{\varphi}$.
+    Then $A=C=0$, and the equation~\ref{pde-coc} becomes
+    \[
+        v_{\varphi\varphi}+G(\varphi,\bar{\varphi},v,v_{\varphi},v_{\bar{\varphi}})
+    \]
+
+    Introduce real and imaginary parts for $\varphi=\zeta+i\eta$ to obtain the canonical form:
+    \begin{equation}
+        v_{\zeta\zeta}+v_{\eta\eta}+H(\zeta,\eta,v,v_{\zeta},v_{\eta})
+    \end{equation}
+    \item \emph{Parabolic}:
+    As $b^2=ac$, equation~\ref{pde-quadratic} has repeated, real root $\lambda(x,y)$.
+    We solve
+    \[
+        \varphi_x+\lambda(x,y)\varphi_y=0
+    \]
+    and then choose any $\psi$ such that $\varphi_x\psi_y-\varphi_y\psi_x\neq0$.
+    Then $A=B=0$, and we get the canonical form:
+    \begin{equation}
+        v_{\psi\psi}+G(\varphi,\phi,v,v_{\varphi},v_{\psi})
+    \end{equation}
+\end{enumerate}
+
+
+\subsection{Well-posedness of PDEs}
+
+\begin{defn}[Well-posed problems]
+    A problem, consisting of a PDE with data, is said to be \emph{well posed} if the solution
+    \begin{enumerate}[(i)]
+        \item exists
+        \item is unique
+        \item depends continuously on the data
+    \end{enumerate}
+    \emph{(N.B. the definition of `depending continuously on the data' is quite abstract at this stage, but is motivated by the idea that a small change in the data should lead to a small change in the corresponding solution).}
+\end{defn}
+
+We can tabulate which sorts of problems are well posed as follows:\\
+{\renewcommand{\arraystretch}{1.5}
+\renewcommand{\tabcolsep}{0.2cm}
+\begin{tabular}{c|ccc}
+    & IVP & IBVP & BVP \\
+    \hline
+    Hyperbolic & yes & yes & no\\
+    Elliptic & no & no & yes\\
+    Parabolic & yes* & yes* & no
+\end{tabular}}\\
+\emph{* Parabolic problems are only well posed forward in time}
+
+
+\section{The Maximum Principle}
+
+
+\subsection{Poisson's equation}
+
+Poisson's equation is a particular example of a second-order elliptic PDE:{
+\begin{equation}
+    u_{xx}+u_{yy}=f(x,y)
+\end{equation}
+
+
+\subsubsection{The Dirichlet problem}
+
+Let $D$ be a domain in $(x,y)$-space.
+Then the Dirichlet problem for Poisson's equation is
+\begin{equation}\label{poisson-dir}
+    \begin{array}{rcl}
+        u_{xx}(x,y)+u_{yy}(x,y) &=& f(x,y)\qquad (x,y)\in D\\
+        u(x,y) &=& g(x,y)\qquad (x,y)\in\partial D
+    \end{array}
+\end{equation}
+
+We will show that, if a solution exists for \ref{poisson-dir}, then it is unique.
+
+\begin{proof}
+    Suppose that there exist two solutions, $u$ and $v$.
+    Define $\phi=u-v$.
+    Then $\phi$ satisfies the homogeneous Dirchlet problem (i.e. $f=g=0$).
+
+    Now consider the Dirichlet integral
+    \[
+        \iint_D{\nabla}\cdot(\phi\nabla\phi)\diff x\diff y=
+        \iint_D(\phi\phi_x)_x+(\phi\phi_y)_y\diff x\diff y=
+        \iint_D\phi\nabla^2\phi+\|\nabla\phi\|^2\diff x\diff y
+    \]
+
+    Alternatively, we may apply the Divergence Theorem to the Dirchlet integral to obtain that
+    \[
+        \iint_D{\nabla}\cdot(\phi\nabla\phi)\diff x\diff y=
+        \oint_{\partial D}\phi\frac{\partial\phi}{\partial n}\diff s
+    \]
+    (where $n$ and $s$ refer to the outward-pointing normal and the arclength respectively).
+
+    But $\phi=0$ on $\partial D$ and $\nabla^2\phi=0$ in $D$, so these two equations combine to give
+    \[
+        \iint_D\|\nabla\phi\|^2\diff x\diff y=0
+    \]
+
+    Since the integrand is non-negative and (assumed to be) continuous, it must be identically zero in $D$
+    Thus $\phi$ must be constant in $D$, but since $\phi$ is zero on $\partial D$, it must be zero everywhere, and hence the two solutions are identical.
+\end{proof}
+
+
+\subsubsection{The Neumann problem}
+
+Let $D$ be a domain in $(x,y)$-space.
+Then the Neumann problem for Poisson's equation is
+\begin{equation}\label{poisson-neu}
+    \begin{array}{rcl}
+        u_{xx}(x,y)+u_{yy}(x,y) &=& f(x,y)\qquad (x,y)\in D\\
+        \frac{\partial u}{\partial n} &=& g(x,y)\qquad (x,y)\in\partial D
+    \end{array}
+\end{equation}
+
+By Green's Theorem
+\[
+    \iint_D\nabla^2 u\diff x\diff y=
+    \oint_{\partial D}\frac{\partial u}{\partial n}\diff s
+\]
+which implies that
+\begin{equation}\label{solv-cond}
+    \iint_D f(x,y)\diff x\diff y=
+    \oint_{\partial D}g(x,y)\diff x\diff y
+\end{equation}
+
+Hence \ref{solv-cond} is the \emph{solvability condition} for the Neumann problem; if it is not satisfied then the problem has no solution.
+
+By the same arguments as for the Dirchlet problem, we can show that the difference between any two solutions is constant. Thus, if the solvability condition is satisfied then any two different solutions differ only by an arbitrary constant.
+
+
+\subsection{The maximum principle for Poisson's equation}
+
+\begin{thm}[The maximum principle for Poisson's equation]
+    Suppose $u$ satisfies Poisson's equation everywhere in some bounded domain $D$:
+    \[
+        \nabla^2 u=f(x,y)
+    \]
+    with $f\geq0$ in $D$.
+    Then $u$ attains its maximum on $\partial D$.
+\end{thm}
+
+\begin{proof}
+    The proof proceeds in two parts:
+    \begin{enumerate}[(i)]
+        \item \emph{Suppose first that $f$ is strictly positive in $D$}:
+        If $u$ has an interior maximum at some point $(x_0,y_0)\in D$ then the following conditions must be satisfied at $(x_0,y_0)$:
+        \begin{align*}
+            u_x=u_y&=0\\
+            u_{xx}u_{yy}&\geq u_{xy}^2\\
+            u_{xx},u_{yy}&\leq0
+        \end{align*}
+
+        But then
+        $0<f(x,y)=u_{xx}+u_{yy}\leq0$
+        which is a contradiction.
+
+        Hence $u$ cannot have an interior maximum within $D$, so it must attain its maximum on $\partial D$.
+        \item \emph{Now suppose that we only have $f$ non negative in $D$}:
+        Consider the function
+        \[
+            v(x,y)=u(x,y)+\frac{\eps}{4}(x^2+y^2)
+        \]
+        where $\eps>0$.
+
+        Then
+        \[
+            \nabla^2 v=f+\eps>0
+        \]
+        and by the result just proved, $v$ attains its maximum on $\partial D$.
+
+        Now suppose that this maximum value of $u$ on $\partial D$ is $M$, and the maximum value of $(x^2+y^2)$ on $\partial D$ is $R^2$.
+        Then, as $v$ takes its maximum value on $\partial D$,
+        \[
+            v=
+            u+\frac{\eps}{4}(x^2+y^2)\leq
+            M+\frac{\eps}{4}R^2
+        \]
+        holds for all $(x,y)\in D$.
+        Letting $\eps\to0$ we see that $u\leq M$ in $D$, and thus $u$ attains its maximum value on $\partial D$.
+    \end{enumerate}
+\end{proof}
+
+\begin{cor}
+    By replacing $u$ with $-u$, we can achieve a similar result, namely that, if $f\leq0$ then $u$ attains its minimum on $\partial D$.
+\end{cor}
+
+\begin{cor}
+    If $f=0$ then $u$ attains both its maximum and minimum on $\partial D$.
+    This is an important property of \emph{Laplace's equation}.
+\end{cor}
+
+
+\subsection{Reaction-diffusion equation}
+
+The reaction-diffusion equation (or, alternatively, the inhomogeneous heat equation) is a particular example of a second-order parabolic PDE:
+\begin{equation}
+    u_t=u_{xx}+f(x,t)
+\end{equation}
+
+\subsubsection{The IVBP of the reaction-diffusion equation}
+
+The IVBP
+\begin{equation}
+    \begin{array}{rcll}
+        u_t(x,t)&=&u_{xx}(x,t)+f(x,t)\qquad &t>0,~x_1(t)<x<x_2(t)\\
+        u(x,0)&=&u_0(x)&x_1(0)<x<x_2(0)\\
+        u(x_1(t),t)&=&g_1(t)&t>0\\
+        u(x_2(t),t)&=&g_2(t)&t>0
+    \end{array}
+\end{equation}
+has, if a solution exists, a unique solution.
+
+\begin{proof}
+    Suppose that there are two solutions, $u$ and $v$.
+    Define $\phi=u-v$.
+    Then $\phi$ satisfies the homogeneous problem (i.e. with $f=u_0=g_1=g_2=0$).
+    Then Leibnitz' rule gives
+    \[
+        \frac{\mathrm{d}}{\diff t}\int_{x_1(t)}^{x_2(t)}\phi^2\diff x=
+        \int_{x_1(t)}^{x_2(t)}2\phi\phi_t\diff x +\frac{\diff x_2}{\diff t}\phi^2(x_2,t)-\frac{\diff x_1}{\diff t}\phi^2(x_1,t)
+    \]
+
+    But the last two terms are zero, and applying integration by parts to the first term gives
+    \[
+        \frac{\mathrm{d}}{\diff t}\int_{x_1(t)}^{x_2(t)}\phi^2\diff x=
+        2\int_{x_1(t)}^{x_2(t)}\phi\phi_t\diff x=
+        -2\int_{x_1(t)}^{x_2(t)}\phi_x^2\diff x\leq0
+    \]
+
+    So the integral
+    \[
+        \int_{x_1(t)}^{x_2(t)}\phi^2\diff x
+    \]
+    \begin{enumerate}[(i)]
+        \item is clearly non negative
+        \item is zero when $t=0$
+        \item is a non-increasing function in $t$
+    \end{enumerate}
+
+    From this we can conclude that the integral must be identically zero, and thus $\phi$ is identically zero, and we have uniqueness of solutions.
+\end{proof}
+
+
+\subsection{The maximum principle for the reaction-diffusion equation}
+
+\begin{thm}[The maximum principle for the reaction-diffusion equation]
+    Suppose that $u(x,t)$ satisfies
+    \[
+        u_t=u_{xx}+f(x,t)
+    \]
+    in a region $D$, bounded by the lines $t=0$, $t=\tau>0$, and two non-intersecting, smooth curves, $C_1$ and $C_2$, that are nowhere parallel to the $x$-axis.
+    Suppose also that $f\leq0$ in $D$.
+    Then $u$ takes its maximum value either on $t=0$ or one of the two curves, $C_1$ or $C_2$.
+\end{thm}
+
+\begin{proof}
+    This proof proceeds in two parts:
+    \begin{enumerate}[(i)]
+        \item \emph{Suppose first that $f$ is strictly negative in $D$}:
+        Any internal maximum inside $D$ must satisfy
+        \begin{align*}
+            u_x=u_t&=0\\
+            u_{xx}=u_{tt}&=0
+        \end{align*}
+        and any maximum at the point $t=\tau$ must satisfy
+        \begin{align*}
+            u_x&=0\\
+            u_t&\geq0\\
+            u_{xx}&\leq0
+        \end{align*}
+
+        Both of these conditions lead to contradictions with $f$ being strictly negative.
+        It follows that $u$ must take its maximum somewhere on $\partial D$ but not $t=\tau$.
+        \item \emph{Now suppose that we only have $f\leq0$}:
+        Then define
+        \[
+            v(x,t)=
+            u(x,t)+\frac{\eps}{2}x^2
+        \]
+        with $\eps>0$.
+
+        Then $v$ satisfies
+        \[
+            v_t(x,t)=
+            v_{xx}(x,t)+(f(x,t)-\eps)
+        \]
+        and by the previous step, this attains its maximum on $\partial D$ but not $t=\tau$.
+
+        Now let the maximum value of $u$ over $\partial D\setminus\{t=\tau\}$ be $M$ and the maximum value of $|x|$ in the same region be $L$.
+        Then
+        \[
+            \sup_{D} u\leq \sup_{D}v\leq\sup_{\partial D\setminus\{t=\tau\}}v\leq\frac{L^2\eps}{2}+M
+        \]
+        for all $\eps>0$, so letting $\eps\to0$ gives the required result.
+    \end{enumerate}
+\end{proof}
+
+
+\section{Laplace and Fourier transforms}
+
+\subsection{Laplace transforms}
+
+\begin{defn}[Laplace transform]
+    The \emph{Laplace transform} of a function $f(t)$ is
+    \begin{equation}
+        \bar{f}(p):=
+        \underset{t\to p}{\mathcal{L}}\{f(t)\}:=
+        \int_0^{\infty}e^{-pt}f(t)\diff t
+    \end{equation}
+\end{defn}
+
+We often allow $p$ to be complex, and we are then interested in where $\bar{f}$ is defined in $\comps$. If $|f(t)|\leq Me^{ct}$ for some $M,c>0$ then the integral is defined for all complex $p$ with $\Re(p)>c$.
+
+A standard list of Laplace transforms, with corresponding domain of defintion, is given as follows (with $\alpha\in\comps,a,\omega\in\reals$):
+\[
+    \begin{array}{ccc}
+        f(t) & \mathcal{L}[f](p) & \text{Domain of definition}\\
+        1 & \frac{1}{p} & \Re(p)>0\\
+        t & \frac{1}{p^2} & \Re(p)>0\\
+        t^n & \frac{n!}{p^{n+1}} & \Re(p)>0\\
+        e^{\alpha t} & \frac{1}{p-a} & \Re(p)>\Re(\alpha)\\
+        \sin(\omega t) & \frac{\omega}{p^2+\omega^2} & \Re(p)>0\\
+        \cos(\omega t) & \frac{p}{p^2+\omega^2} & \Re(p)>0\\
+        \sinh(at) & \frac{a}{p^2-a^2} & \Re(p)>|a|\\
+        \cosh(at) & \frac{p}{p^2-a^2} & \Re(p)>|a|
+    \end{array}
+\]
+
+\subsection{Properties of the Laplace transform}
+Let $\lambda,\mu\in\comps,a\in\reals$.
+Then
+\begin{enumerate}[(i)]
+    \item $\mathcal{L}[\lambda f+\mu g]=\lambda\mathcal{L}[f]+\mu\mathcal{L}[g]$
+    \item $\mathcal{L}\{e^{at}f(t)\}=\bar{f}(p-a)$
+    \item $\mathcal{L}\{f'(t)\}=p\bar{f}(p)-f(0)$
+    \item $\mathcal{L}\{f''(t)\}=p^2\bar{f}(p)-pf(0)-f'(0)$
+    \item $\mathcal{L}\{\int_0^tf(s)\diff s\}=\frac{\bar{f}(p)}{p}$
+    \item $\mathcal{L}\{(f*g)(t)\}:=\mathcal{L}\{\int_0^t f(t-s)g(s)\diff s\}=\mathcal{L}\{f(t)\}\mathcal{L}\{g(t)\}$
+    \item $\mathcal{L}\{t^nf(t)\}=(-1)^n\frac{\diff^n}{\diff p^n}\bar{f}(p)$
+\end{enumerate}
+
+\subsection{Fourier transforms}
+
+\begin{defn}[Fourier transform]
+    The \emph{Fourier transform} of a function $f(t)$ is
+    \begin{equation}
+        \hat{f}(\omega):=
+        \underset{t\to\omega}{\mathcal{F}}\{f(t)\}:=
+        \int_{-\infty}^{\infty}e^{-i\omega t}f(t)\diff t
+    \end{equation}    
+\end{defn}
+
+Existence needs only that $\int_{\infty}^{\infty}|f(t)|\diff t<\infty$, and as $\hat{f}$ is complex from the start we might as well take complex functions $f$.
+
+\subsection{Properties of Fourier transforms}
+
+Let $\lambda,\mu\in\comps$.
+Then
+\begin{enumerate}[(i)]
+    \item $\mathcal{F}[\lambda f+\mu g]=\lambda\mathcal{F}[f]+\mu\mathcal{F}[g]$
+    \item $\mathcal{F}\{f'(t)\}=i\omega\hat{f}(\omega)$
+    \item $\mathcal{F}\{(f*g)(t)\}:=\mathcal{F}\{\int_{-\infty}^{\infty}f(t-s)g(s)\diff s\}=\mathcal{F}\{f(t)\}\mathcal{F}\{g(t)\}$
+\end{enumerate}
+
+Note that the definition for convolutions (that is, $f*g$) is the same for Laplace and Fourier transforms iff $f=g=0$ for $t<0$.
+
+
+\subsection{Inversion of the Fourier transform}
+
+\begin{thm}[The inversion formula for the Fourier transform]
+    \begin{equation}\label{fourier-inv}
+        \frac{1}{2}[f(t_-)+f(t_+)]=
+        \frac{1}{2\pi}\lim_{R\to\infty}\int_{-R}^R e^{i\omega t}\hat{f}(\omega)\diff\omega
+    \end{equation}
+    Note that, if $f$ is continuous at $t$ then the LHS is simply $f(t)$.
+\end{thm}
+
+\begin{proof}
+    \begin{align*}
+        \int_{-R}^R e^{i\omega t}\hat{f}(\omega)\diff\omega
+        &=\int_{-R}^R\int_{-\infty}^{\infty}e^{i\omega t}e^{-i\omega s}f(s)\diff s\diff\omega\\
+        &=\int_{-\infty}^{\infty}\int_{-R}^R e^{i\omega(t-s)}\diff\omega\diff s\\
+        &=\int_{-\infty}^{\infty}\left[\frac{e^{iR(t-s)}-e^{-iR(t-s)}}{i(t-s)}\right]f(s)\diff s\\
+        &=2\int_{-\infty}^{\infty}\frac{\sin R(t-s)}{t-s}f(s)\diff s\\
+        &=2\left[\int_{-\infty}^t\frac{\sin R(t-s)}{t-s}f(s)\diff s+\int_t^{\infty}\frac{\sin R(t-s)}{t-s}f(s)\diff s\right]\\
+        &\text{(Then, letting $t-s=\frac{u}{R}$ in the first, and $t-s=-\frac{u}{R}$ in the second)}\\
+        &=2\int_0^{\infty}\frac{\sin u}{u}\left(f(t-\frac{u}{R})+f(t+\frac{u}{R})\right)\diff u
+    \end{align*}
+    Letting $R\to\infty$ and using the identity
+    \[
+        \int_0^{\infty}\frac{sin x}{x}\diff x=
+        \frac{\pi}{2}
+    \]
+    we obtain the required result.
+\end{proof}
+
+\subsection{Inversion of the Laplace transform}
+
+\begin{thm}[The inversion formula for the Laplace transform]
+    \begin{equation}
+        \frac{1}{2}[f(t_-)+f(t_+)]=
+        \frac{1}{2\pi i}\lim_{R\to\infty}\int_{\gamma-iR}^{\gamma+iR} e^{pt}\bar{f}(p)\diff p
+    \end{equation}
+    where $\gamma\in\reals$ is chosen to be `to the right' of any singularites of $\bar{f}$.
+\end{thm}
+
+\begin{proof}
+    Given $f$, define
+    \[
+        g(t)=\left\{
+        \begin{array}{ll}
+            e^{-\gamma t}f(t) & t\geq 0\\
+            0 & t<0
+        \end{array}\right.
+    \]
+
+    Then
+    \[
+        \hat{g}(\omega)=
+        \int_0^{\infty} e^{-i\omega t}e^{-\gamma t}f(t)\diff t=
+        \bar{f}(\gamma+i\omega)
+    \]
+    and, by the Fourier inversion formula, \ref{fourier-inv},
+    \[
+        \frac{1}{2}[g(t_-)+g(t_+)]=
+        \frac{1}{2\pi}\lim_{R\to\infty}\int_{-R}^R e^{i\omega t}\bar{f}(\gamma+i\omega)\diff\omega
+    \]
+    which, upon multiplication by $e^{\gamma t}$ on both sides, gives
+    \[
+        \frac{1}{2}[f(t_-)+f(t_+)]=
+        \frac{1}{2\pi}\lim_{R\to\infty}\int_{-R}^R e^{(\gamma+i\omega)t}\bar{f}(\gamma+i\omega)\diff\omega
+    \]
+
+    Substituting $p=\gamma+i\omega$ gives the required result.
+\end{proof}
+
+
+\appendix
+\section{Solving ODEs with the Laplace transform}
+
+\begin{ex}[Simple IVP]
+    Solve
+    \begin{align*}
+        x''-3x'+2x&=4e^{2t}\\
+        x(0)&=-3\\
+        x'(0)&=5
+    \end{align*}
+    for $x(t)$.
+\end{ex}
+
+\begin{proof}[Solution]
+    Applying the Laplace transform to both sides gives
+    \[
+        (p^2\bar{x}+3p-5)-3(p\bar{x}+3)+2\bar{x}=
+        \frac{4}{p-2}
+    \]
+
+    Rearranging for $\bar{x}$ gives
+    \[
+        \bar{x}=
+        \frac{-3p^2+20p-24}{(p-2)(p^2-3p+2)}=
+        \frac{-3p^2+20p-24}{(p-1)(p-2)^2}
+    \]
+    which, when split into partial fractions, is
+    \[
+        \bar{x}=
+        \frac{-7}{p-1}+\frac{4}{p-2}+\frac{4}{(p-2)^2}
+    \]
+
+    Using the standard table of results we obtain
+    \[
+        x=
+        -7e^t+4e^{2t}+4te^{2t}
+    \]
+    where, for the last term, we used that
+    \[
+        \frac{1}{(p-2)^2}=
+        -\frac{\diff}{\diff p}\left(\frac{1}{p-2}\right)=
+        -\frac{\diff}{\diff p}\mathcal{L}\{e^{2t}\}=
+        \mathcal{L}\{te^{2t}\}
+    \]
+\end{proof}
+
+\begin{ex}[Harmonic oscillator with driving term]
+    Solve
+    \begin{align*}
+        x''+\omega^2 x&=f(t)\\
+        x(0)&=a\\
+        x'(0)&=b
+    \end{align*}
+    for $x(t)$.
+\end{ex}
+
+\begin{proof}[Solution]
+    Taking the Laplace transform of both sides gives
+    \[
+        (p^2\bar{x}-ap-b)+\omega^2\bar{x}=\bar{f}
+    \]
+
+    Rearranging gives
+    \[
+        \bar{x}=
+        \frac{ap}{p^2+\omega^2}+\frac{b}{p^2+\omega^2}+\frac{\bar{f}}{p^2+\omega^2}
+    \]
+
+    Noting that the last term is a convolution, and using the table of standard results, we obtain
+    \begin{align*}
+        x
+        &=
+        a\cos\omega t+\frac{b}{\omega}\sin\omega t+\frac{1}{\omega}(f*\sin\omega t)\\
+        &=
+        a\cos\omega t+\frac{b}{\omega}\sin\omega t+\frac{1}{\omega}\int_0^t f(s)\sin\omega(t-s)\diff s
+    \end{align*}
+\end{proof}
+
+\begin{ex}[ODE with non-constant coefficients]
+    Solve
+    \begin{align*}
+        tx''+2x'+tx&=0\\
+        x(0)=1
+    \end{align*}
+    for $x(t)$.
+\end{ex}
+
+\emph{N.B. This method doesn't always work on these types of problems}
+
+\begin{proof}[Solution]
+    By substituting $t=0$ into the ODE, we see that, for a regular solution, we also require that $x'(0)=0$, which gives us our second initial value condition.
+
+    Laplace transforming the equation gives
+    \[
+        -\frac{\diff}{\diff p}(p^2\bar{x}-p)+2(p\bar{x}-1)-\frac{\diff}{\diff p}\bar{x}=
+        0
+    \]
+    which, after rearranging, is
+    \[
+        -\frac{\diff\bar{x}}{\diff p}=
+        \frac{1}{p^2+1}=
+        \mathcal{L}\{\sin t\}
+    \]
+
+    Using the fact that $\mathcal{L}\{tx\}=-\frac{\diff\bar{x}}{\diff p}$ once more we get that
+    \[
+        tx=\sin t
+    \]
+    and thus
+    \[
+        x=\frac{1}{t}\sin t
+    \]
+\end{proof}
+
+
+\section{Solving PDEs with integral transforms}
+
+\begin{ex}[IVP for the heat equation in an infinite bar]
+    Solve
+    \begin{align*}
+        u_{xx}&=u_t,\quad x\in\reals,t\geq0\\
+        u(x,0)&=f(x)
+    \end{align*}
+    for $u(x,t)$.
+\end{ex}
+
+\begin{proof}[Solution]
+    Fourier transforming $u(x,t)$ in $x$ gives, by definition,
+    \[
+        \underset{x\to\omega}{\mathcal{F}}\{u(x,t)\}=
+        u(\omega,t)=
+        \int_{-\infty}^{\infty}e^{-i\omega x}u(x,t)\diff x
+    \]
+    and so
+    \begin{align*}
+        \hat{u}_t(\omega,t)
+        &=
+        \frac{\partial}{\partial t}\int_{-\infty}^{\infty}e^{-i\omega x}u(x,t)\diff x\\
+        &=
+        \int_{-\infty}^{\infty}e^{-i\omega x}u_t(x,t)\diff x\\
+        &=
+        \int_{-\infty}^{\infty}e^{-i\omega x}u_{xx}(x,t)\diff x\\
+        &=
+        -\omega^2\hat{u}(\omega,t)
+    \end{align*}
+    which is a PDE we can solve:
+    \[
+        \hat{u}(\omega,t)=A(\omega)e^{-\omega^2 t}
+    \]
+
+    But $u(x,0)=f(x)$, and so $\hat{u}(\omega,0)=\hat{f}(\omega)$, and therefore $A=\hat{f}$, giving
+    \[
+        \hat{u}(\omega,t)=\hat{f}(\omega)e^{-\omega^2 t}
+    \]
+
+    Define $\hat{K}(\omega,t)=e^{-\omega^2 t}$, then, as $\hat{u}$ is a product of Fourier transforms, it corresponds to a convolution:
+    \[
+        u(x,t)=
+        \int_{-\infty}^{\infty}K(x-y,t)f(y)\diff y
+    \]
+
+    As $f$ is given, all that remains is to invert $\hat{K}$, which we do by using the inversion formula:
+    \[
+        K(x,t)=
+        \frac{1}{2\pi}\lim_{R\to\infty}\int_{-R}^R e^{i\omega x}e^{-\omega^2 x}\diff\omega
+    \]
+
+    Substituting $s=\omega\sqrt{t}$ we get
+    \begin{align*}
+        K(x,t)
+        &=
+        \frac{1}{2\pi\sqrt{t}}\lim_{R\to\infty}\int_{-R}^R e^{-s^2+isx/\sqrt{t}}\diff s\\
+        &=
+        \frac{e^{-x^2/4t}}{2\sqrt{\pi t}}
+    \end{align*}
+    \emph{N.B. this integral is calculated using a lemma that will be stated and proven at the end of this solution.}
+
+    Thus
+    \[
+        u(x,t)=
+        \frac{1}{2\sqrt{\pi t}}\int_{-\infty}^{\infty}\exp{\left(\frac{-(x^2+y^2)}{4t}\right)}f(y)\diff y
+    \]
+\end{proof}
+
+\begin{lem}
+    For $a\in\reals$,
+    \[
+        \int_{-\infty}^{\infty}e^{-s^2+2ias}\diff s=
+        \sqrt{\pi}e^{-a^2}
+    \]
+\end{lem}
+
+\begin{proof}
+    First note that
+    \[
+        \int_{-\infty}^{\infty}e^{-s^2+2ias}\diff s=
+        \int_{-\infty}^{\infty}e^{-(s-ia)^2}e^{-a^2}\diff s
+    \]
+    so it is enough to prove that
+    \[
+        \int_{-\infty}^{\infty}e^{-(s-ia)^2}\diff s=
+        \sqrt{\pi}
+    \]
+
+    By Cauchy's Integral Formula, with $\Gamma$ being the rectangle with vertices at $R,R+ia,-R+ia$, and $-R$, for positive, real $R$,
+    \[
+        \oint_{\Gamma}e^{-(z-ia)^2}\diff z=0
+    \]
+
+    Letting $R\to\infty$, we claim that the integral along the short sides tends to zero, and thus the integral from $-R$ to $R$ must be equal to the integral from $-R+ia$ to $R+ia$ (as the latter is traversed in the opposite direction in the closed path, so will be of the opposite sign).
+
+    Thus
+    \[
+        \lim_{R\to\infty}\int_{-R}^R e^{-(x-ia)^2}\diff x=
+        \lim_{R\to\infty}\int_{-R}^R e^{-x^2}\diff x=
+        \sqrt{\pi}
+    \]
+\end{proof}
+
+\begin{ex}[BVP for the Laplace equation in the upper half plane]
+    Solve
+    \begin{align*}
+        u_{xx}+u_{yy}&=0,\quad x\in\reals,y>0\\
+        u(x,0)&=f(x)\\
+        \lim\limits_{y\to\infty}u(x,y)&=0
+    \end{align*}
+    for $u(x,y)$.
+\end{ex}
+
+\begin{proof}[Solution]
+    Taking the Fourier transform in $x$ gives
+    \[
+        \underset{x\to\omega}{\mathcal{F}}\{u(x,y)\}=
+        \hat{u}(\omega,y)=
+        \int_{-\infty}^{\infty}e^{-i\omega x}u(x,y)\diff x
+    \]
+
+    Then using the Laplace equation and the properties of the Fourier transform, this becomes
+    \[
+        \hat{u}_{yy}(\omega,y)=
+        \omega^2\hat{u}(\omega,y)
+    \]
+    with $\hat{u}(\omega,0)=\hat{f}(\omega)$ and $\lim_{y\to\infty}\hat{u}(\omega,y)=0$.
+    This ODE has solution for $\hat{u}$ given by
+    \[
+        \hat{u}(\omega,y)=
+        A(\omega)e^{-|\omega|y}+B(\omega)e^{|\omega|y}
+    \]
+    (taking into account the fact that $\omega$ may be either positive or negative).
+    The boundary conditions further imply that
+    \[
+        \hat{u}(\omega,y)=
+        \hat{f}(\omega)e^{-|\omega|y}
+    \]
+    This is a product, so the solution will be a convolution.
+
+    Define $\hat{K}(\omega,y)=e^{-|\omega|y}$, then, by the inversion formula,
+    \begin{align*}
+        K(x,y)
+        &=
+        \frac{1}{2\pi}\lim_{R\to\infty}\int_{-R}^R e^{i\omega x-|\omega|y}\diff\omega\\
+        &=
+        \frac{1}{2\pi}\lim_{R\to\infty}\left(\int_{-R}^0 e^{\omega(ix+y)}\diff\omega+\int_0^R e^{\omega(ix-y)}\diff\omega\right)\\
+        &=
+        \frac{1}{2\pi}\lim_{R\to\infty}\left(\left[\frac{e^{\omega(ix+y)}}{ix+y}\right]_{\omega=-R}^{\omega=0}+\left[\frac{e^{\omega(ix-y)}}{ix-y}\right]_{\omega=0}^{\omega=R}\right)\\
+        &=
+        \frac{y}{\pi(x^2+y^2)}
+    \end{align*}
+
+    Therefore
+    \[
+        u(x,y)=
+        \int_{-\infty}^{\infty}K(x-s,y)f(s)\diff s=
+        \frac{y}{\pi}\int_{-\infty}^{\infty}\frac{f(s)}{(x-s)^2+y^2}\diff s
+    \]
+\end{proof}
+
+\end{document}

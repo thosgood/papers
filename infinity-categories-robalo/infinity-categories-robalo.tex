@@ -8,17 +8,17 @@
 
 % Section titles
 
-\titleformat{\section}{\Large\bfseries\filcenter}{\thesection}{0.7em}{}[]
-\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}[]
-\titleformat{\subsubsection}[runin]{\bfseries}{\thesubsubsection}{0.5em}{}[]
+% \titleformat{\section}{\Large\bfseries\filcenter}{\thesection}{0.7em}{}[]
+\titleformat{\section}{\large\bfseries}{\thesubsection}{0.5em}{}[]
+\titleformat{\subsection}[runin]{\bfseries}{\thesubsubsection}{0.5em}{}[]
 
 % Numbering
 
-\numberwithin{equation}{subsubsection}
+\numberwithin{equation}{subsection}
 
 % Shortcuts
 
-\newcommand{\sss}[1]{\subsubsection{#1}}
+\renewcommand{\ss}[1]{\subsection{#1}}
 
 % Title page
 
@@ -33,5 +33,25 @@
     \begin{abstract}
         These are a copy of my notes on a talk given by Marco Robalo at the seminar Derived Algebraic Geometry in Toulouse (DAGIT) 2017: the content is purely his; the mistakes are all mine.
     \end{abstract}
+
+    \section{Motivation}
+
+    \section{Preliminary definitions}
+
+    \section{Quasi-categories}
+
+    \section{Simplicial nerve and rectification}
+
+    \section{Homotopy colimits}
+
+    \section{Localisation}
+
+    \section{Presheaves and $\infty$-functors}
+
+    \section{Presentability}
+
+    \section{Symmetric monoidal $\infty$-categories}
+
+    \section{Subtleties}
 
 \end{document}

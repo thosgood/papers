@@ -1,16 +1,18 @@
 \documentclass{article}
 
-\usepackage{titlesec}
+\usepackage[top=1.2in,bottom=1.2in,left=1.8in,right=1.8in]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{charter}
+\usepackage{titlesec}
 \usepackage{datetime}
 \newdate{date}{12}{06}{2017}
 
 % Section titles
 
 % \titleformat{\section}{\Large\bfseries\filcenter}{\thesection}{0.7em}{}[]
-\titleformat{\section}{\large\bfseries}{\thesubsection}{0.5em}{}[]
-\titleformat{\subsection}[runin]{\bfseries}{\thesubsubsection}{0.5em}{}[]
+\titleformat{\section}{\large\bfseries}{\thesection}{0.5em}{}[]
+\titleformat{\subsection}[runin]{\bfseries}{\thesubsection}{0.5em}{}[]
 
 % Numbering
 
@@ -35,6 +37,57 @@
     \end{abstract}
 
     \section{Motivation}
+
+        \ss{Idea.}
+            An \textbf{$\infty$-category} consists of
+            \begin{itemize}
+                \item objects;
+                \item $1$-morphisms between objects;
+                \item $n$-morphisms between $(n-1)$-objects (for $n\geqslant2$);
+                \item composition laws for $n$-morphisms ($n\geqslant1$) defined up to higher morphisms;
+                \item associativity of compositions up to homotopy.
+            \end{itemize}
+
+        \ss{Proto-example.} (Fundamental $\infty$-groupoid)
+            For a CW-complex $X$ we have
+            \begin{itemize}
+                \item objects = points;
+                \item $1$-morphisms = homotopies;
+                \item $2$-morphisms = homotopies of homotopies;
+                \item ... and so on.
+            \end{itemize}
+
+        \ss{Problem.}
+            No direct definition that is operational and simultaneously close to our intuition/desire (infinitely many axioms!).
+
+        \ss{Solution.}
+            Find a model category whose objects serve as models for $\infty$-categories.
+
+        \ss{Modelling.}
+            Many classical examples:
+            \begin{itemize}
+                \item homotopy types can be modelled by topological spaces, simplicial sets, categories, etc.;
+                \item homotopy theory of homotopy-commutative $\mathbb{Q}$-algebras can be modelled by dg-algebras;
+                \item derived stacks can be modelled by simplicial presheaves.
+            \end{itemize}
+
+        \ss{Question.}
+            Why so many models?
+
+        \ss{Answer.}
+            Dwyer-Kan localisation: every model category has an associated $\infty$-category that captures all the important information.
+
+        \ss{Question.}
+            If we have models then why care about $\infty$-categories?
+
+        \ss{Answer.}
+            Many reasons:
+            \begin{itemize}
+                \item not all $\infty$-categories have a model presentation;
+                \item no `good enough' definition of functors that relate different models (need an $\infty$-functor between the associated $\infty$-categories);
+                \item models for diagrams are not always given by diagrams of models;
+                \item proofs and statements become `simpler'.
+            \end{itemize}
 
     \section{Preliminary definitions}
 

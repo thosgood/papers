@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage[top=1.2in,bottom=1.2in,left=1.8in,right=1.8in]{geometry}
+\usepackage[top=1.2in,bottom=1.2in,left=1.6in,right=1.6in]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{tikz-cd}
@@ -27,10 +27,11 @@
 \newcommand{\C}{\mathcal{C}}
 \newcommand{\D}{\mathcal{D}}
 \newcommand{\id}{\mathrm{id}}
+\newcommand{\h}{\mathrm{h}}
 
 % Title page
 
-\title{Introduction to infinity categories}
+\title{Introduction to $\infty$-categories}
 \author{Talk by Marco Robalo at DAGIT 2017\\Typed by Timothy Hosgood}
 \date{\displaydate{date}}
 
@@ -100,7 +101,7 @@
         \ss{Category of simplices.}
             Write $\Delta$ to be the \textbf{category of simplices}:
             \begin{itemize}
-                \item $\mathrm{ob}\Delta = \{[n]\}_{n\in\mathbb{N}}$ where $[n]=\{0<1<\ldots<n\}$ is the ordered set of natural numbers up to $n$;
+                \item $\mathrm{ob}(\Delta) = \{[n]\}_{n\in\mathbb{N}}$ where $[n]=\{0<1<\ldots<n\}$ is the ordered set of natural numbers up to $n$;
                 \item $\Hom_\Delta([m],[n])$ is the set of order-preserving maps from $[m]$ to $[n]$.
             \end{itemize}
 
@@ -110,7 +111,7 @@
                 \item $\sset = \mathsf{Set}^{\Delta^\mathrm{op}} = \mathsf{Fun}(\Delta^\mathrm{op},\mathsf{Set})$;
                 \item $\Delta[n] = \Hom_\Delta(-,[n])\in\sset$;
                 \item $S_n = \Hom_\sset(\Delta[n],S)$ for $S\in\sset$;
-                \item $\Lambda^i_n = \Delta[n]\setminus\{\text{interior and the face opposite the }j\text{-th vertex}\}$ is the \textbf{$i$-th horn}.
+                \item $\Lambda^i_n = \Delta[n]\setminus\{\text{interior and the face opposite the }j\text{-th vertex}\}$ is the \textbf{$i$-th horn} (for $n\geqslant2$).
             \end{itemize}
             \[
                 \Delta[2] =
@@ -128,7 +129,7 @@
         \ss{Nerve.}
             The \textbf{nerve} $N(\C)$ of a category $\C$ is the simplicial set with
             \begin{itemize}
-                \item $n$-simplices given by $(X_0\xrightarrow{f_1}X_1\xrightarrow{f_2}\ldots\xrightarrow{f_n}X_n)$ in $\C$;
+                \item $n$-simplices given by $(x_0\xrightarrow{f_1}x_1\xrightarrow{f_2}\ldots\xrightarrow{f_n}x_n)$ in $\C$;
                 \item boundary maps given by composition (or forgetting the first/last object and morphism for the two edge cases);
                 \item degeneracy maps given by inserting the identity.
             \end{itemize}
@@ -152,14 +153,17 @@
             For example, ``$\Lambda_2^1$ gives composition''.
             \[
                 \begin{tikzcd}[row sep=1em,column sep=1em]
-                    &X_1\ar{dr}{f_2}&\\
-                    X_0\ar{ur}{f_1}\ar[dashed]{rr}{\exists!f_2\circ f_1}&&X_2
+                    &x_1\ar{dr}{f_2}&\\
+                    x_0\ar{ur}{f_1}\ar[dashed]{rr}{\exists!f_2\circ f_1}&&x_2
                 \end{tikzcd}
             \]
 
         \ss{Associativity.}
-            As another example, ``$\Lambda_3^1$ gives associativity''.
-            $X_0\xrightarrow{f_1}X_1\xrightarrow{f_2}X_2\xrightarrow{f_3}X_3$ in $\C$ corresponds to
+            As another example, ``$\Lambda_3^1$ gives associativity'':
+            \[
+                x_0\xrightarrow{f_1}x_1\xrightarrow{f_2}x_2\xrightarrow{f_3}x_3\text{ in }\C
+            \]
+            corresponds to
             \[
                 \Lambda_2^1\xrightarrow{(f_2,f_1)}N(\C)
                 \quad\text{and}\quad
@@ -171,22 +175,78 @@
                 \quad\text{and}\quad
                 \Delta[2]\xrightarrow{(f_3,f_2)}N(\C).
             \]
-            So $(f_3\circ f_2)\circ f_1 = f_3\circ(f_2\circ f_1)$ if and only if we can `fill the back face of the tetrahedron with vertices $X_0$, $X_1$, $X_2$, and $X_3$', i.e. if and only if we can extend $\Lambda_3^1\to N(\C)$ to $\Delta[3]\to N(\C)$.
+            So $(f_3\circ f_2)\circ f_1 = f_3\circ(f_2\circ f_1)$ if and only if we can `fill the back face of the tetrahedron with vertices $x_0$, $x_1$, $x_2$, and $x_3$', i.e. if and only if we can extend $\Lambda_3^1\to N(\C)$ to $\Delta[3]\to N(\C)$.
+
+        \ss{Exercise.}
+            What does the lifting of $\Lambda_3^2$ tell us?
 
         \ss{Summary.}
             The lifting property for inner horns ($0<i<n$) gives composition and associativity laws; for outer horns ($i=0,n$) it gives inverses.
             \[
                 \begin{tikzcd}[row sep=1em,column sep=1em]
-                    &X_0\ar[dashed]{dr}{\exists!}&\\
-                    X_0\ar{ur}{\id_{X_0}}\ar{rr}{f_1}&&X_1
+                    &x_0\ar[dashed]{dr}{\exists!}&\\
+                    x_0\ar{ur}{\id_{X_0}}\ar{rr}{f_1}&&x_1
                 \end{tikzcd}
             \]
 
         \ss{Kan complex.}
-            If $X\sset$ is such that $X\simeq\mathrm{Sing}(T)$, where $\mathrm{Sing}(T)$ consists of singular simplices in a topological space $T$ (i.e. continuous maps $|\Delta^n|\to T$) then we call it a \textbf{Kan complex}.
+            If $X\in\sset$ is such that $X\simeq\mathrm{Sing}(T)$, where $\mathrm{Sing}(T)$ consists of singular simplices in a topological space $T$ (i.e. continuous maps $|\Delta^n|\to T$) then we call it a \textbf{Kan complex}.
             Note that $X$ is a Kan complex if and only if \emph{all} horns lift, but \emph{not necessarily} uniquely.
 
     \section{Quasi-categories}
+
+        \ss{Quasi-category.}
+            A \textbf{quasi-category} is a simplicial set $\C$ such that all \emph{inner} horns lift, but \emph{not necessarily} uniquely.
+            This notions lies in between that of a Kan complex and that of the nerve of a category: we get compositions that aren't unique, but their non-uniqueness is controlled by higher homotopy data.
+            For example, consider
+            \[
+                x_0\xrightarrow{f_1}x_1\xrightarrow{f_2}x_2\xrightarrow{\id_{x_2}}x_2
+            \]
+            which gives us two maps $u_1,u_2\colon\Delta[2]\to\C$.
+            Similarly, for `associativity' we can use the lifting of $\Lambda_3^1$ as before, after filling one face with the identity.
+
+        \ss{$\infty$-category.}
+            We can use quasi-categories as a model for \textbf{$\infty$-categories}: define the objects of a quasi-category $\C$ to be the $0$-simplices, and the $n$-morphisms to be the $n$-simplices.
+
+        \ss{$\infty$-functor.}
+            Since functors are `maps that preserve commutative diagrams', it makes sense to define an \textbf{$\infty$-functor} to be a map of simplicial sets between quasi-categories, since these send $n$-simplices to $n$-simplices and preserve boundaries.
+
+        \ss{Homotopy category.}
+            Given an $\infty$-category $\C$ we define its \textbf{homotopy category $\h\C$} to be the ($1$-)category with
+            \begin{itemize}
+                \item $\mathrm{ob}(\h\C)=\mathrm{ob}(\C)$;
+                \item $\Hom_{\h\C}(x,y)=\Hom_\C(x,y)\,/\sim$, where $f\sim g$ if there exists a $2$-morphism $u\colon\Delta[2]\to\C$ with boundary $(\id_y-g+f)$.
+            \end{itemize}
+            \[
+                \begin{tikzcd}[row sep=1em,column sep=1em]
+                    &y \ar{dr}{\id_y} \ar[Rightarrow]{d}{u}&\\
+                    x \ar{ur}{f} \ar[swap]{rr}{g}&\,&y
+                \end{tikzcd}
+            \]
+            Note that compositions are unique (and thus well defined) thanks to the lifting property, i.e. $u_1,u_2$ are identified in the homotopy category.
+
+        \ss{Subcategory.}
+            An \textbf{$\infty$-subcategory} $\C'$ of an $\infty$-category $\C$ is a sub-simplicial set obtained as a fibre product in $\sset$:
+            \[
+                \begin{tikzcd}[row sep=.4em,column sep=0em]
+                    \C' \ar{dd}\ar{rr} && \C \ar{dd}\\
+                    &\lrcorner&\\
+                    N(\mathcal{D}) \ar{rr} && N(\h\C)
+                \end{tikzcd}
+                \quad\text{where }\mathcal{D}\text{ is a subcategory of }\h\C.
+            \]
+
+        \ss{Equivalence.}
+            A $1$-morphism $f$ in $\C$ is called an \textbf{equivalence} if $[f]$ in $\h\C$ is an isomorphism.
+
+        \ss{$\infty$-groupoid.}
+            An $\infty$-category where \emph{all} $1$-morphisms are equivalences is called an \textbf{$\infty$-groupoid}.
+
+        \ss{Proposition.}
+            An $\infty$-category is an $\infty$-groupoid if and only if it is a Kan complex.
+
+        \ss{Example.}
+            For $T$ a topological space, $\mathrm{Sing}(T)$ is an $\infty$-groupoid
 
     \section{Simplicial nerve and rectification}
 

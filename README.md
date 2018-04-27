@@ -9,3 +9,4 @@ These papers are not on the arXiv -- the ones that are can be found in the `arXi
  - twisted-complexes-summary : notes on twisting/twisted cochains/complexes
  - schemes-cheat-sheet : cheat sheet (basic) version of (barely any of) Vakil's _The Rising Sea_
  - de-rham-cohomology-cheat-sheet : basic stuff about de-Rham cohomology
+ - infinity-categories-robalo : notes from a DAGIT 2017 talk by Marco Robalo

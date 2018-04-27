@@ -1,0 +1,37 @@
+\documentclass{article}
+
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{datetime}
+\newdate{date}{12}{06}{2017}
+
+% Section titles
+
+\titleformat{\section}{\Large\bfseries\filcenter}{\thesection}{0.7em}{}[]
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}[]
+\titleformat{\subsubsection}[runin]{\bfseries}{\thesubsubsection}{0.5em}{}[]
+
+% Numbering
+
+\numberwithin{equation}{subsubsection}
+
+% Shortcuts
+
+\newcommand{\sss}[1]{\subsubsection{#1}}
+
+% Title page
+
+\title{Introduction to infinity categories}
+\author{Talk by Marco Robalo at DAGIT 2017\\Typed by Timothy Hosgood}
+\date{\displaydate{date}}
+
+\begin{document}
+
+    \maketitle
+
+    \begin{abstract}
+        These are a copy of my notes on a talk given by Marco Robalo at the seminar Derived Algebraic Geometry in Toulouse (DAGIT) 2017: the content is purely his; the mistakes are all mine.
+    \end{abstract}
+
+\end{document}

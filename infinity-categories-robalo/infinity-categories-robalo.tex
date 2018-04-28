@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{tikz-cd}
+\usepackage{enumerate}
 \usepackage{charter}
 \usepackage{titlesec}
 \usepackage{datetime}
@@ -28,6 +29,9 @@
 \newcommand{\D}{\mathcal{D}}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\h}{\mathrm{h}}
+\newcommand{\Map}{\mathrm{Map}}
+\renewcommand{\S}{\mathcal{S}}
+\renewcommand{\P}{\mathsf{PreSh}}
 
 % Title page
 
@@ -40,7 +44,7 @@
     \maketitle
 
     \begin{abstract}
-        These are a copy of my notes on a talk given by Marco Robalo at the seminar Derived Algebraic Geometry in Toulouse (DAGIT) 2017: the content is purely his; the mistakes are all mine.
+        These are a copy of my notes on a talk given by Marco Robalo at Derived Algebraic Geometry in Toulouse (DAGIT) 2017: the content is purely his; the mistakes are all mine.
     \end{abstract}
 
     \section{Motivation}
@@ -250,7 +254,103 @@
 
     \section{Simplicial nerve and rectification}
 
+        \ss{Mapping space.}
+            Let $x,y$ be objects in an $\infty$-category $\C$.
+            We define the \textbf{mapping space $\Map_\C(x,y)$} as the simplicial set obtained as the fibre product
+            \[
+                \Delta[0]\times_\C\mathsf{Fun}(\Delta[1],\C)\times_\C\Delta[0]
+            \]
+            where the maps are given by $x,y\colon\Delta[0]\to\C$ and $\mathrm{ev}_0,\mathrm{ev}_1\colon\mathsf{Fun}(\Delta[1],\C)\to\C$, where $\mathrm{ev}_n$ is the evaluation on $n$.
+
+        \ss{Note.}
+            Another notation used is $\Hom_\C^{\mathrm{LR}}(x,y)$, where we write the pullback as
+            \[
+                \begin{tikzcd}[row sep=.4em,column sep=0em]
+                    \Hom_\C^{\mathrm{LR}}(x,y) \ar{dd}\ar{rr} && \C^{\Delta[1]} \ar{dd}\\
+                    &\lrcorner&\\
+                    \{x\}\times\{y\} \ar{rr} && \C\times\C
+                \end{tikzcd}
+            \]
+
+        \ss{Proposition.}
+            $\Map_\C(x,y)$ is a Kan complex.
+
+        \ss{Note.}
+            $\pi_0\Map_\C(x,y)\simeq\Hom_{\h\C}(x,y)$.
+
+        \ss{Warning.}
+            These is \emph{no} strict manifestation of composition:
+            \[
+                \Map_\C(y,z)\times\Map_\C(x,y) \not\to \Map_\C(x,z).
+            \]
+
+        \ss{Rectification.} (Lurie)
+            There exists $\widetilde{\Map}_\C(x,y)\in\sset$ and \emph{canonical} zig-zags of weak equivalences of simplicial sets
+            \[
+                \widetilde{\Map}_\C(x,y) \xrightarrow{\sim} \{*\} \xleftarrow{\sim} \Map_\C(x,y)
+            \]
+            such that we \emph{do} get strict manifestations of composition maps.
+            We write $\mathfrak{C}[\C]$ for the \textbf{rectified category}, which is simply $\C$ but with $\widetilde{\Map}$ replacing $\Map$.
+            Note that the rectified category is a true simplicial category.
+
+        \ss{Simplicial nerve.}
+            There exists a \emph{non-trivial} extension of the nerve construction to simplicial categories that takes into account the simplicial structure, i.e. the \textbf{simplicial nerve} $N_\Delta(\mathcal{E})$ is a simplicial set when $\mathcal{E}$ is a simplicial category.
+
+        \ss{Application.}
+            We can model a simplicial category $\mathcal{E}$ by the simplicial set $N_\Delta(\mathcal{E})$.
+
+        \ss{Theorem.} (Joyal-Lurie)
+            There exists a model structure on $\sset$ with
+            \begin{itemize}
+                \item cofibrant-fibrant objects = quasi-categories;
+                \item weak equivalences = essentially surjective morphisms that induce a weak equivalence on mapping spaces.
+            \end{itemize}
+
+        \ss{Theorem.} (Bergner)
+            There exists a model structure on $\mathsf{Cat}^{\Delta^\mathrm{op}}$ with
+            \begin{itemize}
+                \item cofibrant-fibrant objects = simplicial categories enriched over Kan complexes;
+                \item weak equivalences = essentially surjective morphisms that induce a weak equivalence on mapping spaces.
+            \end{itemize}
+
+        \ss{Theorem.} (Lurie)
+            The adjunction $(\mathfrak{C}\dashv N_\Delta)$ forms a Quillen equivalence.
+
+        \ss{Example.}
+            Let $\mathcal{M}$ be a simplicial model category and write $\mathcal{M}^\mathrm{cf}$ to mean the subcategory of cofibrant-fibrant objects.
+            Then $\mathcal{M}^\mathrm{cf}$ is enriched over Kan complexes and so $N_\Delta(\mathcal{M}^\mathrm{cf})$ is a quasi-category.
+
+        \ss{Rectification of diagrams.}
+            Let $\D$ be a category and $\mathcal{M}$ a combinatorial simplicial model category.
+            Then there is an equivalence of quasi-categories
+            \[
+                \mathsf{Fun}\Big(N(\D),N_\Delta(\mathcal{M}^\textrm{cf})\Big) \simeq N_\Delta\Big((\mathcal{M}^\D)^\mathrm{cf}\Big)
+            \]
+            where we endow $\mathcal{M}^\D$ with the projective model structure.
+
+        \ss{Explicit examples.}
+            The following three examples are prototypical.
+            \begin{enumerate}[I.]
+                \item The \textbf{$\infty$-category $\S$ of spaces}.
+                    This is $\S=N_\Delta(\sset^\mathrm{cf})$ where
+                    \begin{itemize}
+                        \item $\sset$ has the model structure used to study weak homotopy equivalences etc.;
+                        \item the cofibrant-fibrant objects are Kan complexes;
+                        \item $\Map_\S(x,y)\simeq\underline{\Hom}_{\Delta}(x,y)$.
+                    \end{itemize}
+                \item The \textbf{$\infty$-category $\mathsf{Cat}_\infty$ of $\infty$-categories}.
+                    This is $\mathsf{Cat}_\infty=N_\Delta(\sset)$ where $\sset$ has the model structure as in Joyal-Lurie, but modified in some way so as to make it a simplicial model category.
+                \item The \textbf{$\infty$-category $\P(N(\D))$ of presheaves of spaces}.
+                    Here $\D$ is an arbitrary category and $\sset$ has the same model structure as in example I.
+                    Then
+                    \[
+                        \P(N(\D)) = \mathsf{Fun}(N(\D^\mathrm{op}),\S) \simeq \mathsf{Fun}\Big(N(\D^\mathrm{op}), N_\Delta(\sset^\mathrm{cf})\Big) \simeq N_\Delta\Big((\sset^{\D^\mathrm{op}})^\mathrm{cf}\Big).
+                    \]
+            \end{enumerate}
+
     \section{Homotopy colimits}
+
+        \ss{Initial object.}
 
     \section{Localisation}
 

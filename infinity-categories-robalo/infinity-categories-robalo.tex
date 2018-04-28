@@ -28,6 +28,8 @@
 \newcommand{\sset}{\mathsf{sSet}}
 \newcommand{\C}{\mathcal{C}}
 \newcommand{\D}{\mathcal{D}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\N}{\mathcal{N}}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\h}{\mathrm{h}}
 \newcommand{\Map}{\mathrm{Map}}
@@ -411,12 +413,116 @@
 
     \section{Localisation}
 
+        \ss{$\infty$-localisation.}
+            If $\D$ is an arbitrary category then $N(\D)$ is an $\infty$-category with \emph{unique} composition.
+            Let $W$ be some class of morphisms in $\D$.
+            Then a \textbf{$\infty$-localisation of $\D$ along $W$} is a quasi-category $N(\D)[W^{-1}]_\infty$ along with a map $N(\D)\to N(\D)[W^{-1}]_\infty$ in $\sset$ such that
+            \[
+                \mathsf{Fun}(N(\D)[W^{-1}]_\infty,\C)\to\mathsf{Fun}(N(\D),\C)
+            \]
+            is fully faithful with essential image being the subcategory of $\infty$-functors that send morphisms in $W$ to equivalences in $\C$, for any quasi-category $\C$.
+
+        \ss{Theorem.} (Quillen, Dwyer-Kan)
+            For any simplicial model category $\M$ with weak equivalences $W$ there is a chain of equivalences of $\infty$-categories
+            \[
+                N(\M)[W^{-1}]_\infty \simeq N(\M^c)[W^{-1}_c]_\infty \simeq N_\Delta(M^\mathrm{cf})
+            \]
+            where the first equivalence comes from cofibrant replacement.
+            We call any one of these quasi-categories an \textbf{underlying $\infty$-category of $\M$}.
+
+        \ss{Gabriel-Zisman localisation.}
+            The homotopy category (as a model category construction) of $\M$ can be recovered from the $\infty$-localisation:
+            \[
+                \h(N(\M)[W^{-1}]_\infty) \simeq \mathrm{Ho}(\M).
+            \]
+
     \section{Presheaves and $\infty$-functors}
+
+        \ss{Presheaves.}
+            Given a quasi-category $\C$ we have the \textbf{quasi-category of presheaves}
+            \[
+                \P(\C) = \mathsf{Fun}(\C^\mathrm{op},\S).
+            \]
+
+        \ss{Note.}
+            For a category $\D$ recall that
+            \[
+                \P(N(\D)) \simeq N_\Delta(\M^\mathrm{cf})
+            \]
+            where $\M$ is the model category of simplicial presheaves on $\D$.
+
+        \ss{Yoneda lemma.}
+            For a quasi-category $\C$ there exists a fully faithful $\infty$-functor $j\colon\C\to\P(\C)$ with the following universal property: if a quasi-category $\D$ has all colimits then the composition
+            \[
+                \mathsf{Fun}^\mathrm{L}(\P(\C),\D) \to \mathsf{Fun}(\C,\D)
+            \]
+            is an equivalence of $\infty$-categories, where $\mathsf{Fun}^\mathrm{L}$ denotes left-adjoint functors (i.e. those admitting right adjoints).
+
+        \ss{Note.}
+            To construct $j$ we need to exhibit a \textbf{cocartesian fibration} $\N\to\C^\mathrm{op}\times\C$ where $\N$ is given by the $\infty$-category of \textbf{twisted arrows in $\C$}, which has
+            \begin{itemize}
+                \item objects are morphisms in $\C$ and;
+                \item $\Hom_\N(f\colon a\to b,g\colon x\to y)=\{(p\colon x\to a,q\colon b\to y) \mid g=qfp\}$.
+            \end{itemize}
+
+        \ss{Constructing $\infty$-functors.}
+            Generally, an $\infty$-functor $F\colon\C\to\D$ corresponds to a cocartesian fibration $p\colon K\to\Delta[1]$ with $p^{-1}(0)\simeq\D$ and $p^{-1}(1)\simeq\C$ satisfying certain properties (formalised by the idea of cocartesian fibrations and the $\infty$-Grothendieck construction) --- see Lurie's \emph{Higher Topos Theory} Definition~5.2.1.1.
 
     \section{Presentability}
 
+        \emph{At this point in the talk I succumbed to the unbearably sticky summer heat and failed to take any notes for a good five minutes.}
+        \emph{There was a lot of important stuff said about \textbf{presentable $\infty$-categories} and \textbf{universes}, but all I managed to write down were the last few propositions.}
+        \emph{Sorry.}
+
+        \ss{Lemma.}
+            All presheaf categories are presentable; $\S$ is presentable.
+
+        \ss{Adjoint functor theorem.}
+            If an $\infty$-functor $F\colon\C\to\D$ between \emph{presentable} $\infty$-categories commutes with all small colimits then it admits a right adjoint.
+
+        \ss{Proposition.}
+            If $\C$ and $\D$ are presentable $\infty$-categories then $\mathsf{Fun}^\mathrm{L}(\C,\D)$ is a presentable $\infty$-category.
+
+        \ss{Presentable localisations.}
+            Let $\C$ be a presentable $\infty$-category and $W$ a \emph{small} collection of $1$-morphisms.
+            Define $\C^{W\text{-local}}$ to be the full subcategory of $\C$ given by those objects $x\in\mathrm{ob}(\C)$ such that
+            \[
+                \Map_\C(b,x)\to\Map_\C(a,x)
+            \]
+            is an equivalence for all $(a\to b)$ in $W$.
+            Then $\C^{W\text{-local}}$ is presentable and its inclusion into $\C$ admits a left adjoint which exhibits $\C^{W\text{-local}}$ as an $\infty$-localisation of $\C$ along $W$ that is \emph{internal} to the theory of $\infty$-categories:
+            \[
+                \mathsf{Fun}^\mathrm{L}(\C^{W\text{-local}},\D) \simeq \mathsf{Fun}^\mathrm{L,W}(\C,\D)
+            \]
+            where $\mathsf{Fun}^\mathrm{L,W}(\C,\D)$ consists of colimit-preserving functors that send morphisms in $W$ to equivalences.
+
+        \ss{Proposition.}
+            An $\infty$-category $\C$ is presentable if and only if it is equivalent to the presentable localisation of some $\P(\D)$.
+
     \section{Symmetric monoidal $\infty$-categories}
 
+        \ss{Note.}
+            A `classical' symmetric monoidal category is the data of a pseudofunctor
+            \[
+                A^\otimes\colon\mathsf{Fin}_*\to\mathsf{Cat}
+                \quad\text{such that}\quad
+                A^\otimes(\{0,1,\ldots,n\}_0) = \underbrace{A\times\ldots\times A}_{n\text{ times}}
+            \]
+            where $\mathsf{Fin}_*$ is the category of finite pointed sets, and we write $S_x$ to mean the set $S$ pointed at the element $x\in S$.
+
+        \ss{Symmetric monoidal $\infty$-categories.}
+            We define a \textbf{symmetric monoidal $\infty$-category} as the data of an $\infty$-functor
+            \[
+                \C^\otimes\colon N(\mathsf{Fin}_*)\to\mathsf{Cat}_\infty
+                \quad\text{such that}\quad
+                \C^\otimes(\{0,1,\ldots,n\}_0) = \prod_{i=1}^n\C^\otimes(\{0,1\}_0).
+            \]
+
     \section{Subtleties}
+
+        \begin{itemize}
+            \item Saying that `a diagram commutes' isn't really $\infty$-categorical; we need to exhibit a \emph{specific} $n$-simplex.
+            \item Defining an $\infty$-functor by saying how it acts on objects and $1$-morphisms is purely informal; we need to define it via $\sset$.
+        \end{itemize}
 
 \end{document}

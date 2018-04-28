@@ -3,6 +3,7 @@
 \usepackage[top=1.2in,bottom=1.2in,left=1.6in,right=1.6in]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{enumerate}
 \usepackage{charter}
@@ -351,6 +352,62 @@
     \section{Homotopy colimits}
 
         \ss{Initial object.}
+            An \textbf{initial object} is some $\varnothing\in\C$ such that, for all $x\in\C$, the Kan complex $\Map_\C(\varnothing,x)$ is contractible.
+
+        \ss{Slogan.}
+            Universal objects are defined up to a contractible space of choices.
+
+        \ss{Cones.}
+            Given $K\in\sset$ and an infinity functor $d\colon K\to\C$ we construct a new simplicial set $K^\triangleright$ by formally adding an exterior vertex to $K$.
+            Then a \textbf{cone under $d$} is a map of simplicial sets $\tilde{d}\colon K^\triangleright\to\C$ such that $\tilde{d}|_K=d$.
+            \[
+                K^\triangleright =\,\,
+                \begin{tikzpicture}[baseline=-0.35em]
+                    \draw [thick] (0,0) ellipse (0.3cm and 1cm);
+                    \node at (0,0) {$K$};
+                    \draw [->] (0,1) -- (1.9,0.1);
+                    \draw [->] (0.1,0.4) -- (1.7,0.03);
+                    \draw [->] (0.1,-0.4) -- (1.55,.-0.03);
+                    \draw [->] (0,-1) -- (1.9,-0.1);
+                    \draw [fill] (2,0) circle [radius=0.05];
+                \end{tikzpicture}
+            \]
+
+        \ss{Proposition.}
+            Cones under $d$ give a quasi-category $\C_{d/}$.
+
+        \ss{Colimits.}
+            A colimit is an initial object of $\C_{d/}$.
+
+        \ss{Proposition.}
+            Let $F\colon\mathcal{J}\to\mathcal{E}$ be a simplicial functor between Kan-enriched categories, and $c\in\mathcal{E}$ an object with a compatible family $\{\eta_{j}\colon F(j)\to c\}$.
+            Then $c$ is a \textbf{homotopy colimit of $F$} if and only if the induced map $N_\Delta(\mathcal{J}\to N_\Delta(\mathcal{E})$ is a colimit diagram.
+
+        \ss{Example.}
+            \begin{gather*}
+                \operatorname{coeq}_{\,\S}\left(
+                    *\underset{\id}{\overset{\id}{\rightrightarrows}}*
+                \right) \simeq
+                \operatorname{colim}_\S\left(
+                    \begin{tikzcd}[row sep=1em,column sep=1em,ampersand replacement=\&]
+                        *\coprod* \dar\rar \& *\\
+                        *
+                    \end{tikzcd}
+                \right) \simeq
+                \operatorname{hocolim}\left(
+                    \begin{tikzcd}[row sep=1em,column sep=1em,ampersand replacement=\&]
+                        *\coprod* \dar\rar \& *\\
+                        *
+                    \end{tikzcd}
+                \right) \\\simeq
+                \operatorname{colim}_\sset\left(
+                    \begin{tikzcd}[row sep=1em,column sep=1em,ampersand replacement=\&]
+                        *\coprod* \dar\rar \& \Delta[1]\\
+                        \Delta[1]
+                    \end{tikzcd}
+                \right) \simeq
+                S^1\in\sset
+            \end{gather*}
 
     \section{Localisation}
 

@@ -50,14 +50,15 @@ Let $M$ be a smooth (often orientable, but not always) manifold of dimension $n$
 
 ## Differential forms
 
-**Definition:** A *differential $r$-form* is a smooth section of $\bigwedge^r TM$. The space of all differential $r$-forms on $M$ is denoted $\Gamma^r(M)$.
+**Definition:** A *differential $r$-form* is a smooth section of $\bigwedge^r T^*M$. The space of all differential $r$-forms on $M$ is denoted $\Gamma^r(M)$.
 
-**Note:** A *differential $1$-form* is a smooth section of the cotangent bundle, and a differential $r$-form is in particular a map $M\to(T^*_pM)^r$.
+**Note:** A *differential $1$-form* is a smooth section of the cotangent bundle, and a differential $r$-form is in particular a map $(T_pM)^r\to\mathbb{R}$.
 
 
-**Definition:** Given a smooth section $X$ of $TM$ and $\omega\in\Gamma^r(M)$ we define the *contraction (with $X$)* as the differential $(r-1)$-form $i_X\omega$ given by $$(i_X\omega)(X_1,\ldots,X_{r-1})=\omega(X,X_1,\ldots,X_{r-1}).$$
+**Definition:** Given a smooth section $X$ of $T^*M$ and $\omega\in\Gamma^r(M)$ we define the *contraction (with $X$)* as the differential $(r-1)$-form $i_X\omega$ given by $$(i_X\omega)(X_1,\ldots,X_{r-1})=\omega(X,X_1,\ldots,X_{r-1}).$$
 
 **Lemma:** $i_X\circ i_X=0$.
+
 
 **Lemma:** Let $\sigma\in\Gamma^r(M)$ and $\omega\in\Gamma^s(M)$. Then $$i_X(\sigma\wedge\omega)=(i_X\sigma)\wedge\omega+(-1)^r\sigma\wedge(i_X\omega).$$
 

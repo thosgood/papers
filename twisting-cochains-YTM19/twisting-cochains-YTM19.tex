@@ -7,7 +7,7 @@
 \title{Twisting cochains and twisted complexes}
 \subtitle{Simplicial methods in complex-analytic geometry}
 \author{Tim Hosgood}
-\institute{Université d'Aix-Marseille}
+\institute{Université d'Aix-Marseille\\\url{https://thosgood.github.io}}
 \date{24/07/19}
 
 \begin{document}
@@ -227,6 +227,32 @@
             \end{frame}
 
         \subsection{The total complex}
+
+            \begin{frame}\frametitle{The total differential}
+                \begin{lemma}
+                    For any $\mathrm{a}\in\mathrm{Tot}^1\hat{\mathcal{C}}^\bullet(\mathcal{U},\mathrm{End}^\circ(V))$, the map
+                    \begin{align*}
+                        \mathrm{D}_\mathrm{a} \colon \mathrm{Tot}^r\hat{\mathcal{C}}^\bullet(\mathcal{U},\mathrm{End}^\circ(V)) &\to \mathrm{Tot}^{r+1}\hat{\mathcal{C}}^\bullet(\mathcal{U},\mathrm{End}^\circ(V))\\
+                        c &\mapsto \hat{\delta}c+c\cdot\mathrm{a}
+                    \end{align*}
+                    defines a differential (i.e. squares to zero) if and only if $\mathrm{a}$ is a twisting cochain.
+                \end{lemma}
+                \begin{proof}
+                    (Tedious) definition chasing.
+                \end{proof}
+            \end{frame}
+
+            \begin{frame}\frametitle{The total differential (cont.)}
+                We can actually define twisting cochains in a different way using this lemma (but we won't do so today).
+
+                \pause
+
+                This approach lets us think of a twisting cochain as a \emph{first-order perturbation of the deleted Čech differential}.
+            \end{frame}
+
+            \begin{frame}\frametitle{Examples}
+                \textbf{MENTION HOW THIS IS A WAY OF VIEWING EVERYTHING OVER $U_\alpha$}
+            \end{frame}
 
         \subsection{Maurer-Cartan}
 

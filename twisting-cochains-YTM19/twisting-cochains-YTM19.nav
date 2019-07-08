@@ -42,24 +42,30 @@
 \headcommand {\beamer@framepages {34}{36}}
 \headcommand {\beamer@subsectionpages {8}{36}}
 \headcommand {\beamer@subsectionentry {0}{2}{2}{37}{The total complex}}
-\headcommand {\beamer@subsectionpages {37}{36}}
-\headcommand {\beamer@subsectionentry {0}{2}{3}{37}{Maurer-Cartan}}
-\headcommand {\beamer@sectionpages {7}{36}}
-\headcommand {\beamer@subsectionpages {37}{36}}
-\headcommand {\sectionentry {3}{Twisted complexes (BK)}{37}{Twisted complexes (BK)}{0}}
-\headcommand {\slideentry {3}{0}{1}{37/37}{}{0}}
+\headcommand {\slideentry {2}{2}{1}{37/37}{The total complex}{0}}
 \headcommand {\beamer@framepages {37}{37}}
-\headcommand {\beamer@subsectionpages {37}{37}}
-\headcommand {\beamer@subsectionentry {0}{3}{1}{38}{Pretriangulated vs. triangulated}}
-\headcommand {\beamer@subsectionpages {38}{37}}
-\headcommand {\beamer@subsectionentry {0}{3}{2}{38}{Generalisation of twisting cochains}}
-\headcommand {\beamer@sectionpages {37}{37}}
-\headcommand {\beamer@subsectionpages {38}{37}}
-\headcommand {\sectionentry {4}{Other fun things}{38}{Other fun things}{0}}
-\headcommand {\slideentry {4}{0}{1}{38/38}{}{0}}
-\headcommand {\beamer@framepages {38}{38}}
-\headcommand {\beamer@partpages {1}{38}}
-\headcommand {\beamer@subsectionpages {39}{38}}
-\headcommand {\beamer@sectionpages {38}{38}}
-\headcommand {\beamer@documentpages {38}}
-\headcommand {\gdef \inserttotalframenumber {15}}
+\headcommand {\slideentry {2}{2}{2}{38/39}{The total complex}{0}}
+\headcommand {\beamer@framepages {38}{39}}
+\headcommand {\slideentry {2}{2}{3}{40/40}{The total complex}{0}}
+\headcommand {\beamer@framepages {40}{40}}
+\headcommand {\beamer@subsectionpages {37}{40}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{41}{Maurer-Cartan}}
+\headcommand {\beamer@sectionpages {7}{40}}
+\headcommand {\beamer@subsectionpages {41}{40}}
+\headcommand {\sectionentry {3}{Twisted complexes (BK)}{41}{Twisted complexes (BK)}{0}}
+\headcommand {\slideentry {3}{0}{1}{41/41}{}{0}}
+\headcommand {\beamer@framepages {41}{41}}
+\headcommand {\beamer@subsectionpages {41}{41}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{42}{Pretriangulated vs. triangulated}}
+\headcommand {\beamer@subsectionpages {42}{41}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{42}{Generalisation of twisting cochains}}
+\headcommand {\beamer@sectionpages {41}{41}}
+\headcommand {\beamer@subsectionpages {42}{41}}
+\headcommand {\sectionentry {4}{Other fun things}{42}{Other fun things}{0}}
+\headcommand {\slideentry {4}{0}{1}{42/42}{}{0}}
+\headcommand {\beamer@framepages {42}{42}}
+\headcommand {\beamer@partpages {1}{42}}
+\headcommand {\beamer@subsectionpages {43}{42}}
+\headcommand {\beamer@sectionpages {42}{42}}
+\headcommand {\beamer@documentpages {42}}
+\headcommand {\gdef \inserttotalframenumber {18}}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.25)  8 JUL 2019 19:10
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.25)  8 JUL 2019 19:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1242,6 +1242,21 @@ Dictionary: translator-numbers-dictionary, Language: English
 tionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 ) (./twisting-cochains-YTM19.nav)
+LaTeX Font Info:    Try loading font information for U+msa on input line 16.
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 16.
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 16.
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
 Overfull \vbox (49.82993pt too high) detected at line 16
  []
 
@@ -1249,27 +1264,11 @@ Overfull \vbox (49.82993pt too high) detected at line 16
 
 ] (./twisting-cochains-YTM19.toc) [2
 
-]
-LaTeX Font Info:    Try loading font information for U+msa on input line 24.
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 24.
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 24.
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/jknapltx/ursfs.fd
-File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-) [3
+] [3
 
 ] [4
 
-]
-[5
+] [5
 
 ] [6
 
@@ -1369,6 +1368,14 @@ Overfull \vbox (20.65579pt too high) detected at line 193
 
 ] [38
 
+] [39
+
+] [40
+
+] [41
+
+] [42
+
 ]
 \tf@nav=\write6
 \openout6 = `twisting-cochains-YTM19.nav'.
@@ -1379,22 +1386,23 @@ Overfull \vbox (20.65579pt too high) detected at line 193
 \tf@snm=\write8
 \openout8 = `twisting-cochains-YTM19.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 249.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 249.
- (./twisting-cochains-YTM19.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 249.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 249.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 275.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 275.
+
+(./twisting-cochains-YTM19.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 275.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 275.
 Package rerunfilecheck Info: File `twisting-cochains-YTM19.out' has not changed
 .
-(rerunfilecheck)             Checksum: 6321640327B934416DDF04DEB6D27789.
+(rerunfilecheck)             Checksum: DC7BCBB3555F4E4B94F76C6CF62C6A4C.
  ) 
 Here is how much of TeX's memory you used:
- 35283 strings out of 492909
- 724888 string characters out of 6132923
- 797388 words of memory out of 5000000
- 38772 multiletter control sequences out of 15000+600000
- 540991 words of font info for 98 fonts, out of 8000000 for 9000
+ 35305 strings out of 492909
+ 725319 string characters out of 6132923
+ 796520 words of memory out of 5000000
+ 38792 multiletter control sequences out of 15000+600000
+ 540999 words of font info for 99 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  73i,15n,108p,1853b,737s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on twisting-cochains-YTM19.xdv (38 pages, 283012 bytes).
+Output written on twisting-cochains-YTM19.xdv (42 pages, 303496 bytes).

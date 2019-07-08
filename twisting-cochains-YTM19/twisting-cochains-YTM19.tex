@@ -98,7 +98,7 @@
 
             \begin{frame}\frametitle{The deleted Čech complex}
                 \begin{definition}[Deleted Čech complex]
-                    Define the complex $(\hat{\mathscr{C}}^\bullet(\mathcal{U},\mathrm{End}^\circ(V)),\hat{\delta})$ by
+                    Define the chain complex $(\hat{\mathscr{C}}^\bullet(\mathcal{U},\mathrm{End}^\circ(V)),\hat{\delta})$ by
                     \begin{equation*}
                         \hat{\mathscr{C}}^p\big(\mathcal{U},\mathrm{End}^q(V)\big) = \bigoplus_{(\alpha_0,\ldots,\alpha_p)} \mathrm{End}^q(V)|U_{\alpha_0\ldots\alpha_p}
                     \end{equation*}
@@ -118,7 +118,51 @@
                         \begin{equation*}
                             (c^{p,q}\cdot \tilde{c}^{\tilde{p},\tilde{q}})_{\alpha_0\ldots\alpha_{p+\tilde{p}}} = (-1)^{q\tilde{p}} c_{\alpha_0\ldots\alpha_p}^{p,q} \tilde{c}_{\alpha_p\ldots\alpha_{p+\tilde{p}}}^{\tilde{p},\tilde{q}}.
                         \end{equation*}
+                    \pause
+                    \item We could define the same complex for an arbitrary bounded graded vector bundle, i.e. $\hat{\mathscr{C}}^\bullet(\mathcal{U},V^\circ)$, but where the deleted Čech differential only omits the \emph{first} index (but includes the $(p+1)$th).
                 \end{itemize}
+            \end{frame}
+
+            \begin{frame}\frametitle{A brief interlude on bundles}
+                A holomorphic vector bundle $E$ on $X$ is described exactly by its \emph{transition maps $g_{\alpha\beta}\in\mathrm{GL}(n,\mathbb{C})$}, which describe the change in trivialisation from over $U_\beta$ to over $U_\alpha$.
+
+                \pause
+
+                These transition maps satisfy two conditions:
+
+                \pause
+                
+                \begin{enumerate}
+                    \item $g_{\alpha\beta}g_{\beta\gamma}=g_{\alpha\beta}$ (the \emph{cocycle} condition); and
+                    \pause
+                    \item $g_{\alpha\alpha}=\mathrm{id}$ (the \emph{invertibility} condition).
+                \end{enumerate}
+
+                \pause
+
+                Note that these are maps from $E|U_{\alpha_p}$ to $E|U_{\alpha_0}$ in the specific case where $p=1$.
+            \end{frame}
+
+            \begin{frame}\frametitle{Rewriting the cocycle condition}
+                Thinking of $g_{\alpha\beta}$ as an element of $\hat{\mathscr{C}}^1(\mathcal{U},E)$, we see that
+                \begin{gather*}
+                    (\hat{\delta}g)_{\alpha\beta\gamma} = -g_{\alpha\gamma}\\
+                    (g\cdot g)_{\alpha\beta\gamma} = g_{\alpha\beta}g_{\beta\gamma}.
+                \end{gather*}
+
+                \pause
+
+                This means that we can rewrite the cocycle condition as
+                \begin{equation*}
+                    \hat{\delta}g + g\cdot g = 0,
+                \end{equation*}
+                which looks like the \emph{Maurer-Cartan equation} (an observation to which we will later return).
+            \end{frame}
+
+            \begin{frame}\frametitle{Twisting cochains}
+                \begin{definition}[Twisting cochains]
+                    !
+                \end{definition}
             \end{frame}
 
         \subsection{Maurer-Cartan}

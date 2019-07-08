@@ -112,7 +112,7 @@
 
             \begin{frame}\frametitle{Further structure}
                 \begin{itemize}
-                    \item If $V$ had a differential then this would give us a \emph{bicomplex}.
+                    \item If $V$ has a differential then this gives us a \emph{bicomplex}.
                     \pause
                     \item There is a natural multiplication structure given by composition:
                         \begin{equation*}
@@ -161,8 +161,46 @@
 
             \begin{frame}\frametitle{Twisting cochains}
                 \begin{definition}[Twisting cochains]
-                    !
+                    A \emph{(holomorphic) twisting cochain over $V$} is a formal sum
+                    \begin{equation*}
+                        \mathrm{a} = \bigoplus_{k\in\mathbb{N}} \mathrm{a}^{k,1-k}
+                    \end{equation*}
+                    where $\mathrm{a}^{k,1-k}\in\hat{\mathscr{C}}^k(\mathcal{U},\mathrm{End}^{1-k}(V))$ such that
+                    \begin{enumerate}
+                        \item $\hat{\delta}\mathrm{a} + \mathrm{a}\cdot\mathrm{a} = 0$; and
+                        \item $\mathrm{a}_{\alpha\alpha}^{1,0}=\mathrm{id}$.
+                    \end{enumerate}
                 \end{definition}
+            \end{frame}
+
+            \begin{frame}\frametitle{Twisting cochains (cont.)}
+                \begin{alertblock}{Warning}
+                    The multiplication is \textbf{not} simply component-wise: it is given by taking all possible combinations, i.e.
+                    \begin{equation*}
+                        (\mathrm{a}\cdot\mathrm{b})^{p,s} = \bigoplus_{\substack{q+q'=p\\t+t'=s}} \mathrm{a}^{q,t}\cdot\mathrm{b}^{q',t'}.
+                    \end{equation*}
+                \end{alertblock}
+
+                \pause
+                
+                \begin{itemize}
+                    \item It might be the case that all but finitely many of the $\mathrm{a}^{k,1-k}$ are zero, but \textbf{never} $\mathrm{a}^{1,0}$, since it has to be the identity on $(\alpha\alpha)$.
+                    \pause
+                    \item If $V$ has a differential then $\mathrm{a}$ is an element of total degree $1$.
+                    \pause
+                    \item We haven't said \emph{when} twisting cochains exist, but under pretty mild assumptions they always do (by an inductive construction).
+                \end{itemize}
+            \end{frame}
+
+            \begin{frame}\frametitle{Unpacking the definition}
+                \begin{description}
+                    \item[($k=0$) $\rightsquigarrow$] $\mathrm{a}_{\alpha}^{0,1}\cdot\mathrm{a}_{\alpha}^{0,1}=0$, which tells us that $\mathrm{a}_{\alpha}^{0,1}$ is a \emph{differential on $V_\alpha^\bullet$}.
+                    \pause
+                    \item[($k=1$) $\rightsquigarrow$] $\mathrm{a}_{\alpha}^{0,1}\cdot\mathrm{a}_{\alpha\beta}^{1,0} = \mathrm{a}_{\alpha\beta}^{1,0}\cdot\mathrm{a}_{\beta}^{0,1}$, which tells us that we have a \emph{chain map of chain complexes}
+                        \begin{equation*}
+                            \mathrm{a}_{\alpha\beta}^{1,0} \colon \big(V_\beta^\bullet|U_{\alpha\beta},\mathrm{a}_\beta^{0,1}\big) \to \big(V_\alpha^\bullet|U_{\alpha\beta},\mathrm{a}_\alpha^{0,1}\big)
+                        \end{equation*}
+                \end{description}
             \end{frame}
 
         \subsection{Maurer-Cartan}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.25)  8 JUL 2019 18:32
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.25)  8 JUL 2019 18:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1329,9 +1329,37 @@ Overfull \vbox (28.97127pt too high) detected at line 97
 
 ] [26
 
-] [27
+]
+Overfull \vbox (20.65579pt too high) detected at line 193
+ []
 
-] [28
+[27
+
+]
+Overfull \vbox (20.65579pt too high) detected at line 193
+ []
+
+[28
+
+]
+Overfull \vbox (20.65579pt too high) detected at line 193
+ []
+
+[29
+
+]
+Overfull \vbox (20.65579pt too high) detected at line 193
+ []
+
+[30
+
+] [31
+
+] [32
+
+] [33
+
+] [34
 
 ]
 \tf@nav=\write6
@@ -1343,23 +1371,22 @@ Overfull \vbox (28.97127pt too high) detected at line 97
 \tf@snm=\write8
 \openout8 = `twisting-cochains-YTM19.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 186.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 186.
-
-(./twisting-cochains-YTM19.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 186.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 186.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 224.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
+ (./twisting-cochains-YTM19.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 224.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 224.
 Package rerunfilecheck Info: File `twisting-cochains-YTM19.out' has not changed
 .
-(rerunfilecheck)             Checksum: 72C62652DC825AB222FF593735FB4B04.
+(rerunfilecheck)             Checksum: 320C71E3055EDF4D6AF9CA162195684E.
  ) 
 Here is how much of TeX's memory you used:
- 35256 strings out of 492909
- 724241 string characters out of 6132923
- 795283 words of memory out of 5000000
- 38745 multiletter control sequences out of 15000+600000
+ 35279 strings out of 492909
+ 724856 string characters out of 6132923
+ 795331 words of memory out of 5000000
+ 38768 multiletter control sequences out of 15000+600000
  540991 words of font info for 98 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  73i,15n,108p,1853b,737s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on twisting-cochains-YTM19.xdv (28 pages, 192180 bytes).
+Output written on twisting-cochains-YTM19.xdv (34 pages, 242128 bytes).

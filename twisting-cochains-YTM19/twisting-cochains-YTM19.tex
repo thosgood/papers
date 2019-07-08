@@ -5,7 +5,7 @@
 \usepackage{mathrsfs}
 
 \title{Twisting cochains and twisted complexes}
-\subtitle{Simplicial methods in complex-analytic algebraic geometry}
+\subtitle{Simplicial methods in complex-analytic geometry}
 \author{Tim Hosgood}
 \institute{Université d'Aix-Marseille}
 \date{24/07/19}
@@ -48,7 +48,7 @@
 
     \section{Twisting cochains (OTT)}
 
-        \subsection{Bicomplexes}
+        \subsection{The bicomplex}
 
             \begin{frame}\frametitle{Nice spaces}
                 \begin{definition}[Stein spaces]
@@ -184,7 +184,7 @@
                 \pause
                 
                 \begin{itemize}
-                    \item It might be the case that all but finitely many of the $\mathrm{a}^{k,1-k}$ are zero, but \textbf{never} $\mathrm{a}^{1,0}$, since it has to be the identity on $(\alpha\alpha)$.
+                    \item It might be the case that all but finitely many of the $\mathrm{a}^{k,1-k}$ are zero, but \textbf{never} $\mathrm{a}^{1,0}$, since it has to be the identity on $\alpha\alpha$.
                     \pause
                     \item If $V$ has a differential then $\mathrm{a}$ is an element of total degree $1$.
                     \pause
@@ -200,8 +200,33 @@
                         \begin{equation*}
                             \mathrm{a}_{\alpha\beta}^{1,0} \colon \big(V_\beta^\bullet|U_{\alpha\beta},\mathrm{a}_\beta^{0,1}\big) \to \big(V_\alpha^\bullet|U_{\alpha\beta},\mathrm{a}_\alpha^{0,1}\big)
                         \end{equation*}
+                    \vspace{-1.5em}
+                    \pause
+                    \item[($k=2$) $\rightsquigarrow$] $-\mathrm{a}_{\alpha\gamma}^{1,0} + \mathrm{a}_{\alpha\beta}^{1,0}\cdot\mathrm{a}_{\beta\gamma}^{1,0} = \mathrm{a}_{\alpha}^{0,1}\cdot\mathrm{a}_{\alpha\beta\gamma}^{2,-1} + \mathrm{a}_{\alpha\beta\gamma}^{2,-1}\cdot\mathrm{a}_{\gamma}^{0,1}$, which says that $\mathrm{a}_{\alpha\beta\gamma}^{2,-1}$ witnesses a \emph{chain homotopy} between $\mathrm{a}_{\alpha\gamma}^{1,0}$ and $\mathrm{a}_{\alpha\beta}^{1,0}\cdot\mathrm{a}_{\beta\gamma}^{1,0}$.
+                        On $\alpha\beta\alpha$ and $\beta\alpha\beta$ this tells us that $\mathrm{a}_{\alpha\beta}^{1,0}$ and $\mathrm{a}_{\beta\alpha}^{1,0}$ are \emph{chain homotopic inverses}, i.e. \emph{quasi-isomorphism}.
                 \end{description}
             \end{frame}
+
+            \begin{frame}\frametitle{Unpacking the definition (cont.)}
+                \begin{description}
+                    \item[($k\geqslant3$) $\rightsquigarrow$] some sort of `higher homotopic gluings', whatever this might mean.
+                \end{description}
+
+                \pause
+
+                This is one of the things that we want to formalise!
+
+                \pause
+
+                \begin{block}{Extra-curricular}
+                    By taking (internal) homology we obtain something strict: a complex of \emph{coherent sheaves} $\mathrm{H}^\bullet(\mathrm{a})$.
+                    This is because quasi-isomorphisms become strict isomorphisms in homology.
+
+                    We can use this fact to construct twisting cochains that resolve coherent sheaves by taking \emph{local} resolutions by vector bundles.
+                \end{block}
+            \end{frame}
+
+        \subsection{The total complex}
 
         \subsection{Maurer-Cartan}
 

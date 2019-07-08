@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Twisting cochains (OTT)}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Bicomplexes}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{Maurer-Cartan}{4}{0}{1}
+\beamer@sectionintoc {2}{Twisted complexes (BK)}{4}{0}{2}

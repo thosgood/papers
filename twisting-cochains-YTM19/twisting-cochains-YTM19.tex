@@ -96,11 +96,29 @@
                 \end{alertblock}
             \end{frame}
 
-            \begin{frame}\frametitle{The bicomplex}
-                % Given a (chain) complex $(K^\circ,d)$ of vector bundles on $X$, define the bicomplex $(\hat{\mathscr{C}}^\bullet(\mathcal{U},K^\circ),\hat{\delta},d)$ by
-                % \begin{equation*}
-                %     \hat{\mathscr{C}}^p(\mathcal{U},K^q) = 
-                % \end{equation*}
+            \begin{frame}\frametitle{The deleted Čech complex}
+                \begin{definition}[Deleted Čech complex]
+                    Define the complex $(\hat{\mathscr{C}}^\bullet(\mathcal{U},\mathrm{End}^\circ(V)),\hat{\delta})$ by
+                    \begin{equation*}
+                        \hat{\mathscr{C}}^p\big(\mathcal{U},\mathrm{End}^q(V)\big) = \bigoplus_{(\alpha_0,\ldots,\alpha_p)} \mathrm{End}^q(V)|U_{\alpha_0\ldots\alpha_p}
+                    \end{equation*}
+                    (where $\mathrm{End}^q(V)|U_{\alpha_0\ldots\alpha_p}=0$ if $U_{\alpha_0\ldots\alpha_p}=\varnothing$) with the \emph{\textbf{deleted} Čech differential}
+                    \begin{gather*}
+                        \hat{\delta} \colon \hat{\mathscr{C}}^p\big(\mathcal{U},\mathrm{End}^q(V)\big) \to \hat{\mathscr{C}}^{p+1}\big(\mathcal{U},\mathrm{End}^q(V)\big)\\
+                        (\hat{\delta}c)_{\alpha_0\ldots\alpha_{p+1}} = \sum_{i=1}^p (-1)^i c_{\alpha_0\ldots\widehat{\alpha_i}\ldots\alpha_{p+1}}.
+                    \end{gather*}
+                \end{definition}
+            \end{frame}
+
+            \begin{frame}\frametitle{Further structure}
+                \begin{itemize}
+                    \item If $V$ had a differential then this would give us a \emph{bicomplex}.
+                    \pause
+                    \item There is a natural multiplication structure given by composition:
+                        \begin{equation*}
+                            (c^{p,q}\cdot \tilde{c}^{\tilde{p},\tilde{q}})_{\alpha_0\ldots\alpha_{p+\tilde{p}}} = (-1)^{q\tilde{p}} c_{\alpha_0\ldots\alpha_p}^{p,q} \tilde{c}_{\alpha_p\ldots\alpha_{p+\tilde{p}}}^{\tilde{p},\tilde{q}}.
+                        \end{equation*}
+                \end{itemize}
             \end{frame}
 
         \subsection{Maurer-Cartan}

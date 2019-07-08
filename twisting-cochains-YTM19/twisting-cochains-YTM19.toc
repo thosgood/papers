@@ -1,8 +1,8 @@
 \beamer@sectionintoc {1}{History}{3}{0}{1}
 \beamer@sectionintoc {2}{Twisting cochains (OTT)}{7}{0}{2}
 \beamer@subsectionintoc {2}{1}{Bicomplexes}{8}{0}{2}
-\beamer@subsectionintoc {2}{2}{Maurer-Cartan}{16}{0}{2}
-\beamer@sectionintoc {3}{Twisted complexes (BK)}{16}{0}{3}
-\beamer@subsectionintoc {3}{1}{Pretriangulated vs. triangulated}{17}{0}{3}
-\beamer@subsectionintoc {3}{2}{Generalisation of twisting cochains}{17}{0}{3}
-\beamer@sectionintoc {4}{Other fun things}{17}{0}{4}
+\beamer@subsectionintoc {2}{2}{Maurer-Cartan}{18}{0}{2}
+\beamer@sectionintoc {3}{Twisted complexes (BK)}{18}{0}{3}
+\beamer@subsectionintoc {3}{1}{Pretriangulated vs. triangulated}{19}{0}{3}
+\beamer@subsectionintoc {3}{2}{Generalisation of twisting cochains}{19}{0}{3}
+\beamer@sectionintoc {4}{Other fun things}{19}{0}{4}

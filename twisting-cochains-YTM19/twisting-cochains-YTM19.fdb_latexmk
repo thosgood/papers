@@ -1,10 +1,10 @@
 # Fdb version 3
-["xdvipdfmx"] 1562601621 "twisting-cochains-YTM19.xdv" "twisting-cochains-YTM19.pdf" "twisting-cochains-YTM19" 1562601622
-  "twisting-cochains-YTM19.xdv" 1562601621 113624 7c5b0a742f46ac97145736fafbf59584 "xelatex"
+["xdvipdfmx"] 1562606323 "twisting-cochains-YTM19.xdv" "twisting-cochains-YTM19.pdf" "twisting-cochains-YTM19" 1562606324
+  "twisting-cochains-YTM19.xdv" 1562606323 127920 126526b1f5d91a879aa5fe956444ff38 "xelatex"
   (generated)
   "twisting-cochains-YTM19.pdf"
-["xelatex"] 1562601619 "twisting-cochains-YTM19.tex" "twisting-cochains-YTM19.xdv" "twisting-cochains-YTM19" 1562601622
-  "/dev/null" 1562601587 0 d41d8cd98f00b204e9800998ecf8427e ""
+["xelatex"] 1562606320 "twisting-cochains-YTM19.tex" "twisting-cochains-YTM19.xdv" "twisting-cochains-YTM19" 1562606324
+  "/dev/null" 1562606270 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -211,16 +211,16 @@
   "/usr/local/texlive/2019/texmf-dist/web2c/texmf.cnf" 1559599508 35683 50a220a7a2a515000b0c7ffa04d5889f ""
   "/usr/local/texlive/2019/texmf-var/web2c/xetex/xelatex.fmt" 1561493838 3752872 b43f6e9da92618994d8173873beb92bf ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
-  "twisting-cochains-YTM19.aux" 1562601621 4805 b676c3e30e4cb41bdce013e243d4ab13 "xelatex"
-  "twisting-cochains-YTM19.nav" 1562601621 2504 60889c7c86b3a76fbb0fd14725cc018b "xelatex"
-  "twisting-cochains-YTM19.out" 1562601621 535 6335d7e4dea8aef0c2f1b7fbd30de9a5 "xelatex"
-  "twisting-cochains-YTM19.tex" 1562601618 5165 de5df29d3810e8d8c6446b1baf80c4a1 ""
-  "twisting-cochains-YTM19.toc" 1562601621 476 c9f8a949aa04f076a0f8eebc51a3c4e5 "xelatex"
+  "twisting-cochains-YTM19.aux" 1562606323 4969 91166e260ea75def28d2ebd577ca9cba "xelatex"
+  "twisting-cochains-YTM19.nav" 1562606323 2607 2a2bad6232aa460549f5022fbecf205a "xelatex"
+  "twisting-cochains-YTM19.out" 1562606323 535 7b509d31b7c6ee18148a4eb6f1edb75b "xelatex"
+  "twisting-cochains-YTM19.tex" 1562606320 6564 6ebb3c01bd0207a87138778ee7e4f63a ""
+  "twisting-cochains-YTM19.toc" 1562606323 476 43f34afbfd30a59069dfb2b1d9437938 "xelatex"
   (generated)
-  "twisting-cochains-YTM19.xdv"
-  "twisting-cochains-YTM19.snm"
-  "twisting-cochains-YTM19.toc"
-  "twisting-cochains-YTM19.nav"
-  "twisting-cochains-YTM19.log"
-  "twisting-cochains-YTM19.aux"
   "twisting-cochains-YTM19.out"
+  "twisting-cochains-YTM19.aux"
+  "twisting-cochains-YTM19.nav"
+  "twisting-cochains-YTM19.toc"
+  "twisting-cochains-YTM19.xdv"
+  "twisting-cochains-YTM19.log"
+  "twisting-cochains-YTM19.snm"

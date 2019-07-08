@@ -1,8 +1,8 @@
 \documentclass{beamer}
 
 \usetheme[numbering=fraction,block=fill]{metropolis}
-% \usetheme{Montpellier}
-% \usecolortheme{seagull}
+
+\usepackage{mathrsfs}
 
 \title{Twisting cochains and twisted complexes}
 \subtitle{Simplicial methods in complex-analytic algebraic geometry}
@@ -20,10 +20,105 @@
         \tableofcontents
     \end{frame}
 
+
+    \section{History}
+
+        \begin{frame}\frametitle{First steps}
+            \begin{itemize}
+                \item Edgar H Brown. ``Twisted tensor products, I''. In: \emph{Annals of Mathematics} 69.1 (1959), pp.~223--246.
+                \item John C Moore. ``Differential homological algebra''. In: \emph{Actes du Congres International des Mathématiciens} 1 (1970), pp.~335--339.
+            \end{itemize}
+        \end{frame}
+
+        \begin{frame}\frametitle{Coherent sheaves}
+            \begin{itemize}
+                \item Domingo Toledo and Yue Lin L Tong. ``A parametrix for $\delta$ and Riemann-Roch in Čech theory''. In: \emph{Topology} 15.4 (1976), pp.~273--301.
+                \item Domingo Toledo and Yue Lin L Tong. ``Duality and Intersection Theory in Complex Manifolds. I''. In: \emph{Mathematische Annalen} 237 (1978), pp.~41--77.
+                \item Nigel R O'Brian, Domingo Toledo, and Yue Lin L Tong. ``The Trace Map and Characteristic Classes for Coherent Sheaves''. In: \emph{American Journal of Mathematics} 103.2 (1981), pp.~225--252.
+            \end{itemize}
+        \end{frame}
+
+        \begin{frame}\frametitle{Triangulation and stability}
+            \begin{itemize}
+                \item A I Bondal and M M Kapranov. ``Enhanced Triangulated Categories''. In: \emph{Math. USSR Sbornik} 70.1 (1991), pp.~1--15.
+                \item Giovanni Faonte. \emph{Simplicial nerve of an A-infinity category}. 2015. arXiv: 1312.2127 [math.AT].
+            \end{itemize}
+        \end{frame}
+
+
     \section{Twisting cochains (OTT)}
+
         \subsection{Bicomplexes}
+
+            \begin{frame}\frametitle{Nice spaces}
+                \begin{definition}[Stein spaces]
+                    A complex-analytic\footnote{analytic = $\mathcal{O}_Y$ is holomorphic functions, $Y$ has the $\mathbb{C}^n$-induced topology; algebraic = $\mathcal{O}_Y$ is algebraic functions, $Y$ has the Zariski topology.} manifold $Y$ is said to be \emph{Stein} if it is
+                    \begin{enumerate}
+                        \item \emph{holomorphically convex}; and
+                        \item \emph{holomorphically separable}.
+                    \end{enumerate}
+                \end{definition}
+
+                \pause
+
+                \begin{block}{Motto}
+                    Stein things are nice.
+                \end{block}
+
+                \pause
+
+                Throughout, $X$ is a complex-analytic manifold with a nice\footnote{\emph{Locally finite}, \emph{Stein}, and \emph{trivialising} (for the bundles in question).} cover $\mathcal{U}=\{U_\alpha\}_{\alpha\in I}$.
+            \end{frame}
+
+            \begin{frame}\frametitle{Endomorphisms of bounded-graded modules}
+                Let $V=\{V_\alpha^\bullet\}$ be a collection of \emph{bounded-graded $\mathcal{O}_{U_\alpha}$-modules}:
+                \begin{equation*}
+                    V_\alpha^\bullet = \bigoplus_{q\in\mathbb{N}}V_\alpha^q\quad\text{such that }V_\alpha^q\text{ is zero for all but finitely many }q.
+                \end{equation*}
+
+                \pause
+
+                Think of a bounded chain complex of vector bundles, but without the information of a differential.
+
+                \pause
+
+                \begin{definition}[Endomorphisms]
+                    The collection of \emph{degree-$q$ endomorphisms $\mathrm{End}^q(V)$ of $V$} is, over each $U_{\alpha_0\ldots\alpha_p}$, given by
+                    \begin{equation*}
+                        \mathrm{End}^q(V)|U_{\alpha_0\ldots\alpha_p} = \bigoplus_{i\in\mathbb{Z}}\mathrm{Hom}\big( V_{\alpha_p}^i|U_{\alpha_0\ldots\alpha_p}, V_{\alpha_0}^{i+q}|U_{\alpha_0\ldots\alpha_p} \big).
+                    \end{equation*}
+                \end{definition}
+
+                \pause
+
+                \begin{alertblock}{Warning}
+                    The maps are from the $\alpha_p$ part to the $\alpha_0$ part.
+                \end{alertblock}
+            \end{frame}
+
+            \begin{frame}\frametitle{The bicomplex}
+                % Given a (chain) complex $(K^\circ,d)$ of vector bundles on $X$, define the bicomplex $(\hat{\mathscr{C}}^\bullet(\mathcal{U},K^\circ),\hat{\delta},d)$ by
+                % \begin{equation*}
+                %     \hat{\mathscr{C}}^p(\mathcal{U},K^q) = 
+                % \end{equation*}
+            \end{frame}
+
         \subsection{Maurer-Cartan}
+
+
     \section{Twisted complexes (BK)}
-        \subsection{Pretriangulated vs triangulated}
+        
+        \subsection{Pretriangulated vs. triangulated}
+        
         \subsection{Generalisation of twisting cochains}
+    
+
+    \section{Other fun things}
+
+        \subsection{The A-infinity Yoneda embedding}
+        
+        \subsection{The bar construction}
+        
+        \subsection{Simplicial nerve}
+
 \end{document}

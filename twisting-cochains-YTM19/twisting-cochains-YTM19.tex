@@ -110,6 +110,10 @@
                 \end{definition}
             \end{frame}
 
+            \begin{frame}\frametitle{A notational note}
+                We use $\hat{\mathscr{C}}$ and $\hat{\delta}$ for the \emph{deleted} Čech objects and $\check{\mathscr{C}}$ and $\check{\delta}$ for the `full' Čech objects.
+            \end{frame}
+
             \begin{frame}\frametitle{Further structure}
                 \begin{itemize}
                     \item If $V$ has a differential then this gives us a \emph{bicomplex}.
@@ -119,7 +123,11 @@
                             (c^{p,q}\cdot \tilde{c}^{\tilde{p},\tilde{q}})_{\alpha_0\ldots\alpha_{p+\tilde{p}}} = (-1)^{q\tilde{p}} c_{\alpha_0\ldots\alpha_p}^{p,q} \tilde{c}_{\alpha_p\ldots\alpha_{p+\tilde{p}}}^{\tilde{p},\tilde{q}}.
                         \end{equation*}
                     \pause
-                    \item We could define the same complex for an arbitrary bounded graded vector bundle, i.e. $\hat{\mathscr{C}}^\bullet(\mathcal{U},V^\circ)$, but where the deleted Čech differential only omits the \emph{first} index (but includes the $(p+1)$th).
+                    \item We could define the same complex for an arbitrary bounded graded vector bundle, i.e.
+                    \begin{equation*}
+                        \hat{\mathscr{C}}^p(\mathcal{U},V^q) = \bigoplus_{(\alpha_0,\ldots,\alpha_p)} V_{\alpha_0}^q
+                    \end{equation*}
+                    but where the deleted Čech differential only omits the \emph{first} index (but includes the $(p+1)$th).
                 \end{itemize}
             \end{frame}
 
@@ -171,6 +179,10 @@
                         \item $\mathrm{a}_{\alpha\alpha}^{1,0}=\mathrm{id}$.
                     \end{enumerate}
                 \end{definition}
+
+                \pause
+
+                The invertibility condition ``should'' really be weakened by asking only that $\mathrm{a}_{\alpha\alpha}^{1,0}$ be \emph{homotopic} to the identity.
             \end{frame}
 
             \begin{frame}\frametitle{Twisting cochains (cont.)}
@@ -230,9 +242,9 @@
 
             \begin{frame}\frametitle{The total differential}
                 \begin{lemma}
-                    For any $\mathrm{a}\in\mathrm{Tot}^1\hat{\mathcal{C}}^\bullet(\mathcal{U},\mathrm{End}^\circ(V))$, the map
+                    For any $\mathrm{a}\in\mathrm{Tot}^1\hat{\mathscr{C}}^\bullet(\mathcal{U},\mathrm{End}^\circ(V))$, the map
                     \begin{align*}
-                        \mathrm{D}_\mathrm{a} \colon \mathrm{Tot}^r\hat{\mathcal{C}}^\bullet(\mathcal{U},\mathrm{End}^\circ(V)) &\to \mathrm{Tot}^{r+1}\hat{\mathcal{C}}^\bullet(\mathcal{U},\mathrm{End}^\circ(V))\\
+                        \mathrm{D}_\mathrm{a} \colon \mathrm{Tot}^r\hat{\mathscr{C}}^\bullet(\mathcal{U},V^\circ) &\to \mathrm{Tot}^{r+1}\hat{\mathscr{C}}^\bullet(\mathcal{U},V^\circ)\\
                         c &\mapsto \hat{\delta}c+c\cdot\mathrm{a}
                     \end{align*}
                     defines a differential (i.e. squares to zero) if and only if $\mathrm{a}$ is a twisting cochain.
@@ -247,12 +259,46 @@
 
                 \pause
 
-                This approach lets us think of a twisting cochain as a \emph{first-order perturbation of the deleted Čech differential}.
+                But this approach lets us think of a twisting cochain as a \emph{first-order perturbation of the deleted Čech differential}.
             \end{frame}
 
             \begin{frame}\frametitle{Examples}
-                \textbf{MENTION HOW THIS IS A WAY OF VIEWING EVERYTHING OVER $U_\alpha$}
+                \begin{example}
+                    Look at the most trivial example: let $V$ be an \emph{ungraded} vector bundle, and $\mathrm{a} = \mathrm{a}^{0,1}+\mathrm{a}^{1,0}$, where $\mathrm{a}_{\alpha}^{0,1} = \mathrm{id}_{V_\alpha}$, and the $\mathrm{a}^{1,0}$ are the transition maps.
+                    Then
+                    \begin{equation*}
+                        (\mathrm{D}_\mathrm{a}c)_{\alpha_0\ldots\alpha_{p+1}} = \mathrm{a}_{\alpha_0\alpha_1}^{1,0}c_{\alpha_1\ldots\alpha_{p+1}} + \sum_{i=1}^{p+1}(-1)^i c_{\alpha_0\ldots\widehat{\alpha_i}\ldots\alpha_{p+1}}.
+                    \end{equation*}
+
+                    \pause
+
+                    Note that we couldn't use the full Čech differential on $\hat{\mathscr{C}}^\bullet(\mathcal{U},V^\circ)$ because everything has to lie over $U_{\alpha_0}$, but this total differential solves that problem --- recall that $\mathrm{a}_{\alpha_0\alpha_1}^{1,0}$ is a (quasi-)isomorphism.
+
+                    \pause
+
+                    A spectral-sequence argument shows that, in fact, $\mathrm{D}_\mathrm{a}$ here really is `the same as' the full Čech differential.
+                \end{example}
             \end{frame}
+
+            \begin{frame}\frametitle{Examples (cont.)}
+                \begin{example}
+                    Now look at a slightly-less trivial example: let $V^\bullet$ consist of \emph{complexes} $(V_\alpha^\bullet,\mathrm{d}_\alpha)$ of vector bundles, and $\mathrm{a} = \mathrm{a}^{0,1}+\mathrm{a}^{1,0}$, where $\mathrm{a}_{\alpha}^{0,1} = \mathrm{d}_\alpha$, and the $\mathrm{a}^{1,0}$ are the transition maps.
+                    Then
+                    \begin{align*}
+                        (\mathrm{D}_\mathrm{a}c)_{\alpha_0\ldots\alpha_{p+1}} &= (-1)^p\mathrm{a}_{\alpha_0}^{0,1}c_{\alpha_0\ldots\alpha_p} + \mathrm{a}_{\alpha_0\alpha_1}^{1,0}c_{\alpha_1\ldots\alpha_{p+1}}\\
+                        &\qquad+\sum_{i=1}^{p+1}(-1)^i c_{\alpha_0\ldots\widehat{\alpha_i}\ldots\alpha_{p+1}}.
+                    \end{align*}
+
+                    \pause
+                    
+                    Identifying the second and third terms with the full Čech differential, as above, gives the usual total differential of the Čech bicomplex:
+                    \begin{equation*}
+                        \mathrm{D}_\mathrm{a} = \check{\delta} \pm \mathrm{d}_V.
+                    \end{equation*}
+                \end{example}
+            \end{frame}
+
+        \subsection{Why this emphasis on the first index?}
 
         \subsection{Maurer-Cartan}
 

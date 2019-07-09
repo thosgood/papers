@@ -46,6 +46,26 @@
             \end{itemize}
         \end{frame}
 
+        \begin{frame}\frametitle{Nomenclature}
+            \begin{lemma}
+                Let $x\in\{\text{twisting},\text{twisted}\}$ and $y\in\{\text{cochain},\text{complex}\}$.
+
+                Then there exists somebody who uses ``$x\,y$'' to denote what you call ``$x^c\,y^c$''.
+            \end{lemma}
+
+            \begin{corollary}
+                Sometimes it can be hard to figure out what people mean.
+            \end{corollary}
+            
+            \pause
+
+            I like ``twisting cochain'' for the topological Čech definition, which is a special case of a ``twisted complex'', defined in the dg-categorical setting.
+
+            \pause
+
+            But that's very possibly just me.
+        \end{frame}
+
 
     \section{Twisting cochains (OTT)}
 
@@ -68,7 +88,7 @@
 
                 \pause
 
-                Throughout, $X$ is a complex-analytic manifold with a nice\footnote{\emph{Locally finite}, \emph{Stein}, and \emph{trivialising} (for the bundles in question).} cover $\mathcal{U}=\{U_\alpha\}_{\alpha\in I}$.
+                Throughout, $X$ is a complex-analytic manifold with a nice\footnote<3>{\emph{Locally finite}, \emph{Stein}, and \emph{trivialising} (for the bundles in question).} cover $\mathcal{U}=\{U_\alpha\}_{\alpha\in I}$.
             \end{frame}
 
             \begin{frame}\frametitle{Endomorphisms of bounded-graded modules}
@@ -313,13 +333,13 @@
 
         \subsection{Maurer-Cartan}
 
-            \begin{frame}\frametitle{The Maurer-Cartan equation}
+            \begin{frame}\frametitle{The Maurer-Cartan equation in other fields}
                 \begin{table}
                     \begin{tabular}{p{1.8cm}cp{3.9cm}}\toprule
                         Subject & Equation & Interpretation\\\midrule
                         Differential geometry & $F_\nabla = \mathrm{d}A + A\cdot A$ & curvature of a Koszul connection\footnote{Here be Christoffel symbols.}\\[.5em]
                         Gauge theory & $\Omega = \mathrm{d}A + \frac12[A\wedge A]$ & curvature of a principal connection\\[.5em]
-                        Deformation theory & $\partial a+\frac12[a,a]$ & deformations of f.d. associative $k$-algebras with unit\footnote{There is the beautiful fact (that we won't explain at all) that $\mathrm{MC}(A\otimes\mathfrak{g}) \simeq \mathrm{Hom}_\mathsf{dg-alg}(\mathrm{CE}(\mathfrak{g}),A)$.}
+                        Deformation theory & $\partial a+\frac12[a,a]$ & deformations of f.d. associative $k$-algebras with unit\footnote{There is also the beautiful fact (that we won't explain at all) that $\mathrm{MC}(A\otimes\mathfrak{g}) \simeq \mathrm{Hom}_\mathsf{dg-alg}(\mathrm{CE}(\mathfrak{g}),A)$.}
                         \\\bottomrule
                     \end{tabular}
                 \end{table}
@@ -335,6 +355,31 @@
     \section{Twisted complexes (BK)}
         
         \subsection{Pretriangulated vs. triangulated}
+
+            \begin{frame}\frametitle{Stability}
+                \begin{block}{Motto}
+                    \emph{Pretriangulated dg-categories} are those whose homotopy category is \emph{triangulated}, where \emph{triangulated} denotes the structure left over from taking the homotopy category of a \emph{stable $(\infty,1)$-category}.\footnote{Loop spaces and suspensions form an equivalence.}
+                \end{block}
+            \end{frame}
+
+            \begin{frame}\frametitle{Stability (cont.)}
+                \begin{alertblock}{Problem}
+                    There is no reason for an arbitrary dg-category to be pretriangulated, which means that homotopy theorists might be unhappy.
+                    This is bad.
+                \end{alertblock}
+
+                \pause
+
+                \begin{block}{Solution}
+                    Twisted complexes à la Bondal and Kapranov.
+                \end{block}
+            \end{frame}
+
+            \begin{frame}\frametitle{dg-categories}
+                \begin{definition}
+                    !
+                \end{definition}
+            \end{frame}
         
         \subsection{Generalisation of twisting cochains}
     

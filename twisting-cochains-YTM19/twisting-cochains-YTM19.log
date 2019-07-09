@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.25)  9 JUL 2019 02:40
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.25)  9 JUL 2019 03:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1340,35 +1340,35 @@ Overfull \vbox (49.82993pt too high) detected at line 17
 
 ] [29
 
-]
-Overfull \vbox (20.65579pt too high) detected at line 210
- []
+] [30
 
-[30
+] [31
 
-]
-Overfull \vbox (20.65579pt too high) detected at line 210
- []
-
-[31
+] [32
 
 ]
-Overfull \vbox (20.65579pt too high) detected at line 210
- []
-
-[32
-
-]
-Overfull \vbox (20.65579pt too high) detected at line 210
+Overfull \vbox (20.65579pt too high) detected at line 230
  []
 
 [33
 
-] [34
+]
+Overfull \vbox (20.65579pt too high) detected at line 230
+ []
 
-] [35
+[34
 
-] [36
+]
+Overfull \vbox (20.65579pt too high) detected at line 230
+ []
+
+[35
+
+]
+Overfull \vbox (20.65579pt too high) detected at line 230
+ []
+
+[36
 
 ] [37
 
@@ -1382,39 +1382,45 @@ Overfull \vbox (20.65579pt too high) detected at line 210
 
 ] [42
 
-]
-Overfull \vbox (19.4794pt too high) detected at line 286
- []
+] [43
 
-[43
+] [44
 
-]
-Overfull \vbox (19.4794pt too high) detected at line 286
- []
-
-[44
+] [45
 
 ]
-Overfull \vbox (19.4794pt too high) detected at line 286
- []
-
-[45
-
-]
-Overfull \vbox (9.80048pt too high) detected at line 304
+Overfull \vbox (19.4794pt too high) detected at line 306
  []
 
 [46
 
 ]
-Overfull \vbox (9.80048pt too high) detected at line 304
+Overfull \vbox (19.4794pt too high) detected at line 306
  []
 
 [47
 
-] [48
+]
+Overfull \vbox (19.4794pt too high) detected at line 306
+ []
 
-] [49
+[48
+
+]
+Overfull \vbox (9.80048pt too high) detected at line 324
+ []
+
+[49
+
+]
+Overfull \vbox (9.80048pt too high) detected at line 324
+ []
+
+[50
+
+] [51
+
+] [52
 
 ]
 
@@ -1455,35 +1461,43 @@ xt;"
 tex-text;"
 
 
-Overfull \hbox (3.03125pt too wide) in paragraph at lines 326--326
+Overfull \hbox (3.03125pt too wide) in paragraph at lines 346--346
 []\TU/FiraSansLight(1)/m/n/10.95 Differential
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 326--326
+Underfull \hbox (badness 10000) in paragraph at lines 346--346
 []\TU/FiraSansLight(1)/m/n/10.95 Gauge
  []
 
 
-Overfull \hbox (9.86404pt too wide) in paragraph at lines 326--326
+Overfull \hbox (9.86404pt too wide) in paragraph at lines 346--346
 []\TU/FiraSansLight(1)/m/n/10.95 Deformation
  []
 
-LaTeX Font Info:    Try loading font information for U+euf on input line 326.
+LaTeX Font Info:    Try loading font information for U+euf on input line 346.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
-Underfull \hbox (badness 10000) in paragraph at lines 326--326
+Underfull \hbox (badness 10000) in paragraph at lines 346--346
 []\TU/FiraSansLight(1)/m/n/10.95 deformations of f.d.
  []
 
-[50
+[53
 
-] [51
+] [54
 
-] [52
+] [55
 
-] [53
+] [56
+
+] [57
+
+] [58
+
+] [59
+
+] [60
 
 ]
 \tf@nav=\write6
@@ -1495,22 +1509,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 326--326
 \tf@snm=\write8
 \openout8 = `twisting-cochains-YTM19.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 350.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 350.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 395.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 395.
  (./twisting-cochains-YTM19.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 350.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 350.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 395.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 395.
 Package rerunfilecheck Info: File `twisting-cochains-YTM19.out' has not changed
 .
-(rerunfilecheck)             Checksum: C8980BC1953178BE152DF2D23ECD16E3.
+(rerunfilecheck)             Checksum: 99FD0EAA5427CCDE4AE3488331B18C02.
  ) 
 Here is how much of TeX's memory you used:
- 35449 strings out of 492909
- 728607 string characters out of 6132923
- 798466 words of memory out of 5000000
- 38920 multiletter control sequences out of 15000+600000
+ 35460 strings out of 492909
+ 728723 string characters out of 6132923
+ 798563 words of memory out of 5000000
+ 38931 multiletter control sequences out of 15000+600000
  542203 words of font info for 107 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  73i,17n,108p,1853b,737s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on twisting-cochains-YTM19.xdv (53 pages, 372252 bytes).
+Output written on twisting-cochains-YTM19.xdv (60 pages, 419688 bytes).

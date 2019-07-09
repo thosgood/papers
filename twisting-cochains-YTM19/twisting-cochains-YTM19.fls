@@ -310,6 +310,8 @@ INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/fontspec/fontspec.cfg
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/fontspec/fontspec.cfg
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/booktabs/booktabs.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/booktabs/booktabs.sty
 INPUT twisting-cochains-YTM19.aux
 INPUT twisting-cochains-YTM19.aux
 OUTPUT twisting-cochains-YTM19.aux
@@ -379,6 +381,13 @@ INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex9
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/ueuf.fd
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/ueuf.fd
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm7.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm5.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm
 OUTPUT twisting-cochains-YTM19.nav
 OUTPUT twisting-cochains-YTM19.toc
 OUTPUT twisting-cochains-YTM19.snm

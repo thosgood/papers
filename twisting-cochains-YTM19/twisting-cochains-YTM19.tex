@@ -3,6 +3,7 @@
 \usetheme[numbering=fraction,block=fill]{metropolis}
 
 \usepackage{mathrsfs}
+\usepackage{booktabs}
 
 \title{Twisting cochains and twisted complexes}
 \subtitle{Simplicial methods in complex-analytic geometry}
@@ -88,12 +89,16 @@
                         \mathrm{End}^q(V)|U_{\alpha_0\ldots\alpha_p} = \bigoplus_{i\in\mathbb{Z}}\mathrm{Hom}\big( V_{\alpha_p}^i|U_{\alpha_0\ldots\alpha_p}, V_{\alpha_0}^{i+q}|U_{\alpha_0\ldots\alpha_p} \big).
                     \end{equation*}
                 \end{definition}
+            \end{frame}
 
-                \pause
-
+            \begin{frame}\frametitle{Source and target}
                 \begin{alertblock}{Warning}
                     The maps are from the $\alpha_p$ part to the $\alpha_0$ part.
                 \end{alertblock}
+
+                \pause
+
+                We discuss this later.
             \end{frame}
 
             \begin{frame}\frametitle{The deleted Čech complex}
@@ -298,9 +303,33 @@
                 \end{example}
             \end{frame}
 
-        \subsection{Why this emphasis on the first index?}
+            \begin{frame}\frametitle{Why this emphasis on the first index?}
+                \begin{itemize}
+                    \item Transition maps naturally go from $\alpha_p$ to $\alpha_0$.
+                    \pause
+                    \item We want to be able to compare local things, and we need to pull everything back to lie over the same open set in order to do so.
+                \end{itemize}
+            \end{frame}
 
         \subsection{Maurer-Cartan}
+
+            \begin{frame}\frametitle{The Maurer-Cartan equation}
+                \begin{table}
+                    \begin{tabular}{p{1.8cm}cp{3.9cm}}\toprule
+                        Subject & Equation & Interpretation\\\midrule
+                        Differential geometry & $F_\nabla = \mathrm{d}A + A\cdot A$ & curvature of a Koszul connection\footnote{Here be Christoffel symbols.}\\[.5em]
+                        Gauge theory & $\Omega = \mathrm{d}A + \frac12[A\wedge A]$ & curvature of a principal connection\\[.5em]
+                        Deformation theory & $\partial a+\frac12[a,a]$ & deformations of f.d. associative $k$-algebras with unit\footnote{There is the beautiful fact (that we won't explain at all) that $\mathrm{MC}(A\otimes\mathfrak{g}) \simeq \mathrm{Hom}_\mathsf{dg-alg}(\mathrm{CE}(\mathfrak{g}),A)$.}
+                        \\\bottomrule
+                    \end{tabular}
+                \end{table}
+            \end{frame}
+
+            \begin{frame}\frametitle{Flatness}
+                \begin{block}{Motto}
+                    Solutions to (i.e. zeros of) the Maurer-Cartan equation are always (in some sense) \emph{flat objects}.
+                \end{block}
+            \end{frame}
 
 
     \section{Twisted complexes (BK)}

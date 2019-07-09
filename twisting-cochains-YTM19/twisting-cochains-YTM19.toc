@@ -1,10 +1,9 @@
 \beamer@sectionintoc {1}{History}{3}{0}{1}
 \beamer@sectionintoc {2}{Twisting cochains (OTT)}{7}{0}{2}
 \beamer@subsectionintoc {2}{1}{The bicomplex}{8}{0}{2}
-\beamer@subsectionintoc {2}{2}{The total complex}{39}{0}{2}
-\beamer@subsectionintoc {2}{3}{Why this emphasis on the first index?}{47}{0}{2}
-\beamer@subsectionintoc {2}{4}{Maurer-Cartan}{47}{0}{2}
-\beamer@sectionintoc {3}{Twisted complexes (BK)}{47}{0}{3}
-\beamer@subsectionintoc {3}{1}{Pretriangulated vs. triangulated}{48}{0}{3}
-\beamer@subsectionintoc {3}{2}{Generalisation of twisting cochains}{48}{0}{3}
-\beamer@sectionintoc {4}{Other fun things}{48}{0}{4}
+\beamer@subsectionintoc {2}{2}{The total complex}{40}{0}{2}
+\beamer@subsectionintoc {2}{3}{Maurer-Cartan}{50}{0}{2}
+\beamer@sectionintoc {3}{Twisted complexes (BK)}{52}{0}{3}
+\beamer@subsectionintoc {3}{1}{Pretriangulated vs. triangulated}{53}{0}{3}
+\beamer@subsectionintoc {3}{2}{Generalisation of twisting cochains}{53}{0}{3}
+\beamer@sectionintoc {4}{Other fun things}{53}{0}{4}

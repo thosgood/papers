@@ -339,7 +339,7 @@
                         Subject & Equation & Interpretation\\\midrule
                         Differential geometry & $F_\nabla = \mathrm{d}A + A\cdot A$ & curvature of a Koszul connection\footnote{Here be Christoffel symbols.}\\[.5em]
                         Gauge theory & $\Omega = \mathrm{d}A + \frac12[A\wedge A]$ & curvature of a principal connection\\[.5em]
-                        Deformation theory & $\partial a+\frac12[a,a]$ & deformations of f.d. associative $k$-algebras with unit\footnote{There is also the beautiful fact (that we won't explain at all) that $\mathrm{MC}(A\otimes\mathfrak{g}) \simeq \mathrm{Hom}_\mathsf{dg-alg}(\mathrm{CE}(\mathfrak{g}),A)$.}
+                        Deformation theory & $\partial a+\frac12[a,a]$ & deformations of f.d. associative $k$-algebras with unit\footnote{There is also the beautiful fact (that we won't explain at all) that $\mathrm{MC}(A\otimes\mathfrak{g}) \simeq \mathrm{Hom}_\mathsf{dgAlg}(\mathrm{CE}(\mathfrak{g}),A)$.}
                         \\\bottomrule
                     \end{tabular}
                 \end{table}
@@ -354,7 +354,7 @@
 
     \section{Twisted complexes (BK)}
         
-        \subsection{Pretriangulated vs. triangulated}
+        \subsection{Pretriangulated, triangulated, and stable}
 
             \begin{frame}\frametitle{Stability}
                 \begin{block}{Motto}
@@ -377,11 +377,65 @@
 
             \begin{frame}\frametitle{dg-categories}
                 \begin{definition}
-                    !
+                    A \emph{dg-category} is a category enriched over chain complexes.
+                    That is, the hom-sets are hom-\emph{complexes}.
                 \end{definition}
+
+                \pause
+
+                \begin{definition}
+                    Let $\mathcal{A}$ be a dg-category.
+                    Then a \emph{twisted complex $\mathfrak{C}$ over $\mathcal{A}$} is a collection
+                    \begin{equation*}
+                        \mathfrak{C} = \{E_i\in\mathcal{A},q_{ij}\colon E_i\to E_j\mid i,j\in\mathbb{Z}\}
+                    \end{equation*}
+                    such that
+                    \begin{itemize}
+                        \item all but finitely many of the $E_i$ are zero;
+                        \item the $q_{ij}$ are of degree $i-j+1$; and
+                        \item $\mathrm{d}q_{ij}+\sum_{s\in\mathbb{Z}} q_{sj}q_{is}=0$.
+                    \end{itemize}
+                \end{definition}
+            \end{frame}
+
+            \begin{frame}\frametitle{The main result}
+                \begin{theorem}
+                    Given a dg-category, the smallest dg-category containing it in which we can define shifts and functorial cones is exactly its category of twisted complexes.
+
+                    \pause
+
+                    Further, if the original dg-category is pretriangulated then this embedding is a quasi-equivalence (which lets us pull back the shift and the cones, which descend exactly to a triangulated structure on the homotopy category).
+                \end{theorem}
             \end{frame}
         
         \subsection{Generalisation of twisting cochains}
+
+            \begin{frame}\frametitle{Twisting cochains as twisted complexes}
+                \begin{alertblock}{Warning}
+                    It is \textbf{not} the case that, by picking the `right' dg-category $\mathcal{A}$, we can recover the definition of holomorphic twisting cochains from that of twisted complexes.
+
+                    \pause
+
+                    Rather, twisting cochains are a \emph{specific} case of twisted complexes.
+                \end{alertblock}
+            \end{frame}
+
+            \begin{frame}\frametitle{Constructing a twisted complex from a twisting cochain}
+                \begin{itemize}
+                    \item Let $\mathcal{A}=\mathsf{dgMod}_B$ where $B=\hat{\mathscr{C}}^\bullet(\mathcal{U},\mathcal{O}_X)$ with differential $\hat{\delta}$.
+                    \pause
+                    \item Let $E_0=\hat{\mathscr{C}}^\bullet(\mathcal{U},V)$ (with \textbf{trivial} differential) and $E_i=0$ for all $i\neq0$.
+                    \pause
+                    \item We need a degree-1 $B$-linear endomorphism $\mathrm{a}=q_{00}$ of $E_0$ such that $\hat{\delta}\mathrm{a}+\mathrm{a}\mathrm{a}=0$, but we can show that the dg-algebra $\mathrm{End}_B(E_0)$ is exactly $\hat{\mathscr{C}}^\bullet(\mathcal{U},\mathrm{End}^\circ(V))$.
+                    \item Decomposing $\mathrm{a}$ into $\mathrm{a}^{k,1-k}$ we can see that the equation that must be satisfied is exactly what we want.
+                \end{itemize}
+
+                \pause
+
+                \begin{block}{Motto}
+                    Twisting cochains are twisted complexes that are \emph{concentrated in degree zero} and \emph{`projective/free'}.
+                \end{block}
+            \end{frame}
     
 
     \section{Other fun things}

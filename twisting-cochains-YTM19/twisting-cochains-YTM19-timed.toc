@@ -5,5 +5,6 @@
 \beamer@subsectionintoc {2}{3}{Maurer-Cartan}{53}{0}{2}
 \beamer@sectionintoc {3}{Twisted complexes (BK)}{55}{0}{3}
 \beamer@subsectionintoc {3}{1}{Pretriangulated, triangulated, and stable}{56}{0}{3}
-\beamer@subsectionintoc {3}{2}{Generalisation of twisting cochains}{63}{0}{3}
-\beamer@sectionintoc {4}{Other fun things}{69}{0}{4}
+\beamer@subsectionintoc {3}{2}{Generalisation of twisting cochains}{64}{0}{3}
+\beamer@sectionintoc {4}{Other fun things}{70}{0}{4}
+\beamer@subsectionintoc {4}{1}{The A-infinity Yoneda embedding}{71}{0}{4}

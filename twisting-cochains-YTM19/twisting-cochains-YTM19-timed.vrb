@@ -1,0 +1,22 @@
+\frametitle{Factorisation of the Yoneda functor}
+            \begin{theorem}
+                Let $\mathcal{A}$ be an $A_\infty$-category (with strict identities).
+                Then the Yoneda functor {\maljapanese\char"48} factors through the $A_\infty$-category $\mathrm{tw}\mathcal{A}$ of twisting cochains
+                \begin{equation*}
+                    \begin{tikzcd}
+                        \mathcal{A}
+                            \ar[r,"\text{{\maljapanese\char"48}}_1"]
+                            \ar[dr,swap,"\text{{\maljapanese\char"48}}"]
+                        & \mathrm{tw}\mathcal{A}
+                            \ar[d,"\text{{\maljapanese\char"48}}_2"]\\
+                        & \mathcal{C}_\infty\mathcal{A}
+                    \end{tikzcd}
+                \end{equation*}
+
+                \pause
+
+                Further, $\text{{\maljapanese\char"48}}_1$ is (strictly) fully faithful, and $\text{{\maljapanese\char"48}}_2$ induces an equivalence
+                \begin{equation*}
+                    \mathrm{H}^0\mathrm{tw}\mathcal{A} \xrightarrow{\sim} \mathrm{tria}\mathcal{A}.
+                \end{equation*}
+            \end{theorem}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.25)  9 JUL 2019 16:59
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.25)  10 JUL 2019 01:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1107,27 +1107,46 @@ Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \@lastruleclass=\count343
 \@thisrulewidth=\dimen305
 )
-(./twisting-cochains-YTM19-timed.aux)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/tikz-cd/tikz-cd.sty
+Package: tikz-cd 2018/11/19 v0.9f Commutative diagrams with TikZ
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/tikz-cd/tikzlibrarycd.code.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarymatrix.code.tex
+File: tikzlibrarymatrix.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
+meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfarrowinset=\dimen306
+\pgfarrowlength=\dimen307
+\pgfarrowwidth=\dimen308
+\pgfarrowlinewidth=\dimen309
+))) (./twisting-cochains-YTM19-timed.aux)
 \openout1 = `twisting-cochains-YTM19-timed.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1165,7 +1184,7 @@ LaTeX Font Info:    ... okay on input line 14.
 
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box79
-Package hyperref Info: Link coloring OFF on input line 14.
+Package hyperref Info: Link coloring OFF on input line 17.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1175,68 +1194,68 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count344
 )
-LaTeX Info: Redefining \ref on input line 14.
-LaTeX Info: Redefining \pageref on input line 14.
-LaTeX Info: Redefining \nameref on input line 14.
+LaTeX Info: Redefining \ref on input line 17.
+LaTeX Info: Redefining \pageref on input line 17.
+LaTeX Info: Redefining \nameref on input line 17.
 
 (./twisting-cochains-YTM19-timed.out) (./twisting-cochains-YTM19-timed.out)
 \@outlinefile=\write5
 \openout5 = `twisting-cochains-YTM19-timed.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 14.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 17.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 14.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 17.
 \symnumbers=\mathgroup7
 \sympureletters=\mathgroup8
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmr/m/n on input line 14.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 14.
+(Font)                  OT1/cmss/m/n --> TU/lmr/m/n on input line 17.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> TU/FiraSansLight(0)/bx/n on input line
- 14.
+ 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/FiraSansLight(0)/bx/n on input line
- 14.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 14.
+ 17.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
 (Font)                  OT1/cmss/m/n --> TU/FiraSansLight(0)/m/n on input line 
-14.
+17.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/cmss/bx/n --> TU/FiraSansLight(0)/m/n on input line
- 14.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 14.
+ 17.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> TU/FiraSansLight(0)/m/it on input line
- 14.
+ 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/FiraSansLight(0)/m/it on input lin
-e 14.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 14.
+e 17.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/m/n on input line 14.
+(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/m/n on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/m/n on input line 14.
+(Font)                  OT1/cmtt/m/n --> TU/FiraMono(0)/m/n on input line 17.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
 (Font)                  TU/FiraSansLight(0)/m/n --> TU/FiraSansLight(0)/bx/n on
- input line 14.
+ input line 17.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  TU/FiraSansLight(0)/m/it --> TU/FiraSansLight(0)/bx/it 
-on input line 14.
+on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmr/bx/n on input line 14.
+(Font)                  OT1/cmss/bx/n --> TU/lmr/bx/n on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
 (Font)                  TU/FiraSansLight(0)/bx/n --> TU/FiraSansLight(0)/bx/n o
-n input line 14.
+n input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  TU/FiraSansLight(0)/m/n --> TU/FiraSansLight(0)/bx/n on
- input line 14.
+ input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  TU/FiraSansLight(0)/m/it --> TU/FiraSansLight(0)/bx/it 
-on input line 14.
+on input line 17.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  TU/FiraMono(0)/m/n --> TU/FiraMono(0)/bx/n on input lin
-e 14.
+e 17.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/translator/translator-basic-dicti
 onary-English.dict
@@ -1262,22 +1281,22 @@ Dictionary: translator-numbers-dictionary, Language: English
 tionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 ) (./twisting-cochains-YTM19-timed.nav)
-LaTeX Font Info:    Try loading font information for U+msa on input line 17.
+LaTeX Font Info:    Try loading font information for U+msa on input line 20.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 17.
+LaTeX Font Info:    Try loading font information for U+msb on input line 20.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 17.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 20.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-Overfull \vbox (49.82993pt too high) detected at line 17
+Overfull \vbox (49.82993pt too high) detected at line 20
  []
 
 [1
@@ -1347,25 +1366,25 @@ Overfull \vbox (49.82993pt too high) detected at line 17
 ] [32
 
 ]
-Overfull \vbox (20.65579pt too high) detected at line 230
+Overfull \vbox (20.65579pt too high) detected at line 233
  []
 
 [33
 
 ]
-Overfull \vbox (20.65579pt too high) detected at line 230
+Overfull \vbox (20.65579pt too high) detected at line 233
  []
 
 [34
 
 ]
-Overfull \vbox (20.65579pt too high) detected at line 230
+Overfull \vbox (20.65579pt too high) detected at line 233
  []
 
 [35
 
 ]
-Overfull \vbox (20.65579pt too high) detected at line 230
+Overfull \vbox (20.65579pt too high) detected at line 233
  []
 
 [36
@@ -1389,31 +1408,31 @@ Overfull \vbox (20.65579pt too high) detected at line 230
 ] [45
 
 ]
-Overfull \vbox (19.4794pt too high) detected at line 306
+Overfull \vbox (19.4794pt too high) detected at line 309
  []
 
 [46
 
 ]
-Overfull \vbox (19.4794pt too high) detected at line 306
+Overfull \vbox (19.4794pt too high) detected at line 309
  []
 
 [47
 
 ]
-Overfull \vbox (19.4794pt too high) detected at line 306
+Overfull \vbox (19.4794pt too high) detected at line 309
  []
 
 [48
 
 ]
-Overfull \vbox (9.80048pt too high) detected at line 324
+Overfull \vbox (9.80048pt too high) detected at line 327
  []
 
 [49
 
 ]
-Overfull \vbox (9.80048pt too high) detected at line 324
+Overfull \vbox (9.80048pt too high) detected at line 327
  []
 
 [50
@@ -1461,25 +1480,25 @@ xt;"
 tex-text;"
 
 
-Overfull \hbox (3.03125pt too wide) in paragraph at lines 346--346
+Overfull \hbox (3.03125pt too wide) in paragraph at lines 349--349
 []\TU/FiraSansLight(1)/m/n/10.95 Differential
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 []\TU/FiraSansLight(1)/m/n/10.95 Gauge
  []
 
 
-Overfull \hbox (9.86404pt too wide) in paragraph at lines 346--346
+Overfull \hbox (9.86404pt too wide) in paragraph at lines 349--349
 []\TU/FiraSansLight(1)/m/n/10.95 Deformation
  []
 
-LaTeX Font Info:    Try loading font information for U+euf on input line 346.
+LaTeX Font Info:    Try loading font information for U+euf on input line 349.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 []\TU/FiraSansLight(1)/m/n/10.95 deformations of f.d.
  []
 
@@ -1496,13 +1515,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 346--346
 ] [58
 
 ]
-Overfull \vbox (2.83176pt too high) detected at line 399
+Overfull \vbox (2.83176pt too high) detected at line 402
  []
 
 [59
 
 ]
-Overfull \vbox (2.83176pt too high) detected at line 399
+Overfull \vbox (2.83176pt too high) detected at line 402
  []
 
 [60
@@ -1525,6 +1544,20 @@ Overfull \vbox (2.83176pt too high) detected at line 399
 
 ] [69
 
+] [70
+
+] [71
+
+] [72
+
+]
+\openout4 = `twisting-cochains-YTM19-timed.vrb'.
+
+
+(./twisting-cochains-YTM19-timed.vrb) [73
+
+] (./twisting-cochains-YTM19-timed.vrb) [74
+
 ]
 \tf@nav=\write6
 \openout6 = `twisting-cochains-YTM19-timed.nav'.
@@ -1535,23 +1568,22 @@ Overfull \vbox (2.83176pt too high) detected at line 399
 \tf@snm=\write8
 \openout8 = `twisting-cochains-YTM19-timed.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 449.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 449.
-
-(./twisting-cochains-YTM19-timed.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 449.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 449.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 492.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 492.
+ (./twisting-cochains-YTM19-timed.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 492.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 492.
 Package rerunfilecheck Info: File `twisting-cochains-YTM19-timed.out' has not c
 hanged.
-(rerunfilecheck)             Checksum: CC9E37F2C5E31BC15EB1AE92222FEBDC.
+(rerunfilecheck)             Checksum: C294A3DF3C318AEF864883D26EF946A4.
  ) 
 Here is how much of TeX's memory you used:
- 35468 strings out of 492909
- 728906 string characters out of 6132923
- 798726 words of memory out of 5000000
- 38939 multiletter control sequences out of 15000+600000
- 542203 words of font info for 107 fonts, out of 8000000 for 9000
+ 36505 strings out of 492909
+ 761385 string characters out of 6132923
+ 828194 words of memory out of 5000000
+ 39952 multiletter control sequences out of 15000+600000
+ 542300 words of font info for 108 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 73i,17n,108p,1859b,737s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 73i,17n,108p,1859b,1345s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on twisting-cochains-YTM19-timed.xdv (69 pages, 499572 bytes).
+Output written on twisting-cochains-YTM19-timed.xdv (74 pages, 542036 bytes).

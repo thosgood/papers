@@ -8,3 +8,4 @@
 \beamer@subsectionintoc {3}{2}{Generalisation of twisting cochains}{64}{0}{3}
 \beamer@sectionintoc {4}{Other fun things}{70}{0}{4}
 \beamer@subsectionintoc {4}{1}{The A-infinity Yoneda embedding}{71}{0}{4}
+\beamer@subsectionintoc {4}{2}{The bar construction}{75}{0}{4}

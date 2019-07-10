@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.25)  10 JUL 2019 01:59
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.25)  10 JUL 2019 02:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**twisting-cochains-YTM19-timed.tex
-(./twisting-cochains-YTM19-timed.tex
+**twisting-cochains-YTM19.tex
+(./twisting-cochains-YTM19.tex
 LaTeX2e <2018-12-01>
 (/usr/local/texlive/2019/texmf-dist/tex/latex/beamer/beamer.cls
 Document Class: beamer 2018/12/02 v3.55 A class for typesetting presentations
@@ -1126,8 +1126,8 @@ File: pgflibraryarrows.meta.code.tex 2019/05/09 v3.1.3 (3.1.3)
 \pgfarrowlength=\dimen307
 \pgfarrowwidth=\dimen308
 \pgfarrowlinewidth=\dimen309
-))) (./twisting-cochains-YTM19-timed.aux)
-\openout1 = `twisting-cochains-YTM19-timed.aux'.
+))) (./twisting-cochains-YTM19.aux)
+\openout1 = `twisting-cochains-YTM19.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
@@ -1198,9 +1198,9 @@ LaTeX Info: Redefining \ref on input line 17.
 LaTeX Info: Redefining \pageref on input line 17.
 LaTeX Info: Redefining \nameref on input line 17.
 
-(./twisting-cochains-YTM19-timed.out) (./twisting-cochains-YTM19-timed.out)
+(./twisting-cochains-YTM19.out) (./twisting-cochains-YTM19.out)
 \@outlinefile=\write5
-\openout5 = `twisting-cochains-YTM19-timed.out'.
+\openout5 = `twisting-cochains-YTM19.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 17.
@@ -1280,7 +1280,7 @@ Dictionary: translator-numbers-dictionary, Language: English
 (/usr/local/texlive/2019/texmf-dist/tex/latex/translator/translator-theorem-dic
 tionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
-) (./twisting-cochains-YTM19-timed.nav)
+) (./twisting-cochains-YTM19.nav)
 LaTeX Font Info:    Try loading font information for U+msa on input line 20.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1301,7 +1301,11 @@ Overfull \vbox (49.82993pt too high) detected at line 20
 
 [1
 
-] (./twisting-cochains-YTM19-timed.toc) [2
+] (./twisting-cochains-YTM19.toc)
+Overfull \vbox (6.48444pt too high) detected at line 25
+ []
+
+[2
 
 ] [3
 
@@ -1317,8 +1321,7 @@ Overfull \vbox (49.82993pt too high) detected at line 20
 
 ] [9
 
-]
-[10
+] [10
 
 ] [11
 
@@ -1334,7 +1337,8 @@ Overfull \vbox (49.82993pt too high) detected at line 20
 
 ] [17
 
-] [18
+]
+[18
 
 ] [19
 
@@ -1348,8 +1352,7 @@ Overfull \vbox (49.82993pt too high) detected at line 20
 
 ] [24
 
-]
-[25
+] [25
 
 ] [26
 
@@ -1408,19 +1411,19 @@ Overfull \vbox (20.65579pt too high) detected at line 233
 ] [45
 
 ]
-Overfull \vbox (19.4794pt too high) detected at line 309
+Overfull \vbox (4.51837pt too high) detected at line 309
  []
 
 [46
 
 ]
-Overfull \vbox (19.4794pt too high) detected at line 309
+Overfull \vbox (4.51837pt too high) detected at line 309
  []
 
 [47
 
 ]
-Overfull \vbox (19.4794pt too high) detected at line 309
+Overfull \vbox (4.51837pt too high) detected at line 309
  []
 
 [48
@@ -1551,39 +1554,61 @@ Overfull \vbox (2.83176pt too high) detected at line 402
 ] [72
 
 ]
-\openout4 = `twisting-cochains-YTM19-timed.vrb'.
+\openout4 = `twisting-cochains-YTM19.vrb'.
 
 
-(./twisting-cochains-YTM19-timed.vrb) [73
+(./twisting-cochains-YTM19.vrb) [73
 
-] (./twisting-cochains-YTM19-timed.vrb) [74
+] (./twisting-cochains-YTM19.vrb) [74
+
+]
+[75
+
+] [76
+
+] [77
+
+] [78
+
+] [79
+
+] [80
+
+] [81
+
+] [82
+
+] [83
+
+] [84
 
 ]
 \tf@nav=\write6
-\openout6 = `twisting-cochains-YTM19-timed.nav'.
+\openout6 = `twisting-cochains-YTM19.nav'.
 
 \tf@toc=\write7
-\openout7 = `twisting-cochains-YTM19-timed.toc'.
+\openout7 = `twisting-cochains-YTM19.toc'.
 
 \tf@snm=\write8
-\openout8 = `twisting-cochains-YTM19-timed.snm'.
+\openout8 = `twisting-cochains-YTM19.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 492.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 492.
- (./twisting-cochains-YTM19-timed.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 492.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 492.
-Package rerunfilecheck Info: File `twisting-cochains-YTM19-timed.out' has not c
-hanged.
-(rerunfilecheck)             Checksum: C294A3DF3C318AEF864883D26EF946A4.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 546.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 546.
+
+(./twisting-cochains-YTM19.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 546.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 546.
+Package rerunfilecheck Info: File `twisting-cochains-YTM19.out' has not changed
+.
+(rerunfilecheck)             Checksum: F080F6A3B9EBD477784682E9A39F582D.
  ) 
 Here is how much of TeX's memory you used:
- 36505 strings out of 492909
- 761385 string characters out of 6132923
- 828194 words of memory out of 5000000
- 39952 multiletter control sequences out of 15000+600000
+ 36513 strings out of 492909
+ 761331 string characters out of 6132923
+ 828295 words of memory out of 5000000
+ 39960 multiletter control sequences out of 15000+600000
  542300 words of font info for 108 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 73i,17n,108p,1859b,1345s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 73i,17n,108p,1853b,1345s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on twisting-cochains-YTM19-timed.xdv (74 pages, 542036 bytes).
+Output written on twisting-cochains-YTM19.xdv (84 pages, 607796 bytes).

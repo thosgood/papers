@@ -4,7 +4,6 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
-\usepackage[capitalize]{cleveref}
 \usepackage{tikz-cd}
 \usepackage{physics}
 \definecolor{lightgray}{rgb}{0.63, 0.63, 0.63}
@@ -20,6 +19,21 @@
 \usepackage{url}
 \usepackage{booktabs}
 \usepackage{epigraph}
+\usepackage{draftwatermark}
+\SetWatermarkText{Warning}
+\SetWatermarkColor[rgb]{0.7,0,0}
+\makeatletter
+\let\originalsc@watermark\sc@watermark
+\newcommand{\draftwatermarkon}{%
+  \let\sc@watermark\originalsc@watermark
+}
+\newcommand{\draftwatermarkoff}{%
+  \let\sc@watermark\@empty
+}
+\makeatother
+
+
+\usepackage[capitalize]{cleveref}
 
 
 %%% Titles, headers, and footers %%%
@@ -141,6 +155,7 @@
 %%% Document %%%
 
 \begin{document}
+\draftwatermarkoff
 
     %%% Title %%%
     
@@ -1809,6 +1824,11 @@ The idea of saying that some polynomial in a weighted-homogeneous ideal vanishes
 \section{Plane curves in weighted projective space} % (fold)
 \label{sec:curves_in_weighted_projective_space}
 
+    {\color{red}\textbf{Please note that many of the following results seem to be pretty false. In particular, the degree-genus formula seems to be right only about half of the time... Many thanks to Claude Quitte, who found a whole family of counter examples. Apparently Lemmas~5.2.5 and 5.3.4 are also false. Any suggestions or comments are welcome.}}
+
+    \bigskip
+
+
     \emph{In this section we assume familiarity with some of the fundamentals of Riemann surfaces and maps between them (see \cite[Chapters~1,~2]{Miranda:1995uz}).}
     \emph{We also assume knowledge of orbit spaces, covering spaces, and some other concepts from topology, though these are usually explained when used.}
     \emph{Finally, we assume some facts about algebraic curves, though these are stated before being used.}
@@ -1820,7 +1840,6 @@ The idea of saying that some polynomial in a weighted-homogeneous ideal vanishes
         But the weight \mbox{$a=(a_0,a_1,a_2)$} and the indeterminates $x_0,x_1,x_2$ are still lurking about in the background, and when we say `weighted-homogeneous' we still mean `$a$-weighted-homogeneous'.
         Note that when we write $\pee^k$ we mean projective $k$-space, as per usual, and we will write $\pee^1$ for the projective line, so there should be no ambiguity in our use of $\pee$ to denote $\pee(a_0,a_1,a_2)$.
     \end{note}
-
     Now seems like a good time to take a look at a specific family of weighted projective varieties, namely \emph{plane curves}, so that we don't lose our geometric intuition, and so that we have some (comparatively) concrete examples to hold on to and examine.
     As mentioned at the end of \cref{sec:algebra}, we will half-break our promise made in \cref{sub:notation_and_conventions}: we assume some prior knowledge of straight projective algebraic geometry, and so don't deal with it as a special case of weighted projective algebraic geometry.
     Instead, we now shift our viewpoint slightly to think of weighted projective space as a quotient of straight projective space.
@@ -1828,6 +1847,7 @@ The idea of saying that some polynomial in a weighted-homogeneous ideal vanishes
 
     An important thing to be aware of is that the path we follow here is almost certainly much much longer than it needs to be, but (in the view of the author) we uncovers plenty of nice facts along the way, and also develop multiple ways of viewing these objects.
 
+\draftwatermarkon
     \begin{definition}[Plane curves in weighted projective space]\label{defn:plane-curves-in-wps}
         Let $f=f(x_0,x_1,x_2)\in\poly$ be a weighted-homogeneous degree $d$ polynomial with no repeated factors.\footnote{%
             The reason that we say this is really just to simplify things without losing generality.
@@ -2069,7 +2089,7 @@ The idea of saying that some polynomial in a weighted-homogeneous ideal vanishes
             Let $G=\mu^{a_0}\times\mu^{a_1}\times\mu^{a_2}$ act on $\cover{C}$ as in \cref{lem:quotient-of-cover}.
             Then this induces an action of $G$ on the homogeneous coordinate ring $S(\cover{C})$, and we have a well-defined GIT quotient
             \[
-                \varphi\colon\cover{C}=\proj S(\cover{C})\twoheadrightarrow\proj S(\cover{C})^G=\cover{C}\sslash G.
+                \varphi\colon\cover{C}=\proj S(\cover{C})\twoheadrightarrow\proj S(\cover{C})^G=\cover{C}\sslash G.\qedhere
             \]
         \end{lemma}
 
@@ -2627,6 +2647,7 @@ The idea of saying that some polynomial in a weighted-homogeneous ideal vanishes
 
 \section{The view from where we've ended up} % (fold)
 \label{sec:the_view_from_where_we_ve_got_to}
+\draftwatermarkoff
 
     \emph{This final section is disappointingly\footnote{%
             Unless you haven't been enjoying this paper, in which case this might be a welcome fact.

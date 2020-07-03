@@ -32,6 +32,7 @@
 %%% Bibliography %%%
 
 \usepackage[backend=bibtex,style=alphabetic]{biblatex}
+\DeclareFieldFormat{eprint:HAL}{\textsc{hal}: \href{https://tel.archives-ouvertes.fr/#1}{#1}}
 
 %%% Environments %%%
 
@@ -122,6 +123,7 @@
 \DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\Fun}{Fun}
 
+
 \bibliography{part-I.bib}
 
 \title{Simplicial Chern-Weil theory for coherent analytic sheaves, part I}
@@ -160,6 +162,7 @@
     In 1980, H.I. Green, a student of O'Brian and Eells, wrote their thesis \cite{Green1980} on the subject of Chern classes of coherent sheaves on complex-analytic manifolds.
     Although the thesis was never published, an exposition was given in \cite{Toledo&Tong1986}, alongside a sketch of a proof of the Hirzebruch-Riemann-Roch formula for this construction of Chern classes.
     It combined the theory of {twisting cochains}, used with great success by Toledo, Tong, and O'Brian in multiple papers (\cite{Toledo&Tong1976,Toledo&Tong1978,OBrian&etal1981,OBrian&etal1985}), with the {fibre integration} of Dupont (\cite{Dupont1976}), to construct, from a coherent analytic sheaf, classes in $\HH^{2k}(X,\Omega_X^{\bullet\geqslant k})$ that coincide with those given by the classical construction of Chern classes in $\HH^{2k}(X,\mathbb{Z})$ by Atiyah-Hirzebruch (\cite{Atiyah&Hirzebruch1962}).
+    (It is of historical interest to mention that the approach of expressing characteristic classes in terms of transitions functions is very much in line with ideas propounded by Bott; see e.g. the section entitled `Concluding Remarks' in \cite[§23]{Bott&Tu1982}.)
     This construction was considered by Grivaux in his thesis \cite{Grivaux2009}, where he constructs unified hern classes for coherent analytic sheaves (on \emph{compact} analytic manifolds) in Deligne cohomology, and where he states an axiomatisation of Chern classes that ensures uniqueness in any sufficiently nice cohomology theory (of which de Rham cohomology is an example).
     Although he states that the Grothendieck-Riemann-Roch theorem for closed immersions is not known for Green's construction of Chern classes if $X$ is non-Kähler, this turns out to not be a problem, since it follows from his other axioms by a purely formal, classical argument, involving deformation to the normal cone.
 
@@ -368,16 +371,16 @@
         \end{remark}
 
         \begin{lemma}[Dupont's fibre integration]\label{lemma:dupont's-fibre-integration}
-            There is a quasi-isomorphism which, in degree $r$, is the map
+            There is a \emph{quasi-isomorphism} which, for each fixed degree $r$, consists of the map
             \begin{equation}
                 \int_{\Delta^\bullet}\colon \Omega^{r,\Delta}({Y_\bullet})
-                \congto
+                \to
                 \bigoplus_{p=0}^r\Omega^{r-p}({Y_p})
             \end{equation}
             induced by \define{fibre integration}
             \begin{equation}
                 \int_{\Delta^p}\colon\Omega^{r,\Delta}({Y_\bullet})
-                \congto
+                \to
                 \Omega^{r-p}({Y_p})
             \end{equation}
             where the latter is given by integrating the type-$(r-p,p)$ part of a simplicial form over the geometric realisation of the $p$-simplex with its canonical orientation.
@@ -399,7 +402,7 @@
             Taking $Y_\bullet=\nerve{\bullet}$ gives
             \[
                 \int_{\Delta^\bullet}\colon \Omega^{r,\Delta}({\nerve{\bullet}})
-                \congto
+                \to
                 \bigoplus_{p=0}^r\Omega^{r-p}({\nerve{p}})
                 \cong
                 \Tot^r\cech_\cover^\bullet(\Omega^\bullet_X)

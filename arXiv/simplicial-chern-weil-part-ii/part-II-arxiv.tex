@@ -32,6 +32,7 @@
 %%% Bibliography %%%
 
 \usepackage[backend=bibtex,style=alphabetic]{biblatex}
+\DeclareFieldFormat{eprint:HAL}{\textsc{hal}: \href{https://tel.archives-ouvertes.fr/#1}{#1}}
 
 %%% Environments %%%
 
@@ -49,7 +50,6 @@
 \newtheorem{remark}[theorem]{Remark}
 
 \numberwithin{equation}{theorem}
-
 
 \newcommand{\cover}{\mathcal{U}}
 \newcommand{\anothercover}{\mathcal{V}}
@@ -122,7 +122,6 @@
 \DeclareMathOperator{\hocolim}{hocolim}
 \DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\Fun}{Fun}
-
 
 \bibliography{part-II.bib}
 
@@ -222,14 +221,16 @@
         \end{definition}
 
         \begin{remark}
-            We are interested in the Atiyah class of a vector bundle (and the higher \emph{standard} and \emph{exponential} Atiyah classes, defined later) because it is `equivalent', in some sense that we make precise below, to the Chern classes.
+            We are interested in the Atiyah class of a vector bundle (and the higher \emph{standard} and \emph{exponential} Atiyah classes, defined later) because its trace is `equivalent', in some sense that we make precise below, to the Chern classes.
             \begin{itemize}
-                \item \cite[Proposition~4.3.10]{Huybrechts2005} shows us that the the Atiyah class gives the same class in cohomology as the curvature of the Chern connection, which, combined with \cite[Example~4.4.8~i)]{Huybrechts2005}, tells us that the standard Atiyah classes and the Chern classes are the same, up to a constant.
+                \item \cite[Proposition~4.3.10]{Huybrechts2005} shows us that the the trace of the Atiyah class gives the same class in cohomology as the curvature of the Chern connection, which, combined with \cite[Example~4.4.8~i)]{Huybrechts2005}, tells us that the standard Atiyah classes and the Chern classes are the same, up to a constant.
                     There are some more general comments about this equivalence on \cite[p.~200]{Huybrechts2005}, just below Example~4.4.11.
-                \item \cite[Exercise~4.4.11]{Huybrechts2005} tells us that the Chern characters (or exponential Chern classes) are given (up to a constant) by the exponential Atiyah classes.
-                \item The Atiyah classes satisfy an axiomatisation of Chern classes that guarantees uniqueness, \emph{when $X$ is compact}.
+                \item \cite[Exercise~4.4.11]{Huybrechts2005} tells us that the Chern characters (or exponential Chern classes) are given (up to a constant) by the traces of the exponential Atiyah classes.
+                \item The traces of the Atiyah classes satisfy an axiomatisation of Chern classes that guarantees uniqueness, \emph{when $X$ is compact}.
                     This is explained in \cref{subsection:the-compact-case}.
             \end{itemize}
+
+            Note that the treatment of the Atiyah class in \cite{Huybrechts2005} is somehow reverse to that found here: it starts there with the Atiyah class as a Čech cocycle and \emph{then} shows that it is equivalent to some splitting of the Atiyah exact sequence.
         \end{remark}
 
         \begin{definition}
@@ -484,16 +485,16 @@
         We recall the following lemma.
 
         \begin{lemma}[Dupont's fibre integration]\label{lemma:dupont's-fibre-integration}
-            There is a quasi-isomorphism which, in degree $r$, is a map
+            There is a \emph{quasi-isomorphism} which, for each fixed degree $r$, consists of a map
             \begin{equation}
                 \int_{\Delta^\bullet}\colon \Omega^{r,\Delta}(Y_\bullet)
-                \congto
+                \to
                 \bigoplus_{p=0}^r\Omega^{r-p}(Y_p)
             \end{equation}
             induced by \define{fibre integration}
             \begin{equation}
                 \int_{\Delta^p}\colon\Omega^{r,\Delta}(Y_\bullet)
-                \congto
+                \to
                 \Omega^{r-p}(Y_p)
             \end{equation}
             where the latter is given by integrating the type $(r-p,p)$ part of a simplicial form over the geometric realisation of the $p$-simplex with its canonical orientation.
@@ -501,7 +502,7 @@
             Taking $Y_\bullet=\nerve{\bullet}$ gives
             \[
                 \int_{\Delta^\bullet}\colon \Omega^{r,\Delta}(\nerve{\bullet})
-                \congto
+                \to
                 \bigoplus_{p=0}^r\Omega^{r-p}(\nerve{p})
                 \cong
                 \Tot^r\cech^\bullet(\Omega^\bullet_X).
@@ -541,7 +542,7 @@
 
     Assume that we have \emph{flat} holomorphic local connections $\nabla_\alpha$ on each $E\restricted U_\alpha$.
 
-    \subsection{Hodge cohomology}
+    \subsection{tDR cohomology}
 
         \begin{remark}\label{remark:we-can-calculate-in-cech}
             Since $\cover$ is Stein (and any finite intersection of Stein open sets is also Stein) and the sheaves $\Omega_X^r$ are coherent, we can apply Cartan's Theorem B, which tells us that $\check{\mathbb{H}}^k(\cover,\Omega_X^\bullet) \cong \check{\mathbb{H}}^k(X,\Omega_X^\bullet)$; since $X$ is paracompact and $\cover$ is Stein, we know that Čech cohomology computes hypercohomology, and so $\check{\mathbb{H}}^k(X,\Omega_X^\bullet) \cong \mathbb{H}^k(X,\Omega_X^\bullet)$; and e.g. \cite[Theorem~8.1]{Voisin2002a} tells us that $\mathbb{H}^k(X,\Omega_X^\bullet) \cong \HH^k\left(X,\mathbb{C}\right)$.
@@ -560,11 +561,11 @@
         \end{definition}
 
         \begin{definition}
-            We define the \define{$k$-th Hodge cohomology} to be $\HH_\text{Hod}^k(X)=\mathbb{H}^k(X,\Omega_X^{\bullet\geqslant k})$.
+            We define the \define{$k$-th truncated de Rham cohomology} (or \define{tDR} cohomology) to be $\HH_\text{tDR}^k(X)=\mathbb{H}^k(X,\Omega_X^{\bullet\geqslant k})$.
         \end{definition}
 
         \begin{remark}\label{remark:when-can-we-refine-to-hodge}
-            If we have some \emph{closed} class $c=(c_0,\ldots,c_{2k})\in\Tot^{2k}\cech^\bullet(\Omega^\bullet_X)$, where $c_i\in\cech^i(\Omega_X^{2k-i})$, \emph{such that} $c_i=0$ for $i\geqslant k+1$, then we can refine the corresponding class in singular cohomology $[c]\in\HH^{2k}(X,\mathbb{C})$ to a class $[c]\in\HH_\text{Hod}^{2k}(X)$ in Hodge cohomology.
+            If we have some \emph{closed} class $c=(c_0,\ldots,c_{2k})\in\Tot^{2k}\cech^\bullet(\Omega^\bullet_X)$, where $c_i\in\cech^i(\Omega_X^{2k-i})$, \emph{such that} $c_i=0$ for $i\geqslant k+1$, then we can refine the corresponding class in singular cohomology $[c]\in\HH^{2k}(X,\mathbb{C})$ to a class $[c]\in\HH_\text{tDR}^{2k}(X)$ in tDR cohomology.
         \end{remark}
 
         \begin{remark}\label{remark:how-to-manually-lift}
@@ -583,7 +584,7 @@
             A few important notes before we continue:
             \begin{itemize}
                 \item although we have the isomorphism $H^r\Tot^\bullet\cech^\anotherbullet(\Omega^\anotherbullet_X) \cong \HH^r(X,\mathbb{C})$, we don't necessarily have an easy way of computing explicitly what a closed class in the Čech-de Rham complex maps to under this isomorphism, \emph{unless} it has a non-zero degree-$(0,r)$ part, in which case it maps to exactly that;
-                \item we will construct classes in singular cohomology, but note that they can actually all be considered as living in the corresponding Hodge cohomology, thanks to \cref{remark:when-can-we-refine-to-hodge};
+                \item we will construct classes in singular cohomology, but note that they can actually all be considered as living in the corresponding tDR cohomology, thanks to \cref{remark:when-can-we-refine-to-hodge};
                 \item the assumption that the local connections $\nabla_\alpha$ are \emph{flat} is not necessary for the \emph{abstract} theory, but essential for these \emph{explicit} calculations;
                 \item we point out, once more, that the constructions given in this chapter are for the \emph{exponential} Atiyah classes.
             \end{itemize}
@@ -621,7 +622,7 @@
         \end{equation}
 
         \begin{remark}
-            Seasoned readers might notice that this is exactly the first Chern class (in Deligne cohomology even) $\d\log M_{\alpha\beta}$ of the associated principal bundle.
+            Seasoned readers might notice that this is exactly the first Chern class $\d\log M_{\alpha\beta}$ of the bundle.
         \end{remark}
 
         \begin{lemma}\label{lemma:d-omega-is-minus-omega-squared}
@@ -839,7 +840,7 @@
 
         Looking at the first three Atiyah classes, there are some evident patterns: for example, the Čech 1-cocycle always seems to be some multiple of $\tr(A^{2k-1})$.
         Beyond some vague pattern recognition, however, it becomes increasingly hard to work with the $k$-th Atiyah class for $k\geqslant4$, mainly due to the cumbersome number of monomials whose coefficients we have to equate.
-        It seems likely that there are two patterns --- one for $k$ odd, and one for $k$ even --- but even this is hard to verify, given that $k=0$ and $k=1$ are both rather trivial, and $k\geqslant4$ is so unwieldy that this author cannot spot any patterns `by hand'.
+        It seems likely that there are two patterns --- one for $k$ odd, and one for $k$ even --- but even this is hard to verify, given that $k=0$ and $k=1$ are both rather trivial, and $k\geqslant4$ is so unwieldy that this author cannot spot any patterns `by hand'.\footnote{However, we must here thank Mahmoud Zeinalian, who recently pointed out to us that the coefficients $1$, $\frac13$, $\frac{1}{10}$, $\frac{1}{35}$, etc. of the degree $(1,p-1)$ terms (i.e. those that are simply the traces of odd powers of the Maurer-Cartan form $A = g^{-1}\mathrm{d}g$) are given by \[\frac{n!(n+1)!}{(2n+1)!} = \frac{\Gamma(n+1)\Gamma(n+2)}{\Gamma(2n+2)} = (2n+2)\mathrm{B}(n+1,n+2),\] where $\mathrm{B}(x,y)$ is the beta function (or Euler integral of the first kind). It seems possible that the other coefficients could be expressed in terms of ``iterated beta functions'', using the formulas coming from the fibre integration approach we study in \cref{section:simplicial-construction-for-vector-bundles}.}
         For the sake of completeness (and also in defence of the fact that there are indeed `a lot' of monomials), we give below the lift of $\expat{4}_E$, calculated by a basic Haskell implementation of the naive method used so far: calculating all non-commutative monomials of a certain degree, applying the Čech differential, and then equating coefficients.
 
         The lift of $\expat{4}_E$ in the total complex is
@@ -1577,9 +1578,9 @@
 
         Starting with some complex of coherent sheaves $\mathscr{F}^\anotherbullet\in\gcohX$, with the category of complexes of coherent sheaves being defined as in \cite[§4.1]{Hosgood2020a}, we take Green's resolution, which produces a complex $\mathcal{E}^{\bullet,\anotherbullet}$ of vector bundles on the nerve (of some possible refined cover) resolving $i^*\mathscr{F}^\anotherbullet$.
         Then, also by Green's resolution, we get simplicial connections on each of the $\mathcal{E}^{\bullet,i}$, and \cite[Theorem~3.5.5]{Hosgood2020a} tells us that these are admissible.
-        So, applying the generalised invariant polynomial $P_\bullet = \{\tr\circ\mu_n\}_{n\in\mathbb{N}}$ (where $\mu^n$ is the multiplication map that sends an $n$-fold tensor product of endomorphisms to the endomorphism given by composition (resp. wedge product)) to the curvatures of each of the simplicial connections, we obtain the simplicial exponential (resp. standard) Atiyah classes of each $\mathcal{E}^{\bullet,i}$.
+        So, applying the generalised invariant polynomial $P_\bullet = \{\tr\circ\mu_n\}_{n\in\mathbb{N}}$ (where $\mu_n$ is the multiplication map that sends an $n$-fold tensor product of endomorphisms to the endomorphism given by composition (resp. wedge product)) to the curvatures of each of the simplicial connections, we obtain the simplicial exponential (resp. standard) Atiyah classes of each $\mathcal{E}^{\bullet,i}$.
         Using the alternating-sum convention, this gives us the simplicial exponential (or standard) Atiyah class of $\mathscr{F}$.
-        Finally, by fibre integration, we obtain closed classes in the Čech-de Rham bicomplex, and thus classes in de Rham (or even Hodge) cohomology.
+        Finally, by fibre integration of the trace of these classes, we obtain closed classes in the Čech-de Rham bicomplex, and thus classes in de Rham (or even tDR) cohomology.
 
         The fact that this construction is independent of the choice of twisting cochain (and thus cover) and of local connections is explained in the proof of \cite[Theorem~2.4]{Green1980}.
 
@@ -1611,7 +1612,7 @@
             \end{equation*}
             (that is, `the' classical definition, as given in e.g. \cite[Definition~2.2.13]{Huybrechts2005}).
             \begin{proof}
-                We have already calculated (\cref{equation:omega-alpha-beta-explicitly}) that the left-hand side is equal to $M_{\alpha\beta}^{-1}\d M_{\alpha\beta}$.
+                We have already calculated (in \cref{equation:omega-alpha-beta-explicitly}) that the left-hand side is equal to $M_{\alpha\beta}^{-1}\d M_{\alpha\beta}$.
                 That the right-hand side gives the same result can be found in e.g. the proof of the Proposition in \cite[Chapter~1, §1, \emph{Chern Classes of Line Bundles}, p.~141]{Griffiths&Harris1994}.
             \end{proof}
         \end{lemma}
@@ -1727,9 +1728,9 @@
 
     \subsection{The compact case}\label{subsection:the-compact-case}
 
-        In the case where $X$ is compact, we can appeal to \cite[Theorem~6.5]{Grivaux2009}, which gives a list of conditions that, if satisfied, ensure uniqueness of Chern classes: if we can show that the traces of the fibre integrals of the simplicial Atiyah classes satisfy certain axioms, then we know that they are exactly the same classes as given by any other construction of Chern classes.
+        In the case where $X$ is compact, we can appeal to \cite[Theorem~6.5]{Grivaux2009}, which gives a list of conditions that, if satisfied, ensure uniqueness of Chern classes: if we can show that the fibre integrals of traces of the simplicial Atiyah classes satisfy certain axioms, then we know that they are exactly the same classes as given by any other construction of Chern classes.
 
-        Since Hodge cohomology satisfies conditions ($\alpha$) to ($\delta$) of \cite[§6.2]{Grivaux2009}, it suffices to check that the following things hold true:
+        Since tDR cohomology satisfies conditions ($\alpha$) to ($\delta$) of \cite[§6.2]{Grivaux2009}, it suffices to check that the following things hold true:
         \begin{enumerate}[(i)]
             \item \emph{The construction agrees with `the' classical one for line bundles.}
                 Although \cite[Lemma~2.5]{Green1980} tells us that the construction actually agrees with the classical one for \emph{arbitrary} vector bundles, the proof is maybe lacking a bit in explicit details, hence why we provide the details in \cref{lemma:agrees-for-line-bundles}.
@@ -1742,7 +1743,7 @@
         \end{enumerate}
 
         \begin{remark}
-            Again, when $X$ is compact, \cite[Lemma~2.7]{Green1980} gives a direct proof of the fact that the $(p,p)$-term of the fibre integral of these simplicial Atiyah classes agrees (up to a constant factor) with the Chern classes of Atiyah-Hirzenbruch.
+            Again, when $X$ is compact, \cite[Lemma~2.7]{Green1980} gives a direct proof of the fact that the $(p,p)$-term of the fibre integral of the trace of these simplicial Atiyah classes agrees (up to a constant factor) with the Chern classes of Atiyah-Hirzenbruch.
         \end{remark}
 
 

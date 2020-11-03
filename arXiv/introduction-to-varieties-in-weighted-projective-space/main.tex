@@ -19,18 +19,6 @@
 \usepackage{url}
 \usepackage{booktabs}
 \usepackage{epigraph}
-\usepackage{draftwatermark}
-\SetWatermarkText{Warning}
-\SetWatermarkColor[rgb]{0.7,0,0}
-\makeatletter
-\let\originalsc@watermark\sc@watermark
-\newcommand{\draftwatermarkon}{%
-  \let\sc@watermark\originalsc@watermark
-}
-\newcommand{\draftwatermarkoff}{%
-  \let\sc@watermark\@empty
-}
-\makeatother
 
 
 \usepackage[capitalize]{cleveref}
@@ -155,7 +143,6 @@
 %%% Document %%%
 
 \begin{document}
-\draftwatermarkoff
 
     %%% Title %%%
     
@@ -1826,7 +1813,7 @@ The idea of saying that some polynomial in a weighted-homogeneous ideal vanishes
 \section{Plane curves in weighted projective space} % (fold)
 \label{sec:curves_in_weighted_projective_space}
 
-    {\color{red}\textbf{Please note that many of the following results seem to be pretty false. In particular, the degree-genus formula seems to be right only about half of the time... Many thanks to Claude Quitte, who found a whole family of counter examples. Apparently Lemmas~5.2.5 and 5.3.4 are also false. Any suggestions or comments are welcome.}}
+    {\color{purple}\textbf{The following section has been edited due to the discovery of a mistake in Lemmas~5.2.5 and 5.3.4, first noticed by Claude Quitte, and worked out in detail by Bernhard Albach. We have left the offending lemmas in, so as not to nullify any existing references to them, but have changed their contents to instead contain certain \emph{hypotheses}. For a more general solution to the problem (by a different construction of a straight cover that actually \emph{is} non-singular), see the upcoming thesis of Bernhard Albach.}}
 
     \bigskip
 
@@ -1849,7 +1836,6 @@ The idea of saying that some polynomial in a weighted-homogeneous ideal vanishes
 
     An important thing to be aware of is that the path we follow here is almost certainly much much longer than it needs to be, but (in the view of the author) we uncovers plenty of nice facts along the way, and also develop multiple ways of viewing these objects.
 
-\draftwatermarkon
     \begin{definition}[Plane curves in weighted projective space]\label{defn:plane-curves-in-wps}
         Let $f=f(x_0,x_1,x_2)\in\poly$ be a weighted-homogeneous degree $d$ polynomial with no repeated factors.\footnote{%
             The reason that we say this is really just to simplify things without losing generality.
@@ -2032,27 +2018,14 @@ The idea of saying that some polynomial in a weighted-homogeneous ideal vanishes
         It turns out that, for a nice enough plane curve $C_f$, the straight cover $C_{\cover{f}}$ is non-singular -- a fact which we now state and prove, as well as saying what exactly we mean by `nice enough'.
 
         \begin{lemma}\label{lem:cover-is-smooth-pc-and-things}
+            {\color{purple} The original content of this lemma was as follows:}
+            \begin{quote}
             Let $f\in\kathree$ be weighted-homogeneous and non-singular.
             Then $\cover{f}=\pi_\#(f)$ is homogeneous and non-singular.
             Equivalently, if we have some non-singular plane curve $C_f\subset\pee$ then its straight cover $C_{\cover{f}}\subset\pee^2$ is also a non-singular plane curve.
+            \end{quote}
+            {\color{purple}This is not, however, in general, true. \textbf{Instead, from now on, we always assume the additional hypotheses that $C$ is such that $\cover{C}$ is non-singular.}}
         \end{lemma}
-
-        \begin{proof}
-            Define $m_i(x_i)=x_i^{a_i}$, so that $\cover{f}(x_0,x_1,x_2)=f(m_0(x_0),m_1(x_1),m_2(x_2))$.
-            Then the chain rule tells us that
-            \[
-                \eval{\pdv{\cover{f}}{x_i}}_{x_i=p_i} = \eval{\pdv{f}{m_i}}_{x_i=p_i} \eval{\pdv{m_i}{x_i}}_{x_i=p_i}
-            \]
-            for any $p=[p_0:p_1:p_2]\in\pee^2$.
-            So if we can show that neither of the $\pdv{f}{m_i}$ or the $\pdv{m_i}{x_i}$ all simultaneously vanish at any point in $C_{\cover{f}}$ then we know that $C_{\cover{f}}$ is non-singular.
-
-            If $a_i=1$ for any $i$ then $\pdv{m_i}{x_i}=1$, and so we cannot ever have all $\pdv{m_i}{x_i}$ vanishing simultaneously at any point in $\pee^2$.
-            If $a_i>1$ for all $i$ then $\pdv{m_i}{x_i}=a_ix_i^{a_i-1}$, and this is zero if and only if $x_i=0$, so the only `point' in $\pee^2$ at which all $\pdv{m_i}{x_i}$ vanish is $[0:0:0]$, but this is not a point in $\pee^2$.
-            Thus the $\pdv{m_i}{x_i}$ cannot all simultaneously vanish anywhere on $\pee^2$, or thus anywhere in $C_{\cover{f}}$.
-
-            Now, say for a contradiction that $p=[p_0:p_1:p_2]\in C_{\cover{f}}$ is such that all of the $\pdv{f}{m_i}$ simultaneously vanish at $x_i=p_i$.
-            Then $p'=|p_0^{a_0}:p_1^{a_1}:p_2^{a_2}|\in\pee$ is such that $p'\in C_f$ (since $f(p')=\cover{f}(p)=0$) and all of the $\pdv{f}{x_i}$ vanish at $x_i=p_i$.
-        \end{proof}
 
         \begin{lemma}\label{lem:quotient-of-cover}
             Let $C=C_f\subset\pee$ be a non-singular plane curve and $\cover{C}$ its straight cover.
@@ -2454,6 +2427,8 @@ The idea of saying that some polynomial in a weighted-homogeneous ideal vanishes
                     \cover{f}(0,1,\lambda),\quad\cover{f}(\lambda,0,1),\quad\cover{f}(1,\lambda,0)
                 \]
                 have no repeated roots when considered as polynomials in $\lambda$.
+
+                {\color{purple}\textbf{Recall the additional hypothesis stated in \cref{lem:cover-is-smooth-pc-and-things}, which supposes that $\cover{f}$ is non-singular. This is not automatically true, given the hypotheses in this current lemma, and so must still be an \emph{additional} assumption.}}
             \end{lemma}
 
             \begin{proof}
@@ -2545,6 +2520,7 @@ The idea of saying that some polynomial in a weighted-homogeneous ideal vanishes
             \begin{theorem}[Degree-genus formula]\label{thm:degree-genus}
                 \emph{Compare and contrast with \cite[Theorem~12.2]{IanoFletcher:2015wc}.}
                 Let $C=C_f\subset\pathree$ be a non-singular plane curve where $f$ is weighted-homogeneous of degree $d$ and sufficiently general, in the sense of \cref{defn:suff-general}.
+                Assume further that the straight cover $\cover{C}$ is non-singular (cf. \cref{lem:cover-is-smooth-pc-and-things}).
                 Then, using the map $\pi$ as defined in \cref{cor:quotient-set-up-with-pi-etc},
                 \[
                     g_C = \frac{1}{a_0a_1a_2}\left(\frac{(d-1)(d-2)}{2}-\left[\frac{b(\pi)}{2}+1-a_0a_1a_2\right]\right)
@@ -2649,7 +2625,6 @@ The idea of saying that some polynomial in a weighted-homogeneous ideal vanishes
 
 \section{The view from where we've ended up} % (fold)
 \label{sec:the_view_from_where_we_ve_got_to}
-\draftwatermarkoff
 
     \emph{This final section is disappointingly\footnote{%
             Unless you haven't been enjoying this paper, in which case this might be a welcome fact.

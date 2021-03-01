@@ -1,0 +1,879 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{anyt/global//global/global}
+  \entry{Atiyah&Hirzebruch1962}{article}{}
+    \name{author}{2}{}{%
+      {{hash=AMF}{%
+         family={Atiyah},
+         familyi={A\bibinitperiod},
+         given={M\bibnamedelima F},
+         giveni={M\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=HF}{%
+         family={Hirzebruch},
+         familyi={H\bibinitperiod},
+         given={F},
+         giveni={F},
+      }}%
+    }
+    \strng{namehash}{AMFHF1}
+    \strng{fullhash}{AMFHF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{AH62}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1016/0040-9383(62)90094-0
+    \endverb
+    \field{pages}{25–45}
+    \field{title}{Analytic Cycles on Complex Manifolds}
+    \field{volume}{1}
+    \field{journaltitle}{Topology}
+    \field{year}{1962}
+  \endentry
+
+  \entry{Baum&Bott1972}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BP}{%
+         family={Baum},
+         familyi={B\bibinitperiod},
+         given={Paul},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Bott},
+         familyi={B\bibinitperiod},
+         given={Raoul},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BPBR1}
+    \strng{fullhash}{BPBR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BB72}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.4310/jdg/1214431158
+    \endverb
+    \field{number}{3-4}
+    \field{pages}{279–342}
+    \field{title}{Singularities of holomorphic foliations}
+    \field{volume}{7}
+    \field{journaltitle}{Journal of Differential Geometry}
+    \field{year}{1972}
+  \endentry
+
+  \entry{Bergner2012}{report}{}
+    \name{author}{1}{}{%
+      {{hash=BJE}{%
+         family={Bergner},
+         familyi={B\bibinitperiod},
+         given={Julia\bibnamedelima E},
+         giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BJE1}
+    \strng{fullhash}{BJE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Ber12}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{eprint}
+    \verb 1010.0717v2
+    \endverb
+    \field{title}{Homotopy limits of model categories and more general homotopy
+  theories}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{math.AT}
+    \field{day}{24}
+    \field{month}{04}
+    \field{year}{2012}
+  \endentry
+
+  \entry{Barwick&Kan2012}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BC}{%
+         family={Barwick},
+         familyi={B\bibinitperiod},
+         given={C.},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=KD}{%
+         family={Kan},
+         familyi={K\bibinitperiod},
+         given={D.M.},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BCKD1}
+    \strng{fullhash}{BCKD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BK12}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1016/j.indag.2011.10.002
+    \endverb
+    \field{number}{1}
+    \field{pages}{42\bibrangedash 68}
+    \field{title}{Relative Categories: {{Another}} Model for the Homotopy
+  Theory of Homotopy Theories}
+    \field{volume}{23}
+    \field{journaltitle}{Indagationes Mathematicae}
+    \field{year}{2012}
+  \endentry
+
+  \entry{Barwick&Kan2013}{report}{}
+    \name{author}{2}{}{%
+      {{hash=BC}{%
+         family={Barwick},
+         familyi={B\bibinitperiod},
+         given={C},
+         giveni={C},
+      }}%
+      {{hash=KDM}{%
+         family={Kan},
+         familyi={K\bibinitperiod},
+         given={D\bibnamedelima M},
+         giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BCKDM1}
+    \strng{fullhash}{BCKDM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BK13}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{eprint}
+    \verb 1102.2512v2
+    \endverb
+    \field{title}{Partial Model Categories and Their Simplicial Nerves}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{math.AT}
+    \field{day}{21}
+    \field{month}{01}
+    \field{year}{2013}
+  \endentry
+
+  \entry{Bondal&Kapranov1991}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BAI}{%
+         family={Bondal},
+         familyi={B\bibinitperiod},
+         given={A\bibnamedelima I},
+         giveni={A\bibinitperiod\bibinitdelim I\bibinitperiod},
+      }}%
+      {{hash=KMM}{%
+         family={Kapranov},
+         familyi={K\bibinitperiod},
+         given={M\bibnamedelima M},
+         giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BAIKMM1}
+    \strng{fullhash}{BAIKMM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BK91}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1070/SM1991v070n01ABEH001253
+    \endverb
+    \field{number}{1}
+    \field{pages}{1–15}
+    \field{title}{Enhanced Triangulated Categories}
+    \verb{url}
+    \verb https://ncatlab.org/nlab/files/bondalKaprEnhTRiangCat.pdf
+    \endverb
+    \field{volume}{70}
+    \field{journaltitle}{Math. USSR Sbornik}
+    \field{year}{1991}
+  \endentry
+
+  \entry{Bott&Tu1982}{book}{}
+    \name{author}{2}{}{%
+      {{hash=BR}{%
+         family={Bott},
+         familyi={B\bibinitperiod},
+         given={Raoul},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=TLW}{%
+         family={Tu},
+         familyi={T\bibinitperiod},
+         given={Loring\bibnamedelima W},
+         giveni={L\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{BRTLW1}
+    \strng{fullhash}{BRTLW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{BT82}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \verb{doi}
+    \verb 10.1007/978-1-4757-3951-0
+    \endverb
+    \field{isbn}{978-1-4419-2815-3}
+    \field{title}{Differential Forms in Algebraic Topology}
+    \field{volume}{82}
+    \field{year}{1982}
+  \endentry
+
+  \entry{Dupont1976}{article}{}
+    \name{author}{1}{}{%
+      {{hash=DJL}{%
+         family={Dupont},
+         familyi={D\bibinitperiod},
+         given={Johan\bibnamedelima L},
+         giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DJL1}
+    \strng{fullhash}{DJL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Dup76}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \verb{doi}
+    \verb 10.1016/0040-9383(76)90038-0
+    \endverb
+    \field{pages}{233–245}
+    \field{title}{Simplicial de Rham cohomology and characteristic classes of
+  flat bundles}
+    \field{volume}{15}
+    \field{journaltitle}{Topology}
+    \field{year}{1976}
+  \endentry
+
+  \entry{Fresse2017}{book}{}
+    \name{author}{1}{}{%
+      {{hash=FB}{%
+         family={Fresse},
+         familyi={F\bibinitperiod},
+         given={Benoit},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Mathematical Society}%
+    }
+    \strng{namehash}{FB1}
+    \strng{fullhash}{FB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Fre17}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \verb{doi}
+    \verb 10.1090/surv/217.2
+    \endverb
+    \field{isbn}{978-1-4704-3482-3}
+    \field{series}{Part 2: The Applications of (Rational) Homotopy Theory
+  Methods}
+    \field{title}{Homotopy of Operads and Grothendieck-Teichmuller Groups}
+    \field{year}{2017}
+  \endentry
+
+  \entry{Green1980}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=GHI}{%
+         family={Green},
+         familyi={G\bibinitperiod},
+         given={H\bibnamedelima I},
+         giveni={H\bibinitperiod\bibinitdelim I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GHI1}
+    \strng{fullhash}{GHI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Gre80}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{title}{Chern classes for coherent sheaves}
+    \verb{url}
+    \verb https://pugwash.lib.warwick.ac.uk/record=b1751746~S1
+    \endverb
+    \list{institution}{1}{%
+      {University of Warwick}%
+    }
+    \field{type}{PhD Thesis}
+    \field{month}{01}
+    \field{year}{1980}
+  \endentry
+
+  \entry{Grivaux2009}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=GJ}{%
+         family={Grivaux},
+         familyi={G\bibinitperiod},
+         given={Julien},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GJ1}
+    \strng{fullhash}{GJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Gri09}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \verb{eprint}
+    \verb tel-00460334
+    \endverb
+    \field{title}{Some problems in complex and almost-complex geometry}
+    \list{institution}{1}{%
+      {Université Pierre-et-Marie-Curie (Paris 6)}%
+    }
+    \field{eprinttype}{HAL}
+    \field{month}{10}
+    \field{year}{2009}
+  \endentry
+
+  \entry{Hirschhorn2003}{book}{}
+    \name{author}{1}{}{%
+      {{hash=HPS}{%
+         family={Hirschhorn},
+         familyi={H\bibinitperiod},
+         given={Philip\bibnamedelima S},
+         giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Mathematical Society}%
+    }
+    \strng{namehash}{HPS1}
+    \strng{fullhash}{HPS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hir03}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{doi}
+    \verb 10.1090/surv/099
+    \endverb
+    \field{isbn}{0-8218-3279-4}
+    \field{title}{Model Categories and Their Localizations}
+    \field{year}{2003}
+  \endentry
+
+  \entry{Hosgood2020}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=HT}{%
+         family={Hosgood},
+         familyi={H\bibinitperiod},
+         given={Timothy},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HT1}
+    \strng{fullhash}{HT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hos20}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{eprint}
+    \verb tel-02882140
+    \endverb
+    \field{title}{Chern Classes of Coherent Analytic Sheaves: A Simplicial
+  Approach}
+    \list{institution}{1}{%
+      {{Université d'Aix-Marseille}}%
+    }
+    \field{eprinttype}{HAL}
+    \field{year}{2020}
+  \endentry
+
+  \entry{Hovey2001}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HM}{%
+         family={Hovey},
+         familyi={H\bibinitperiod},
+         given={Mark},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HM1}
+    \strng{fullhash}{HM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hov01}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{doi}
+    \verb 10.1090/S0002-9947-01-02721-0
+    \endverb
+    \field{number}{6}
+    \field{pages}{2441\bibrangedash 2457}
+    \field{title}{Model Category Structures on Chain Complexes of Sheaves}
+    \field{volume}{353}
+    \field{journaltitle}{Transactions of the American Mathematical Society}
+    \field{month}{01}
+    \field{year}{2001}
+  \endentry
+
+  \entry{Hirschowitz&Simpson2001}{report}{}
+    \name{author}{2}{}{%
+      {{hash=HA}{%
+         family={Hirschowitz},
+         familyi={H\bibinitperiod},
+         given={André},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SC}{%
+         family={Simpson},
+         familyi={S\bibinitperiod},
+         given={Carlos},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HASC1}
+    \strng{fullhash}{HASC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{HS01}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{eprint}
+    \verb math/9807049v3
+    \endverb
+    \field{title}{Descente pour les n-champs}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{math.AG}
+    \field{day}{13}
+    \field{month}{03}
+    \field{year}{2001}
+  \endentry
+
+  \entry{Huybrechts2005}{book}{}
+    \name{author}{1}{}{%
+      {{hash=HD}{%
+         family={Huybrechts},
+         familyi={H\bibinitperiod},
+         given={Daniel},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer-Verlag}%
+    }
+    \strng{namehash}{HD1}
+    \strng{fullhash}{HD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{labelalpha}{Huy05}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{doi}
+    \verb 10.1007/b137952
+    \endverb
+    \field{isbn}{978-3-540-21290-4}
+    \field{series}{Universitext}
+    \field{shorttitle}{Complex Geometry}
+    \field{title}{Complex Geometry: An Introduction}
+    \list{location}{1}{%
+      {Berlin Heidelberg}%
+    }
+    \field{year}{2005}
+  \endentry
+
+  \entry{Kashiwara&Schapira1990}{book}{}
+    \name{author}{2}{}{%
+      {{hash=KM}{%
+         family={Kashiwara},
+         familyi={K\bibinitperiod},
+         given={Masaki},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SP}{%
+         family={Schapira},
+         familyi={S\bibinitperiod},
+         given={Pierre},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Springer-Verlag Berlin Heidelberg}}%
+    }
+    \strng{namehash}{KMSP1}
+    \strng{fullhash}{KMSP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{KS90}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{doi}
+    \verb 10.1007/978-3-662-02661-8
+    \endverb
+    \field{isbn}{978-3-642-08082-1}
+    \field{number}{292}
+    \field{series}{Grundlehren Der Mathematischen {{Wissenschaften}}}
+    \field{title}{Sheaves on {{Manifolds}}}
+    \field{year}{1990}
+  \endentry
+
+  \entry{OBrian&etal1981}{article}{}
+    \name{author}{3}{}{%
+      {{hash=ONR}{%
+         family={O'Brian},
+         familyi={O\bibinitperiod},
+         given={Nigel\bibnamedelima R},
+         giveni={N\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=TD}{%
+         family={Toledo},
+         familyi={T\bibinitperiod},
+         given={Domingo},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=TYLL}{%
+         family={Tong},
+         familyi={T\bibinitperiod},
+         given={Yue Lin\bibnamedelima L},
+         giveni={Y\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim
+  L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ONRTDTYLL1}
+    \strng{fullhash}{ONRTDTYLL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{OTT81}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \verb{doi}
+    \verb 10.2307/2374215
+    \endverb
+    \field{number}{2}
+    \field{pages}{225–252}
+    \field{title}{The Trace Map and Characteristic Classes for Coherent
+  Sheaves}
+    \field{volume}{103}
+    \field{journaltitle}{American Journal of Mathematics}
+    \field{month}{04}
+    \field{year}{1981}
+  \endentry
+
+  \entry{OBrian&etal1985}{article}{}
+    \name{author}{3}{}{%
+      {{hash=ONR}{%
+         family={O'Brian},
+         familyi={O\bibinitperiod},
+         given={Nigel\bibnamedelima R},
+         giveni={N\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=TD}{%
+         family={Toledo},
+         familyi={T\bibinitperiod},
+         given={Domingo},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=TYLL}{%
+         family={Tong},
+         familyi={T\bibinitperiod},
+         given={Yue Lin\bibnamedelima L},
+         giveni={Y\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim
+  L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ONRTDTYLL1}
+    \strng{fullhash}{ONRTDTYLL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{OTT85}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \verb{doi}
+    \verb 10.1007/BF01456132
+    \endverb
+    \field{number}{4}
+    \field{pages}{493–526}
+    \field{title}{A Grothendieck-Riemann-Roch formula for maps of complex
+  manifolds}
+    \field{volume}{271}
+    \field{journaltitle}{Mathematische Annalen}
+    \field{month}{12}
+    \field{year}{1985}
+  \endentry
+
+  \entry{Rezk2000}{article}{}
+    \name{author}{1}{}{%
+      {{hash=RC}{%
+         family={Rezk},
+         familyi={R\bibinitperiod},
+         given={Charles},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RC1}
+    \strng{fullhash}{RC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Rez00}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \verb{doi}
+    \verb 10.1090/S0002-9947-00-02653-2
+    \endverb
+    \field{number}{3}
+    \field{pages}{973\bibrangedash 1007}
+    \field{title}{A Model for the Homotopy Theory of Homotopy Theory}
+    \field{volume}{353}
+    \field{journaltitle}{Transactions of the American Mathematical Society}
+    \field{month}{06}
+    \field{year}{2000}
+  \endentry
+
+  \entry{Toledo&Tong1976}{article}{}
+    \name{author}{2}{}{%
+      {{hash=TD}{%
+         family={Toledo},
+         familyi={T\bibinitperiod},
+         given={Domingo},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=TYLL}{%
+         family={Tong},
+         familyi={T\bibinitperiod},
+         given={Yue Lin\bibnamedelima L},
+         giveni={Y\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim
+  L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TDTYLL1}
+    \strng{fullhash}{TDTYLL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{TT76}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \verb{doi}
+    \verb 10.1016/0040-9383(76)90022-7
+    \endverb
+    \field{number}{4}
+    \field{pages}{273–301}
+    \field{title}{A parametrix for $\partial$ and Riemann-Roch in Čech theory}
+    \field{volume}{15}
+    \field{journaltitle}{Topology}
+    \field{year}{1976}
+  \endentry
+
+  \entry{Toledo&Tong1978}{article}{}
+    \name{author}{2}{}{%
+      {{hash=TD}{%
+         family={Toledo},
+         familyi={T\bibinitperiod},
+         given={Domingo},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=TYLL}{%
+         family={Tong},
+         familyi={T\bibinitperiod},
+         given={Yue Lin\bibnamedelima L},
+         giveni={Y\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim
+  L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TDTYLL1}
+    \strng{fullhash}{TDTYLL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{TT78}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \verb{doi}
+    \verb 10.1007/BF01351557
+    \endverb
+    \field{pages}{41–77}
+    \field{title}{Duality and Intersection Theory in Complex Manifolds. I.}
+    \field{volume}{237}
+    \field{journaltitle}{Mathematische Annalen}
+    \field{year}{1978}
+  \endentry
+
+  \entry{Toledo&Tong1986}{book}{}
+    \name{author}{2}{}{%
+      {{hash=TD}{%
+         family={Toledo},
+         familyi={T\bibinitperiod},
+         given={Domingo},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=TYLL}{%
+         family={Tong},
+         familyi={T\bibinitperiod},
+         given={Yue Lin\bibnamedelima L},
+         giveni={Y\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim
+  L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Mathematical Society}%
+    }
+    \strng{namehash}{TDTYLL1}
+    \strng{fullhash}{TDTYLL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{TT86}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \verb{doi}
+    \verb 10.1090/conm/058.1/860421
+    \endverb
+    \field{isbn}{978-0-8218-5061-9}
+    \field{series}{Contemporary Mathematics}
+    \field{title}{Green’s theory of Chern classes and the Riemann-Roch
+  formula}
+    \field{volume}{58.1}
+    \field{year}{1986}
+  \endentry
+
+  \entry{Toen&Vezzosi2008}{article}{}
+    \name{author}{2}{}{%
+      {{hash=TB}{%
+         family={Toën},
+         familyi={T\bibinitperiod},
+         given={Bertrand},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=VG}{%
+         family={Vezzosi},
+         familyi={V\bibinitperiod},
+         given={Gabriele},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TBVG1}
+    \strng{fullhash}{TBVG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{TV08}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \verb{doi}
+    \verb 10.1090/memo/0902
+    \endverb
+    \field{number}{902}
+    \field{pages}{x+224}
+    \field{title}{Homotopical {{Algebraic Geometry II}}: Geometric Stacks and
+  Applications}
+    \field{volume}{193}
+    \field{journaltitle}{Memoirs of the American Mathematical Society}
+    \field{year}{2008}
+  \endentry
+
+  \entry{Voisin2002}{article}{}
+    \name{author}{1}{}{%
+      {{hash=VC}{%
+         family={Voisin},
+         familyi={V\bibinitperiod},
+         given={Claire},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VC1}
+    \strng{fullhash}{VC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Voi02}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \verb{doi}
+    \verb 10.1155/S1073792802111135
+    \endverb
+    \field{pages}{1057–1075}
+    \field{title}{A Counterexample to the Hodge Conjecture Extended to Kähler
+  Varieties}
+    \field{volume}{20}
+    \field{journaltitle}{International Mathematics Research Notices}
+    \field{year}{2002}
+  \endentry
+
+  \entry{Wei2016}{article}{}
+    \name{author}{1}{}{%
+      {{hash=WZ}{%
+         family={Wei},
+         familyi={W\bibinitperiod},
+         given={Zhaoting},
+         giveni={Z\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WZ1}
+    \strng{fullhash}{WZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Wei16}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \verb{doi}
+    \verb 10.1007/s40879-016-0102-8
+    \endverb
+    \field{number}{3}
+    \field{pages}{716–759}
+    \field{title}{Twisted complexes on a ringed space as a dg-enhancement of
+  the derived category of perfect complexes}
+    \field{volume}{2}
+    \field{journaltitle}{European Journal of Mathematics}
+    \field{month}{03}
+    \field{year}{2016}
+  \endentry
+
+  \entry{Yu2013}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=YS}{%
+         family={Yu},
+         familyi={Y\bibinitperiod},
+         given={Shilin},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{YS1}
+    \strng{fullhash}{YS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Yu13}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{title}{The {{Dolbeault DGA}} of a Formal Neighborhood}
+    \verb{url}
+    \verb https://www.math.upenn.edu/~shilinyu/papers/thesis.pdf
+    \endverb
+    \list{institution}{1}{%
+      {{The Pennsylvania State University}}%
+    }
+    \field{type}{PhD Thesis}
+    \field{month}{12}
+    \field{year}{2013}
+  \endentry
+\enddatalist
+\endinput

@@ -400,6 +400,7 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{labelalpha}{Hos20}
+    \field{extraalpha}{1}
     \field{sortinit}{H}
     \field{sortinithash}{H}
     \verb{eprint}
@@ -411,6 +412,35 @@
       {{Université d'Aix-Marseille}}%
     }
     \field{eprinttype}{HAL}
+    \field{year}{2020}
+  \endentry
+
+  \entry{Hosgood2020a}{report}{}
+    \name{author}{1}{}{%
+      {{hash=HT}{%
+         family={Hosgood},
+         familyi={H\bibinitperiod},
+         given={Timothy},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HT1}
+    \strng{fullhash}{HT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Hos20}
+    \field{extraalpha}{2}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \verb{eprint}
+    \verb math/2003.10591v2
+    \endverb
+    \field{title}{Simplicial Chern-Weil theory for coherent analytic sheaves,
+  part II}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{math.AG}
+    \field{day}{03}
+    \field{month}{07}
     \field{year}{2020}
   \endentry
 
@@ -473,38 +503,6 @@
     \field{day}{13}
     \field{month}{03}
     \field{year}{2001}
-  \endentry
-
-  \entry{Huybrechts2005}{book}{}
-    \name{author}{1}{}{%
-      {{hash=HD}{%
-         family={Huybrechts},
-         familyi={H\bibinitperiod},
-         given={Daniel},
-         giveni={D\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer-Verlag}%
-    }
-    \strng{namehash}{HD1}
-    \strng{fullhash}{HD1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{shorttitle}
-    \field{labelalpha}{Huy05}
-    \field{sortinit}{H}
-    \field{sortinithash}{H}
-    \verb{doi}
-    \verb 10.1007/b137952
-    \endverb
-    \field{isbn}{978-3-540-21290-4}
-    \field{series}{Universitext}
-    \field{shorttitle}{Complex Geometry}
-    \field{title}{Complex Geometry: An Introduction}
-    \list{location}{1}{%
-      {Berlin Heidelberg}%
-    }
-    \field{year}{2005}
   \endentry
 
   \entry{Kashiwara&Schapira1990}{book}{}
@@ -652,6 +650,34 @@
     \field{journaltitle}{Transactions of the American Mathematical Society}
     \field{month}{06}
     \field{year}{2000}
+  \endentry
+
+  \entry{Rie2020}{report}{}
+    \name{author}{1}{}{%
+      {{hash=RE}{%
+         family={Riehl},
+         familyi={R\bibinitperiod},
+         given={Emily},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RE1}
+    \strng{fullhash}{RE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelalpha}{Rie20}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \verb{eprint}
+    \verb 1904.00886v3
+    \endverb
+    \field{title}{Homotopical Categories: From Model Categories to
+  $(\infty,1)$-Categories}
+    \field{eprinttype}{arxiv}
+    \field{eprintclass}{math.AT}
+    \field{day}{16}
+    \field{month}{07}
+    \field{year}{2020}
   \endentry
 
   \entry{Toledo&Tong1976}{article}{}

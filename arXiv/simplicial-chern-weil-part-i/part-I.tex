@@ -23,6 +23,7 @@
 \usepackage[cal=pxtx,scr=esstix,scrscaled=1.05]{mathalpha} % \mathscr font
 \usepackage{aurical} % for defining \sheafhom
 \usepackage{upgreek}
+\usepackage{fouriernc}
 
 \usepackage{physics}
 
@@ -160,42 +161,41 @@
 
     In 1980, H.I. Green, a student of O'Brian and Eells, wrote their thesis \cite{Green1980} on the subject of Chern classes of coherent sheaves on complex-analytic manifolds.
     Although the thesis was never published, an exposition was given in \cite{Toledo&Tong1986}, alongside a sketch of a proof of the Hirzebruch-Riemann-Roch formula for this construction of Chern classes.
-    It combined the theory of {twisting cochains}, used with great success by Toledo, Tong, and O'Brian in multiple papers (\cite{Toledo&Tong1976,Toledo&Tong1978,OBrian&etal1981,OBrian&etal1985}), with the {fibre integration} of Dupont (\cite{Dupont1976}), to construct, from a coherent analytic sheaf, classes in $\HH^{2k}(X,\Omega_X^{\bullet\geqslant k})$ that coincide with those given by the classical construction of Chern classes in $\HH^{2k}(X,\mathbb{Z})$ by Atiyah-Hirzebruch (\cite{Atiyah&Hirzebruch1962}).
-    (It is of historical interest to mention that the approach of expressing characteristic classes in terms of transitions functions is very much in line with ideas propounded by Bott; see e.g. the section entitled `Concluding Remarks' in \cite[§23]{Bott&Tu1982}.)
-    This construction was considered by Grivaux in his thesis \cite{Grivaux2009}, where he constructs unified hern classes for coherent analytic sheaves (on \emph{compact} analytic manifolds) in Deligne cohomology, and where he states an axiomatisation of Chern classes that ensures uniqueness in any sufficiently nice cohomology theory (of which de Rham cohomology is an example).
-    Although he states that the Grothendieck-Riemann-Roch theorem for closed immersions is not known for Green's construction of Chern classes if $X$ is non-Kähler, this turns out to not be a problem, since it follows from his other axioms by a purely formal, classical argument, involving deformation to the normal cone.
+    It combined the theory of {twisting cochains}, used with great success by Toledo, Tong, and O'Brian in multiple papers (\cite{Toledo&Tong1976,Toledo&Tong1978,OBrian&etal1981,OBrian&etal1985}), along with the {fibre integration} of Dupont (\cite{Dupont1976}), to construct, from a coherent analytic sheaf, classes in $\HH^{2k}(X,\Omega_X^{\bullet\geqslant k})$ that coincide with those given by the classical construction of Chern classes in $\HH^{2k}(X,\mathbb{Z})$ by Atiyah-Hirzebruch (\cite{Atiyah&Hirzebruch1962}).
+    (It is of historical interest to mention that the approach of expressing characteristic classes in terms of transitions functions is very much in line with ideas propounded by Bott; see e.g. the subsection entitled `Concluding Remarks' in \cite[§23]{Bott&Tu1982}.)
+    This construction was considered by Grivaux in his thesis \cite{Grivaux2009}, where he constructs unified Chern classes for coherent analytic sheaves (on \emph{compact} analytic manifolds) in Deligne cohomology, and where he states an axiomatisation of Chern classes that ensures uniqueness in any sufficiently nice cohomology theory (of which de Rham cohomology, as well as truncated de Rham cohomology, is an example).
+    Although he states that the Grothendieck--Riemann--Roch theorem for closed immersions is not known for Green's construction of Chern classes if $X$ is non-Kähler, this turns out to not be a problem, since it follows from his other axioms by a purely formal, classical argument, involving deformation to the normal cone.
 
-    One reason that the study of Chern classes of coherent analytic sheaves is interesting is that it is notably less trivial than the algebraic version.
+    One reason that the study of Chern classes of coherent \emph{analytic} sheaves is interesting is that the techniques used in the algebraic setting seem to be entirely inapplicable to the analytic setting.
     In both the analytic and algebraic settings, Chern classes of locally free sheaves can be constructed by the splitting principle (as explained in e.g. \cite[§21]{Bott&Tu1982}) in the `most general' cohomology theories (Deligne--Beilinson cohomology and Chow rings, respectively); but, although coherent algebraic sheaves admit global locally free resolutions, the same is \emph{not} true of coherent analytic sheaves.
     In general, complex manifolds have very few holomorphic vector bundles, and there are whole classes of examples of coherent sheaves that do not admit a global locally free resolution (\cite[Corollary~A.5]{Voisin2002}).
-    One key insight of \cite{Green1980}, however, was that the holomorphic twisting resolutions of Toledo and Tong (whose existence was guaranteed by \cite[Proposition~2.4]{Toledo&Tong1978}) could be used to construct a global resolution by `\emph{simplicial} locally free sheaves', or \define{locally free sheaves on the nerve}: objects that live over the Čech nerve $\nerve{\bullet}$ of a cover $\cover$ of $X$.
+    One key insight of \cite{Green1980}, however, was that the holomorphic twisting resolutions of Toledo and Tong (whose existence was guaranteed by \cite[Proposition~2.4]{Toledo&Tong1978}) could be used to construct a global resolution by ``\emph{simplicial} locally free sheaves'', or \define{locally free sheaves on the nerve}: objects that live over the Čech nerve $\nerve{\bullet}$ of a cover $\cover$ of $X$.
     The existence of such a global resolution, glued together from local pieces, is mentioned in the introduction of \cite{Hirschowitz&Simpson2001} as a problem that should be amenable to the formal theory of descent.
-    Indeed, these `simplicial sheaves' can be constructed by taking the lax homotopy limit (in the sense of \cite[Definition~3.1]{Bergner2012}) of the diagram of model categories given by the pullback-pushforward Quillen adjunctions along the nerve of a cover of $X$.
+    Indeed, these ``simplicial sheaves'' can be constructed by taking the lax homotopy limit (in the sense of \cite[Definition~3.1]{Bergner2012}) of the diagram of model categories given by the pullback--pushforward Quillen adjunctions along the nerve of a cover of $X$.
     One very useful example of such an object is found by pulling back a global (i.e. classical) vector bundle to the nerve: given some $E\twoheadrightarrow X$, defining $\mathcal{E}^\bullet$ by $\mathcal{E}^p=(\nerve{p}\to X)^*E$.
-    This actually satisfies a `strongly cartesian' property: it is given by the `strict' (i.e. not lax) homotopy limit of \cite{Bergner2012}.
+    This actually satisfies a ``strongly cartesian'' property: it is given by the ``strict'' (i.e. not lax) homotopy limit of \cite{Bergner2012}.
     The twisting cochains from which Green builds these resolutions are also interesting objects in their own right, having been studied extensively by Toledo, Tong, and O'Brian, as previously mentioned.
     In fact, they can be seen as specific examples of the twisted complexes of \cite{Bondal&Kapranov1991}, which are used to pretriangulate arbitrary dg-categories.
-    This gives a possible moral (yet entirely informal) reason to expect the existence of resolutions such as Green's: twisted complexes give the `smallest' way of introducing a stable structure on a dg-category, and perfect $\OO_X$-modules can be defined as exactly the objects of the `smallest' stable $(\infty,1)$-category that contains $\OO_X$ and is closed under retracts.
+    This gives a possible moral (yet entirely informal) reason to expect the existence of resolutions such as Green's: twisted complexes give the ``smallest'' way of introducing a stable structure on a dg-category, and perfect $\OO_X$-modules can be defined as exactly the objects of the ``smallest'' stable $(\infty,1)$-category that contains $\OO_X$ and is closed under retracts.
     Alternatively, one can appeal to \cite{Wei2016}, which shows that, under certain restrictions on $(X,\OO_X)$, twisting cochains constitute a dg-enrichment of the derived category of perfect complexes.
 
-    Another problem in trying to apply Chern-Weil theory to coherent analytic sheaves is that global holomorphic (Koszul) connections rarely exist: the Atiyah class --- which coincides (cf. \cite[Exercise~4.4.8]{Huybrechts2005}, as well as the comments just below Exercise~4.4.11 \emph{loc.~cit.}) with the first Chern class in cohomology --- measures the obstruction of the existence of such a connection.
-    The other main result of Green's thesis is the construction of `simplicial connections', which are connections on `simplicial sheaves' pulled back along the projection $\nervesimplex{\bullet}\to\nerve{\bullet}$.
-    The idea behind this construction is powerfully simple: given local connections $\nabla_\alpha$ (which always exist) on a locally-free sheaf $E$ (that is, $\nabla_\alpha$ is a connection on $E\restricted U_\alpha$), on any intersection $U_{\alpha\beta}$ we consider the path $\gamma_{\alpha\beta}(t) = t\nabla_\beta + (1-t)\nabla_\alpha$ between the two local connections as some type of `connection' on $\nerve{1}\times\Delta^1$.
-    More generally, on $p$-fold intersections $U_{\alpha_0\ldots\alpha_p}$, we can consider the `connection' $\sum_{i=0}^p t_i\nabla_{\alpha_i}$ on $\nerve{p}\times\Delta^p$.
-    These objects then assemble to give us what might deserve to be called a \define{simplicial connection}.
+    Another problem in trying to apply Chern-Weil theory to coherent analytic sheaves is that global holomorphic (Koszul) connections rarely exist: the Atiyah class --- which coincides with the first Chern class in cohomology --- measures the obstruction of the existence of such a connection.
+    The other main result of Green's thesis is the construction of simplicial connections, which are connections on ``simplicial sheaves'' pulled back along the projection $\nervesimplex{\bullet}\to\nerve{\bullet}$.
+    The idea behind this construction is powerfully simple: given local connections $\nabla_\alpha$ (which always exist) on a locally-free sheaf $E$ (that is, $\nabla_\alpha$ is a connection on $E\restricted U_\alpha$), on any intersection $U_{\alpha\beta}$ we consider the path $\gamma_{\alpha\beta}(t) = t\nabla_\beta + (1-t)\nabla_\alpha$ between the two local connections as some type of connection on $\nerve{1}\times\Delta^1$.
+    More generally, on $p$-fold intersections $U_{\alpha_0\ldots\alpha_p}$, we can consider the ``connection'' $\sum_{i=0}^p t_i\nabla_{\alpha_i}$ on $\nerve{p}\times\Delta^p$.
+    These objects then assemble to give us what deserves to be called a \define{simplicial connection}.
     Green shows that we can take the curvature of such things, which consists of $\End(E_p)$-valued forms on $\nerve{p}\times\Delta^p$; by certain technical properties of the sheaves in his resolution, Green shows that these forms satisfy the property necessary to define a simplicial differential form (the same property as found in the equivalence relation defining the fat geometric realisation of a simplicial space), which lets us apply Dupont's fibre integration (after taking the trace, or evaluating under some other invariant polynomial) to recover (Čech representatives of) classes in de Rham cohomology.
     One thing that could be considered as missing from Green's thesis is a formal study of simplicial connections, and so this forms one of the key parts of this paper.
     It is possible to define simplicial connections in a more general setting, and study conditions that ensure that Chern-Weil theory can be applied (these give the notions of \define{admissibility}, and being \define{generated in degree zero}).
     Green's connections do indeed satisfy these formal conditions, and this provides a more rigorous reasoning for their usefulness.
-
-    Finally, as $(\infty,1)$-categories (presented by homotopical categories), modulo some subtleties in the definitions, complexes of sheaves with coherent cohomology are equivalent to the homotopy colimit of so-called \define{Gre{}en complexes} endowed with simplicial connections generated in degree zero.
+    In fact, as $(\infty,1)$-categories, modulo some subtleties in the definitions, complexes of sheaves with coherent cohomology are equivalent to the homotopy colimit of so-called \define{Gre{}en complexes} endowed with simplicial connections generated in degree zero.
     This means that applying Chern-Weil theory to Gre{}en complexes does indeed give us a working version of Chern-Weil theory for complexes of sheaves with coherent cohomology.
 
 
     \subsection{Purpose and overview}
 
     This diptych aims to construct an $(\infty,1)$-categorical framework in which we can formally understand Green's construction, as well as showing that it agrees with other existing notions of Chern classes.
-    In this first paper, we focus on the abstract definitions underlying the theory, and prove some technical results that will be used in the sequel; the next paper will focus on explicit calculations of simplicial connections (and their curvatures) in the case of pullbacks (to the nerve) of global vector bundles.
+    In this first paper, we focus on the abstract definitions underlying the theory, and prove some technical results that will be used in the sequel; the next paper \cite{Hosgood2020a} will focus on explicit calculations of simplicial connections (and their curvatures) in the case of pullbacks (to the nerve) of global vector bundles.
 
     \medskip
 
@@ -228,7 +228,7 @@
     Throughout this entire paper, let $(X,\OO_X)$ be a paracompact complex-analytic manifold with its structure sheaf of holomorphic functions; let $\cover$ be a locally-finite Stein open cover of $X$ such that finite intersections are again Stein.
 
 
-    \subsection{Conventions}
+    \subsection{Conventions and notation}
 
         We write $\Delta$ to mean the abstract simplex category: its objects are the finite ordinals $[p]=[0,1,\ldots,p-1,p]$ for $p\in\mathbb{N}$; its morphisms are the order-preserving maps.
         For all $p\in\mathbb{N}$, we have, for $i\in\{0,\ldots,p-1\}$, the \define{coface} maps, which are the injections $f_p^i\colon[p-1]\to[p]$ given by omitting $i$; we also have, for $i\in\{0,\ldots,p\}$, the \define{codegeneracy} maps, which are the surjections $s_i^p\colon[p+1]\to[p]$ that send both $i$ and $i+1$ to $i$.
@@ -273,7 +273,7 @@
 
         \medskip
 
-        We tend to use the words `vector bundle' and `locally free sheaf' somewhat interchangeably.
+        We tend to use the terms ``vector bundle'' and ``locally free sheaf'' somewhat interchangeably.
 
         \medskip
 
@@ -312,11 +312,11 @@
             \]
             commutes.
 
-            In the case where $Y_\bullet=\nerve{\bullet}$ we often say, as a mild abuse of language, \define{vector bundle on the nerve} to mean `\emph{locally free} sheaf of $\OO_{\nerve{\bullet}}$-modules'.
+            In the case where $Y_\bullet=\nerve{\bullet}$ we often say, as a mild abuse of language, \define{vector bundle on the nerve} to mean ``\emph{locally free} sheaf of $\OO_{\nerve{\bullet}}$-modules''.
         \end{definition}
 
         \begin{remark}\label{remark:simplicial-sheaves-terminology}
-            We refrain from calling such objects `simplicial sheaves', because they are not simply simplicial objects in some category of sheaves (because, for example, each sheaf lives on a different space, not to mention the fact that these objects are \emph{co}simplicial).
+            We refrain from calling such objects ``simplicial sheaves'', because they are not simply simplicial objects in some category of sheaves (because, for example, each sheaf lives on a different space --- not to mention the fact that these objects are more \emph{co}simplicial in nature anyway).
             Rather, they are some sort of (co)lax limit objects.\footnote{We can formalise this using the lax homotopy limit (of \cite[Definition~3.1]{Bergner2012}) of the diagram of model categories given by the pullback-pushforward Quillen adjunctions along the $\nerve{\bullet}$, which, in the notation of \cite{Bergner2012}, means taking $F_{\alpha,\beta}^\theta = (\nerve{\bullet}\theta)^*$ and $u_{\alpha,\beta}^\theta = \mathcal{E}^\bullet(\theta)$.}
 
             We repeat the fact that these objects are \emph{covariant} with respect to $\Delta$ (that is, \emph{cosimplicial objects}), since they are contravariant objects (sheaves) on a contravariant space (a simplicial space).
@@ -330,7 +330,7 @@
         \begin{definition}
             A sheaf $\mathcal{E}^\bullet$ on a simplicial space is said to be \define{strongly cartesian} if the $\mathcal{E}^\bullet\varphi$ are isomorphisms for all $\varphi\colon[p]\to[q]$; a complex $\mathcal{E}^{\bullet,\anotherbullet}$ of sheaves on a simplicial space is said to be \define{cartesian} if all the $\mathcal{E}^\bullet\varphi$ are quasi-isomorphisms, and \define{strongly cartesian} if they are all (strict) isomorphisms.
 
-            This former condition (of being cartesian) strengthens the `colax limit object' description mentioned in \cref{remark:simplicial-sheaves-terminology} to `strict limit object'.
+            This former condition (of being cartesian) strengthens the ``colax limit object'' description mentioned in \cref{remark:simplicial-sheaves-terminology} to ``\emph{strict} limit object''.
         \end{definition}
 
         \begin{example}\label{example:global-vector-bundles}
@@ -374,7 +374,7 @@
         \end{definition}
 
         \begin{remark}
-            The condition in \cref{equation:simplicial-gluing-condition-for-forms} can be understood as asking that the forms descend to the fat geometric realisation, as explained in \cite{Dupont1976}, or via framings, as alluded to in \cite{Hosgood2020}.
+            The condition in \cref{equation:simplicial-gluing-condition-for-forms} can be understood as asking that the forms descend to the fat geometric realisation (as explained in \cite{Dupont1976}), or in terms of framings (as alluded to in \cite{Hosgood2020}).
         \end{remark}
 
         \begin{lemma}[Dupont's fibre integration]\label{lemma:dupont's-fibre-integration}
@@ -665,11 +665,7 @@
 
         \begin{definition}
             In this chapter we are interested in \define{relative categories}: pairs $(\mathcal{C},\mathcal{W})$ where $\mathcal{C}$ is a category and $\mathcal{W}$ (whose morphisms we call \emph{weak equivalences}) is a wide subcategory of $\mathcal{C}$.
-            A relative category is said to be a \define{homotopical category} if its weak equivalences satisfy the \define{2-out-of-6 property}: if
-            \[
-                W\xrightarrow{f}X\xrightarrow{g}Y\xrightarrow{h}Z
-            \]
-            is a sequence of composable morphisms such that the compositions $gf$ and $hg$ are weak equivalences, then $f$, $g$, $h$, and $hgf$ are all weak equivalences too.
+            A relative category is said to be a \define{homotopical category} if its weak equivalences satisfy the {2-out-of-6 property} \cite[\S3]{Rie2020}.
             We often write a relative (or homotopical) category $(\mathcal{C},\mathcal{W})$ simply as $\mathcal{C}$, omitting the weak equivalences from our notation.
 
             Using the formalism of \cite{Rezk2000} along with the results of \cite{Barwick&Kan2013}, we can think of a homotopical category $(\mathcal{C},\mathcal{W})$ as presenting the $(\infty,1)$-category $\LL{\mathcal{C}}$, which is the complete Segal space given by taking a Reedy fibrant replacement of the Rezk/simplicial nerve $N(\mathcal{C},\mathcal{W})$.
@@ -678,11 +674,11 @@
 
         \begin{definition}
             We begin by formally defining some relative categories (all of which are actually \emph{homotopical} categories).
-            All complexes are \emph{cochain} complexes, concentrated in non-negative degrees and bounded above; if we don't mention what the morphisms are then they are simply morphisms of cochain complexes (i.e. degree-wise morphisms that commute with the differentials); and if we don't mention what the weak equivalences are then they are simply quasi-isomorphisms of complexes.
+            All complexes are \emph{cochain} complexes, concentrated in non-negative degrees and bounded above; if we don't say what the morphisms are, then they are simply morphisms of cochain complexes (i.e. degree-wise morphisms that commute with the differentials); and if we don't say what the weak equivalences are, then they are simply quasi-isomorphisms of complexes.
             \begin{itemize}
-                \item $\gcohX$ is the category of complexes of sheaves of $\OO_X$-modules that are quasi-isomorphic to a complex of coherent sheaves.
-                \item $\gcohUX$ is the category of complexes of sheaves of $\OO_X$-modules whose restriction to any $U\in\cover$ is quasi-isomorphic to a complex of coherent sheaves on $U$.
-                \item $\gccohX$ is the category of complexes of sheaves of $\OO_X$-modules that have coherent (internal) cohomology.
+                \item $\gcohX$ is the category of complexes $C^\bullet$ of sheaves of $\OO_X$-modules such that $C^\bullet$ is quasi-isomorphic to a complex of coherent sheaves.
+                \item $\gcohUX$ is the category of complexes $C^\bullet$ of sheaves of $\OO_X$-modules such that the restriction of $C^\bullet$ to any $U\in\cover$ is quasi-isomorphic to a complex of coherent sheaves on $U$, i.e. such that $C^\bullet|U\in\mathsf{Coh}(U)$.
+                \item $\gccohX$ is the category of complexes $C^\bullet$ of sheaves of $\OO_X$-modules such that $C^\bullet$ has coherent (internal) cohomology, i.e. such that each $\Ker d_{i}/\Im d_{i-1}$ is a coherent sheaf.
                 \item $\cartshX$ is the category of \emph{cartesian} complexes of sheaves on the nerve.
                     Note that morphisms between two such complexes are maps such that, in every \emph{internal} degree (i.e. in every degree \emph{of the complex}), we have a \emph{morphism} of sheaves on the nerve (and such that these commute with the differentials of the complexes); weak equivalences are given by morphisms of complexes such that, in each \emph{simplicial} degree, we have a quasi-isomorphism of complexes.
                 \item $\cartvectX$ is the full subcategory of $\cartshX$ consisting of complexes that are \emph{locally (with respect to $\cover$) quasi-isomorphic to} a (cartesian) complex of \emph{locally free} sheaves on the nerve.
@@ -698,7 +694,7 @@
         \end{definition}
 
         \begin{remark}\label{remark:subcats-are-locally-q-iso-to}
-            Our categories are defined as having `objects \emph{locally quasi-isomorphic to} a certain class of objects', and \emph{not} `objects in the class of objects'.
+            Our categories are defined as having ``objects \emph{locally quasi-isomorphic to} a certain class of objects'', and \emph{not} ``objects \emph{in} a certain class of objects''.
             For example, an object $\mathscr{F}^\bullet\in\gcohUX$ is such that, for all $U\in\cover$, there exists some complex of coherent sheaves $\mathscr{G}_U^\bullet$ such that $\mathscr{G}_U^\bullet\simeq \mathscr{F}^\bullet\restricted U$.
             This does \emph{not} a priori imply the existence of some global complex of coherent sheaves $\mathscr{G}^\bullet$ such that $\mathscr{G}^\bullet\simeq\mathscr{F}^\bullet$.
             This subtlety makes the proofs in this section more technical than they morally are.
@@ -1034,7 +1030,7 @@
             The projective model structure on non-negatively-graded cochain complexes gives us a simplicial model category (by the dual of Dold-Kan), and so, if we can show that $F^{\yetanotherbullet,\anotherbullet}$ is Reedy fibrant, then we can apply \cite[Theorem~19.8.7]{Hirschhorn2003}, which tells us that $\holim F^{\yetanotherbullet,\anotherbullet}\simeq\Tot(F^{\yetanotherbullet,\anotherbullet})$, for some abstract definition of $\Tot$.
             The fact that the totalization (in the sense of Hirschhorn) agrees with the totalization of a bicomplex (in the usual homological algebra sense), and that the Bousfield-Kan spectral sequence and the spectral sequence(s) associated to a bicomplex coincide, can be found in \cite[{}III.1.1.13]{Fresse2017}.
 
-            To show Reedy fibrancy of some cosimplicial object $X^\bullet$, we need to show that the maps $X^n\to M_n(X^\bullet)$ are fibrant for all $n\geqslant0$, where $M_n(X^\bullet)$ is the \define{matching object} given by
+            To show Reedy fibrancy of some cosimplicial object $X^\bullet$, we need to show that the maps $X^n\to M_n(X^\bullet)$ are fibrant for all $n\geqslant0$, where $M_n(X^\bullet)$ is the {matching object} given by
             \[
                 M_n(X^\bullet)
                 =
@@ -1754,7 +1750,7 @@
                                 \end{tabular}
                             \end{tikzcd}
                         \end{equation}
-                        commutes (where we use \cref{corollary:Green-has-injective-comparisons}, which tells us that the comparison maps are injective, and we also use the fact that tensoring preserves splittings to see that the bottom horizontal arrow is also an injection).
+                        commutes (where we use \cref{corollary:Green-has-injective-comparisons}, which tells us that the comparison maps are injective, as well as the fact that tensoring preserves splittings, to see that the horizontal arrows are injections).
                         We start by making some simplifications.
 
                         First of all, all of the sheaves in \cref{equation:simplicial-condition-square} lie over $\nerve{p}\times\Delta^{p-1}$, but we make the identification
@@ -1953,7 +1949,7 @@
             In other words, the set of generated-in-degree-zero connections on a Green vector bundle on the nerve is a compatible family.
 
             \begin{proof}
-                The fact that the difference of two arbitrary simplicial connections on an arbitrary vector bundle on the nerve is an endomorphism-valued simplicial 1-form follows `immediately' from the definitions, without any extra hypotheses.
+                The fact that the difference of two arbitrary simplicial connections on an arbitrary vector bundle on the nerve is an endomorphism-valued simplicial 1-form follows ``immediately'' from the definitions, without any extra hypotheses.
                 The content of this lemma is that \emph{generated-in-degree-zero} connections on a \emph{Green} vector bundle on the nerve have an \emph{admissible} difference.
 
                 Write $\nabla_\bullet^{(1)}$ and $\nabla_\bullet^{(2)}$ to mean the two connections, so that $\nabla_\bullet^{(i)}$ is constructed as in \cref{remark:explaining-generated-in-degree-zero-definition}, but with a different choice of local connections $\widetilde{\nabla}_\alpha^{(i)}$ on each $\mathcal{E}_0\restricted U_\alpha$.
@@ -1970,7 +1966,7 @@
                     = \sum_{j=0}^p t_j \overline{\eta_{\alpha_j}}
                 \end{equation*}
                 where $\eta_{\alpha_j}$ is an endomorphism-valued simplicial 1-form on $U_{\alpha_j}$.
-                The claim is then that $\sum_{j=0}^p t_j \overline{\eta_{\alpha_j}}$ is an \emph{admissible} endomorphism-valued simplicial 1-form, and this follows almost exactly as in the proof of \cref{theorem:admissible-gidz-on-Green}, because the difference $\sum t_j\overline{\eta_{\alpha_j}}$ is somehow also `generated in degree zero', in that it is given by trivially extending on each $(\nerve{\bullet}f_p^i)^*\mathcal{E}_{p-1}\hookrightarrow\mathcal{E}_p$.
+                The claim is then that $\sum_{j=0}^p t_j \overline{\eta_{\alpha_j}}$ is an \emph{admissible} endomorphism-valued simplicial 1-form, and this follows almost exactly as in the proof of \cref{theorem:admissible-gidz-on-Green}, because the difference $\sum t_j\overline{\eta_{\alpha_j}}$ is somehow also ``generated in degree zero'', in that it is given by trivially extending on each $(\nerve{\bullet}f_p^i)^*\mathcal{E}_{p-1}\hookrightarrow\mathcal{E}_p$.
             \end{proof}
         \end{lemma}
 
@@ -2055,7 +2051,7 @@
             induced by the full embedding $\gcohUX\hookrightarrow\gccohX$ is fully faithful.
 
             \begin{proof}
-                If we identify each $\LL{\gcohUX}$ with its `weakly-essential' image in $\LL{\gccohX}$ (i.e. the subcategory spanned by objects \emph{weakly equivalent} to those in the image of the inclusion), then we can simply apply \cref{lemma:filtered-poset-colimit}.
+                If we identify each $\LL{\gcohUX}$ with its weakly-essential image in $\LL{\gccohX}$ (i.e. the subcategory spanned by objects \emph{weakly equivalent} to those in the image of the inclusion), then we can simply apply \cref{lemma:filtered-poset-colimit}.
             \end{proof}
         \end{lemma}
 

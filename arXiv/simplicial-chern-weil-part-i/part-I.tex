@@ -297,7 +297,7 @@
                 \OO_{Y_q}.
             \]
 
-            A \define{morphism} between two such sheaves $\mathcal{E}^\bullet$ and $\mathcal{F}^\bullet$ is a family $\varphi^\bullet$ of morphisms of sheaves, where $\varphi^p\colon \mathcal{E}^p\to \mathcal{F}^p$, such that the square
+            A \define{morphism} between two such sheaves $\mathcal{E}^\bullet$ and $\mathcal{F}^\bullet$ is a family $\varphi^\bullet$ of morphisms of sheaves of $\OO_{Y_p}$-modules, where $\varphi^p\colon \mathcal{E}^p\to \mathcal{F}^p$, such that the square
             \[
                 \begin{tikzcd}[row sep=huge]
                     (Y_\bullet\varphi)^*\mathcal{E}^p
@@ -328,7 +328,7 @@
         \end{remark}
 
         \begin{definition}
-            A sheaf $\mathcal{E}^\bullet$ on a simplicial space is said to be \define{strongly cartesian} if the $\mathcal{E}^\bullet\varphi$ are isomorphisms for all $\varphi\colon[p]\to[q]$; a complex $\mathcal{E}^{\bullet,\anotherbullet}$ of sheaves on a simplicial space is said to be \define{cartesian} if all the $\mathcal{E}^\bullet\varphi$ are quasi-isomorphisms, and \define{strongly cartesian} if they are all (strict) isomorphisms.
+            A sheaf $\mathcal{E}^\bullet$ on a simplicial space is said to be \define{strongly cartesian} if the $\mathcal{E}^\bullet\varphi$ are isomorphisms for all $\varphi\colon[p]\to[q]$; a globally bounded complex $\mathcal{E}^{\bullet,\anotherbullet}$ of sheaves on a simplicial space is said to be \define{cartesian} if all the $\mathcal{E}^\bullet\varphi$ are quasi-isomorphisms, and \define{strongly cartesian} if they are all (strict) isomorphisms.
 
             This former condition (of being cartesian) strengthens the ``colax limit object'' description mentioned in \cref{remark:simplicial-sheaves-terminology} to ``\emph{strict} limit object''.
         \end{definition}
@@ -351,7 +351,7 @@
                     \otimes_{\OO_{Y_p\times \Delta^p_\mathrm{extd}}}
                     \pi_{\Delta^p_\mathrm{extd}}^* \Omega_{\Delta^p_\mathrm{extd}}^j
             \]
-            (where $\Delta^p_\mathrm{extd}$ is the affine subspace of $\mathbb{R}^{p+1}$ given by the vanishing of $1-\sum_{m=0}^p x_p$; and where $\Omega_{Y_p}$ is the sheaf of \emph{holomorphic} forms, and $\Omega_{\Delta^p_\mathrm{extd}}$ is the sheaf of \emph{smooth} forms) such that, for all \emph{coface} maps $f_p^i\colon[p-1]\to[p]$,
+            (where $\Delta^p_\mathrm{extd}$ is the affine subspace of $\mathbb{R}^{p+1}$ given by the vanishing of $1-\sum_{m=0}^p x_p$; where $\Omega_{Y_p}$ is the sheaf of \emph{holomorphic} forms, and $\Omega_{\Delta^p_\mathrm{extd}}$ is the sheaf of \emph{smooth} forms; and where $\pi_{Y_p}$ and $\pi_{\Delta^p_\mathrm{extd}}$ are the projection maps from $Y_p\times\Delta^p_\mathrm{extd}$) such that, for all \emph{coface} maps $f_p^i\colon[p-1]\to[p]$,
             \begin{equation}
             \label{equation:simplicial-gluing-condition-for-forms}
                 \left(Y_\bullet f_p^i\times\id\right)^*\omega_{p-1}
@@ -469,7 +469,7 @@
             Then a \define{holomorphic twisting resolution of $F$} is a triple $(\cover,V^\bullet,\twc)$ such that the following conditions are satisfied:
             \begin{enumerate}[(i)]
                 \item $\cover=\{U_\alpha\}$ is a locally-finite Stein open cover of $X$;
-                \item $V^\bullet=(V^\bullet_\alpha,\d_\alpha)$ is a collection of local locally free resolutions of $F$ over each $U_\alpha$, of \emph{globally}-bounded length, i.e. each $V^\bullet_\alpha$ is a resolution of $F\restricted {U_\alpha}$ by locally free $\OO_{U_\alpha}$-modules, and there exists some $B\in\mathbb{N}$ such that \emph{every} $V^\bullet_\alpha$ is of length no greater than $B$;
+                \item $V^\bullet=(V^\bullet_\alpha,\d_\alpha)$ is a collection of local locally free resolutions of $F$ over each $U_\alpha$, of \emph{globally} bounded length, i.e. each $V^\bullet_\alpha$ is a resolution of $F\restricted {U_\alpha}$ by locally free $\OO_{U_\alpha}$-modules, and there exists some $B\in\mathbb{N}$ such that \emph{every} $V^\bullet_\alpha$ is of length no greater than $B$;
                 \item $\twc$ is a holomorphic twisting cochain for $(\cover,V^\bullet)$ \textit{over $F$} --- that is, $\twc$ is a holomorphic twisting cochain for $(\cover,V^\bullet)$ such that we have the following commutative diagram:
                     \begin{equation*}
                         \begin{tikzcd}[column sep=small]
@@ -508,7 +508,7 @@
             Denote by $\mathscr{F}^\bullet$ the pullback of $\mathscr{F}$ to the nerve $\nerve{\bullet}$.
             Then there exists a resolution $\mathcal{E}^{\bullet,\anotherbullet}$ of $\mathscr{F}^\bullet$ (in the sense that the morphism $\mathcal{E}^{p,\anotherbullet}\to\mathscr{F}^p$ is a quasi-isomorphism in for every $p\in\mathbb{N}$) by vector bundles on the nerve:
             \begin{equation*}
-                0 \to \mathcal{E}^{\bullet,n} \to \ldots \to \mathcal{E}^{\bullet,0} \to \mathscr{F}^\bullet
+                0 \to \mathcal{E}^{\bullet,0} \to \ldots \to \mathcal{E}^{\bullet,n} \to \mathscr{F}^\bullet
             \end{equation*}
             where $n=\dim X$.
             Further, each $\mathcal{E}^{\bullet,j}$ satisfies the following properties:
@@ -674,7 +674,7 @@
 
         \begin{definition}
             We begin by formally defining some relative categories (all of which are actually \emph{homotopical} categories).
-            All complexes are \emph{cochain} complexes, concentrated in non-negative degrees and bounded above; if we don't say what the morphisms are, then they are simply morphisms of cochain complexes (i.e. degree-wise morphisms that commute with the differentials); and if we don't say what the weak equivalences are, then they are simply quasi-isomorphisms of complexes.
+            All complexes are bounded \emph{cochain} complexes; if we don't say what the morphisms are, then they are simply morphisms of cochain complexes (i.e. degree-wise morphisms that commute with the differentials); and if we don't say what the weak equivalences are, then they are simply quasi-isomorphisms of complexes.
             \begin{itemize}
                 \item $\gcohX$ is the category of complexes $C^\bullet$ of sheaves of $\OO_X$-modules such that $C^\bullet$ is quasi-isomorphic to a complex of coherent sheaves.
                 \item $\gcohUX$ is the category of complexes $C^\bullet$ of sheaves of $\OO_X$-modules such that the restriction of $C^\bullet$ to any $U\in\cover$ is quasi-isomorphic to a complex of coherent sheaves on $U$, i.e. such that $C^\bullet|U\in\mathsf{Coh}(U)$.
@@ -682,7 +682,10 @@
                 \item $\cartshX$ is the category of \emph{cartesian} complexes of sheaves on the nerve.
                     Note that morphisms between two such complexes are maps such that, in every \emph{internal} degree (i.e. in every degree \emph{of the complex}), we have a \emph{morphism} of sheaves on the nerve (and such that these commute with the differentials of the complexes); weak equivalences are given by morphisms of complexes such that, in each \emph{simplicial} degree, we have a quasi-isomorphism of complexes.
                 \item $\cartvectX$ is the full subcategory of $\cartshX$ consisting of complexes that are \emph{locally (with respect to $\cover$) quasi-isomorphic to} a (cartesian) complex of \emph{locally free} sheaves on the nerve.
-                    That is, for $\mathcal{F}^{\bullet,\anotherbullet}\in\cartshX$ to be in $\cartvectX$, there must exist, for all $U_{\alpha_0\ldots\alpha_p}\in\cover$, a complex $\mathcal{G}_{U_{\alpha_0\ldots\alpha_p}}^{\anotherbullet}$ of {locally free} sheaves on $U_{\alpha_0\ldots\alpha_p}$ such that \[\mathcal{F}^{p,\anotherbullet}_{\alpha_0\ldots\alpha_p} \simeq \mathcal{G}_{U_{\alpha_0\ldots\alpha_p}}^\anotherbullet.\]
+                    That is, for $\mathcal{F}^{\bullet,\anotherbullet}\in\cartshX$ to be in $\cartvectX$, there must exist, for all $U_{\alpha_0\ldots\alpha_p}\in\cover$, a complex $\mathcal{G}_{U_{\alpha_0\ldots\alpha_p}}^{\anotherbullet}$ of locally free sheaves on $U_{\alpha_0\ldots\alpha_p}$ such that we have a quasi-isomorphism
+                    \[
+                        \mathcal{F}^{p,\anotherbullet}_{\alpha_0\ldots\alpha_p} \simeq \mathcal{G}_{U_{\alpha_0\ldots\alpha_p}}^\anotherbullet.
+                    \]
                     Similarly, $\cartcohX$ is the full subcategory of $\cartshX$ consisting of complexes that are \emph{locally (with respect to $\cover$) quasi-isomorphic to} a (cartesian) complex of coherent sheaves on the nerve.
                 \item $\greenX$ is the full subcategory of $\cartvectX$ spanned by objects that are locally (with respect to $\cover$) quasi-isomorphic to some Green complex (\cref{definition:Gre{}en})
                     The fact that this actually is a subcategory is justified by \cref{corollary:green-gives-cartesian-things}.
@@ -765,7 +768,7 @@
         \begin{equation*}
             \shX : (i_* \vdash i^*) : \gshX.
         \end{equation*}
-        Then, recalling that the limit functor can be defined as being the right adjoint to the constant diagram functor, and writing $\shX$ to mean the category of complexes of sheaves of $\OO_{\nerve{X}}$-modules, thought of as a category of $\nerve{\bullet}$-diagrams, we can compose this adjunction with the above to get a Quillen adjunction
+        Then, recalling that the limit functor can be defined as being the right adjoint to the constant diagram functor, and writing $\shX$ to mean the category of complexes of sheaves of $\OO_{\nerve{\bullet}}$-modules, thought of as a category of $\nerve{\bullet}$-diagrams, we can compose this adjunction with the above to get a Quillen adjunction
         \begin{equation*}
             \shX : (\mathrm{lim}\circ i_* \vdash \cst\circ i^*) : \gshX
         \end{equation*}
@@ -1387,7 +1390,7 @@
             Let $\mathcal{C}$ be the category whose objects are pairs $(V,\varphi)$ of finite-dimensional vector spaces $V$ and endomorphisms $\varphi$, and whose morphisms $f\colon(V,\varphi)\to(W,\psi)$ are the morphisms $f\colon V\to W$ of vector spaces such that $f\circ\varphi=\psi\circ f$.
 
             Let $E\colon\mathcal{C}\to\mathcal{C}$ be the endofunctor that sends $(V,\varphi)$ to $(V/\Ker\varphi,\varphi)$.
-            Write $\LL_E\mathcal{C}$ to mean the localisation of $\mathcal{C}$ along all morphisms that become isomorphisms after applying $E$ (the wide subcategory of which we denote by $\mathcal{W}$).
+            We define the wide subcategory $\mathcal{W}$ to consist of all morphisms that become isomorphisms after applying $E$, and denote by $\LL_E\mathcal{C}$ the localisation of $\mathcal{C}$ along $\mathcal{W}$.
         \end{definition}
 
         Recall that the \define{Grothendieck group} $K(\mathcal{C})$ of $\mathcal{C}$ is the group whose elements are isomorphism classes $[A]$ of objects $A\in\mathcal{C}$, and where, for each short exact sequence $0\to A\to B\to C\to 0$ in $\mathcal{C}$, we introduce the relation $[A]-[B]+[C]=0$ in $K(\mathcal{C})$, whence the group operation is given by
@@ -1399,7 +1402,7 @@
 
         \begin{definition}
             An object $(V,\varphi)\in\mathcal{C}$ is \define{flat} if $\varphi=0$.
-            We define an equivalence relation $\sim$ on $K(\mathcal{C})$ by saying that flat objects are equivalent to the zero object:
+            We define an equivalence relation $\sim$ on $K(\mathcal{C})$ by saying that flat objects are equivalent to the zero object, i.e. the equivalence relation is generated by
             \[
                 [(V,0)]\sim[(0,0)].
             \]
@@ -1512,8 +1515,9 @@
         \begin{definition}
             Given an \emph{isomorphism} $f\colon E\congto F$ of vector bundles on $X$, along with a connection $\nabla_F$ on $F$, we define the \define{pullback connection} $f^*\nabla_F$ on $E$ by
             \[
-                f^*\nabla_F = (f^{-1}\otimes f^*)\circ\nabla_F\circ f.
+                f^*\nabla_F = (f^{-1}\otimes f^*)\circ\nabla_F\circ f
             \]
+            (where $f^*$ denotes the pullback of differential forms).
             Locally, this takes the trivial connection $\d$ on $F$ to the connection $\d+f^{-1}\d f$ on $E$.
 
             Note that this is \emph{different} from the `other' notion of the pullback of a connection, which normally means pulling back along some change of base $f\colon X\to Y$.
@@ -1695,7 +1699,7 @@
             \end{equation}
             So if we have local connections $\widetilde{\nabla}_{\alpha_i}$ on $\mathcal{E}^0\restricted U_{\alpha_i}$ for $i=0,\ldots,p$, then \cref{equation:equality-of-sheaves-pullback-by-zeta-double-restriction} tells us that $\pi_p^*\widetilde{\nabla}_{\alpha_i}$ defines a connection on the first summand.
             But we can also construct a connection on  the elementary summand by taking a direct sum of the $\widetilde{\nabla}_{\alpha_i}$.
-            Together then, this lets us build a connection $\nabla_p$ on each $\pi_p^*\mathcal{E}^p$.
+            Together then, this lets us build a connection on each $\pi_p^*\mathcal{E}^p$.
 
             Importantly, this direct sum of connections on the elementary summand gives a \define{compatible\footnote{Not to be confused with a compatible \emph{family} of \emph{simplicial} connections.} sequence of connections}: the connections commute with the differentials.
             This is because being an elementary sequence means that all differentials are identity maps, so if we place the same connection in the two non-zero degrees of each elementary component (i.e. on both copies of $M$ in $0\to M\to M[1]\to 0$) then commutativity is trivial.
@@ -1794,8 +1798,8 @@
                             =
                             \sum_{\substack{j=0\\j\neq i}}^p t_j\pi_{p}^*\widetilde{\nabla}_{\alpha_j}
                         \end{equation*}
-                        where the first equality is simply the definition, and the second equality is the tricksy one.
-                        We are really writing $\widetilde{\nabla}_{\alpha_j}$ to mean two different things: on the left-hand side, it means the connection $\pi_{p-1}^*\widetilde{\nabla}_{\alpha_j}$ extended by the trivial connection (as explained in \cref{remark:explaining-compatible-extension-of-connection}) on $\mathcal{K}_{0,j,p-1}$; on the right-hand side, is means the connection $\pi_p^*\widetilde{\nabla}_{\alpha_j}$ extended by the trivial connection on $\mathcal{K}_{0,j,p}$ (all of this using the notation and properties of \cref{remark:explaining-generated-in-degree-zero-definition,remark:explaining-compatible-extension-of-connection}).
+                        where the first equality is simply the definition, and the second equality is the more subtle one.
+                        We are really writing $\widetilde{\nabla}_{\alpha_j}$ to mean two different things: on the left-hand side, it means the connection $\pi_{p-1}^*\widetilde{\nabla}_{\alpha_j}$ extended by the trivial connection (as explained in \cref{remark:explaining-compatible-extension-of-connection}) on $\mathcal{K}_{0,j,p-1}$; on the right-hand side, it means the connection $\pi_p^*\widetilde{\nabla}_{\alpha_j}$ extended by the trivial connection on $\mathcal{K}_{0,j,p}$ (all of this using the notation and properties of \cref{remark:explaining-generated-in-degree-zero-definition,remark:explaining-compatible-extension-of-connection}).
                         So this second equality will really follow from \cref{equation:cocycle-condition-on-the-K}, which tells us that extending trivially on $\mathcal{K}_{0,j,p-1}$ and then again to the rest of $\mathcal{K}_{0,j,p}$ (which we do for $\pi_{p-1}^*\widetilde{\nabla}_{\alpha_j}$) is the same as simply extending trivially on $\mathcal{K}_{0,j,p}$ (which we do for $\pi_{p}^*\widetilde{\nabla}_{\alpha_j}$).
 
                         The second pullback is much simpler:
@@ -1878,7 +1882,7 @@
                         \end{align*}
                         for an arbitrary $j\neq i$.
                         \begin{enumerate}[(i)]
-                            \item $A^p$ is $\nabla_p$ flat by definition: we extended the connection $\pi_p^*\widetilde{\nabla}_{\alpha_i}$ by the trivial connection on this direct summand.
+                            \item $A^p$ is $\nabla_p$ flat by definition: we extended the connection $\pi_p^*\widetilde{\nabla}_{\alpha_i}$ by the trivial connection on this direct summand (cf. above, or \cref{remark:explaining-compatible-extension-of-connection}).
                             \item The comparison map $\comparison{p}^i$ is simply the pullback (along $\pi_{p,p-1}$) of $\mathcal{E}^\bullet f_p^i$, and so respects the splitting \cref{equation:that-splitting-of-Ep} almost by definition, because these splittings come from the Gre{}en assumption.
                             \item We want the comparison map to induce an isomorphism when we take the quotients.
                                 To avoid getting lost in a mire of notation, instead of using \cref{equation:that-splitting-of-Ep}, we use the language of \cref{definition:Gre{}en}.
